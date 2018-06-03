@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.venuspj.util.collect.Lists2.hasMultiRecord;
 import static org.venuspj.util.logger.LoggerFactory.getLogger;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
@@ -63,8 +62,12 @@ public class OnMemoryCrudRepository<T extends Entity<T>> implements CrudReposito
     public T resolve(EntityCriteria<T> criteria) {
         List<T> result = resolveAll(criteria);
         if(result.isEmpty()) throw new EntityNotFoundRuntimeException(criteria);
-        if(hasMultiRecord(result)) throw new EntityNotFoundRuntimeException(criteria);
+        if(hasMultiElements(result)) throw new EntityNotFoundRuntimeException(criteria);
         return result.get(0);
+    }
+
+    private boolean hasMultiElements(List<T> list) {
+        return list.size() > 1;
     }
 
     @Override
