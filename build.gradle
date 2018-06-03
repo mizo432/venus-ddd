@@ -6,7 +6,7 @@ buildscript {
         slf4jVersion = '1.7.25'
         junitVersion = "4.12"
         findbugsAnnotationsVersion = '3.0.1'
-        venusUtilsVersion = '1.0.1'
+        venusUtilsVersion = '1.0.+'
         guavaVasion = '23.4-jre'
         // build paramaters
         defaultEncoding = 'UTF-8'
@@ -16,9 +16,6 @@ buildscript {
             url 'https://plugins.gradle.org/m2/'
         }
         maven { url 'http://kamatama41.github.com/maven-repository/repository' }
-        maven {
-            url 'http://mizo432.github.com/maven-repository/repository'
-        }
         mavenCentral()
         jcenter()
 
@@ -57,6 +54,12 @@ gradle.projectsEvaluated {
 
 tasks.withType(JavaCompile) {
     options.incremental = true
+}
+
+repositories {
+    maven {
+        url 'http://mizo432.github.com/maven-repository/repository'
+    }
 }
 
 dependencies {
