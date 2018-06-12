@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static org.venuspj.util.collect.Lists2.newArrayList;
+import static org.venuspj.util.collect.Lists2.unmodifiableList;
 
 public abstract class AbstractListValue<E> implements ListValue<E> {
     protected List<E> list = newArrayList();
@@ -14,11 +15,13 @@ public abstract class AbstractListValue<E> implements ListValue<E> {
 
     protected AbstractListValue(Collection<? extends E> anyCollection) {
         list.addAll(anyCollection);
+
     }
 
     @Override
     public List<E> asList() {
-        return list;
+        return unmodifiableList(list);
+
     }
 
     public Iterator<E> iterator() {

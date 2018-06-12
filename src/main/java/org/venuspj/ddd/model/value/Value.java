@@ -25,4 +25,6 @@ public interface Value<T extends Value<T>> {
      */
     boolean sameValueAs(T other);
 
+    T getValue();
+
 }
