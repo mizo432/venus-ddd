@@ -1,8 +1,9 @@
 package org.venuspj.ddd.model.entity;
 
-import org.venuspj.util.objects2.Objects2;
-
 import java.util.UUID;
+
+import static org.venuspj.util.objects2.Objects2.equal;
+import static org.venuspj.util.objects2.Objects2.hash;
 
 /**
  * {@link EntityIdentifier}のデフォルト実装。
@@ -45,7 +46,7 @@ public final class DefaultEntityIdentifier<T extends Entity<T>> extends Abstract
 
     @Override
     public int hashCode() {
-        return Objects2.hash(kind, uuid);
+        return hash(kind, uuid);
     }
 
     @Override
@@ -62,8 +63,9 @@ public final class DefaultEntityIdentifier<T extends Entity<T>> extends Abstract
             return false;
         }
         DefaultEntityIdentifier that = (DefaultEntityIdentifier) o;
-        if (!Objects2.equal(kind, that.kind)) return false;
-        if (!Objects2.equal(uuid, that.uuid)) return false;
+        if (!equal(kind, that.kind)) return false;
+        if (!equal(uuid, that.uuid)) return false;
         return true;
     }
+
 }
