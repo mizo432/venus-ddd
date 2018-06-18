@@ -6,7 +6,7 @@ import org.venuspj.ddd.model.entity.EntityIdentifier;
 
 import java.util.List;
 
-public interface CrudRepository<E extends Entity<E>> {
+public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> {
 
     /**
      * 識別子に該当するエンティティをリポジトリから取得する。
@@ -26,7 +26,7 @@ public interface CrudRepository<E extends Entity<E>> {
      * @throws EntityNotFoundRuntimeException エンティティが見つからなかった場合
      * @throws RepositoryRuntimeException     リポジトリにアクセスできない場合
      */
-    E resolve(EntityIdentifier<E> identifier);
+    E resolve(EI identifier);
 
 
     /**
@@ -51,20 +51,11 @@ public interface CrudRepository<E extends Entity<E>> {
     /**
      * 指定した識別子のエンティティが存在するかを返す。
      *
-     * @param entity 判断条件
-     * @return 存在する場合はtrue
-     * @throws RepositoryRuntimeException リポジトリにアクセスできない場合
-     */
-    boolean contains(E entity);
-
-    /**
-     * 指定した識別子のエンティティが存在するかを返す。
-     *
      * @param identifier 判断条件
      * @return 存在する場合はtrue
      * @throws RepositoryRuntimeException リポジトリにアクセスできない場合
      */
-    boolean contains(EntityIdentifier<E> identifier);
+    boolean contains(EI identifier);
 
     /**
      * エンティティを保存する。
@@ -109,15 +100,6 @@ public interface CrudRepository<E extends Entity<E>> {
      * @throws EntityNotFoundRuntimeException 指定された識別子を持つエンティティが見つからなかった場合
      * @throws RepositoryRuntimeException     リポジトリにアクセスできない場合
      */
-    void delete(EntityIdentifier<E> identifier);
+    void delete(EI identifier);
 
-    /**
-     * 指定した識別子のエンティティを削除する。
-     *
-     * @param entity エンティティ
-     * @throws IllegalArgumentException       複数件のエンティティが返された場合
-     * @throws EntityNotFoundRuntimeException 指定された識別子を持つエンティティが見つからなかった場合
-     * @throws RepositoryRuntimeException     リポジトリにアクセスできない場合
-     */
-    void delete(E entity);
 }

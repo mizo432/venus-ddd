@@ -1,34 +1,41 @@
 package org.venuspj.ddd.model.entity;
 
+import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
 /**
- * エンティティの抽象クラス
  *
  * @param <T> エンティティクラス
  */
-public abstract class AbstractEntity<T extends Entity<T>> implements Entity<T> {
 
-    private EntityIdentifier<T> identifier;
+/**
+ * エンティティの基底クラス
+ *
+ * @param <E> エンティティの型
+ * @param <EI> エンティティIDの型
+ */
+public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends EntityIdentifier<E, EI>> implements Entity<E, EI> {
+
+    private EI identifier;
 
     protected AbstractEntity() {
 
     }
 
-    protected AbstractEntity(EntityIdentifier<T> identifier) {
+    protected AbstractEntity(EI identifier) {
         this.identifier = identifier;
     }
 
     @Override
-    public EntityIdentifier<T> getIdentifier() {
+    public EI getIdentifier() {
         return identifier;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public T clone() {
+    public E clone() {
         try {
-            return (T) super.clone();
+            return (E) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new Error("clone not supported");
         }
@@ -36,7 +43,7 @@ public abstract class AbstractEntity<T extends Entity<T>> implements Entity<T> {
 
     @Override
     public int hashCode() {
-        if(isNull(identifier)) return 0;
+        if (isNull(identifier)) return 0;
         return identifier.hashCode();
     }
 
@@ -44,7 +51,8 @@ public abstract class AbstractEntity<T extends Entity<T>> implements Entity<T> {
     @SuppressWarnings("unchecked")
     public boolean equals(Object that) {
         return that instanceof AbstractEntity
-                && identifier.sameValueAs(((AbstractEntity) that).identifier);
+                && sameIdentifierAs((E) that);
+
     }
 
     /**
@@ -52,8 +60,8 @@ public abstract class AbstractEntity<T extends Entity<T>> implements Entity<T> {
      * @return
      */
     @Override
-    public boolean sameIdentifierAs(T other) {
-        return equals(other);
+    public boolean sameIdentifierAs(E other) {
+        return equal(identifier, other.getIdentifier());
     }
 
 }

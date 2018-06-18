@@ -18,60 +18,55 @@ import static org.venuspj.util.objects2.Objects2.isNull;
 /**
  * テストで使用するためのリポジトリ
  */
-public class OnMemoryCrudRepository<T extends Entity<T>> implements CrudRepository<T>, Cloneable {
+public class OnMemoryCrudRepository<E extends Entity<E,EI>, EI extends EntityIdentifier<E, EI>> implements CrudRepository<E,EI>, Cloneable {
 
     private static final Logger LOGGER = getLogger();
 
-    private final Map<EntityIdentifier<T>, T> entities = Maps2.newHashMap();
+    private final Map<EI, E> entities = Maps2.newHashMap();
 
-    public OnMemoryCrudRepository(List<T> anyEntities) {
-        for (T entity : anyEntities)
+    public OnMemoryCrudRepository(List<E> anyEntities) {
+        for (E entity : anyEntities)
             store(entity);
 
     }
 
-    private List<T> asEntitiesList() {
-        List<T> result = new ArrayList<T>(entities.size());
-        for (T entity : entities.values()) {
-            result.add(entity.clone());
+    private List<E> asEntitiesList() {
+        List<E> result = new ArrayList<E>(entities.size());
+        for (E entity : entities.values()) {
+            E clonedEntity = (E) entity.clone();
+            result.add(clonedEntity);
         }
         return result;
     }
 
     @Override
-    public boolean contains(EntityIdentifier<T> identifier) {
+    public boolean contains(EI identifier) {
         Validate.notNull(identifier);
         return entities.containsKey(identifier);
     }
 
     @Override
-    public boolean contains(T entity) {
-        Validate.notNull(entity);
-        return contains(entity.getIdentifier());
-    }
-
-    @Override
-    public T resolve(EntityIdentifier<T> identifier) {
+    public E resolve(EI identifier) {
         Validate.notNull(identifier);
-        T result = entities.get(identifier);
-        if(isNull(result)) throw new EntityNotFoundRuntimeException(identifier);
+        E result = entities.get(identifier);
+        if (isNull(result)) throw new EntityNotFoundRuntimeException(identifier);
         return result;
     }
 
     @Override
-    public T resolve(EntityCriteria<T> criteria) {
-        List<T> result = resolveAll(criteria);
-        if(result.isEmpty()) throw new EntityNotFoundRuntimeException(criteria);
-        if(hasMultiElements(result)) throw new EntityNotFoundRuntimeException(criteria);
+    public E resolve(EntityCriteria<E> criteria) {
+        List<E> result = resolveAll(criteria);
+        if (result.isEmpty()) throw new EntityNotFoundRuntimeException(criteria);
+        if (hasMultiElements(result)) throw new EntityNotFoundRuntimeException(criteria);
         return result.get(0);
     }
 
-    private boolean hasMultiElements(List<T> list) {
+    private boolean hasMultiElements(List<E> list) {
         return list.size() > 1;
     }
 
     @Override
-    public List<T> resolveAll(EntityCriteria<T> criteria) {
+    public List<E> resolveAll(EntityCriteria<E> criteria) {
         return entities
                 .entrySet()
                 .stream()
@@ -82,55 +77,48 @@ public class OnMemoryCrudRepository<T extends Entity<T>> implements CrudReposito
 
 
     @Override
-    public boolean contains(EntityCriteria<T> criteria) {
+    public boolean contains(EntityCriteria<E> criteria) {
         return false;
     }
 
     @Override
-    public void store(Entities<T> entities) {
+    public void store(Entities<E> entities) {
         entities.asList()
-                .stream()
-                .forEach(entity ->store(entity));
+                .forEach(this::store);
     }
 
 
     @Override
-    public void store(T entity) {
+    public void store(E entity) {
         Validate.notNull(entity);
-        entities.put(entity.getIdentifier(), entity.clone());
+        entities.put(entity.getIdentifier(), entity);
     }
 
     @Override
-    public void delete(Entities<T> entities) {
+    public void delete(Entities<E> entities) {
         entities.asList()
                 .stream()
-                .filter(entityIdentifierTEntry->entities.contains(entityIdentifierTEntry))
-                .forEach(entity ->this.entities.remove(entity.getIdentifier()));
+                .filter(entities::contains)
+                .forEach(entity -> this.entities.remove(entity.getIdentifier()));
 
     }
 
     @Override
-    public void delete(EntityCriteria<T> criteria) {
+    public void delete(EntityCriteria<E> criteria) {
         asEntitiesList()
                 .stream()
-                .filter(element->criteria.test(element))
-                .forEach(element->delete(element.getIdentifier()));
+                .filter(criteria::test)
+                .forEach(element -> this.delete(element.getIdentifier()));
 
     }
 
     @Override
-    public void delete(EntityIdentifier<T> identifier) {
+    public void delete(EI identifier) {
         Validate.notNull(identifier);
         entities.remove(identifier);
     }
 
-    @Override
-    public void delete(T entity) {
-        Validate.notNull(entity);
-        delete(entity.getIdentifier());
-    }
-
-    public List<T> resolveAll() {
+    public List<E> resolveAll() {
         return asEntitiesList();
     }
 }

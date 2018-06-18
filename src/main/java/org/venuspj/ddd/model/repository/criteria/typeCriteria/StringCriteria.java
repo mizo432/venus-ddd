@@ -6,7 +6,7 @@ import org.venuspj.ddd.model.repository.criteria.expressionCriteria.EqualCriteri
 
 public  class StringCriteria extends AbstractCriteria<String> {
 
-    private EqualCriteria<String> equalCriteria = new EqualCriteria(this);
+    private EqualCriteria<String> equalCriteria = new EqualCriteria<>(this);
 
     public StringCriteria(Criteria<?> parent){
         super(parent);

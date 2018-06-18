@@ -2,28 +2,33 @@ package org.venuspj.ddd.model.repository;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.venuspj.ddd.model.entity.DefaultEntityIdentifier;
-import org.venuspj.util.uuidProvider.UuidProvider;
+import org.venuspj.ddd.model.entity.AbstractEntityIdentifierTest.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.entity.AbstractEntityTest.ConcreteEntity;
+import org.venuspj.ddd.model.entity.AbstractLongIdentifierValueTest.ConcreteLongIdentifierValue;
 
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.venuspj.util.objects2.Objects2.toStringHelper;
 
 public class OnMemoryCrudRepositoryTest {
 
-    OnMemoryCrudRepository<EntityNotFoundRuntimeExceptionTest.DummyEntity> onMemoryCrudRepository;
+    OnMemoryCrudRepository<ConcreteEntity, ConcreteEntityIdentifier> onMemoryCrudRepository;
 
     @Before
     @SuppressWarnings("unchecked")
-    public void setUp(){
-        onMemoryCrudRepository = new OnMemoryCrudRepository(DummyEntitiesMock.createMock(DummyEntitiesMock.MockType.EMPTY));
+    public void setUp() {
+        onMemoryCrudRepository = new OnMemoryCrudRepository(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.EMPTY).asList());
     }
 
     @Test
-    public void store(){
-        DefaultEntityIdentifier<EntityNotFoundRuntimeExceptionTest.DummyEntity> id = new DefaultEntityIdentifier<>(EntityNotFoundRuntimeExceptionTest.DummyEntity.class, UuidProvider.randomUUID());
-        onMemoryCrudRepository.store(new EntityNotFoundRuntimeExceptionTest.DummyEntity(id));
-        EntityNotFoundRuntimeExceptionTest.DummyEntity actual = onMemoryCrudRepository.resolve(id);
+    public void store() {
+        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(ConcreteLongIdentifierValue.of(1L));
+        onMemoryCrudRepository.store(new ConcreteEntity(id));
+        ConcreteEntity actual = onMemoryCrudRepository.resolve(id);
+
+
+        System.out.println(toStringHelper(actual).defaultConfig().toString());
         assertThat(actual)
                 .isNotNull();
 
@@ -35,12 +40,15 @@ public class OnMemoryCrudRepositoryTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void resolveAll(){
-        onMemoryCrudRepository = new OnMemoryCrudRepository(DummyEntitiesMock.createMock(DummyEntitiesMock.MockType.ONE_ELEMENT));
-        DefaultEntityIdentifier<EntityNotFoundRuntimeExceptionTest.DummyEntity> id = new DefaultEntityIdentifier<>(EntityNotFoundRuntimeExceptionTest.DummyEntity.class, UuidProvider.randomUUID());
-        onMemoryCrudRepository.store(new EntityNotFoundRuntimeExceptionTest.DummyEntity(id));
+    public void resolveAll() {
+        onMemoryCrudRepository = new OnMemoryCrudRepository(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.ONE_ELEMENT).asList());
+        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(ConcreteLongIdentifierValue.of(2L));
+        onMemoryCrudRepository.store(new ConcreteEntity(id));
+        List<ConcreteEntity> actual = onMemoryCrudRepository.resolveAll();
 
-        List<EntityNotFoundRuntimeExceptionTest.DummyEntity> actual = onMemoryCrudRepository.resolveAll();
+        ConcreteEntities concreteEntities = ConcreteEntities.of(actual);
+        System.out.println(toStringHelper(concreteEntities).defaultConfig().toString());
+
         assertThat(actual)
                 .isNotNull();
 
