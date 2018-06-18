@@ -4,4 +4,8 @@ import java.util.UUID;
 
 public interface UuidValue<T extends UuidValue<T>> extends Value<T> {
     UUID asUUID();
+
+    String asText();
+
+    UUID getValue();
 }

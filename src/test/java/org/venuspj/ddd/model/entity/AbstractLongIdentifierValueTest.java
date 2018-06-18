@@ -36,5 +36,6 @@ public class AbstractLongIdentifierValueTest {
         public static ConcreteLongIdentifierValue of(Long value) {
             return new ConcreteLongIdentifierValue(value);
         }
+
     }
 }

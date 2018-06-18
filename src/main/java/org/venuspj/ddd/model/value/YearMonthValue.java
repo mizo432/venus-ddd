@@ -7,5 +7,8 @@ import java.time.YearMonth;
  */
 public interface YearMonthValue<T extends YearMonthValue<T>> extends Value<T> {
     YearMonth asYearMonth();
+
     String asText();
+
+    YearMonth getValue();
 }

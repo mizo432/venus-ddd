@@ -1,9 +1,9 @@
 package org.venuspj.ddd.model.repository;
 
 import org.slf4j.Logger;
-import org.venuspj.ddd.model.entity.Entities;
 import org.venuspj.ddd.model.entity.Entity;
 import org.venuspj.ddd.model.entity.EntityIdentifier;
+import org.venuspj.ddd.model.value.ListValue;
 import org.venuspj.util.collect.Maps2;
 import org.venuspj.util.validate.Validate;
 
@@ -82,7 +82,7 @@ public class OnMemoryCrudRepository<E extends Entity<E,EI>, EI extends EntityIde
     }
 
     @Override
-    public void store(Entities<E> entities) {
+    public void store(ListValue<E> entities) {
         entities.asList()
                 .forEach(this::store);
     }
@@ -95,10 +95,9 @@ public class OnMemoryCrudRepository<E extends Entity<E,EI>, EI extends EntityIde
     }
 
     @Override
-    public void delete(Entities<E> entities) {
+    public void delete(ListValue<E> entities) {
         entities.asList()
                 .stream()
-                .filter(entities::contains)
                 .forEach(entity -> this.entities.remove(entity.getIdentifier()));
 
     }

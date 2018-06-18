@@ -1,8 +1,8 @@
 package org.venuspj.ddd.model.repository;
 
-import org.venuspj.ddd.model.entity.Entities;
 import org.venuspj.ddd.model.entity.Entity;
 import org.venuspj.ddd.model.entity.EntityIdentifier;
+import org.venuspj.ddd.model.value.ListValue;
 
 import java.util.List;
 
@@ -63,7 +63,7 @@ public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdenti
      * @param entities 保存する対象のエンティティ
      * @throws RepositoryRuntimeException リポジトリにアクセスできない場合
      */
-    void store(Entities<E> entities);
+    void store(ListValue<E> entities);
 
     /**
      * エンティティを保存する。
@@ -80,7 +80,7 @@ public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdenti
      * @throws EntityNotFoundRuntimeException 指定された識別子を持つエンティティが見つからなかった場合
      * @throws RepositoryRuntimeException     リポジトリにアクセスできない場合
      */
-    void delete(Entities<E> entities);
+    void delete(ListValue<E> entities);
 
     /**
      * 指定した識別子のエンティティを削除する。

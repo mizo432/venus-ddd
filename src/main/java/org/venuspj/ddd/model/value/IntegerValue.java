@@ -5,4 +5,6 @@ public interface IntegerValue<T extends IntegerValue<T>> extends Value<T> {
 
     String asText();
 
+    Integer getValue();
+
 }

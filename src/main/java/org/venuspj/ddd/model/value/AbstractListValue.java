@@ -27,4 +27,9 @@ public abstract class AbstractListValue<E> implements ListValue<E> {
     public Iterator<E> iterator() {
         return list.iterator();
     }
+
+    @Override
+    public List<E> getValue() {
+        return list;
+    }
 }

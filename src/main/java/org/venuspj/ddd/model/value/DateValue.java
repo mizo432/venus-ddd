@@ -7,4 +7,6 @@ import java.time.LocalDate;
  */
 public interface DateValue<T extends DateValue<T>> extends Value<T> {
     LocalDate asDate();
+
+    LocalDate getValue();
 }

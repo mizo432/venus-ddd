@@ -4,4 +4,6 @@ public interface DoubleValue {
     Double asDouble();
 
     String asText();
+
+    Double getValue();
 }

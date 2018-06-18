@@ -9,4 +9,6 @@ public interface TimeValue<T extends TimeValue<T>> extends Value<T> {
     LocalTime asTime();
 
     String asText();
+
+    LocalTime getValue();
 }

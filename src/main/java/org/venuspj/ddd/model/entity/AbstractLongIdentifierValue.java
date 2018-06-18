@@ -35,4 +35,8 @@ public abstract class AbstractLongIdentifierValue<ALIV extends AbstractLongIdent
         return equal(value, other.asLong());
     }
 
+    @Override
+    public Long getValue() {
+        return value;
+    }
 }

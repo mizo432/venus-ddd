@@ -7,4 +7,6 @@ public interface StringValue<T extends StringValue<T>> extends Value<T> {
 
     String asText();
 
+    String getValue();
+
 }
