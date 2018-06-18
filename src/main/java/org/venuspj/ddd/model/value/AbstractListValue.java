@@ -15,6 +15,7 @@ public abstract class AbstractListValue<E> implements ListValue<E> {
 
     protected AbstractListValue(Collection<? extends E> anyCollection) {
         list.addAll(anyCollection);
+
     }
 
     @Override

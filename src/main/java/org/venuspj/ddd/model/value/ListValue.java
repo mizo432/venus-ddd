@@ -9,6 +9,8 @@ public interface ListValue<E> extends Iterable<E> {
 
     Iterator<E> iterator();
 
+    List<E> getValue();
+
 }
 
 
