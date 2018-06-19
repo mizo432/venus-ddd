@@ -18,7 +18,7 @@ import static org.venuspj.util.objects2.Objects2.isNull;
 /**
  * テストで使用するためのリポジトリ
  */
-public class OnMemoryCrudRepository<E extends Entity<E,EI>, EI extends EntityIdentifier<E, EI>> implements CrudRepository<E,EI>, Cloneable {
+public class OnMemoryCrudRepository<E extends Entity<E,EI>, EI extends EntityIdentifier<E, EI, ?>> implements CrudRepository<E,EI>, Cloneable {
 
     private static final Logger LOGGER = getLogger();
 

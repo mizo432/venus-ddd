@@ -2,7 +2,6 @@ package org.venuspj.ddd.model.repository;
 
 import org.venuspj.ddd.model.entity.AbstractEntityIdentifierTest.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.entity.AbstractEntityTest.ConcreteEntity;
-import org.venuspj.ddd.model.entity.AbstractLongIdentifierValueTest.ConcreteLongIdentifierValue;
 
 public class ConcreteEntityMock {
     public static ConcreteEntity createMock(ConcreteEntityMockType concreteEntityMockType) {
@@ -13,7 +12,7 @@ public class ConcreteEntityMock {
         SIMPLE {
             @Override
             public ConcreteEntity create() {
-                return new ConcreteEntity(ConcreteEntityIdentifier.of(ConcreteLongIdentifierValue.of(1L)));
+                return new ConcreteEntity(ConcreteEntityIdentifier.of(1));
             }
         };
 

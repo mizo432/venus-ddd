@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.isNull;
+import static org.venuspj.util.objects2.Objects2.nonNull;
 
 /**
  * @param <T> エンティティクラス
@@ -17,7 +18,7 @@ import static org.venuspj.util.objects2.Objects2.isNull;
  * @param <E>  エンティティの型
  * @param <EI> エンティティIDの型
  */
-public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends EntityIdentifier<E, EI>> implements Entity<E, EI> {
+public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends EntityIdentifier<E, EI, ?>> implements Entity<E, EI> {
 
     private EI identifier;
 
@@ -67,18 +68,24 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends
         return equal(identifier, other.getIdentifier());
     }
 
-    public static abstract class AbstractEntityBuilder<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>, B extends AbstractEntityBuilder<E, EI, B>> extends ObjectBuilder<E, B> {
+    public static abstract class AbstractEntityBuilder<
+            E extends AbstractEntity<E, EI>,
+            B extends AbstractEntityBuilder<E, B, EI>,
+            EI extends EntityIdentifier<E, EI, ?>>
+            extends ObjectBuilder<E, B> {
 
         protected EI identifier;
 
         @Override
         protected void apply(E vo, B builder) {
-            builder.withEntityIdentifier(vo.getIdentifier());
+            EI entityIdentifier = vo.getIdentifier();
+            builder.withEntityIdentifier(entityIdentifier);
         }
 
         public B withEntityIdentifier(EI identifier) {
-            if (Objects.isNull(identifier)) return getThis();
-            addConfigurator(builder -> builder.identifier = identifier);
+            if (nonNull(identifier))
+                addConfigurator(builder -> builder.identifier = identifier);
+
             return getThis();
 
         }

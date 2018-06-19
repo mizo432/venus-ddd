@@ -1,19 +1,17 @@
 package org.venuspj.ddd.model.entity;
 
-import org.venuspj.ddd.model.value.Value;
-
 import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.hash;
 
 /**
  * {@link EntityIdentifier}のデフォルト基底クラス.
  *
- * @param <E>   エンティティの型。コンパイル時のみ利用
- * @param <AEI> AbstractEntityIdentifierの型
- * @param <T>   identifireの型
+ * @param <E>  エンティティの型。コンパイル時のみ利用
+ * @param <EI> EntityIdentifierの型
+ * @param <T>  Identifierの型
  */
-public abstract class AbstractEntityIdentifier<E extends Entity<E, AEI>, AEI extends AbstractEntityIdentifier<E, AEI, T>, T extends Value<T>>
-        implements EntityIdentifier<E, AEI> {
+public abstract class AbstractEntityIdentifier<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI, T>, T>
+        implements EntityIdentifier<E, EI, T> {
 
     protected String kind;
 
@@ -68,13 +66,13 @@ public abstract class AbstractEntityIdentifier<E extends Entity<E, AEI>, AEI ext
     @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object o) {
-        return o instanceof AbstractEntityIdentifier && sameValueAs((AEI) o);
+        return o instanceof AbstractEntityIdentifier && sameValueAs((EI) o);
 
     }
 
     @Override
-    public boolean sameValueAs(AEI other) {
-        return equal(kind, other.kind) && equal(value, other.value);
+    public boolean sameValueAs(EI other) {
+        return equal(kind, other.getKind()) && equal(value, other.getValue());
 
     }
 
@@ -84,4 +82,13 @@ public abstract class AbstractEntityIdentifier<E extends Entity<E, AEI>, AEI ext
 
     }
 
+    @Override
+    public String getKind() {
+        return kind;
+    }
+
+    @Override
+    public T getValue() {
+        return value;
+    }
 }

@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.venuspj.ddd.model.entity.AbstractEntityIdentifierTest.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.entity.AbstractEntityTest.ConcreteEntity;
-import org.venuspj.ddd.model.entity.AbstractLongIdentifierValueTest.ConcreteLongIdentifierValue;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class OnMemoryCrudRepositoryTest {
 
     @Test
     public void store() {
-        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(ConcreteLongIdentifierValue.of(1L));
+        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(1);
         onMemoryCrudRepository.store(new ConcreteEntity(id));
         ConcreteEntity actual = onMemoryCrudRepository.resolve(id);
 
@@ -42,7 +41,7 @@ public class OnMemoryCrudRepositoryTest {
     @SuppressWarnings("unchecked")
     public void resolveAll() {
         onMemoryCrudRepository = new OnMemoryCrudRepository(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.ONE_ELEMENT).asList());
-        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(ConcreteLongIdentifierValue.of(2L));
+        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(2);
         onMemoryCrudRepository.store(new ConcreteEntity(id));
         List<ConcreteEntity> actual = onMemoryCrudRepository.resolveAll();
 

@@ -6,7 +6,7 @@ import org.venuspj.ddd.model.value.ListValue;
 
 import java.util.List;
 
-public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> {
+public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI, ?>> {
 
     /**
      * 識別子に該当するエンティティをリポジトリから取得する。
