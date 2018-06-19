@@ -18,7 +18,7 @@ import static org.venuspj.util.objects2.Objects2.nonNull;
  * @param <E>  エンティティの型
  * @param <EI> エンティティIDの型
  */
-public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends EntityIdentifier<E, EI, ?>> implements Entity<E, EI> {
+public abstract class AbstractEntity<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI, ?>> implements Entity<E, EI> {
 
     private EI identifier;
 
