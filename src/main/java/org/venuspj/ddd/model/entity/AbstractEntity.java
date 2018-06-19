@@ -69,7 +69,7 @@ public abstract class AbstractEntity<E extends Entity<E, EI>, EI extends EntityI
     }
 
     public static abstract class AbstractEntityBuilder<
-            E extends AbstractEntity<E, EI>,
+            E extends Entity<E, EI>,
             B extends AbstractEntityBuilder<E, B, EI>,
             EI extends EntityIdentifier<E, EI, ?>>
             extends ObjectBuilder<E, B> {
