@@ -8,12 +8,13 @@ public abstract class AbstractIntegerEntityIdentifier<E extends Entity<E, EI>, E
         extends AbstractEntityIdentifier<E, EI, Integer>
         implements IntegerIdentifierValue<E, EI> {
 
-    public AbstractIntegerEntityIdentifier() {
+    public AbstractIntegerEntityIdentifier(Class<E> clazz) {
+        super(clazz);
 
     }
 
-    protected AbstractIntegerEntityIdentifier(Integer value) {
-        this.value = value;
+    protected AbstractIntegerEntityIdentifier(Class<E> clazz, Integer value) {
+        super(clazz, value);
 
     }
 

@@ -12,12 +12,13 @@ public abstract class AbstractLongEntityIdentifier<E extends Entity<E, EI>, EI e
         extends AbstractEntityIdentifier<E, EI, Long>
         implements LongIdentifierValue<E, EI> {
 
-    public AbstractLongEntityIdentifier() {
+    public AbstractLongEntityIdentifier(Class<E> clazz) {
+        super(clazz);
 
     }
 
-    protected AbstractLongEntityIdentifier(Long value) {
-        this.value = value;
+    protected AbstractLongEntityIdentifier(Class<E> clazz, Long value) {
+        super(clazz, value);
 
     }
 
