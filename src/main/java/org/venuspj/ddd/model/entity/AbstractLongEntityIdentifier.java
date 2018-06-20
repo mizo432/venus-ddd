@@ -1,10 +1,6 @@
 package org.venuspj.ddd.model.entity;
 
 
-import org.venuspj.ddd.model.value.LongValue;
-
-import static org.venuspj.util.objects2.Objects2.equal;
-
 /**
  * Created by mizoguchi on 2017/07/01.
  */
@@ -12,12 +8,13 @@ public abstract class AbstractLongEntityIdentifier<E extends Entity<E, EI>, EI e
         extends AbstractEntityIdentifier<E, EI, Long>
         implements LongIdentifierValue<E, EI> {
 
-    public AbstractLongEntityIdentifier() {
+    public AbstractLongEntityIdentifier(Class<E> clazz) {
+        super(clazz);
 
     }
 
-    protected AbstractLongEntityIdentifier(Long value) {
-        this.value = value;
+    protected AbstractLongEntityIdentifier(Class<E> clazz, Long value) {
+        super(clazz, value);
 
     }
 
