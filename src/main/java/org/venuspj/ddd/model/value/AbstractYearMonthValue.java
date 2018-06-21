@@ -4,21 +4,23 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 import static org.venuspj.util.objects2.Objects2.equal;
+import static org.venuspj.util.objects2.Objects2.hash;
 
-public class AbstractYearMonthValue<AYMV extends AbstractYearMonthValue<AYMV>> implements YearMonthValue<AYMV> {
-    protected YearMonth value;
+public class AbstractYearMonthValue<AYMV extends AbstractYearMonthValue<AYMV>>
+        extends AbstractSingleValue<AYMV, YearMonth> implements YearMonthValue<AYMV> {
 
-    public AbstractYearMonthValue() {
+    protected AbstractYearMonthValue() {
     }
 
     protected AbstractYearMonthValue(YearMonth value) {
-        this.value = value;
+        super(value);
 
     }
 
     @Override
     public YearMonth asYearMonth() {
         return YearMonth.from(value);
+
     }
 
     @Override
@@ -27,15 +29,4 @@ public class AbstractYearMonthValue<AYMV extends AbstractYearMonthValue<AYMV>> i
 
     }
 
-    @Override
-    public YearMonth getValue() {
-        return value;
-
-    }
-
-    @Override
-    public boolean sameValueAs(AYMV other) {
-        return equal(value, other.value);
-
-    }
 }
