@@ -1,11 +1,13 @@
 package org.venuspj.ddd.model.value;
 
 import static org.venuspj.util.objects2.Objects2.equal;
+import static org.venuspj.util.objects2.Objects2.isNull;
 
-public class AbstractIntegerValue<ASV extends AbstractIntegerValue<ASV>>
+public abstract class AbstractIntegerValue<ASV extends AbstractIntegerValue<ASV>>
         extends AbstractSingleValue<ASV, Integer> implements IntegerValue<ASV> {
 
     protected AbstractIntegerValue() {
+        super();
     }
 
     protected AbstractIntegerValue(Integer value) {
@@ -20,6 +22,7 @@ public class AbstractIntegerValue<ASV extends AbstractIntegerValue<ASV>>
 
     @Override
     public String asText() {
+        if (isNull(value)) return null;
         return value.toString();
     }
 
