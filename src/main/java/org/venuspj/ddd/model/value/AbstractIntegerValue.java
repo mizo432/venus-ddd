@@ -1,6 +1,5 @@
 package org.venuspj.ddd.model.value;
 
-import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
 public abstract class AbstractIntegerValue<ASV extends AbstractIntegerValue<ASV>>
