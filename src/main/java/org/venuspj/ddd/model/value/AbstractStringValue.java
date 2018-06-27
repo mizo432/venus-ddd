@@ -1,15 +1,13 @@
 package org.venuspj.ddd.model.value;
 
-import static org.venuspj.util.objects2.Objects2.equal;
-
-public class AbstractStringValue<ASV extends AbstractStringValue<ASV>> implements StringValue<ASV> {
-    protected String value;
+public abstract class AbstractStringValue<ASV extends AbstractStringValue<ASV>>
+        extends AbstractSingleValue<ASV, String> implements StringValue<ASV> {
 
     protected AbstractStringValue() {
     }
 
     protected AbstractStringValue(String value) {
-        this.value = value;
+        super(value);
 
     }
 
@@ -23,8 +21,4 @@ public class AbstractStringValue<ASV extends AbstractStringValue<ASV>> implement
         return value;
     }
 
-    @Override
-    public boolean sameValueAs(ASV other) {
-        return equal(this.value, other.value);
-    }
 }

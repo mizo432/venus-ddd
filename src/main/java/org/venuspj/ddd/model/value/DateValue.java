@@ -9,4 +9,6 @@ public interface DateValue<T extends DateValue<T>> extends Value<T> {
     LocalDate asDate();
 
     LocalDate getValue();
+
+    String asText();
 }
