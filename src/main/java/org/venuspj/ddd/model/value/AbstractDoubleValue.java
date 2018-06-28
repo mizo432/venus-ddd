@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.value;
 
+import static org.venuspj.util.objects2.Objects2.equal;
+
 public abstract class AbstractDoubleValue<ASV extends AbstractDoubleValue<ASV>>
         extends AbstractSingleValue<ASV, Double> implements DoubleValue<ASV> {
 
@@ -21,6 +23,5 @@ public abstract class AbstractDoubleValue<ASV extends AbstractDoubleValue<ASV>>
     public String asText() {
         return value.toString();
     }
-
 
 }

@@ -27,7 +27,8 @@ public abstract class AbstractSingleValue<ASV extends AbstractSingleValue<ASV, T
     @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof AbstractStringValue && sameValueAs((ASV) obj);
+        return obj instanceof AbstractSingleValue &&
+                sameValueAs((ASV) obj);
     }
 
     @Override
