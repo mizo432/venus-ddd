@@ -1,7 +1,7 @@
 package org.venuspj.ddd.model.specification.basic;
 
-import com.google.common.collect.ComparisonChain;
 import org.venuspj.ddd.model.specification.ValueBoundSpecification;
+import org.venuspj.util.collect.ComparisonChain;
 
 public abstract class CompareToSpecification<T> extends ValueBoundSpecification<T> {
     private final int expectedComparison;

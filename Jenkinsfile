@@ -96,18 +96,18 @@ pipeline {
                 )
             }
         }
-        stage('テスト') {
-            steps {
-                gradlew 'test jacocoTestReport -x classes -x testClasses'
-                junit allowEmptyResults: true, testResults: "**/${testReportDir}/*.xml"
-                archiveArtifacts allowEmptyArchive: true, artifacts: "**/${testReportDir}/*.xml"
-                // カバレッジレポートを生成（テストクラスを除外）
-                echo 'JacocoReportアーカイブ 開始'
-                jacoco exclusionPattern: '**/*Test*.class,**/*Mock*.class'
-                echo 'JacocoReportアーカイブ 終了'
-            }
-        }
-    }
+//        stage('テスト') {
+//            steps {
+//                gradlew 'test jacocoTestReport -x classes -x testClasses'
+//                junit allowEmptyResults: true, testResults: "**/${testReportDir}/*.xml"
+//                archiveArtifacts allowEmptyArchive: true, artifacts: "**/${testReportDir}/*.xml"
+//                // カバレッジレポートを生成（テストクラスを除外）
+//                echo 'JacocoReportアーカイブ 開始'
+//                jacoco exclusionPattern: '**/*Test*.class,**/*Mock*.class'
+//                echo 'JacocoReportアーカイブ 終了'
+//            }
+//        }
+//    }
 
     // stagesブロックと同じレベルにpostブロックを定義すると
     // 全てのstage処理が終わった後の処理の定義が可能
