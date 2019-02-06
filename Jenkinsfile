@@ -107,7 +107,7 @@ pipeline {
 //                echo 'JacocoReportアーカイブ 終了'
 //            }
 //        }
-//    }
+    }
 
     // stagesブロックと同じレベルにpostブロックを定義すると
     // 全てのstage処理が終わった後の処理の定義が可能
