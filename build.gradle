@@ -6,8 +6,8 @@ buildscript {
         slf4jVersion = '1.7.25'
         junitVersion = "4.12"
         findbugsAnnotationsVersion = '3.0.1'
-        venusUtilsVersion = '1.0.2'
-        guavaVersion = '27.0-jre'
+        venusUtilsVersion = '1.0.+'
+        guavaVersion = '25.0-jre'
         // build paramaters
         defaultEncoding = 'UTF-8'
     }
@@ -31,7 +31,7 @@ apply plugin: 'idea'
 apply plugin: "com.github.kamatama41.git-release"
 apply plugin: 'java'
 apply plugin: 'jacoco'
-apply plugin: "findbugs"
+apply plugin: "com.github.spotbugs"
 apply plugin: "maven"
 apply plugin: 'pmd'
 
@@ -63,7 +63,6 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.google.guava', name: 'guava', version: "${guavaVersion}"
     compile group: 'org.venuspj', name : 'venus-utils', version: "${venusUtilsVersion}"
     compileOnly group: 'com.google.code.findbugs', name: 'annotations', version: "${findbugsAnnotationsVersion}"
     testCompile group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
@@ -73,7 +72,7 @@ dependencies {
     testRuntime group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
 }
 
-findbugs {
+spotbugs {
     // 失敗しても後続の処理を継続させる
     ignoreFailures = true
     sourceSets = [sourceSets.main]
