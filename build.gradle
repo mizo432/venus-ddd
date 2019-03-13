@@ -6,8 +6,8 @@ buildscript {
         slf4jVersion = '1.7.25'
         junitVersion = "4.12"
         findbugsAnnotationsVersion = '3.0.1'
-        venusUtilsVersion = '1.0.+'
-        guavaVersion = '25.0-jre'
+        venusUtilsVersion = '1.0.2'
+        guavaVersion = '27.0-jre'
         // build paramaters
         defaultEncoding = 'UTF-8'
     }
@@ -145,8 +145,4 @@ gitRelease {
     groupId = "org.venuspj"
     artifactId = "venus-ddd"
     repoUri = "https://github.com/mizo432/maven-repository.git"
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.8.1'
 }

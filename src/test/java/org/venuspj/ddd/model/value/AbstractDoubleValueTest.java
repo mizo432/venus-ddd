@@ -19,6 +19,9 @@ public class AbstractDoubleValueTest {
         assertThat(target.hashCode()).isEqualTo(new ConcreteDoubleValue(0.1d).hashCode());
     }
 
+    /**
+     *
+     */
     static class ConcreteDoubleValue extends AbstractDoubleValue<ConcreteDoubleValue> {
 
         public ConcreteDoubleValue(Double value) {
