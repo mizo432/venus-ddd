@@ -7,7 +7,7 @@ buildscript {
         junitVersion = "4.12"
         findbugsAnnotationsVersion = '3.0.1'
         venusUtilsVersion = '1.0.+'
-        guavaVersion = '25.0-jre'
+        guavaVersion = '27.0-jre'
         // build paramaters
         defaultEncoding = 'UTF-8'
     }
