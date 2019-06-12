@@ -15,7 +15,7 @@ pipeline {
 
     // stagesブロック中に一つ以上のstageを定義する
     stages {
-        stage('事前準備') {
+        stage('Preparation') {
             // 実際の処理はstepsブロック中に定義する
             steps {
                 deleteDir()
@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('コンパイル') {
+        stage('Compile') {
             steps {
                 gradlew 'classes testClasses'
             }
@@ -66,11 +66,11 @@ pipeline {
             }
         }
 
-        stage('静的コード解析') {
+        stage('Analysis') {
             steps {
                 // 並列処理の場合はparallelメソッドを使う
                 parallel(
-                    '静的コード解析sub' : {
+                    'static analysis' : {
                     gradlew 'check -x test'
                         // dirメソッドでカレントディレクトリを指定できる
                         findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '**/spotbugs/*.xml', unHealthy: ''
@@ -80,7 +80,7 @@ pipeline {
                         archiveArtifacts "**/pmd/*.xml"
                         archiveArtifacts "**/cpd/*.xml"
                     },
-                    'タスクスキャン': {
+                    'task-scan': {
                         step([
                             $class: 'TasksPublisher',
                             pattern: './**',
@@ -109,14 +109,6 @@ pipeline {
 //        }
     }
 
-    // stagesブロックと同じレベルにpostブロックを定義すると
-    // 全てのstage処理が終わった後の処理の定義が可能
-    post {
-        always {
-            // 最後にワークスペースの中身を削除
-            deleteDir()
-        }
-    }
 }
 
 // Gradlewコマンドを実行する
