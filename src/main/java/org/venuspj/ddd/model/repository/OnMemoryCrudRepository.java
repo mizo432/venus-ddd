@@ -1,6 +1,7 @@
 package org.venuspj.ddd.model.repository;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.venuspj.ddd.model.entity.Entity;
 import org.venuspj.ddd.model.entity.EntityIdentifier;
 import org.venuspj.ddd.model.value.ListValue;
@@ -12,15 +13,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.venuspj.util.logger.LoggerFactory.getLogger;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
 /**
  * テストで使用するためのリポジトリ
  */
-public class OnMemoryCrudRepository<E extends Entity<E,EI>, EI extends EntityIdentifier<E, EI, ?>> implements CrudRepository<E,EI>, Cloneable {
+public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI, ?>> implements CrudRepository<E, EI>, Cloneable {
 
-    private static final Logger LOGGER = getLogger();
+    private static final Logger LOGGER = LoggerFactory.getLogger(OnMemoryCrudRepository.class);
 
     private final Map<EI, E> entities = Maps2.newHashMap();
 

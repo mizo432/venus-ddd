@@ -6,7 +6,7 @@ buildscript {
         slf4jVersion = '1.7.25'
         junitVersion = "4.12"
         findbugsAnnotationsVersion = '3.0.1'
-        venusUtilsVersion = '1.0.3'
+        venusUtilsVersion = '1.0.4'
         guavaVersion = '25.0-jre'
         // build paramaters
         defaultEncoding = 'UTF-8'
@@ -111,7 +111,6 @@ check.doLast {
         fileset(dir: "src/main/java") {
             include(name: '**/*.java')
             exclude(name: '**/*Mock.java')
-            exclude(name: '**/mybatis/**/*.java')
         }
     }
 }
@@ -136,7 +135,7 @@ jacocoTestReport {
     // カバレッジレポートからテストクラスを除外
     afterEvaluate {
         classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/ *Test.class ', '**/*Mock.class', '**/mybatis/**/*.class '])
+            fileTree(dir: it, exclude: ['**/ *Test.class ', '**/*Mock.class'])
         })
     }
 }
