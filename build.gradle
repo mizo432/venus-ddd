@@ -6,8 +6,8 @@ buildscript {
         slf4jVersion = '1.7.25'
         junitVersion = "4.12"
         findbugsAnnotationsVersion = '3.0.1'
-        venusUtilsVersion = '1.0.+'
-        guavaVersion = '27.0-jre'
+        venusUtilsVersion = '1.0.4'
+        guavaVersion = '25.0-jre'
         // build paramaters
         defaultEncoding = 'UTF-8'
     }
@@ -23,7 +23,7 @@ buildscript {
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.13"
         classpath("com.github.kamatama41:gradle-git-release-plugin:0.2.0")
-        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.11"
+//        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.11"
     }
 }
 
@@ -32,7 +32,7 @@ apply plugin: 'idea'
 apply plugin: "com.github.kamatama41.git-release"
 apply plugin: 'java'
 apply plugin: 'jacoco'
-apply plugin: "com.github.spotbugs"
+// apply plugin: "com.github.spotbugs"
 apply plugin: "maven"
 apply plugin: 'pmd'
 
@@ -44,8 +44,8 @@ group = 'org.venuspj'
 idea.module.outputDir = compileJava.destinationDir
 idea.module.inheritOutputDirs = true
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 gradle.projectsEvaluated {
     tasks.withType(JavaCompile) {
@@ -73,12 +73,12 @@ dependencies {
     testRuntime group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
 }
 
-spotbugs {
+//spotbugs {
     // 失敗しても後続の処理を継続させる
-    ignoreFailures = true
-    sourceSets = [sourceSets.main]
-    toolVersion = "3.1.12"
-}
+//    ignoreFailures = true
+//    sourceSets = [sourceSets.main]
+//    toolVersion = "3.1.12"
+//}
 
 pmd {
     // 失敗しても後続の処理を継続させる
@@ -111,7 +111,6 @@ check.doLast {
         fileset(dir: "src/main/java") {
             include(name: '**/*.java')
             exclude(name: '**/*Mock.java')
-            exclude(name: '**/mybatis/**/*.java')
         }
     }
 }
@@ -126,6 +125,8 @@ test {
 
 jacoco {
     toolVersion = '0.7.5.201505241946'
+    reportsDir = file("$buildDir/customJacocoReportDir")
+    
 }
 
 jacocoTestReport {
@@ -136,7 +137,7 @@ jacocoTestReport {
     // カバレッジレポートからテストクラスを除外
     afterEvaluate {
         classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/ *Test.class ', '**/*Mock.class', '**/mybatis/**/*.class '])
+            fileTree(dir: it, exclude: ['**/ *Test.class ', '**/*Mock.class'])
         })
     }
 }

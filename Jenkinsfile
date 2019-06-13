@@ -15,7 +15,7 @@ pipeline {
 
     // stagesブロック中に一つ以上のstageを定義する
     stages {
-        stage('事前準備') {
+        stage('Preparation') {
             // 実際の処理はstepsブロック中に定義する
             steps {
                 deleteDir()
@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('コンパイル') {
+        stage('Compile') {
             steps {
                 gradlew 'classes testClasses'
             }
@@ -66,31 +66,30 @@ pipeline {
             }
         }
 
-        stage('静的コード解析') {
+        stage('analysis') {
             steps {
                 // 並列処理の場合はparallelメソッドを使う
                 parallel(
-                    '静的コード解析sub' : {
+                    'static analysis' : {
                     gradlew 'check -x test'
                         // dirメソッドでカレントディレクトリを指定できる
-                        findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '**/spotbugs/*.xml', unHealthy: ''
+//                        findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '**/soptbugs/*.xml', unHealthy: ''
                         pmd canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/pmd/*.xml', unHealthy: ''
                         dry canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/cpd/*.xml', unHealthy: ''
-                        archiveArtifacts "**/spotbugs/*.xml"
+//                        archiveArtifacts "**/spotbugs/*.xml"
                         archiveArtifacts "**/pmd/*.xml"
                         archiveArtifacts "**/cpd/*.xml"
                     },
-                    'タスクスキャン': {
+                    'task-scan': {
                         step([
                             $class: 'TasksPublisher',
-                            pattern: './**',
+                            pattern: '**/*.java',
                             // 集計対象を検索するときに大文字小文字を区別するか
                             ignoreCase: false,
                             // 優先度別に集計対象の文字列を指定できる
                             // 複数指定する場合はカンマ区切りの文字列を指定する
-                            high: 'FIXME',
+                            high: 'FIXME,XXX',
                             normal: 'TODO',
-                            low: 'XXX',
                         ])
                     }
                 )
@@ -109,14 +108,6 @@ pipeline {
 //        }
     }
 
-    // stagesブロックと同じレベルにpostブロックを定義すると
-    // 全てのstage処理が終わった後の処理の定義が可能
-    post {
-        always {
-            // 最後にワークスペースの中身を削除
-            deleteDir()
-        }
-    }
 }
 
 // Gradlewコマンドを実行する
