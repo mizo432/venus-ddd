@@ -66,14 +66,14 @@ pipeline {
             }
         }
 
-        stage('Analysis') {
+        stage('analysis') {
             steps {
                 // 並列処理の場合はparallelメソッドを使う
                 parallel(
                     'static analysis' : {
                     gradlew 'check -x test'
                         // dirメソッドでカレントディレクトリを指定できる
-                        findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '**/spotbugs/*.xml', unHealthy: ''
+                        findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '**/soptbugs/*.xml', unHealthy: ''
                         pmd canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/pmd/*.xml', unHealthy: ''
                         dry canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/cpd/*.xml', unHealthy: ''
                         archiveArtifacts "**/spotbugs/*.xml"
@@ -83,14 +83,13 @@ pipeline {
                     'task-scan': {
                         step([
                             $class: 'TasksPublisher',
-                            pattern: './**',
+                            pattern: '**/*.java',
                             // 集計対象を検索するときに大文字小文字を区別するか
                             ignoreCase: false,
                             // 優先度別に集計対象の文字列を指定できる
                             // 複数指定する場合はカンマ区切りの文字列を指定する
-                            high: 'FIXME',
+                            high: 'FIXME,XXX',
                             normal: 'TODO',
-                            low: 'XXX',
                         ])
                     }
                 )
