@@ -1,10 +1,9 @@
 package org.venuspj.ddd.model.repository;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.venuspj.ddd.model.entity.Entity;
 import org.venuspj.ddd.model.entity.EntityIdentifier;
 import org.venuspj.ddd.model.value.ListValue;
+import org.venuspj.util.collect.Lists2;
 import org.venuspj.util.collect.Maps2;
 import org.venuspj.util.validate.Validate;
 
@@ -18,9 +17,7 @@ import static org.venuspj.util.objects2.Objects2.isNull;
 /**
  * テストで使用するためのリポジトリ
  */
-public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI, ?>> implements CrudRepository<E, EI>, Cloneable {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(OnMemoryCrudRepository.class);
+public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> implements CrudRepository<E, EI>, Cloneable {
 
     private final Map<EI, E> entities = Maps2.newHashMap();
 
@@ -31,12 +28,14 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     private List<E> asEntitiesList() {
-        List<E> result = new ArrayList<E>(entities.size());
-        for (E entity : entities.values()) {
-            E clonedEntity = (E) entity.clone();
-            result.add(clonedEntity);
-        }
-        return result;
+        return entities
+                .values()
+                .stream()
+                .map(Entity::clone)
+                .collect(Collectors
+                        .toCollection(() -> new ArrayList<>(entities
+                                .size())));
+
     }
 
     @Override
@@ -55,7 +54,7 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
 
     @Override
     public E resolve(EntityCriteria<E> criteria) {
-        List<E> result = resolveAll(criteria);
+        List<E> result = Lists2.newArrayList(resolveAll(criteria));
         if (result.isEmpty()) throw new EntityNotFoundRuntimeException(criteria);
         if (hasMultiElements(result)) throw new EntityNotFoundRuntimeException(criteria);
         return result.get(0);
@@ -66,12 +65,11 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     @Override
-    public List<E> resolveAll(EntityCriteria<E> criteria) {
+    public Iterable<E> resolveAll(EntityCriteria<E> criteria) {
         return entities
-                .entrySet()
+                .values()
                 .stream()
-                .filter(entityIdentifierTEntry -> criteria.test(entityIdentifierTEntry.getValue()))
-                .map(Map.Entry::getValue)
+                .filter(criteria)
                 .collect(Collectors.toList());
     }
 
@@ -97,7 +95,6 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     @Override
     public void delete(ListValue<E> entities) {
         entities.asList()
-                .stream()
                 .forEach(entity -> this.entities.remove(entity.getIdentifier()));
 
     }
@@ -106,7 +103,7 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     public void delete(EntityCriteria<E> criteria) {
         asEntitiesList()
                 .stream()
-                .filter(criteria::test)
+                .filter(criteria)
                 .forEach(element -> this.delete(element.getIdentifier()));
 
     }

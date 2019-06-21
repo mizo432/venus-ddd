@@ -10,8 +10,8 @@ import static org.venuspj.util.objects2.Objects2.toStringHelper;
 
 public class EntityNotFoundRuntimeExceptionTest {
     @Test
-    public void identifier() throws Exception {
-        EntityIdentifier<ConcreteEntity, ConcreteEntityIdentifier, Integer> id = ConcreteEntityIdentifier.of(1);
+    public void identifier() {
+        EntityIdentifier<ConcreteEntity, ConcreteEntityIdentifier> id = ConcreteEntityIdentifier.of(1);
         EntityNotFoundRuntimeException target = new EntityNotFoundRuntimeException(id);
         assertThat(target.identifier())
                 .isNotNull()

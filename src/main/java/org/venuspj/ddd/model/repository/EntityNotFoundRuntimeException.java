@@ -9,9 +9,9 @@ import static org.venuspj.util.objects2.Objects2.toStringHelper;
  * 指定された識別子を持つエンティティが見つからなかった場合にスローされる例外
  */
 public class EntityNotFoundRuntimeException extends RuntimeException {
-    EntityIdentifier<?, ?, ?> identifier;
+    EntityIdentifier<?, ?> identifier;
 
-    public <T extends Entity<T, ?>> EntityNotFoundRuntimeException(EntityIdentifier<?, ?, ?> identifier) {
+    public <T extends Entity<T, ?>> EntityNotFoundRuntimeException(EntityIdentifier<?, ?> identifier) {
         super("Entity not found. getIdentifier:" + toStringHelper(identifier).defaultConfig().toString());
         this.identifier = identifier;
 
@@ -20,7 +20,7 @@ public class EntityNotFoundRuntimeException extends RuntimeException {
     public <T extends Entity<T, ?>> EntityNotFoundRuntimeException(EntityCriteria<T> criteria) {
     }
 
-    EntityIdentifier<?, ?, ?> identifier() {
+    EntityIdentifier<?, ?> identifier() {
         return identifier;
     }
 }

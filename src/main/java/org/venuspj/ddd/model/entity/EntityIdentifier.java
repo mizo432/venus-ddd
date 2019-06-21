@@ -7,11 +7,8 @@ import org.venuspj.ddd.model.value.Value;
  *
  * @param <E>  エンティティ
  * @param <EI> エンティティ識別子
- * @param <T>  エンティティ識別実体
  */
-public interface EntityIdentifier<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI, T>, T> extends Value<EI> {
-
-    T getValue();
+public interface EntityIdentifier<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> extends Value<EI> {
 
     String getKind();
 

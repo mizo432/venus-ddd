@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.entity;
 
-public interface Entity<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI, ?>> extends Cloneable {
+public interface Entity<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> extends Cloneable {
 
     /**
      * エンティティの識別子を取得する。
