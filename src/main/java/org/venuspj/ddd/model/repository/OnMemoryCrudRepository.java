@@ -8,6 +8,7 @@ import org.venuspj.util.collect.Maps2;
 import org.venuspj.util.validate.Validate;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -65,7 +66,7 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     @Override
-    public Iterable<E> resolveAll(EntityCriteria<E> criteria) {
+    public Collection<E> resolveAll(EntityCriteria<E> criteria) {
         return entities
                 .values()
                 .stream()
