@@ -21,8 +21,8 @@ public class OnMemoryCrudRepositoryTest {
     }
 
     @Test
-    public void store() {
-        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(1);
+    public void store() throws EntityNotFoundRuntimeException {
+        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(1L);
         onMemoryCrudRepository.store(new ConcreteEntity(id));
         ConcreteEntity actual = onMemoryCrudRepository.resolve(id);
 
@@ -41,7 +41,7 @@ public class OnMemoryCrudRepositoryTest {
     @SuppressWarnings("unchecked")
     public void resolveAll() {
         onMemoryCrudRepository = new OnMemoryCrudRepository(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.ONE_ELEMENT).asList());
-        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(2);
+        ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(2L);
         onMemoryCrudRepository.store(new ConcreteEntity(id));
         List<ConcreteEntity> actual = onMemoryCrudRepository.resolveAll();
 

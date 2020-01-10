@@ -2,9 +2,9 @@ package org.venuspj.ddd.model.repository;
 
 import org.venuspj.ddd.model.entity.Entity;
 import org.venuspj.ddd.model.entity.EntityIdentifier;
-import org.venuspj.ddd.model.value.ListValue;
+import org.venuspj.ddd.model.values.primitives.ListValue;
+import org.venuspj.util.base.Preconditions;
 import org.venuspj.util.collect.Lists2;
-import org.venuspj.util.collect.Maps2;
 import org.venuspj.util.validate.Validate;
 
 import java.util.ArrayList;
@@ -13,14 +13,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static org.venuspj.util.collect.Maps2.newHashMap;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
 /**
- * テストで使用するためのリポジトリ
+ * テストで使用するためのリポジトリ.
  */
 public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> implements CrudRepository<E, EI>, Cloneable {
 
-    private final Map<EI, E> entities = Maps2.newHashMap();
+    private final Map<EI, E> entities = newHashMap();
 
     public OnMemoryCrudRepository(List<E> anyEntities) {
         for (E entity : anyEntities)
@@ -46,7 +47,7 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     @Override
-    public E resolve(EI identifier) {
+    public E resolve(EI identifier) throws EntityNotFoundRuntimeException {
         Validate.notNull(identifier);
         E result = entities.get(identifier);
         if (isNull(result)) throw new EntityNotFoundRuntimeException(identifier);
@@ -54,7 +55,7 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     @Override
-    public E resolve(EntityCriteria<E> criteria) {
+    public E resolve(EntityCriteria<E> criteria) throws EntityNotFoundRuntimeException {
         List<E> result = Lists2.newArrayList(resolveAll(criteria));
         if (result.isEmpty()) throw new EntityNotFoundRuntimeException(criteria);
         if (hasMultiElements(result)) throw new EntityNotFoundRuntimeException(criteria);
@@ -81,7 +82,7 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     @Override
-    public void store(ListValue<E> entities) {
+    public void store(ListValue<E, ?> entities) {
         entities.asList()
                 .forEach(this::store);
     }
@@ -94,7 +95,7 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     @Override
-    public void delete(ListValue<E> entities) {
+    public void delete(ListValue<E, ?> entities) {
         entities.asList()
                 .forEach(entity -> this.entities.remove(entity.getIdentifier()));
 
@@ -111,11 +112,12 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
 
     @Override
     public void delete(EI identifier) {
-        Validate.notNull(identifier);
+        Preconditions.checkNotNull(identifier);
         entities.remove(identifier);
     }
 
     public List<E> resolveAll() {
         return asEntitiesList();
+
     }
 }
