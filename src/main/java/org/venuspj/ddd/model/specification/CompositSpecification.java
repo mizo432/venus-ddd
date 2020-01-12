@@ -1,10 +1,10 @@
 package org.venuspj.ddd.model.specification;
 
-public abstract class ComposableSpecification<T> implements Specification<T> {
+public abstract class CompositSpecification<T> implements Specification<T> {
     protected final Specification<T> lhs;
     protected final Specification<T> rhs;
 
-    protected ComposableSpecification(Specification<T> aLhs, Specification<T> aRhs) {
+    protected CompositSpecification(Specification<T> aLhs, Specification<T> aRhs) {
         lhs = aLhs;
         rhs = aRhs;
     }

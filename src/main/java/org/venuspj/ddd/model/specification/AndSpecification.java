@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.specification;
 
-public class AndSpecification<T> extends ComposableSpecification<T> {
+public class AndSpecification<T> extends CompositSpecification<T> {
 
     protected AndSpecification(Specification<T> aLhs, Specification<T> aRhs) {
         super(aLhs, aRhs);

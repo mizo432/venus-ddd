@@ -1,27 +1,38 @@
 package org.venuspj.ddd.model.repository.criteria;
 
-import static org.venuspj.util.objects2.Objects2.nonNull;
+import java.util.Optional;
 
 public abstract class AbstractCriteria<E> implements Criteria<E> {
-    protected Criteria<?> parent;
+
+    protected Optional<Criteria<?>> criteriaOptional;
+
     protected Boolean isEmpty = Boolean.TRUE;
 
-    public AbstractCriteria(Criteria<?> parent) {
-        this.parent = parent;
+    protected AbstractCriteria(Criteria<?> parent) {
+        this.criteriaOptional = Optional.of(parent);
+    }
+
+    protected AbstractCriteria() {
     }
 
     public boolean isEmpty() {
         return isEmpty;
+
     }
 
     public void valueChanged() {
-        if (nonNull(parent)) parent.valueChanged();
+        if (criteriaOptional.isPresent()) getCriteriaOptional().valueChanged();
         isEmpty = Boolean.FALSE;
 
+    }
+
+    private Criteria<?> getCriteriaOptional() {
+        return criteriaOptional.get();
     }
 
 
     public boolean isPresent() {
         return !isEmpty;
+
     }
 }

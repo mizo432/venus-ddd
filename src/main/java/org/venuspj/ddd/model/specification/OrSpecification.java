@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.specification;
 
-public class OrSpecification<T> extends ComposableSpecification<T> {
+public class OrSpecification<T> extends CompositSpecification<T> {
     public OrSpecification(Specification<T> lhs, Specification<T> rhs) {
         super(lhs, rhs);
     }

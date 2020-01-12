@@ -12,7 +12,7 @@ public class EntityNotFoundRuntimeException extends Exception {
     EntityIdentifier<?, ?> identifier;
 
     public <T extends Entity<T, ?>> EntityNotFoundRuntimeException(EntityIdentifier<?, ?> identifier) {
-        super("Entity not found. getIdentifier:" + toStringHelper(identifier).defaultConfig().toString());
+        super("Entity not found. getIdentifier: " + toStringHelper(identifier).defaultConfig().toString());
         this.identifier = identifier;
 
     }
