@@ -1,5 +1,6 @@
 package org.venuspj.ddd.model.entity;
 
+import org.venuspj.ddd.model.values.Value;
 import org.venuspj.util.builder.ObjectBuilder;
 
 import static org.venuspj.util.objects2.Objects2.*;
@@ -14,7 +15,7 @@ import static org.venuspj.util.objects2.Objects2.*;
  * @param <E>  エンティティの型
  * @param <EI> エンティティIDの型
  */
-public abstract class AbstractEntity<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> implements Entity<E, EI> {
+public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends EntityIdentifier<E, EI>> implements Entity<E, EI>, Value<E> {
 
     private EI identifier;
 

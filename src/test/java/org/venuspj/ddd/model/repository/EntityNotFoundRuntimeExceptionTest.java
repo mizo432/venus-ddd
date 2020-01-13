@@ -11,7 +11,7 @@ import static org.venuspj.util.objects2.Objects2.toStringHelper;
 public class EntityNotFoundRuntimeExceptionTest {
     @Test
     public void identifier() {
-        EntityIdentifier<ConcreteEntity, ConcreteEntityIdentifier> id = ConcreteEntityIdentifier.of(1);
+        EntityIdentifier<ConcreteEntity, ConcreteEntityIdentifier> id = ConcreteEntityIdentifier.of(1L);
         EntityNotFoundRuntimeException target = new EntityNotFoundRuntimeException(id);
         assertThat(target.identifier())
                 .isNotNull()

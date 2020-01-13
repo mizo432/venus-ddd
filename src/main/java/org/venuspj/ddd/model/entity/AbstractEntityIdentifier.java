@@ -15,7 +15,6 @@ public abstract class AbstractEntityIdentifier<E extends Entity<E, EI>, EI exten
      * インスタンスを生成する。
      *
      * @param entityClass エンティティクラス。カインドにはFQCNが設定される。
-     * @return {@link AbstractEntityIdentifier}
      */
     protected AbstractEntityIdentifier(Class<E> entityClass) {
         this(entityClass.getCanonicalName());

@@ -12,7 +12,7 @@ public class ConcreteEntityMock {
         SIMPLE {
             @Override
             public ConcreteEntity create() {
-                return new ConcreteEntity(ConcreteEntityIdentifier.of(1));
+                return new ConcreteEntity(ConcreteEntityIdentifier.of(1L));
             }
         };
 
