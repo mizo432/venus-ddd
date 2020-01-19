@@ -2,15 +2,16 @@ package org.venuspj.ddd.model.repository.criteria.expressionCriteria;
 
 import org.venuspj.ddd.model.repository.criteria.Criteria;
 
-public class EqualCriteriaAbstract<T> extends AbstractExpressionCriteria<T> {
+public class AbstractEqualCriteria<T> extends AbstractExpressionCriteria<T> {
 
     private T value;
 
-    public EqualCriteriaAbstract(Criteria<?> criteria) {
+    public AbstractEqualCriteria(Criteria<?> criteria) {
         super(criteria);
+
     }
 
-    public EqualCriteriaAbstract<T> setValue(T value) {
+    public AbstractEqualCriteria<T> setValue(T value) {
         this.value = value;
         valueChanged();
         return this;
@@ -18,11 +19,13 @@ public class EqualCriteriaAbstract<T> extends AbstractExpressionCriteria<T> {
 
     public T getValue() {
         return value;
+
     }
 
     @Override
     public boolean test(T value) {
         return isEmpty || this.value.equals(value);
+
     }
 
 }

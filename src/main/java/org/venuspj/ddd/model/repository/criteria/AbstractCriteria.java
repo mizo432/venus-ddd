@@ -4,12 +4,12 @@ import java.util.Optional;
 
 public abstract class AbstractCriteria<E> implements Criteria<E> {
 
-    protected Optional<Criteria<?>> criteriaOptional;
+    protected Optional<Criteria<?>> parentCriteriaOptional = Optional.empty();
 
     protected Boolean isEmpty = Boolean.TRUE;
 
     protected AbstractCriteria(Criteria<?> parent) {
-        this.criteriaOptional = Optional.of(parent);
+        this.parentCriteriaOptional = Optional.of(parent);
     }
 
     protected AbstractCriteria() {
@@ -21,13 +21,13 @@ public abstract class AbstractCriteria<E> implements Criteria<E> {
     }
 
     public void valueChanged() {
-        if (criteriaOptional.isPresent()) getCriteriaOptional().valueChanged();
+        if (parentCriteriaOptional.isPresent()) getParentCriteriaOptional().valueChanged();
         isEmpty = Boolean.FALSE;
 
     }
 
-    private Criteria<?> getCriteriaOptional() {
-        return criteriaOptional.get();
+    private Criteria<?> getParentCriteriaOptional() {
+        return parentCriteriaOptional.get();
     }
 
 

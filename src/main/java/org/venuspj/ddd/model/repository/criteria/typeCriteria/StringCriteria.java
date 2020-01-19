@@ -2,11 +2,11 @@ package org.venuspj.ddd.model.repository.criteria.typeCriteria;
 
 import org.venuspj.ddd.model.repository.criteria.AbstractCriteria;
 import org.venuspj.ddd.model.repository.criteria.Criteria;
-import org.venuspj.ddd.model.repository.criteria.expressionCriteria.EqualCriteriaAbstract;
+import org.venuspj.ddd.model.repository.criteria.expressionCriteria.AbstractEqualCriteria;
 
 public  class StringCriteria extends AbstractCriteria<String> {
 
-    private EqualCriteriaAbstract<String> equalCriteria = new EqualCriteriaAbstract<>(this);
+    private AbstractEqualCriteria<String> equalCriteria = new AbstractEqualCriteria<>(this);
 
     public StringCriteria(Criteria<?> parent){
         super(parent);

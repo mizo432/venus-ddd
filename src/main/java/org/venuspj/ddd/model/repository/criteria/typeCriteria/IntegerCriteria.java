@@ -7,10 +7,12 @@ public class IntegerCriteria  extends AbstractCriteria<Integer> {
 
     public IntegerCriteria(Criteria<?> parent) {
         super(parent);
+
     }
 
     @Override
     public boolean test(Integer value) {
         return false;
+
     }
 }
