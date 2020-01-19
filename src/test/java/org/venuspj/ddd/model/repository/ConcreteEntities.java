@@ -7,8 +7,8 @@ import java.util.Collection;
 
 public class ConcreteEntities extends AbstractListValue<ConcreteEntity, ConcreteEntities> {
 
-    public ConcreteEntities(Collection<ConcreteEntity> concreteEntitys) {
-        super(concreteEntitys);
+    public ConcreteEntities(Collection<ConcreteEntity> concreteEntities) {
+        super(concreteEntities);
 
     }
 

@@ -1,5 +1,10 @@
 package org.venuspj.ddd.model.values;
 
+/**
+ * 値オブジェクトインターフェイス.
+ *
+ * @param <V>
+ */
 public interface Value<V extends Value<V>> {
     /**
      * 全てのプロパティの等価性を用いて、このバリューオブジェクトの等価性を比較する。

@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.venuspj.util.collect.Lists2.newArrayList;
 import static org.venuspj.util.collect.Lists2.unmodifiableList;
+import static org.venuspj.util.objects2.Objects2.equal;
 
 public abstract class AbstractListValue<E, ALV extends AbstractListValue<E, ALV>> extends AbstractSingleValue<List<E>, ALV> implements ListValue<E, ALV> {
 
@@ -17,6 +18,7 @@ public abstract class AbstractListValue<E, ALV extends AbstractListValue<E, ALV>
     }
 
     protected AbstractListValue(Collection<? extends E> anyCollection) {
+        this();
         value.addAll(anyCollection);
 
     }
@@ -43,8 +45,17 @@ public abstract class AbstractListValue<E, ALV extends AbstractListValue<E, ALV>
 
     @Override
     public boolean sameValueAs(ALV that) {
-        throw new NotSupportedMethod(this.getClass().getCanonicalName() + "#sameValueAs(" + that.getClass().getSimpleName() + ")");
+        if (size() != that.size())
+            return false;
+        for (int index = 0; index < value.size(); index++) {
+            if (!equal(value.get(index), that.value.get(index)))
+                return false;
+        }
+        return true;
+    }
 
+    protected int size() {
+        return value.size();
     }
 
 }
