@@ -7,6 +7,7 @@ import org.venuspj.ddd.model.values.primitives.AbstractLongValue;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Collection;
+import java.util.Locale;
 
 import static org.venuspj.util.objects2.Objects2.isNull;
 
@@ -54,8 +55,8 @@ public class Amount extends AbstractLongValue<Amount> {
     public String asText() {
         if (isNull(value))
             return null;
-        NumberFormat formater = NumberFormat.getCurrencyInstance();
-        return formater.format(value);
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.JAPAN);
+        return formatter.format(value);
 
     }
 
