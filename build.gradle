@@ -8,7 +8,6 @@ buildscript {
         findbugsAnnotationsVersion = '3.0.1'
         venusUtilsVersion = '1.0.4'
         guavaVersion = '25.0-jre'
-        // build paramaters
         defaultEncoding = 'UTF-8'
     }
     repositories {
@@ -23,7 +22,7 @@ buildscript {
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.13"
         classpath("com.github.kamatama41:gradle-git-release-plugin:0.2.0")
-//        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.11"
+        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
     }
 }
 
@@ -32,7 +31,7 @@ apply plugin: 'idea'
 apply plugin: "com.github.kamatama41.git-release"
 apply plugin: 'java'
 apply plugin: 'jacoco'
-// apply plugin: "com.github.spotbugs"
+apply plugin: "com.github.spotbugs"
 apply plugin: "maven"
 apply plugin: 'pmd'
 
@@ -73,12 +72,12 @@ dependencies {
     testRuntime group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
 }
 
-//spotbugs {
+spotbugs {
     // 失敗しても後続の処理を継続させる
-//    ignoreFailures = true
-//    sourceSets = [sourceSets.main]
-//    toolVersion = "3.1.12"
-//}
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+    toolVersion = "3.1.12"
+}
 
 pmd {
     // 失敗しても後続の処理を継続させる
