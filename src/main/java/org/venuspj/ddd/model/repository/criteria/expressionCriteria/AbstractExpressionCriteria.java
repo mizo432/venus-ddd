@@ -5,8 +5,12 @@ import org.venuspj.ddd.model.repository.criteria.Criteria;
 
 public abstract class AbstractExpressionCriteria<E> extends AbstractCriteria<E> {
 
-    public AbstractExpressionCriteria(Criteria<?> criteria) {
+    protected AbstractExpressionCriteria(Criteria<?> criteria) {
         super(criteria);
+
+    }
+
+    protected AbstractExpressionCriteria() {
 
     }
 }

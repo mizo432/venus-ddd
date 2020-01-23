@@ -35,4 +35,13 @@ public abstract class AbstractCriteria<E> implements Criteria<E> {
         return !isEmpty;
 
     }
+
+    protected <Value> boolean testChildren(Value value, Criteria<Value>... criteriaArray) {
+        for (Criteria<Value> criteria : criteriaArray) {
+            if (criteria.isPresent() && !criteria.test(value))
+                return false;
+        }
+        return true;
+
+    }
 }

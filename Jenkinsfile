@@ -36,33 +36,10 @@ pipeline {
             }
         }
 
+
         stage('Compile') {
             steps {
                 gradlew 'classes testClasses'
-            }
-
-            // postブロックでstepsブロックの後に実行される処理が定義できる
-            post {
-                // alwaysブロックはstepsブロックの処理が失敗しても成功しても必ず実行される
-                always {
-                    // JavaDoc生成時に実行するとJavaDocの警告も含まれてしまうので
-                    // Javaコンパイル時の警告はコンパイル直後に収集する
-                    step([
-                        // プラグインを実行するときのクラス指定は完全修飾名でなくてもOK
-                        $class: 'WarningsPublisher',
-                        // Job実行時のコンソールから警告を収集する場合はconsoleParsers、
-                        // pmd.xmlなどのファイルから収集する場合はparserConfigurationsを指定する。
-                        // なおparserConfigurationsの場合はparserNameのほかにpattern(集計対象ファイルのパス)も指定が必要
-                        // パーサ名は下記プロパティファイルに定義されているものを使う
-                        // https://github.com/jenkinsci/warnings-plugin/blob/master/src/main/resources/hudson/plugins/warnings/parser/Messages.properties
-                        consoleParsers: [
-                            [parserName: 'Java Compiler (javac)'],
-                        ],
-                        canComputeNew: false,
-                        canResolveRelativesPaths: false,
-                        usePreviousBuildAsReference: true
-                    ])
-                }
             }
         }
 
@@ -71,41 +48,54 @@ pipeline {
                 // 並列処理の場合はparallelメソッドを使う
                 parallel(
                     'static analysis' : {
-                    gradlew 'check -x test'
+                        gradlew 'check -x test'
                         // dirメソッドでカレントディレクトリを指定できる
-//                        findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '**/soptbugs/*.xml', unHealthy: ''
-                        pmd canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/pmd/*.xml', unHealthy: ''
-                        dry canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/cpd/*.xml', unHealthy: ''
-//                        archiveArtifacts "**/spotbugs/*.xml"
+                        recordIssues enabledForFailure: true, tools: [spotBugs(pattern: '**/build/reports/spotbugs/main.xml')]
+                        recordIssues enabledForFailure: true, tools: [pmdParser(pattern: '**/build/reports/pmd/main.xml')]
+                        recordIssues enabledForFailure: true, tools: [cpd(pattern: '**/build/reports/cpd/cpd.xml', reportEncoding: 'UTF-8', skipSymbolicLinks: true)]
+                        archiveArtifacts "**/spotbugs/*.xml"
                         archiveArtifacts "**/pmd/*.xml"
                         archiveArtifacts "**/cpd/*.xml"
                     },
                     'task-scan': {
-                        step([
-                            $class: 'TasksPublisher',
-                            pattern: '**/*.java',
-                            // 集計対象を検索するときに大文字小文字を区別するか
-                            ignoreCase: false,
-                            // 優先度別に集計対象の文字列を指定できる
-                            // 複数指定する場合はカンマ区切りの文字列を指定する
-                            high: 'FIXME,XXX',
-                            normal: 'TODO',
-                        ])
+                        recordIssues(tools: [taskScanner(highTags: 'FIXME', ignoreCase: true, includePattern: '**/src/main/java/**/*.java', lowTags: 'XXX', normalTags: 'TODO')])
+                    },
+                    'step-count': {
+                            // レポート作成
+                            stepcounter outputFile: "stepcount.xls", outputFormat: 'excel', settings: [
+                                    [key: 'Java', filePattern: "**/${javaDir}/**/*.java"],
+                                    [key: 'SQL', filePattern: "**/${resourcesDir}/**/*.sql"],
+                                    [key: 'HTML', filePattern: "**/${resourcesDir}/**/*.html"],
+                                    [key: 'JS', filePattern: "**/${resourcesDir}/**/*.js"],
+                                    [key: 'CSS', filePattern: "**/${resourcesDir}/**/*.css"]
+                            ]
+                            // 一応エクセルファイルも成果物として保存する
+                            archiveArtifacts allowEmptyArchive: true, artifacts: "stepcount.xls"
                     }
                 )
             }
         }
-//        stage('テスト') {
-//            steps {
-//                gradlew 'test jacocoTestReport -x classes -x testClasses'
-//                junit allowEmptyResults: true, testResults: "**/${testReportDir}/*.xml"
-//                archiveArtifacts allowEmptyArchive: true, artifacts: "**/${testReportDir}/*.xml"
-//                // カバレッジレポートを生成（テストクラスを除外）
-//                echo 'JacocoReportアーカイブ 開始'
-//                jacoco exclusionPattern: '**/*Test*.class,**/*Mock*.class'
-//                echo 'JacocoReportアーカイブ 終了'
-//            }
-//        }
+        stage('unit-test') {
+            steps {
+                gradlew 'test jacocoTestReport -x classes -x testClasses'
+                junit allowEmptyResults: true, testResults: "**/${testReportDir}/*.xml"
+                archiveArtifacts allowEmptyArchive: true, artifacts: "**/${testReportDir}/*.xml"
+                // カバレッジレポートを生成（テストクラスを除外）
+                echo 'JacocoReportアーカイブ 開始'
+                jacoco exclusionPattern: '**/*Test*.class,**/*Mock*.class'
+                echo 'JacocoReportアーカイブ 終了'
+            }
+        }
+        stage('lib-release') {
+            when {
+                branch 'master'
+            }
+            steps {
+                gradlew 'release -x test -Prelease.useAutomaticVersion=true'
+            }
+        }
+
+
     }
 
 }
