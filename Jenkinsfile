@@ -81,7 +81,12 @@ pipeline {
                 archiveArtifacts allowEmptyArchive: true, artifacts: "stepcount.xls"
             }
         }
-        stage('small-test') {
+        stage('small test') {
+            when {
+                not {
+                    branch 'PR-*'
+                }
+            }
             steps {
                 gradlew 'test jacocoTestReport -x classes -x testClasses'
                 junit allowEmptyResults: true, testResults: "**/${testReportDir}/*.xml"
@@ -92,7 +97,21 @@ pipeline {
                 echo 'JacocoReportアーカイブ 終了'
             }
         }
-        stage('lib-release') {
+        stage('full test') {
+            when {
+                branch 'PR-*'
+            }
+            steps {
+                gradlew 'test jacocoTestReport -x classes -x testClasses'
+                junit allowEmptyResults: true, testResults: "**/${testReportDir}/*.xml"
+                archiveArtifacts allowEmptyArchive: true, artifacts: "**/${testReportDir}/*.xml"
+                // カバレッジレポートを生成（テストクラスを除外）
+                echo 'JacocoReportアーカイブ 開始'
+                jacoco exclusionPattern: '**/*Test*.class,**/*Mock*.class'
+                echo 'JacocoReportアーカイブ 終了'
+            }
+        }
+        stage('lib release') {
             when {
                 branch 'master'
             }
