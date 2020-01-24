@@ -42,7 +42,6 @@ pipeline {
                 gradlew 'classes testClasses'
             }
         }
-
         stage('analysis') {
             steps {
                 // 並列処理の場合はparallelメソッドを使う
@@ -59,23 +58,30 @@ pipeline {
                     },
                     'task-scan': {
                         recordIssues(tools: [taskScanner(highTags: 'FIXME', ignoreCase: true, includePattern: '**/src/main/java/**/*.java', lowTags: 'XXX', normalTags: 'TODO')])
-                    },
-                    'step-count': {
-                            // レポート作成
-                            stepcounter outputFile: "stepcount.xls", outputFormat: 'excel', settings: [
-                                    [key: 'Java', filePattern: "**/${javaDir}/**/*.java"],
-                                    [key: 'SQL', filePattern: "**/${resourcesDir}/**/*.sql"],
-                                    [key: 'HTML', filePattern: "**/${resourcesDir}/**/*.html"],
-                                    [key: 'JS', filePattern: "**/${resourcesDir}/**/*.js"],
-                                    [key: 'CSS', filePattern: "**/${resourcesDir}/**/*.css"]
-                            ]
-                            // 一応エクセルファイルも成果物として保存する
-                            archiveArtifacts allowEmptyArchive: true, artifacts: "stepcount.xls"
                     }
                 )
             }
         }
-        stage('unit-test') {
+        stage('step count') {
+            when {
+                not {
+                    branch 'master'
+                }
+            }
+            steps {
+                // レポート作成
+                stepcounter outputFile: "stepcount.xls", outputFormat: 'excel', settings: [
+                        [key: 'Java', filePattern: "**/${javaDir}/**/*.java"],
+                        [key: 'SQL', filePattern: "**/${resourcesDir}/**/*.sql"],
+                        [key: 'HTML', filePattern: "**/${resourcesDir}/**/*.html"],
+                        [key: 'JS', filePattern: "**/${resourcesDir}/**/*.js"],
+                        [key: 'CSS', filePattern: "**/${resourcesDir}/**/*.css"]
+                ]
+                // 一応エクセルファイルも成果物として保存する
+                archiveArtifacts allowEmptyArchive: true, artifacts: "stepcount.xls"
+            }
+        }
+        stage('small-test') {
             steps {
                 gradlew 'test jacocoTestReport -x classes -x testClasses'
                 junit allowEmptyResults: true, testResults: "**/${testReportDir}/*.xml"
