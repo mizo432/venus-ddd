@@ -6,7 +6,7 @@ buildscript {
         slf4jVersion = '1.7.25'
         junitVersion = "4.12"
         findbugsAnnotationsVersion = '3.0.1'
-        venusUtilsVersion = '1.0.4'
+        venusUtilsVersion = '1.0.5'
         guavaVersion = '25.0-jre'
         defaultEncoding = 'UTF-8'
     }
