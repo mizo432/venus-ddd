@@ -80,14 +80,14 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     @Override
-    public void store(ListValue<E, ?> entities) {
+    public final void store(ListValue<E, ?> entities) {
         entities.asList()
                 .forEach(this::store);
     }
 
 
     @Override
-    public void store(E entity) {
+    public final void store(E entity) {
         Validate.notNull(entity);
         entities.put(entity.getIdentifier(), entity);
     }
