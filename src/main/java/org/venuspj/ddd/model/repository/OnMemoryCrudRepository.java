@@ -4,11 +4,9 @@ import org.venuspj.ddd.model.entity.Entity;
 import org.venuspj.ddd.model.entity.EntityIdentifier;
 import org.venuspj.ddd.model.values.primitives.ListValue;
 import org.venuspj.util.base.Preconditions;
-import org.venuspj.util.collect.Lists2;
 import org.venuspj.util.validate.Validate;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -56,7 +54,7 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
 
     @Override
     public E resolve(EntityCriteria<E> criteria) throws EntityNotFoundRuntimeException {
-        List<E> result = Lists2.newArrayList(resolveAll(criteria));
+        List<E> result = resolveAll(criteria);
         if (result.isEmpty()) throw new EntityNotFoundRuntimeException(criteria);
         if (hasMultiElements(result)) throw new EntityNotFoundRuntimeException(criteria);
         return result.get(0);
@@ -67,7 +65,7 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     @Override
-    public Collection<E> resolveAll(EntityCriteria<E> criteria) {
+    public List<E> resolveAll(EntityCriteria<E> criteria) {
         return entities
                 .values()
                 .stream()

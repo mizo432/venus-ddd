@@ -4,7 +4,7 @@ import org.venuspj.ddd.model.entity.Entity;
 import org.venuspj.ddd.model.entity.EntityIdentifier;
 import org.venuspj.ddd.model.values.primitives.ListValue;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> {
 
@@ -37,7 +37,7 @@ public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdenti
      * @throws EntityNotFoundRuntimeException           エンティティが見つからなかった場合
      * @throws RepositoryCouldNotAccessRuntimeException リポジトリにアクセスできない場合
      */
-    Collection<E> resolveAll(EntityCriteria<E> criteria) throws EntityNotFoundRuntimeException;
+    List<E> resolveAll(EntityCriteria<E> criteria) throws EntityNotFoundRuntimeException;
 
     /**
      * 指定した識別子のエンティティが存在するかを返す。
