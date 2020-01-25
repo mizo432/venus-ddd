@@ -20,6 +20,7 @@ public abstract class AbstractEntities<E extends AbstractEntity<E, EI>, EI exten
 
     protected AbstractEntities(Collection<E> anCollection) {
         super(anCollection);
+
     }
 
 }
