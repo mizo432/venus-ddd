@@ -133,12 +133,6 @@ jacocoTestReport {
         xml.enabled = true
     }
 
-    // カバレッジレポートからテストクラスを除外
-    afterEvaluate {
-        classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/ *Test.class ', '**/*Mock.class'])
-        })
-    }
 }
 
 gitRelease {
