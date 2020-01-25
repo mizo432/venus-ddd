@@ -123,7 +123,11 @@ pipeline {
     */
 
     }
-
+    post {
+        always {
+                deleteDir()
+        }
+    }
 }
 
 // Gradlewコマンドを実行する
