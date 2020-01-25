@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.repository.criteria.expressionCriteria;
 
+import org.venuspj.ddd.model.repository.criteria.AbstractCriteria;
+
 public class IsEqualToCriteria<T> extends AbstractExpressionCriteria<T> {
 
     private T value;
@@ -7,6 +9,10 @@ public class IsEqualToCriteria<T> extends AbstractExpressionCriteria<T> {
     public IsEqualToCriteria() {
         super();
 
+    }
+
+    public IsEqualToCriteria(AbstractCriteria<?> aParentCriteria) {
+        super(aParentCriteria);
     }
 
     public IsEqualToCriteria<T> setValue(T value) {
