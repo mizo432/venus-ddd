@@ -4,8 +4,25 @@ import org.venuspj.ddd.model.entity.AbstractEntity;
 
 import static org.venuspj.util.objects2.Objects2.isNull;
 
-public class Party<P extends Party<P, PI>, PI extends PartyIdentifier<P, PI>> extends AbstractEntity<P, PI> {
-    protected PartyInf partyInf = DefaultPartyInf.empty();
+/**
+ * パーティー.
+ *
+ * @param <P>   パーティー
+ * @param <PI>  パーティーID
+ * @param <API> パーティー 情報
+ */
+public class Party<
+        P extends Party<P, PI, API>,
+        PI extends PartyIdentifier<P, PI>,
+        API extends AbstractPartyInf<API, ?>>
+        extends AbstractEntity<P, PI> {
+    protected API partyInf;
+
+    protected Party(PI aPartyIdentifier, API aPartyInf) {
+        super(aPartyIdentifier);
+        partyInf = aPartyInf;
+
+    }
 
     @Override
     public boolean sameValueAs(P other) {
