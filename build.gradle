@@ -129,6 +129,17 @@ test {
     }
 }
 
+task testSlow(type: Test) {
+    ignoreFailures = true
+    useJUnitPlatform {
+        includeTags('SMALL','MEDIUM','LARGE')
+        excludeTags()
+    }
+    reports {
+        junitXml.enabled = true
+    }
+}
+
 jacoco {
     toolVersion = '0.8.2'
     reportsDir = file("$buildDir/customJacocoReportDir")

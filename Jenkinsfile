@@ -102,7 +102,7 @@ pipeline {
                 branch 'PR-*'
             }
             steps {
-                gradlew 'test jacocoTestReport -x classes -x testClasses'
+                gradlew 'testSlow jacocoTestReport -x classes -x testClasses'
                 junit allowEmptyResults: true, testResults: "**/${testReportDir}/*.xml"
                 archiveArtifacts allowEmptyArchive: true, artifacts: "**/${testReportDir}/*.xml"
                 // カバレッジレポートを生成（テストクラスを除外）
