@@ -86,7 +86,7 @@ spotbugs {
 pmd {
     // 失敗しても後続の処理を継続させる
     ignoreFailures = true
-    incrementalAnalysis = true
+    // incrementalAnalysis = true
     sourceSets = [sourceSets.main]
 }
 
