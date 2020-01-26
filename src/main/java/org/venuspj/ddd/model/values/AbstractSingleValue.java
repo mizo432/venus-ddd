@@ -45,6 +45,7 @@ public abstract class AbstractSingleValue<T, ASV extends AbstractSingleValue<T, 
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(@Nullable Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
