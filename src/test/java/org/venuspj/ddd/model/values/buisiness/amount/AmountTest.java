@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.amount;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.quantity.Quantity;
 import org.venuspj.ddd.model.values.buisiness.rate.Rate;
 
@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AmountTest {
+
     @Test
     public void zeroYen() {
         Amount target = Amount.zeroYen();

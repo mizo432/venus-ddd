@@ -1,4 +1,6 @@
-package org.venuspj.ddd.model.repository;
+package org.venuspj.ddd.model.forTest.model.concrete;
+
+import org.venuspj.util.collect.Lists2;
 
 import static org.venuspj.util.collect.Lists2.newArrayList;
 
@@ -18,7 +20,7 @@ public enum ConcreteEntitiesMock {
         }, ONE_ELEMENT {
             @Override
             public ConcreteEntities create() {
-                return ConcreteEntities.of(newArrayList(
+                return ConcreteEntities.of(Lists2.newArrayList(
                         ConcreteEntityMock.createMock(ConcreteEntityMock.ConcreteEntityMockType.SIMPLE)));
             }
         };

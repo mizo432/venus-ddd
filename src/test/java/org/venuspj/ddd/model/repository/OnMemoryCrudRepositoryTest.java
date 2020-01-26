@@ -1,9 +1,11 @@
 package org.venuspj.ddd.model.repository;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.venuspj.ddd.model.entity.AbstractEntityIdentifierTest.ConcreteEntityIdentifier;
-import org.venuspj.ddd.model.entity.AbstractEntityTest.ConcreteEntity;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntities;
+import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntitiesMock;
+import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntity;
+import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class OnMemoryCrudRepositoryTest {
 
     OnMemoryCrudRepository<ConcreteEntity, ConcreteEntityIdentifier> onMemoryCrudRepository;
 
-    @Before
+    @BeforeEach
     @SuppressWarnings("unchecked")
     public void setUp() {
         onMemoryCrudRepository = new OnMemoryCrudRepository(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.EMPTY).asList());

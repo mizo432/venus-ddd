@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public abstract class AbstractCriteria<E> implements Criteria<E> {
 
-    protected Optional<Criteria<?>> parentCriteriaOptional = Optional.empty();
+    protected Optional<Criteria<?>> parentCriteriaOptional = Optional.empty(); //NOPMD
 
     protected Boolean isEmpty = Boolean.TRUE;
 

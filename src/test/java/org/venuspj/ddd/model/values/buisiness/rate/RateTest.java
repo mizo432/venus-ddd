@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.rate;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.percentage.Percentage;
 
 import java.math.BigDecimal;

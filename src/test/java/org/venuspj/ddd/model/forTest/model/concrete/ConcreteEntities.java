@@ -1,6 +1,5 @@
-package org.venuspj.ddd.model.repository;
+package org.venuspj.ddd.model.forTest.model.concrete;
 
-import org.venuspj.ddd.model.entity.AbstractEntityTest.ConcreteEntity;
 import org.venuspj.ddd.model.values.primitives.AbstractListValue;
 
 import java.util.Collection;

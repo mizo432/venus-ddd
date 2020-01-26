@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.description;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.line.Line;
 
 import static org.assertj.core.api.Assertions.assertThat;

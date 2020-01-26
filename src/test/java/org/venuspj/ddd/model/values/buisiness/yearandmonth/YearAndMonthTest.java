@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.yearandmonth;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.YearMonth;
 
