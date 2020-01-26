@@ -20,6 +20,10 @@ public class AbstractEntityIdentifierTest {
             super(ConcreteEntity.class);
         }
 
+        public static ConcreteEntityIdentifier empty() {
+            return new ConcreteEntityIdentifier();
+        }
+
         @Override
         public boolean sameValueAs(ConcreteEntityIdentifier other) {
             return nonNull(other) && (equal(kind, other.kind) && equal(value, other.value));
