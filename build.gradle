@@ -15,7 +15,7 @@ buildscript {
         maven {
             url 'https://plugins.gradle.org/m2/'
         }
-        maven { url 'http://kamatama41.github.com/maven-repository/repository' }
+        maven { url 'https://kamatama41.github.com/maven-repository/repository' }
         mavenCentral()
         jcenter()
 
@@ -60,7 +60,7 @@ tasks.withType(JavaCompile) {
 
 repositories {
     maven {
-        url 'http://mizo432.github.com/maven-repository/repository'
+        url 'https://mizo432.github.com/maven-repository/repository'
     }
 }
 
