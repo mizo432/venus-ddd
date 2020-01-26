@@ -82,7 +82,7 @@ pipeline {
                 stepcounter outputFile: "./build/stepCount.xls", outputFormat: 'excel', settings: [
                         [key: 'Java', filePattern: "**/${javaDir}/**/*.java"],
                         [key: 'SQL', filePattern: "**/${resourcesDir}/**/*.sql"],
-                        [key: 'Propety', filePattern: "**/${resourcesDir}/**/*.properties"]
+                        [key: 'Propety', filePattern: "**/${resourcesDir}/**/*.properties"],
                         [key: 'HTML', filePattern: "**/${resourcesDir}/**/*.html"],
                         [key: 'JS', filePattern: "**/${resourcesDir}/**/*.js"],
                         [key: 'CSS', filePattern: "**/${resourcesDir}/**/*.css"]
