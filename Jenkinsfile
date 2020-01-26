@@ -79,7 +79,7 @@ pipeline {
             }
             steps {
                 // レポート作成
-                stepcounter outputFile: "./build/stepcount.xls", outputFormat: 'excel', settings: [
+                stepcounter outputFile: "./build/stepCount.xls", outputFormat: 'excel', settings: [
                         [key: 'Java', filePattern: "**/${javaDir}/**/*.java"],
                         [key: 'SQL', filePattern: "**/${resourcesDir}/**/*.sql"],
                         [key: 'HTML', filePattern: "**/${resourcesDir}/**/*.html"],
@@ -87,7 +87,7 @@ pipeline {
                         [key: 'CSS', filePattern: "**/${resourcesDir}/**/*.css"]
                 ]
                 // 一応エクセルファイルも成果物として保存する
-                archiveArtifacts allowEmptyArchive: true, artifacts: "./build/stepcount.xls"
+                archiveArtifacts allowEmptyArchive: true, artifacts: "**/build/stepCount.xls"
             }
         }
         stage('small test') {
