@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.repository;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.entity.AbstractEntityIdentifierTest.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.entity.AbstractEntityTest.ConcreteEntity;
 import org.venuspj.ddd.model.entity.EntityIdentifier;

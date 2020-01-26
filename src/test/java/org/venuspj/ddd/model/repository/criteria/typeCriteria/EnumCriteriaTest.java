@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.repository.criteria.typeCriteria;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.venuspj.util.collect.Lists2.newArrayList;

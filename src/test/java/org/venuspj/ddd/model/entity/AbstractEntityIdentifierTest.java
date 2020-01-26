@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.entity;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.entity.AbstractEntityTest.ConcreteEntity;
 
 import static org.venuspj.util.objects2.Objects2.*;
