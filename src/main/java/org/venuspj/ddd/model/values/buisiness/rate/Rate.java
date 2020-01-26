@@ -43,4 +43,5 @@ public class Rate extends AbstractBigDecimalValue<Rate> {
 
     }
 
+
 }
