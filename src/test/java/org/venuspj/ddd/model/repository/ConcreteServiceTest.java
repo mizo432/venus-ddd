@@ -1,6 +1,7 @@
 package org.venuspj.ddd.model.repository;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.forTest.application.service.concrete.ConcreteService;
 import org.venuspj.ddd.model.forTest.application.service.concrete.arg.ConcreteServiceArg;
@@ -9,6 +10,7 @@ import org.venuspj.ddd.model.forTest.infrastructure.db.ConcreteEntityDataSource;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntitiesMock;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityRepository;
+import org.venuspj.test.consts.TestSize;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
@@ -22,6 +24,7 @@ public class ConcreteServiceTest {
         concreteEntityRepository = new ConcreteEntityDataSource(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.EMPTY).asList());
     }
 
+    @Tag(TestSize.SMALL)
     @Test
     public void execute() throws EntityNotFoundRuntimeException {
         ConcreteService targetService = new ConcreteService(concreteEntityRepository);
