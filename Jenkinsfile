@@ -47,7 +47,7 @@ pipeline {
 
                     // JavaDoc生成時に実行するとJavaDocの警告も含まれてしまうので
                     // Javaコンパイル時の警告はコンパイル直後に収集する
-                    recordIssues(enabledForFailure: true, tools: [java(pattern: '**/src/main/java/**/*.java', reportEncoding: 'UTF-8')])
+                    recordIssues(enabledForFailure: true, tools: [java()])
                 }
             }
         }
