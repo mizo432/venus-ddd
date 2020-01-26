@@ -2,8 +2,8 @@ package org.venuspj.ddd.model.repository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.entity.AbstractEntityIdentifierTest.ConcreteEntityIdentifier;
-import org.venuspj.ddd.model.entity.AbstractEntityTest.ConcreteEntity;
+import org.venuspj.ddd.model.entity.ConcreteEntity;
+import org.venuspj.ddd.model.entity.ConcreteEntityIdentifier;
 
 import java.util.List;
 

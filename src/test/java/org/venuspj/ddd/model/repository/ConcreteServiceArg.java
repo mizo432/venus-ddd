@@ -1,16 +1,16 @@
 package org.venuspj.ddd.model.repository;
 
-import org.venuspj.ddd.model.entity.AbstractEntityIdentifierTest;
+import org.venuspj.ddd.model.entity.ConcreteEntityIdentifier;
 
 public class ConcreteServiceArg {
-    AbstractEntityIdentifierTest.ConcreteEntityIdentifier concreteEntityIdentifier = AbstractEntityIdentifierTest.ConcreteEntityIdentifier.empty();
+    ConcreteEntityIdentifier concreteEntityIdentifier = ConcreteEntityIdentifier.empty();
 
     public void setConcreteEntityIdentifier(Long aValue) {
-        concreteEntityIdentifier = AbstractEntityIdentifierTest.ConcreteEntityIdentifier.of(aValue);
+        concreteEntityIdentifier = ConcreteEntityIdentifier.of(aValue);
 
     }
 
-    public AbstractEntityIdentifierTest.ConcreteEntityIdentifier getConcreteEntityIdentifire() {
+    public ConcreteEntityIdentifier getConcreteEntityIdentifire() {
         return concreteEntityIdentifier;
     }
 }

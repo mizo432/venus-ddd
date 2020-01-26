@@ -1,8 +1,8 @@
 package org.venuspj.ddd.model.repository;
 
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.entity.AbstractEntityIdentifierTest.ConcreteEntityIdentifier;
-import org.venuspj.ddd.model.entity.AbstractEntityTest.ConcreteEntity;
+import org.venuspj.ddd.model.entity.ConcreteEntity;
+import org.venuspj.ddd.model.entity.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.entity.EntityIdentifier;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
