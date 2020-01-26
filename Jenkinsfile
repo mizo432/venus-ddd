@@ -47,7 +47,7 @@ pipeline {
 
                     // JavaDoc生成時に実行するとJavaDocの警告も含まれてしまうので
                     // Javaコンパイル時の警告はコンパイル直後に収集する
-                    recordIssues(enabledForFailure: true, tools: [java(pattern: '**/src/java/**/*.java', reportEncoding: 'UTF-8')])
+                    recordIssues(enabledForFailure: true, tools: [java(pattern: '**/src/main/java/**/*.java', reportEncoding: 'UTF-8')])
                 }
             }
         }
@@ -82,6 +82,7 @@ pipeline {
                 stepcounter outputFile: "./build/stepCount.xls", outputFormat: 'excel', settings: [
                         [key: 'Java', filePattern: "**/${javaDir}/**/*.java"],
                         [key: 'SQL', filePattern: "**/${resourcesDir}/**/*.sql"],
+                        [key: 'Propety', filePattern: "**/${resourcesDir}/**/*.properties"]
                         [key: 'HTML', filePattern: "**/${resourcesDir}/**/*.html"],
                         [key: 'JS', filePattern: "**/${resourcesDir}/**/*.js"],
                         [key: 'CSS', filePattern: "**/${resourcesDir}/**/*.css"]
