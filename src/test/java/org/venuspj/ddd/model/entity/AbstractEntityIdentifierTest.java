@@ -1,6 +1,7 @@
 package org.venuspj.ddd.model.entity;
 
 import org.junit.jupiter.api.Test;
+import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
 
 import static org.venuspj.util.objects2.Objects2.toStringHelper;
 

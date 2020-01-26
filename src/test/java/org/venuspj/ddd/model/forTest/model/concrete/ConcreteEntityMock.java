@@ -1,7 +1,4 @@
-package org.venuspj.ddd.model.repository;
-
-import org.venuspj.ddd.model.entity.ConcreteEntity;
-import org.venuspj.ddd.model.entity.ConcreteEntityIdentifier;
+package org.venuspj.ddd.model.forTest.model.concrete;
 
 public class ConcreteEntityMock {
     public static ConcreteEntity createMock(ConcreteEntityMockType concreteEntityMockType) {

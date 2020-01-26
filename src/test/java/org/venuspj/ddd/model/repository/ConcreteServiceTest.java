@@ -2,24 +2,29 @@ package org.venuspj.ddd.model.repository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.entity.ConcreteEntity;
-import org.venuspj.ddd.model.entity.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.forTest.application.service.concrete.ConcreteService;
+import org.venuspj.ddd.model.forTest.application.service.concrete.arg.ConcreteServiceArg;
+import org.venuspj.ddd.model.forTest.application.service.concrete.result.ConcreteServiceResult;
+import org.venuspj.ddd.model.forTest.infrastructure.db.ConcreteEntityDataSource;
+import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntitiesMock;
+import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityRepository;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class ConcreteServiceTest {
 
-    OnMemoryCrudRepository<ConcreteEntity, ConcreteEntityIdentifier> onMemoryCrudRepository;
+    private ConcreteEntityRepository concreteEntityRepository;
 
     @BeforeEach
     @SuppressWarnings("unchecked")
     public void setUp() {
-        onMemoryCrudRepository = new OnMemoryCrudRepository(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.EMPTY).asList());
+        concreteEntityRepository = new ConcreteEntityDataSource(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.EMPTY).asList());
     }
 
     @Test
     public void execute() throws EntityNotFoundRuntimeException {
-        ConcreteService targetService = new ConcreteService(onMemoryCrudRepository);
+        ConcreteService targetService = new ConcreteService(concreteEntityRepository);
         ConcreteServiceArg arg = new ConcreteServiceArg();
         arg.setConcreteEntityIdentifier(1L);
 

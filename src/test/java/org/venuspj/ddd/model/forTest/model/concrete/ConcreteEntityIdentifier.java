@@ -1,4 +1,6 @@
-package org.venuspj.ddd.model.entity;
+package org.venuspj.ddd.model.forTest.model.concrete;
+
+import org.venuspj.ddd.model.entity.AbstractEntityIdentifier;
 
 import static org.venuspj.util.objects2.Objects2.*;
 
