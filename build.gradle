@@ -23,7 +23,7 @@ buildscript {
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.13"
         classpath("com.github.kamatama41:gradle-git-release-plugin:0.2.0")
-        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
+        classpath "com.github.spotbugs:spotbugs-gradle-plugin:3.0.0"
     }
 }
 
