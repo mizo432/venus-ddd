@@ -90,7 +90,7 @@ pmd {
 
 tasks.withType(Pmd) {
     reports {
-        xml.enabled = true
+        type = [xml]
     }
 }
 
@@ -148,7 +148,7 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.enabled = true
+        type = [xml]
     }
 
 }
