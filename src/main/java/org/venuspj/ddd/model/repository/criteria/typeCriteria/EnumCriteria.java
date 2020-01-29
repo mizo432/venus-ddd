@@ -35,9 +35,11 @@ public class EnumCriteria<E extends Enum> extends AbstractCriteria<E> {
 
     public IncludeCriteria<E> getIncludeCriteria() {
         return includeCriteria;
+
     }
 
     public ExcludeCriteria<E> getExcludeCriteria() {
         return excludeCriteria;
+
     }
 }

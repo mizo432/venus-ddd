@@ -36,6 +36,7 @@ public abstract class AbstractCriteria<E> implements Criteria<E> {
 
     }
 
+    @SuppressWarnings("unchecked")
     protected <Value> boolean testChildren(Value value, Criteria<Value>... criteriaArray) {
         for (Criteria<Value> criteria : criteriaArray) {
             if (criteria.isPresent() && !criteria.test(value))

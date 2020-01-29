@@ -19,6 +19,7 @@ public class LongValueCriteria extends AbstractCriteria<LongValue<?>> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean test(LongValue<?> value) {
         return testChildren(value, isEqualToCriteria);
 
@@ -26,6 +27,7 @@ public class LongValueCriteria extends AbstractCriteria<LongValue<?>> {
 
     public IsEqualToCriteria<LongValue<?>> isEqualToCriteria() {
         return isEqualToCriteria;
+
     }
 
 }
