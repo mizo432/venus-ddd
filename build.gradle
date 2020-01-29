@@ -5,7 +5,7 @@ buildscript {
         logbackVersion = '1.1.11'
         slf4jVersion = '1.7.25'
         findbugsAnnotationsVersion = '3.0.1'
-        venusUtilsVersion = '1.0.6'
+        venusUtilsVersion = '1.0.9'
         guavaVersion = '28.1-jre'
         defaultEncoding = 'UTF-8'
         junitJupiterApiVersion = '5.6.0'
