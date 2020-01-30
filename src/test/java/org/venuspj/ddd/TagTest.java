@@ -35,7 +35,6 @@ public class TagTest {
                 .filter(Objects2::nonNull)
                 .collect(Collectors.toList());
         for (Class<?> clazz : testClasses) {
-            System.out.println(clazz);
             BeanDesc bd = BeanDescFactory.getBeanDesc(clazz);
             String[] anyMethodNames = bd.getMethodNames();
             for (String methodName : anyMethodNames) {
