@@ -4,7 +4,7 @@ buildscript {
         assertJVersion = '3.6.2'
         logbackVersion = '1.1.11'
         slf4jVersion = '1.7.25'
-        venusUtilsVersion = '1.0.5'
+        venusUtilsVersion = '1.0.15'
         guavaVersion = '25.0-jre'
         junitJupiterApiVersion = '5.6.0'
         junitPlatformLauncherVersion = '1.6.0'
