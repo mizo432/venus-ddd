@@ -1,7 +1,7 @@
 buildscript {
     ext {
         //Library versions
-        assertJVersion = '3.6.2'
+        assertJVersion = '3.15.0'
         logbackVersion = '1.1.11'
         slf4jVersion = '1.7.25'
         venusUtilsVersion = '1.0.15'
@@ -79,7 +79,8 @@ dependencies {
     implementation group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
 //    compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
 //    compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
-    compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+    testImplementation group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
     testImplementation group: 'org.venuspj', name: 'venus-tests', version: "${venusTestsVersion}"
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterApiVersion}")
