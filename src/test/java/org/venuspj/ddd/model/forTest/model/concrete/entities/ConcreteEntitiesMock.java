@@ -1,4 +1,4 @@
-package org.venuspj.ddd.model.forTest.model.concrete;
+package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
 import org.venuspj.util.collect.Lists2;
 

@@ -1,4 +1,4 @@
-package org.venuspj.ddd.model.forTest.model.concrete;
+package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
 public class ConcreteEntityMock {
     public static ConcreteEntity createMock(ConcreteEntityMockType concreteEntityMockType) {
