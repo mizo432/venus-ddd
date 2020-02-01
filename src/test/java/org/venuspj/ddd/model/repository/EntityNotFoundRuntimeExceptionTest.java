@@ -7,7 +7,7 @@ import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntity;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
 import org.venuspj.tests.constants.TestSize;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.venuspj.util.objects2.Objects2.toStringHelper;
 
 public class EntityNotFoundRuntimeExceptionTest {
