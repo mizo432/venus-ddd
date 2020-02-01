@@ -3,7 +3,7 @@ package org.venuspj.ddd.model.values;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.primitives.AbstractDoubleValue;
-import org.venuspj.test.consts.TestSize;
+import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 

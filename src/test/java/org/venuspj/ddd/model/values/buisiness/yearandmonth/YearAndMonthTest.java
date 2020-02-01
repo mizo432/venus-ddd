@@ -2,7 +2,7 @@ package org.venuspj.ddd.model.values.buisiness.yearandmonth;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.test.consts.TestSize;
+import org.venuspj.tests.constants.TestSize;
 
 import java.time.YearMonth;
 

@@ -1,15 +1,18 @@
 buildscript {
     ext {
         //Library versions
-        assertJVersion = '3.6.2'
-        logbackVersion = '1.1.11'
-        slf4jVersion = '1.7.25'
-        findbugsAnnotationsVersion = '3.0.1'
-        venusUtilsVersion = '1.0.9'
+        assertJVersion = '3.6.2+'
+        logbackVersion = '1.1.11+'
+        slf4jVersion = '1.7.25+'
+        venusUtilsVersion = '1.0.15'
         guavaVersion = '28.1-jre'
         defaultEncoding = 'UTF-8'
         junitJupiterApiVersion = '5.6.0'
         junitPlatformLauncherVersion = '1.6.0'
+        venusTestsVersion = '0.0.3'
+        spotbugsAnnotationsVersion = "4.0.0-RC1"
+        jcipAnnotationsVersion = '1.0'
+
     }
     repositories {
         maven {
@@ -48,6 +51,15 @@ idea.module.inheritOutputDirs = true
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
+compileJava {
+    doFirst {
+        options.compilerArgs = [
+                "--module-path", classpath.asPath
+        ]
+        classpath = files()
+    }
+}
+
 gradle.projectsEvaluated {
     tasks.withType(JavaCompile) {
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
@@ -66,11 +78,14 @@ repositories {
 
 dependencies {
     implementation group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
-    compileOnly group: 'com.google.code.findbugs', name: 'annotations', version: "${findbugsAnnotationsVersion}"
+    testImplementation group: 'org.venuspj', name: 'venus-tests', version: "${venusTestsVersion}"
+    compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
+    compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
     testImplementation group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+    compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
+    testImplementation group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}")
@@ -135,7 +150,7 @@ test {
 task testSlow(type: Test) {
     ignoreFailures = true
     useJUnitPlatform {
-        includeTags('SMALL','MEDIUM','LARGE')
+        includeTags('SMALL', 'MEDIUM', 'LARGE')
         excludeTags()
     }
     reports {

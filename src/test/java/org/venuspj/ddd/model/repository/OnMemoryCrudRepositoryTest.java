@@ -7,7 +7,7 @@ import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntities;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntitiesMock;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntity;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
-import org.venuspj.test.consts.TestSize;
+import org.venuspj.tests.constants.TestSize;
 
 import java.util.List;
 
