@@ -1,18 +1,17 @@
 buildscript {
     ext {
         //Library versions
-        assertJVersion = '3.6.2+'
-        logbackVersion = '1.1.11+'
-        slf4jVersion = '1.7.25+'
-        venusUtilsVersion = '1.0.15'
-        guavaVersion = '28.1-jre'
-        defaultEncoding = 'UTF-8'
+        assertJVersion = '3.6.2'
+        logbackVersion = '1.1.11'
+        slf4jVersion = '1.7.25'
+        venusUtilsVersion = '1.0.5'
+        guavaVersion = '25.0-jre'
         junitJupiterApiVersion = '5.6.0'
         junitPlatformLauncherVersion = '1.6.0'
-        venusTestsVersion = '0.0.3'
         spotbugsAnnotationsVersion = "4.0.0-RC1"
         jcipAnnotationsVersion = '1.0'
 
+        defaultEncoding = 'UTF-8'
     }
     repositories {
         maven {
@@ -26,8 +25,7 @@ buildscript {
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.13"
         classpath("com.github.kamatama41:gradle-git-release-plugin:0.2.0")
-        classpath "com.github.spotbugs:spotbugs-gradle-plugin:3.0.0"
-        classpath group: 'com.google.guava', name: 'guava', version: '28.1-jre'
+        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
     }
 }
 
@@ -37,7 +35,7 @@ apply plugin: "com.github.kamatama41.git-release"
 apply plugin: 'java'
 apply plugin: 'jacoco'
 apply plugin: "com.github.spotbugs"
-apply plugin: "maven-publish"
+apply plugin: "maven"
 apply plugin: 'pmd'
 
 repositories {
@@ -50,15 +48,6 @@ idea.module.inheritOutputDirs = true
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
-
-compileJava {
-    doFirst {
-        options.compilerArgs = [
-                "--module-path", classpath.asPath
-        ]
-        classpath = files()
-    }
-}
 
 gradle.projectsEvaluated {
     tasks.withType(JavaCompile) {
@@ -77,32 +66,28 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
-    testImplementation group: 'org.venuspj', name: 'venus-tests', version: "${venusTestsVersion}"
+    compile group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
     compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
     compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
+    testCompile group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
     compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
-    testRuntimeOnly group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
-    testRuntimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
-    testImplementation group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+    testRuntime group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
+    testRuntime group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}")
-    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
 }
 
 spotbugs {
     // 失敗しても後続の処理を継続させる
     ignoreFailures = true
     sourceSets = [sourceSets.main]
-    toolVersion = "4.0.0-RC1"
+    toolVersion = "3.1.12"
 }
 
 pmd {
     // 失敗しても後続の処理を継続させる
     ignoreFailures = true
-    // incrementalAnalysis = true
     sourceSets = [sourceSets.main]
 }
 
@@ -150,7 +135,7 @@ test {
 task testSlow(type: Test) {
     ignoreFailures = true
     useJUnitPlatform {
-        includeTags('SMALL', 'MEDIUM', 'LARGE')
+        includeTags('SMALL','MEDIUM','LARGE')
         excludeTags()
     }
     reports {
@@ -175,14 +160,4 @@ gitRelease {
     groupId = "org.venuspj"
     artifactId = "venus-ddd"
     repoUri = "https://github.com/mizo432/maven-repository.git"
-}
-
-import groovy.json.JsonSlurper
-
-wrapper {
-    doFirst {
-        def versionService = new URL('https://services.gradle.org/versions/current')
-        gradleVersion = new JsonSlurper().parseText(versionService.text).version
-        print("gradleVersion: " + gradleVersion)
-    }
 }
