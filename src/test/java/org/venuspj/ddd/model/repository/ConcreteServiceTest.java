@@ -7,9 +7,9 @@ import org.venuspj.ddd.model.forTest.application.service.concrete.ConcreteServic
 import org.venuspj.ddd.model.forTest.application.service.concrete.arg.ConcreteServiceArg;
 import org.venuspj.ddd.model.forTest.application.service.concrete.result.ConcreteServiceResult;
 import org.venuspj.ddd.model.forTest.infrastructure.db.ConcreteEntityDataSource;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntitiesMock;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityRepository;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntitiesMock;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityRepository;
 import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;

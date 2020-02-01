@@ -3,8 +3,8 @@ package org.venuspj.ddd.model.repository;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.entity.EntityIdentifier;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntity;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
 import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;

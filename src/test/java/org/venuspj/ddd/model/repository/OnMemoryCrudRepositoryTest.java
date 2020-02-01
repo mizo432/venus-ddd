@@ -3,10 +3,10 @@ package org.venuspj.ddd.model.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntities;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntitiesMock;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntity;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntities;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntitiesMock;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
 import org.venuspj.tests.constants.TestSize;
 
 import java.util.List;

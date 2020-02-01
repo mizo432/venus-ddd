@@ -1,8 +1,8 @@
 package org.venuspj.ddd.model.forTest.infrastructure.db;
 
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntity;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityRepository;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityRepository;
 import org.venuspj.ddd.model.repository.OnMemoryCrudRepository;
 
 import java.util.List;

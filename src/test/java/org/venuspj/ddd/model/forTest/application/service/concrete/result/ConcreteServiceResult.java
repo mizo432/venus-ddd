@@ -1,7 +1,7 @@
 package org.venuspj.ddd.model.forTest.application.service.concrete.result;
 
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntity;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
 
 public class ConcreteServiceResult {
     private ConcreteEntity entity;
