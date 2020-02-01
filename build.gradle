@@ -10,6 +10,7 @@ buildscript {
         junitPlatformLauncherVersion = '1.6.0'
         spotbugsAnnotationsVersion = "4.0.0-RC1"
         jcipAnnotationsVersion = '1.0'
+        venusTestsVersion = '0.0.4'
 
         defaultEncoding = 'UTF-8'
     }
@@ -25,7 +26,7 @@ buildscript {
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.13"
         classpath("com.github.kamatama41:gradle-git-release-plugin:0.2.0")
-        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
+//        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
     }
 }
 
@@ -34,7 +35,7 @@ apply plugin: 'idea'
 apply plugin: "com.github.kamatama41.git-release"
 apply plugin: 'java'
 apply plugin: 'jacoco'
-apply plugin: "com.github.spotbugs"
+// apply plugin: "com.github.spotbugs"
 apply plugin: "maven-publish"
 apply plugin: 'pmd'
 
@@ -67,10 +68,10 @@ repositories {
 
 dependencies {
     implementation group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
-    compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
-    compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
+//    compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
+//    compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
     compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
+    testImplementation group: 'org.venuspj', name: 'venus-tests', version: "${venusTestsVersion}"
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}")
@@ -78,12 +79,12 @@ dependencies {
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
 }
 
-spotbugs {
+//spotbugs {
     // 失敗しても後続の処理を継続させる
-    ignoreFailures = true
-    sourceSets = [sourceSets.main]
-    toolVersion = "3.1.12"
-}
+//    ignoreFailures = true
+//    sourceSets = [sourceSets.main]
+//    toolVersion = "3.1.12"
+//}
 
 pmd {
     // 失敗しても後続の処理を継続させる
