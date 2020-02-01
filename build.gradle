@@ -66,7 +66,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
+    implementation group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
     compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
     compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
     testCompile group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
@@ -160,4 +160,14 @@ gitRelease {
     groupId = "org.venuspj"
     artifactId = "venus-ddd"
     repoUri = "https://github.com/mizo432/maven-repository.git"
+}
+
+import groovy.json.JsonSlurper
+
+wrapper {
+    doFirst {
+        def versionService = new URL('https://services.gradle.org/versions/current')
+        gradleVersion = new JsonSlurper().parseText(versionService.text).version
+        print("gradleVersion: " + gradleVersion)
+    }
 }
