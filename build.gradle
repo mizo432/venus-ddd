@@ -35,7 +35,7 @@ apply plugin: "com.github.kamatama41.git-release"
 apply plugin: 'java'
 apply plugin: 'jacoco'
 apply plugin: "com.github.spotbugs"
-apply plugin: "maven"
+apply plugin: "maven-publish"
 apply plugin: 'pmd'
 
 repositories {
