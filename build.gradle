@@ -4,13 +4,12 @@ buildscript {
         assertJVersion = '3.6.2'
         logbackVersion = '1.1.11'
         slf4jVersion = '1.7.25'
-        venusUtilsVersion = '1.0.15'
-        guavaVersion = '26.0-jre'
+        venusUtilsVersion = '1.0.5'
+        guavaVersion = '25.0-jre'
         junitJupiterApiVersion = '5.6.0'
         junitPlatformLauncherVersion = '1.6.0'
         spotbugsAnnotationsVersion = "4.0.0-RC1"
         jcipAnnotationsVersion = '1.0'
-        venusTestsVersion = '1.0.4'
 
         defaultEncoding = 'UTF-8'
     }
@@ -28,10 +27,6 @@ buildscript {
         classpath("com.github.kamatama41:gradle-git-release-plugin:0.2.0")
         classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
     }
-}
-
-plugins {
-    id "com.github.spotbugs" version "3.0.0"
 }
 
 apply plugin: 'base'
@@ -59,19 +54,10 @@ gradle.projectsEvaluated {
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     }
 }
-compileJava {
-    doFirst {
-        options.compilerArgs = [
-                "--module-path", classpath.asPath
-        ]
-        classpath = files()
-    }
-}
 
 tasks.withType(JavaCompile) {
     options.incremental = true
 }
-
 
 repositories {
     maven {
@@ -83,24 +69,20 @@ dependencies {
     compile group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
     compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
     compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
+    testCompile group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
     compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
-
-    testImplementation group: 'org.venuspj', name: 'venus-tests', version: "${venusTestsVersion}"
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
     testRuntime group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
     testRuntime group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}")
-    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
-
 }
 
 spotbugs {
     // 失敗しても後続の処理を継続させる
     ignoreFailures = true
     sourceSets = [sourceSets.main]
-    toolVersion = '4.0.0-RC2'
+    toolVersion = "3.1.12"
 }
 
 pmd {
@@ -172,26 +154,10 @@ jacocoTestReport {
         xml.enabled = true
     }
 
-    // カバレッジレポートからテストクラスを除外
-    afterEvaluate {
-        classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/ *Test.class ', '**/*Mock.class', '**/mybatis/**/*.class '])
-        })
-    }
 }
 
 gitRelease {
     groupId = "org.venuspj"
     artifactId = "venus-ddd"
     repoUri = "https://github.com/mizo432/maven-repository.git"
-}
-
-import groovy.json.JsonSlurper
-
-wrapper {
-    doFirst {
-        def versionService = new URL('https://services.gradle.org/versions/current')
-        gradleVersion = new JsonSlurper().parseText(versionService.text).version
-        print("gradleVersion: " + gradleVersion)
-    }
 }
