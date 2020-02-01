@@ -69,13 +69,13 @@ dependencies {
     implementation group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
     compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
     compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
-    testCompile group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
     compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
-    testRuntime group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
-    testRuntime group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterApiVersion}")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}")
+    testRuntimeOnly group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
+    testRuntimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
 }
 
 spotbugs {
