@@ -2,8 +2,6 @@ package org.venuspj.ddd.model.values;
 
 import org.venuspj.ddd.model.values.primitives.SingleValue;
 
-import javax.annotation.Nullable;
-
 import static org.venuspj.util.objects2.Objects2.isNull;
 import static org.venuspj.util.objects2.Objects2.toStringHelper;
 
@@ -45,7 +43,8 @@ public abstract class AbstractSingleValue<T, ASV extends AbstractSingleValue<T, 
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    @SuppressWarnings("unchecked")
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ASV that = (ASV) o;
@@ -53,7 +52,7 @@ public abstract class AbstractSingleValue<T, ASV extends AbstractSingleValue<T, 
     }
 
     @Override
-    public abstract int compareTo(@Nullable ASV o);
+    public abstract int compareTo(ASV o);
 
     @Override
     public String toString() {

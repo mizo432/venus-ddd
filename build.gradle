@@ -4,18 +4,20 @@ buildscript {
         assertJVersion = '3.6.2'
         logbackVersion = '1.1.11'
         slf4jVersion = '1.7.25'
-        findbugsAnnotationsVersion = '3.0.1'
         venusUtilsVersion = '1.0.5'
         guavaVersion = '25.0-jre'
-        defaultEncoding = 'UTF-8'
         junitJupiterApiVersion = '5.6.0'
         junitPlatformLauncherVersion = '1.6.0'
+        spotbugsAnnotationsVersion = "4.0.0-RC1"
+        jcipAnnotationsVersion = '1.0'
+
+        defaultEncoding = 'UTF-8'
     }
     repositories {
         maven {
             url 'https://plugins.gradle.org/m2/'
         }
-        maven { url 'http://kamatama41.github.com/maven-repository/repository' }
+        maven { url 'https://kamatama41.github.com/maven-repository/repository' }
         mavenCentral()
         jcenter()
 
@@ -59,15 +61,16 @@ tasks.withType(JavaCompile) {
 
 repositories {
     maven {
-        url 'http://mizo432.github.com/maven-repository/repository'
+        url 'https://mizo432.github.com/maven-repository/repository'
     }
 }
 
 dependencies {
     compile group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
-    compileOnly group: 'com.google.code.findbugs', name: 'annotations', version: "${findbugsAnnotationsVersion}"
+    compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
+    compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
     testCompile group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
-    compile group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+    compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
     testRuntime group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
     testRuntime group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}")
