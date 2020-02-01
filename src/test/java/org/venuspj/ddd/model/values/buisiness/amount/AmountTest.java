@@ -1,8 +1,10 @@
 package org.venuspj.ddd.model.values.buisiness.amount;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.quantity.Quantity;
 import org.venuspj.ddd.model.values.buisiness.rate.Rate;
+import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
 
@@ -11,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AmountTest {
 
     @Test
+    @Tag(TestSize.SMALL)
     public void zeroYen() {
         Amount target = Amount.zeroYen();
         System.out.println(target.asText());
@@ -19,6 +22,7 @@ public class AmountTest {
     }
 
     @Test
+    @Tag(TestSize.SMALL)
     public void valueOf() {
         Amount target = Amount.yen(1000L);
         System.out.println(target.asText());
@@ -27,6 +31,7 @@ public class AmountTest {
     }
 
     @Test
+    @Tag(TestSize.SMALL)
     public void sum() {
         Amount target = Amount.sum(Amount.yen(1000L), Amount.yen(3000L));
         System.out.println(target.asText());
@@ -35,6 +40,7 @@ public class AmountTest {
     }
 
     @Test
+    @Tag(TestSize.SMALL)
     public void multiply1() {
         //given
         Quantity quantity = Quantity.of(BigDecimal.valueOf(3));
@@ -48,6 +54,7 @@ public class AmountTest {
     }
 
     @Test
+    @Tag(TestSize.SMALL)
     public void multiply2() {
         //given
         Rate rate = Rate.valueOf(BigDecimal.valueOf(0.08));

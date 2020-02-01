@@ -6,6 +6,7 @@ public class AddressCode extends AbstractStringCodeValue<AddressCode> {
 
     public AddressCode(String aValue) {
         super(aValue);
+
     }
 
     public static AddressCode of(String aValue) {

@@ -41,6 +41,15 @@ pipeline {
             steps {
                 gradlew 'classes testClasses'
             }
+            post {
+                // alwaysブロックはstepsブロックの処理が失敗しても成功しても必ず実行される
+                always {
+
+                    // JavaDoc生成時に実行するとJavaDocの警告も含まれてしまうので
+                    // Javaコンパイル時の警告はコンパイル直後に収集する
+                    recordIssues(enabledForFailure: true, tools: [java()])
+                }
+            }
         }
         stage('analysis') {
             steps {
@@ -49,10 +58,8 @@ pipeline {
                     'static analysis' : {
                         gradlew 'check -x test'
                         // dirメソッドでカレントディレクトリを指定できる
-                        recordIssues enabledForFailure: true, tools: [spotBugs(pattern: '**/build/reports/spotbugs/main.xml')]
                         recordIssues enabledForFailure: true, tools: [pmdParser(pattern: '**/build/reports/pmd/main.xml')]
                         recordIssues enabledForFailure: true, tools: [cpd(pattern: '**/build/reports/cpd/cpd.xml', reportEncoding: 'UTF-8', skipSymbolicLinks: true)]
-                        archiveArtifacts "**/spotbugs/*.xml"
                         archiveArtifacts "**/pmd/*.xml"
                         archiveArtifacts "**/cpd/*.xml"
                     },
@@ -70,15 +77,16 @@ pipeline {
             }
             steps {
                 // レポート作成
-                stepcounter outputFile: "stepcount.xls", outputFormat: 'excel', settings: [
+                stepcounter outputFile: "./build/stepCount.xls", outputFormat: 'excel', settings: [
                         [key: 'Java', filePattern: "**/${javaDir}/**/*.java"],
                         [key: 'SQL', filePattern: "**/${resourcesDir}/**/*.sql"],
+                        [key: 'Propety', filePattern: "**/${resourcesDir}/**/*.properties"],
                         [key: 'HTML', filePattern: "**/${resourcesDir}/**/*.html"],
                         [key: 'JS', filePattern: "**/${resourcesDir}/**/*.js"],
                         [key: 'CSS', filePattern: "**/${resourcesDir}/**/*.css"]
                 ]
                 // 一応エクセルファイルも成果物として保存する
-                archiveArtifacts allowEmptyArchive: true, artifacts: "stepcount.xls"
+                archiveArtifacts allowEmptyArchive: true, artifacts: "**/build/stepCount.xls"
             }
         }
         stage('small test') {

@@ -6,5 +6,7 @@ public abstract class AbstractStringCodeValue<ASC extends AbstractStringCodeValu
 
     public AbstractStringCodeValue(String aValue) {
         super(aValue);
+
     }
+
 }

@@ -1,10 +1,10 @@
 package org.venuspj.ddd.model.forTest.model.concrete;
 
-import org.venuspj.ddd.model.values.primitives.AbstractListValue;
+import org.venuspj.ddd.model.entity.AbstractEntities;
 
 import java.util.Collection;
 
-public class ConcreteEntities extends AbstractListValue<ConcreteEntity, ConcreteEntities> {
+public class ConcreteEntities extends AbstractEntities<ConcreteEntity, ConcreteEntityIdentifier, ConcreteEntities> {
 
     public ConcreteEntities(Collection<ConcreteEntity> concreteEntities) {
         super(concreteEntities);
@@ -15,4 +15,6 @@ public class ConcreteEntities extends AbstractListValue<ConcreteEntity, Concrete
         return new ConcreteEntities(concreteEntities);
 
     }
+
+
 }

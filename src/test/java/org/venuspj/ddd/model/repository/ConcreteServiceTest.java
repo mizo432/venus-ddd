@@ -10,9 +10,10 @@ import org.venuspj.ddd.model.forTest.infrastructure.db.ConcreteEntityDataSource;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntitiesMock;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityRepository;
-import org.venuspj.test.consts.TestSize;
+import org.venuspj.tests.constants.TestSize;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class ConcreteServiceTest {
 

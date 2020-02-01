@@ -9,22 +9,22 @@ import org.venuspj.ddd.model.values.primitives.AbstractStringValue;
  *     文字系列の値オブジェクト
  * </pre>
  */
-public class Heading extends AbstractStringValue<Heading> {
+public class HeadLine extends AbstractStringValue<HeadLine> {
 
-    public Heading(String aValue) {
+    public HeadLine(String aValue) {
         super(aValue);
     }
 
-    public Heading() {
+    public HeadLine() {
 
     }
 
-    public static Heading of(String aValue) {
-        return new Heading(aValue);
+    public static HeadLine of(String aValue) {
+        return new HeadLine(aValue);
     }
 
-    public static Heading empty() {
-        return new Heading();
+    public static HeadLine empty() {
+        return new HeadLine();
 
     }
 }

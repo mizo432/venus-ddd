@@ -5,6 +5,9 @@ import org.venuspj.ddd.model.entity.AbstractEntity;
 import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
+/**
+ * 住所.
+ */
 public class Address extends AbstractEntity<Address, AddressIdentifier> {
     private AddressInformation addressInformation;
 

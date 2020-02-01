@@ -13,9 +13,12 @@ public class YearAndMonth extends AbstractYearMonthValue<YearAndMonth> {
 
     protected YearAndMonth(YearMonth aYearMonth) {
         super(aYearMonth);
+
     }
 
     public static YearAndMonth of(YearMonth aYearMonth) {
         return new YearAndMonth(aYearMonth);
+
     }
+
 }
