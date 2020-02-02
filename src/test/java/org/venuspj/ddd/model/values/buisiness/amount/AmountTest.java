@@ -16,6 +16,15 @@ public class AmountTest {
 
     @Test
     @Tag(TestSize.SMALL)
+    public void empty() {
+        Amount target = Amount.empty();
+        System.out.println(target.asText());
+        assertThat(target.asText())
+                .isNull();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
     public void zeroYen() {
         Amount target = Amount.zeroYen();
         System.out.println(target.asText());
