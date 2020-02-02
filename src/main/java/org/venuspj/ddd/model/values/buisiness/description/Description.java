@@ -4,7 +4,6 @@ import org.venuspj.ddd.model.values.buisiness.line.Line;
 import org.venuspj.ddd.model.values.primitives.AbstractListValue;
 
 import java.util.Collection;
-import java.util.List;
 
 
 /**
@@ -20,13 +19,19 @@ public class Description extends AbstractListValue<Line, Description> {
 
     }
 
-    public static Description of(List<Line> aList) {
+    public static Description of(Collection<Line> aList) {
         return new Description(aList);
+
     }
 
     public static Description empty() {
         return new Description();
+
     }
 
 
+    public boolean isEmpty() {
+        return value.isEmpty();
+
+    }
 }

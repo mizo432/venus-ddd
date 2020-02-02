@@ -23,6 +23,14 @@ public class Definition implements Value<Definition> {
 
     }
 
+    public static Definition empty() {
+        return new Definition();
+    }
+
+    public static Definition of(HeadLine aHeadLine, Description aDescription) {
+        return new Definition(aHeadLine, aDescription);
+    }
+
     @Override
     public boolean sameValueAs(Definition other) {
         return nonNull(other) &&
@@ -44,5 +52,10 @@ public class Definition implements Value<Definition> {
     public int hashCode() {
         return org.venuspj.util.objects2.Objects2.hash(headLine, description);
 
+    }
+
+    public boolean isEmpty() {
+        return headLine.isEmpty() &&
+                description.isEmpty();
     }
 }
