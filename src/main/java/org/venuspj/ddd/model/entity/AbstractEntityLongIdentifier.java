@@ -18,8 +18,18 @@ public abstract class AbstractEntityLongIdentifier<E extends Entity<E, EI>, EI e
      * @param entityClass エンティティクラス。カインドにはFQCNが設定される。
      */
     protected AbstractEntityLongIdentifier(Class<E> entityClass, Long aValue) {
-        super(entityClass.getCanonicalName());
+        super(entityClass);
         value = aValue;
+
+    }
+
+    /**
+     * インスタンスを生成する。
+     *
+     * @param entityClass エンティティクラス。カインドにはFQCNが設定される。
+     */
+    protected AbstractEntityLongIdentifier(Class<E> entityClass) {
+        super(entityClass);
 
     }
 

@@ -11,8 +11,15 @@ public class AbstractEntityIdentifierTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void test01() {
+    public void of01() {
         ConcreteEntityIdentifier target = ConcreteEntityIdentifier.of(1L);
+        System.out.println(toStringHelper(target).defaultConfig().toString());
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void empty01() {
+        ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
         System.out.println(toStringHelper(target).defaultConfig().toString());
     }
 

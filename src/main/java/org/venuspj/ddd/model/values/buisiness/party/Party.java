@@ -11,7 +11,7 @@ import static org.venuspj.util.objects2.Objects2.isNull;
  * @param <PI>  パーティーID
  * @param <API> パーティー 情報
  */
-public class Party<
+public abstract class Party<
         P extends Party<P, PI, API>,
         PI extends PartyIdentifier<P, PI>,
         API extends AbstractPartyInf<API, ?>>
