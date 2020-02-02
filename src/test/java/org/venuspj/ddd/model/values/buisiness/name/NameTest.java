@@ -18,4 +18,14 @@ public class NameTest {
                 .isNotNull()
                 .isEqualTo("Name{value:\"testData\"}");
     }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void empty() {
+        Name target = Name.empty();
+        assertThat(target)
+                .isNotNull();
+        assertThat(target.isEmpty())
+                .isTrue();
+    }
 }

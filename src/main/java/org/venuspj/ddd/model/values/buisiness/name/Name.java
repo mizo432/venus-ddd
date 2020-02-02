@@ -15,8 +15,17 @@ public class Name extends AbstractStringValue<Name> {
 
     }
 
+    public Name() {
+
+    }
+
     public static Name of(String aValue) {
         return new Name(aValue);
+
+    }
+
+    public static Name empty() {
+        return new Name();
 
     }
 }
