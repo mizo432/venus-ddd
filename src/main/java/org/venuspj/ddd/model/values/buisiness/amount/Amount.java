@@ -21,7 +21,7 @@ public class Amount extends AbstractLongValue<Amount> {
     }
 
     public static Amount zeroYen() {
-        return new Amount(Long.valueOf(0));
+        return new Amount(0L);
 
     }
 
@@ -50,6 +50,7 @@ public class Amount extends AbstractLongValue<Amount> {
 
     public Amount multiply(Quantity aQuantity) {
         return Amount.yen(aQuantity.getValue().multiply(BigDecimal.valueOf(value)).longValue());
+
     }
 
     public String asText() {
@@ -70,5 +71,6 @@ public class Amount extends AbstractLongValue<Amount> {
                                 )
                                 .longValue()
                 );
+
     }
 }
