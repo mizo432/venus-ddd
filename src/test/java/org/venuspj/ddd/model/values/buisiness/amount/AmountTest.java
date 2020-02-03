@@ -93,8 +93,8 @@ public class AmountTest {
     @Test
     @Tag(TestSize.SMALL)
     public void compareTo() {
-        assertThat(Rate.all().compareTo(Rate.zero()))
-                .isEqualTo(-1);
+        assertThat(Amount.yen(500L).compareTo(Amount.zeroYen()))
+                .isEqualTo(1);
 
     }
 }
