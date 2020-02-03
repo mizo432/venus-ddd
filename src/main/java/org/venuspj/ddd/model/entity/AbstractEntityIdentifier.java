@@ -28,6 +28,7 @@ public abstract class AbstractEntityIdentifier<E extends Entity<E, EI>, EI exten
      */
     protected AbstractEntityIdentifier(String kind) {
         this.kind = kind;
+
     }
 
 
@@ -38,7 +39,8 @@ public abstract class AbstractEntityIdentifier<E extends Entity<E, EI>, EI exten
     @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object o) {
-        return o instanceof AbstractEntityIdentifier && sameValueAs((EI) o);
+        return o instanceof AbstractEntityIdentifier
+                && sameValueAs((EI) o);
 
     }
 
@@ -48,6 +50,7 @@ public abstract class AbstractEntityIdentifier<E extends Entity<E, EI>, EI exten
     @Override
     public String getKind() {
         return kind;
+
     }
 
 }

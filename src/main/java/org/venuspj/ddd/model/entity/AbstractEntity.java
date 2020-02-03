@@ -33,16 +33,6 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public E clone() {
-        try {
-            return (E) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new Error("clone not supported");
-        }
-    }
-
-    @Override
     public int hashCode() {
         if (isNull(identifier)) return 0;
         return identifier.hashCode();

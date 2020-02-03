@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.entity;
 
+import static java.util.Objects.hash;
+import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
 /**
@@ -58,20 +60,40 @@ public abstract class AbstractEntityLongIdentifier<E extends Entity<E, EI>, EI e
     @Override
     public boolean isEmpty() {
         return isNull(value);
+
     }
 
     @Override
     public Long asLong() {
         return value;
+
     }
 
     @Override
     public String asText() {
         return value.toString();
+
     }
 
     @Override
     public Long getValue() {
         return value;
+
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        AbstractEntityLongIdentifier<?, ?> that = (AbstractEntityLongIdentifier<?, ?>) o;
+        return equal(kind, that.kind) &&
+                equal(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return hash(kind, value);
+    }
+
 }
