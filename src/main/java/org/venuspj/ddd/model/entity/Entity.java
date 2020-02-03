@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.entity;
 
-public interface Entity<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> extends Cloneable {
+public interface Entity<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> {
 
     /**
      * エンティティの識別子を取得する。
@@ -27,16 +27,19 @@ public interface Entity<E extends Entity<E, EI>, EI extends EntityIdentifier<E, 
     int hashCode();
 
     /**
-     * このエンティティの複製を生成する。
+     * 同じIDかを判定する
      *
-     * @return このエンティティの複製。
-     */
-    E clone();
-
-    /**
-     * @param other
-     * @return
+     * @param other エンティティー
+     * @return エンティティーとIdentifierが一致していたらtrueを返却する
      */
     boolean sameIdentifierAs(E other);
+
+    /**
+     * すべてのフィールドが一致しているかを返却する。
+     *
+     * @param other エンティティ
+     * @return フィールドが一致していたらtrueを返却する
+     */
+    boolean sameValueAs(E other);
 
 }

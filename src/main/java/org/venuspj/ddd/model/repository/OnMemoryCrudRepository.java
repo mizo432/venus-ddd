@@ -6,11 +6,11 @@ import org.venuspj.ddd.model.values.primitives.ListValue;
 import org.venuspj.util.base.Preconditions;
 import org.venuspj.util.validate.Validate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static org.venuspj.util.collect.Collections3.newArrayList;
 import static org.venuspj.util.collect.Maps2.newHashMap;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
@@ -28,13 +28,8 @@ public class OnMemoryCrudRepository<E extends Entity<E, EI>, EI extends EntityId
     }
 
     private List<E> asEntitiesList() {
-        return entities
-                .values()
-                .stream()
-                .map(Entity::clone)
-                .collect(Collectors
-                        .toCollection(() -> new ArrayList<>(entities
-                                .size())));
+        return newArrayList(entities
+                .values());
 
     }
 

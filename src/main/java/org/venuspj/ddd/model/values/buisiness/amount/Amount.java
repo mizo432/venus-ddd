@@ -6,6 +6,7 @@ import org.venuspj.ddd.model.values.primitives.AbstractLongValue;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
 
@@ -16,12 +17,16 @@ import static org.venuspj.util.objects2.Objects2.isNull;
  */
 public class Amount extends AbstractLongValue<Amount> {
 
-    public Amount(Long aValue) {
+    Amount(Long aValue) {
         super(aValue);
     }
 
+    public Amount() {
+
+    }
+
     public static Amount zeroYen() {
-        return new Amount(Long.valueOf(0));
+        return new Amount(0L);
 
     }
 
@@ -31,11 +36,7 @@ public class Amount extends AbstractLongValue<Amount> {
     }
 
     public static Amount sum(Amount... anyAmounts) {
-        Long result = 0L;
-        for (Amount aAmount : anyAmounts) {
-            result = result + aAmount.getValue();
-        }
-        return Amount.yen(result);
+        return sum(Arrays.asList(anyAmounts));
 
     }
 
@@ -48,8 +49,14 @@ public class Amount extends AbstractLongValue<Amount> {
 
     }
 
+    public static Amount empty() {
+        return new Amount();
+
+    }
+
     public Amount multiply(Quantity aQuantity) {
         return Amount.yen(aQuantity.getValue().multiply(BigDecimal.valueOf(value)).longValue());
+
     }
 
     public String asText() {
@@ -70,5 +77,6 @@ public class Amount extends AbstractLongValue<Amount> {
                                 )
                                 .longValue()
                 );
+
     }
 }
