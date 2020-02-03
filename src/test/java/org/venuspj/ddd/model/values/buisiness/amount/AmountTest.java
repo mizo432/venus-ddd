@@ -90,4 +90,11 @@ public class AmountTest {
                 .isEqualTo(Amount.yen(80L));
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void compareTo() {
+        assertThat(Rate.all().compareTo(Rate.zero()))
+                .isEqualTo(-1);
+
+    }
 }

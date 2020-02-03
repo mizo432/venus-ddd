@@ -2,8 +2,7 @@ package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
 import org.venuspj.ddd.model.entity.AbstractEntity;
 
-import static org.venuspj.util.objects2.Objects2.equal;
-import static org.venuspj.util.objects2.Objects2.isNull;
+import static org.venuspj.util.objects2.Objects2.*;
 
 public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntityIdentifier> {
 
@@ -24,5 +23,13 @@ public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntit
         if (getIdentifier().isEmpty() || other.getIdentifier().isEmpty())
             return false;
         return equal(getIdentifier(), other.getIdentifier());
+    }
+
+    @Override
+    public String toString() {
+        return toStringHelper(this)
+                .defaultConfig()
+                .toString();
+
     }
 }
