@@ -13,6 +13,7 @@ public class AbstractEntityBuilderTest {
     @Tag(TestSize.SMALL)
     public void build() {
         ConcreteEntity actual = new ConcreteEntityBuilder()
+                .withIdentifier(null)
                 .withIdentifier(ConcreteEntityIdentifier.of(10L))
                 .build();
 

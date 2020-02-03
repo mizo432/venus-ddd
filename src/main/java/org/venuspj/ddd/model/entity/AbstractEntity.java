@@ -1,9 +1,9 @@
 package org.venuspj.ddd.model.entity;
 
 import org.venuspj.ddd.model.values.Value;
-import org.venuspj.util.builder.ObjectBuilder;
 
-import static org.venuspj.util.objects2.Objects2.*;
+import static org.venuspj.util.objects2.Objects2.equal;
+import static org.venuspj.util.objects2.Objects2.isNull;
 
 /**
  * @param <T> エンティティクラス
@@ -63,29 +63,6 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends
     @Override
     public boolean sameIdentifierAs(E other) {
         return equal(identifier, other.getIdentifier());
-    }
-
-    public static abstract class AbstractEntityBuilder<
-            E extends Entity<E, EI>,
-            B extends AbstractEntityBuilder<E, B, EI>,
-            EI extends EntityIdentifier<E, EI>>
-            extends ObjectBuilder<E, B> {
-
-        protected EI identifier;
-
-        @Override
-        protected void apply(E vo, B builder) {
-            EI entityIdentifier = vo.getIdentifier();
-            builder.withEntityIdentifier(entityIdentifier);
-        }
-
-        public B withEntityIdentifier(EI identifier) {
-            if (nonNull(identifier))
-                addConfigurator(builder -> builder.identifier = identifier);
-
-            return getThis();
-
-        }
 
     }
 
