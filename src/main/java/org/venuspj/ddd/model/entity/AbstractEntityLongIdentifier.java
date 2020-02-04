@@ -94,6 +94,7 @@ public abstract class AbstractEntityLongIdentifier<E extends Entity<E, EI>, EI e
     @Override
     public int hashCode() {
         return hash(kind, value);
+
     }
 
 }
