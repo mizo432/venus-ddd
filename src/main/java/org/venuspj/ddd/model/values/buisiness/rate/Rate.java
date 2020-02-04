@@ -7,6 +7,9 @@ import java.math.BigDecimal;
 
 /**
  * 率.
+ * <pre>
+ *     内部データ形式は100%は1と格納される。
+ * </pre>
  */
 public class Rate extends AbstractBigDecimalValue<Rate> {
     protected Rate(BigDecimal aValue) {

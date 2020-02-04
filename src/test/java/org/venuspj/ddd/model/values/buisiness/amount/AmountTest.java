@@ -8,10 +8,21 @@ import org.venuspj.ddd.model.values.buisiness.rate.Rate;
 import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.venuspj.util.collect.Lists2.newArrayList;
 
 public class AmountTest {
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void empty() {
+        Amount target = Amount.empty();
+        System.out.println(target.asText());
+        assertThat(target.asText())
+                .isNull();
+    }
 
     @Test
     @Tag(TestSize.SMALL)
@@ -33,11 +44,22 @@ public class AmountTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void sum() {
+    public void sum1() {
         Amount target = Amount.sum(Amount.yen(1000L), Amount.yen(3000L));
         System.out.println(target.asText());
         assertThat(target.asText())
                 .isEqualTo("￥4,000");
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void sum2() {
+        ArrayList<Amount> amounts = newArrayList(Amount.yen(10L), Amount.yen(20L));
+        Amount target = Amount.sum(amounts);
+        System.out.println(target.asText());
+        assertThat(target.asText())
+                .isEqualTo("￥30");
+
     }
 
     @Test
@@ -69,4 +91,11 @@ public class AmountTest {
                 .isEqualTo(Amount.yen(80L));
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void compareTo() {
+        assertThat(Amount.yen(500L).compareTo(Amount.zeroYen()))
+                .isEqualTo(1);
+
+    }
 }

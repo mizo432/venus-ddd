@@ -4,6 +4,12 @@ import org.venuspj.ddd.model.values.primitives.SingleValue;
 
 import static org.venuspj.util.objects2.Objects2.*;
 
+/**
+ * 単値オブジェクト.
+ *
+ * @param <T>   保持データ型
+ * @param <ASV> 単値オブジェクト
+ */
 public abstract class AbstractSingleValue<T, ASV extends AbstractSingleValue<T, ASV>> implements SingleValue<T, ASV>, Comparable<ASV> {
 
     protected T value;

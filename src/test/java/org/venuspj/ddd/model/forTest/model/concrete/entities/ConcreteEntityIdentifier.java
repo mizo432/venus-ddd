@@ -1,11 +1,10 @@
 package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
-import org.venuspj.ddd.model.entity.AbstractEntityIdentifier;
+import org.venuspj.ddd.model.entity.AbstractEntityLongIdentifier;
 
 import static org.venuspj.util.objects2.Objects2.*;
 
-public class ConcreteEntityIdentifier extends AbstractEntityIdentifier<ConcreteEntity, ConcreteEntityIdentifier> {
-    Long value;
+public class ConcreteEntityIdentifier extends AbstractEntityLongIdentifier<ConcreteEntity, ConcreteEntityIdentifier> {
 
     public ConcreteEntityIdentifier() {
         super(ConcreteEntity.class);
@@ -17,12 +16,13 @@ public class ConcreteEntityIdentifier extends AbstractEntityIdentifier<ConcreteE
 
     @Override
     public boolean sameValueAs(ConcreteEntityIdentifier other) {
-        return nonNull(other) && (equal(kind, other.kind) && equal(value, other.value));
+        return nonNull(other)
+                && (equal(kind, other.kind)
+                && equal(value, other.value));
     }
 
-    ConcreteEntityIdentifier(Long value) {
-        super(ConcreteEntity.class);
-        this.value = value;
+    ConcreteEntityIdentifier(Long aValue) {
+        super(ConcreteEntity.class, aValue);
     }
 
     public static ConcreteEntityIdentifier of(Long value) {

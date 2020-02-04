@@ -1,4 +1,4 @@
-package org.venuspj.ddd.model.values.buisiness;
+package org.venuspj.ddd.model.values.buisiness.email;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -6,26 +6,26 @@ import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class NameTest {
-
+public class EmailAddressTest {
     @Test
     @Tag(TestSize.SMALL)
     public void of() {
-        Name target = Name.of("testData");
+        EmailAddress target = EmailAddress.of("testData");
         assertThat(target)
                 .isNotNull();
-        assertThat(target.toString())
-                .isNotNull()
-                .isEqualTo("Name{value:\"testData\"}");
+        assertThat(target.isPresent())
+                .isTrue();
+
     }
 
     @Test
     @Tag(TestSize.SMALL)
     public void empty() {
-        Name target = Name.empty();
+        EmailAddress target = EmailAddress.empty();
         assertThat(target)
                 .isNotNull();
         assertThat(target.isEmpty())
                 .isTrue();
     }
+
 }

@@ -12,6 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RateTest {
     @Test
     @Tag(TestSize.SMALL)
+    public void zero() {
+        Rate target = Rate.zero();
+        System.out.println(target.asText());
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
     public void all() {
         Rate target = Rate.all();
         System.out.println(target.asText());
@@ -21,13 +28,6 @@ public class RateTest {
     @Tag(TestSize.SMALL)
     public void valueOf() {
         Rate target = Rate.valueOf(BigDecimal.valueOf(0.5));
-        System.out.println(target.asText());
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void zero() {
-        Percentage target = Percentage.zero();
         System.out.println(target.asText());
     }
 
