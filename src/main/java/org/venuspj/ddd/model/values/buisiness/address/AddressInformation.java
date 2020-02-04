@@ -2,10 +2,6 @@ package org.venuspj.ddd.model.values.buisiness.address;
 
 
 import org.venuspj.ddd.model.values.Value;
-import org.venuspj.ddd.model.values.buisiness.address.aza.Aza;
-import org.venuspj.ddd.model.values.buisiness.address.city.City;
-import org.venuspj.ddd.model.values.buisiness.address.koaza.KoAza;
-import org.venuspj.ddd.model.values.buisiness.address.prefecture.Prefecture;
 
 import static org.venuspj.util.objects2.Objects2.*;
 
@@ -26,6 +22,16 @@ public class AddressInformation implements Value<AddressInformation> {
         addressPostfix = anAddressPostfix;
     }
 
+    public AddressInformation() {
+        addressCode = AddressCode.empty();
+        prefecture = Prefecture.EMPTY;
+        city = City.empty();
+        koAza = KoAza.empty();
+        aza = Aza.empty();
+        addressPostfix = AddressPostfix.empty();
+
+    }
+
     public static AddressInformation of(AddressCode anAddressCode, Prefecture aPrefecture, City aCity, Aza anAza, KoAza aKoAza, AddressPostfix anAddressPostfix) {
         return new AddressInformation(anAddressCode, aPrefecture, aCity, anAza, aKoAza, anAddressPostfix);
 
@@ -34,6 +40,10 @@ public class AddressInformation implements Value<AddressInformation> {
     public static AddressInformation of(AddressCode anAddressCode, Prefecture aPrefecture, City aCity, Aza anAza, KoAza aKoAza) {
         return new AddressInformation(anAddressCode, aPrefecture, aCity, anAza, aKoAza, AddressPostfix.empty());
 
+    }
+
+    public static AddressInformation empty() {
+        return new AddressInformation();
     }
 
     @Override
@@ -65,4 +75,13 @@ public class AddressInformation implements Value<AddressInformation> {
 
     }
 
+    public boolean isEmpty() {
+        return addressCode.isEmpty()
+                && prefecture.EMPTY.isEmpty()
+                && city.isEmpty()
+                && koAza.isEmpty()
+                && aza.isEmpty()
+                && addressPostfix.isEmpty();
+
+    }
 }

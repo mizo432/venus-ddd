@@ -2,8 +2,7 @@ package org.venuspj.ddd.model.values;
 
 import org.venuspj.ddd.model.values.primitives.SingleValue;
 
-import static org.venuspj.util.objects2.Objects2.isNull;
-import static org.venuspj.util.objects2.Objects2.toStringHelper;
+import static org.venuspj.util.objects2.Objects2.*;
 
 public abstract class AbstractSingleValue<T, ASV extends AbstractSingleValue<T, ASV>> implements SingleValue<T, ASV>, Comparable<ASV> {
 
@@ -61,4 +60,13 @@ public abstract class AbstractSingleValue<T, ASV extends AbstractSingleValue<T, 
                 .toString();
 
     }
+
+    public boolean isEmpty() {
+        return isNull(value);
+    }
+
+    public boolean isPresent() {
+        return nonNull(value);
+    }
+
 }

@@ -11,9 +11,16 @@ public class Quantity extends AbstractBigDecimalValue<Quantity> {
 
     }
 
+    public Quantity() {
+        super();
+    }
+
     public static Quantity of(BigDecimal aValue) {
         return new Quantity(aValue);
 
     }
 
+    public static Quantity empty() {
+        return new Quantity();
+    }
 }

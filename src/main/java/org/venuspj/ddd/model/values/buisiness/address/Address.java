@@ -16,9 +16,17 @@ public class Address extends AbstractEntity<Address, AddressIdentifier> {
         addressInformation = anAddressInformation;
     }
 
+    public Address() {
+        addressInformation = AddressInformation.empty();
+    }
+
     public static Address of(AddressIdentifier anAddressIdentifier, AddressInformation anAddressInformation) {
         return new Address(anAddressIdentifier, anAddressInformation);
 
+    }
+
+    public static Address empty() {
+        return new Address();
     }
 
     @Override
@@ -30,4 +38,7 @@ public class Address extends AbstractEntity<Address, AddressIdentifier> {
                 equal(addressInformation, other.addressInformation);
     }
 
+    public boolean isEmpty() {
+        return addressInformation.isEmpty();
+    }
 }

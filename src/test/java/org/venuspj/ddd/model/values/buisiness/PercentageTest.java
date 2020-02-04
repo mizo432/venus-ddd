@@ -1,26 +1,25 @@
-package org.venuspj.ddd.model.values.buisiness.rate;
+package org.venuspj.ddd.model.values.buisiness;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.values.buisiness.Percentage;
 import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RateTest {
+public class PercentageTest {
     @Test
     @Tag(TestSize.SMALL)
     public void all() {
-        Rate target = Rate.all();
+        Percentage target = Percentage.all();
         System.out.println(target.asText());
     }
 
     @Test
     @Tag(TestSize.SMALL)
     public void valueOf() {
-        Rate target = Rate.valueOf(BigDecimal.valueOf(0.5));
+        Percentage target = Percentage.valueOf(BigDecimal.valueOf(50));
         System.out.println(target.asText());
     }
 
@@ -34,19 +33,10 @@ public class RateTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sum() {
-        Rate target = Rate.sum(Rate.all(), Rate.all());
+        Percentage target = Percentage.sum(Percentage.all(), Percentage.all());
         System.out.println(target.asText());
         assertThat(target)
-                .isEqualTo(Rate.valueOf(BigDecimal.valueOf(2)));
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void toPercentage() {
-        Rate target = Rate.all();
-
-        assertThat(target.toPercentage())
-                .isEqualTo(Percentage.all());
+                .isEqualTo(Percentage.valueOf(BigDecimal.valueOf(200)));
     }
 
 }

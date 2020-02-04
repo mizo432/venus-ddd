@@ -24,6 +24,7 @@ public class AbstractComparableSingleValue<T extends Comparable<T>, ACSV extends
                 .result();
     }
 
+
     /**
      * Created by mizoguchi on 2017/02/14.
      */

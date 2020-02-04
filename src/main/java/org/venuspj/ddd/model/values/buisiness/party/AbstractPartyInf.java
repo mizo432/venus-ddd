@@ -1,7 +1,7 @@
 package org.venuspj.ddd.model.values.buisiness.party;
 
 import org.venuspj.ddd.model.values.Value;
-import org.venuspj.ddd.model.values.buisiness.name.NamedObject;
+import org.venuspj.ddd.model.values.buisiness.NamedObject;
 
 import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.isNull;

@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.rate;
 
-import org.venuspj.ddd.model.values.buisiness.percentage.Percentage;
+import org.venuspj.ddd.model.values.buisiness.Percentage;
 import org.venuspj.ddd.model.values.primitives.AbstractBigDecimalValue;
 
 import java.math.BigDecimal;
