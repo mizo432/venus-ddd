@@ -18,4 +18,13 @@ public class LineTest {
                 .isNotNull()
                 .isEqualTo("Line{value:\"testData\"}");
     }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void empty() {
+        Line target = Line.empty();
+        assertThat(target.isEmpty())
+                .isTrue();
+    }
+
 }

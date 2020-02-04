@@ -38,10 +38,18 @@ public class QuantityAndUnit implements Value<QuantityAndUnit> {
     @Override
     public int hashCode() {
         return Objects2.hash(quantity, unit);
+
     }
 
     @Override
     public boolean sameValueAs(QuantityAndUnit other) {
         return equals(other);
+
     }
+
+    public boolean isEmpty() {
+        return quantity.isEmpty()
+                && unit.isEmpty();
+    }
+
 }

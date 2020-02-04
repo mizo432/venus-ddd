@@ -2,7 +2,8 @@ package org.venuspj.ddd.model.values.buisiness.amount;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.values.buisiness.percentage.Percentage;
+import org.venuspj.ddd.model.values.buisiness.Percentage;
+import org.venuspj.ddd.model.values.buisiness.money.TaxRate;
 import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;

@@ -15,8 +15,15 @@ public class Line extends AbstractStringValue<Line> {
         super(aValue);
     }
 
+    public Line() {
+
+    }
+
     public static Line of(String aValue) {
         return new Line(aValue);
     }
 
+    public static Line empty() {
+        return new Line();
+    }
 }
