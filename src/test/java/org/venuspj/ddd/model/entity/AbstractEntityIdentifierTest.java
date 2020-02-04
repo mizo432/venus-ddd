@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
 import org.venuspj.tests.constants.TestSize;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.venuspj.util.objects2.Objects2.toStringHelper;
 
 public class AbstractEntityIdentifierTest {
@@ -21,6 +22,18 @@ public class AbstractEntityIdentifierTest {
     public void empty01() {
         ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
         System.out.println(toStringHelper(target).defaultConfig().toString());
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void sameValueOf01() {
+        ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
+        System.out.println(toStringHelper(target).defaultConfig().toString());
+
+        boolean actual = target.sameValueAs(target);
+
+        assertThat(actual)
+                .isTrue();
     }
 
 }

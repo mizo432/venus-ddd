@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.entity;
 
+import org.venuspj.util.objects2.Objects2;
+
 /**
  * {@link EntityIdentifier}のデフォルト基底クラス.
  *
@@ -36,16 +38,18 @@ public abstract class AbstractEntityIdentifier<E extends Entity<E, EI>, EI exten
 
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object o) {
-        return o instanceof AbstractEntityIdentifier
-                && sameValueAs((EI) o);
-
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractEntityIdentifier<?, ?> that = (AbstractEntityIdentifier<?, ?>) o;
+        return Objects2.equal(kind, that.kind);
     }
 
     @Override
-    public abstract boolean sameValueAs(EI other);
+    public int hashCode() {
+        return Objects2.hash(kind);
+    }
 
     @Override
     public String getKind() {

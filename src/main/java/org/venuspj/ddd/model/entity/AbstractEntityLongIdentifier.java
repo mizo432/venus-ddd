@@ -87,8 +87,7 @@ public abstract class AbstractEntityLongIdentifier<E extends Entity<E, EI>, EI e
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         AbstractEntityLongIdentifier<?, ?> that = (AbstractEntityLongIdentifier<?, ?>) o;
-        return equal(kind, that.kind) &&
-                equal(value, that.value);
+        return equal(value, that.value);
     }
 
     @Override

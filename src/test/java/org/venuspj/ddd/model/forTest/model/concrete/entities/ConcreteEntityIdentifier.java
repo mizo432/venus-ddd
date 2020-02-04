@@ -2,8 +2,6 @@ package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
 import org.venuspj.ddd.model.entity.AbstractEntityLongIdentifier;
 
-import static org.venuspj.util.objects2.Objects2.*;
-
 public class ConcreteEntityIdentifier extends AbstractEntityLongIdentifier<ConcreteEntity, ConcreteEntityIdentifier> {
 
     public ConcreteEntityIdentifier() {
@@ -16,9 +14,8 @@ public class ConcreteEntityIdentifier extends AbstractEntityLongIdentifier<Concr
 
     @Override
     public boolean sameValueAs(ConcreteEntityIdentifier other) {
-        return nonNull(other)
-                && (equal(kind, other.kind)
-                && equal(value, other.value));
+        return equals(other);
+
     }
 
     ConcreteEntityIdentifier(Long aValue) {
@@ -30,23 +27,4 @@ public class ConcreteEntityIdentifier extends AbstractEntityLongIdentifier<Concr
 
     }
 
-    @Override
-    public boolean isEmpty() {
-        return isNull(value);
-    }
-
-    @Override
-    public Long asLong() {
-        return value;
-    }
-
-    @Override
-    public String asText() {
-        return value.toString();
-    }
-
-    @Override
-    public Long getValue() {
-        return value;
-    }
 }
