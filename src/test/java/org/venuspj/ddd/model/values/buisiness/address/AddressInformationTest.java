@@ -88,4 +88,17 @@ public class AddressInformationTest {
 
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void sameValueAs3() {
+        AddressInformation arg = AddressInformation.empty();
+        AddressInformation target = AddressInformation.empty();
+
+        boolean actual = target.sameValueAs(arg);
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
 }
