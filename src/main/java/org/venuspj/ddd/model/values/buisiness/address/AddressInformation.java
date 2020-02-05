@@ -77,7 +77,7 @@ public class AddressInformation implements Value<AddressInformation> {
 
     public boolean isEmpty() {
         return addressCode.isEmpty()
-                && prefecture.EMPTY.isEmpty()
+                && prefecture.isEmpty()
                 && city.isEmpty()
                 && koAza.isEmpty()
                 && aza.isEmpty()

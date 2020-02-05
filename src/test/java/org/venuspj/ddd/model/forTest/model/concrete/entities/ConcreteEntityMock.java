@@ -9,7 +9,7 @@ public class ConcreteEntityMock {
         SIMPLE {
             @Override
             public ConcreteEntity create() {
-                return new ConcreteEntity(ConcreteEntityIdentifier.of(1L));
+                return new ConcreteEntity(ConcreteEntityIdentifier.of(1L), ConcreteInfo.empty());
             }
         };
 

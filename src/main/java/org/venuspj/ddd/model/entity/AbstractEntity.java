@@ -15,21 +15,28 @@ import static org.venuspj.util.objects2.Objects2.isNull;
  * @param <E>  エンティティの型
  * @param <EI> エンティティIDの型
  */
-public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends EntityIdentifier<E, EI>> implements Entity<E, EI>, Value<E> {
+public abstract class AbstractEntity<E extends AbstractEntity<E, EI, V>, EI extends EntityIdentifier<E, EI>, V extends Value<V>> implements Entity<E, EI>, Value<E> {
 
     private EI identifier;
+    private V entityInfo;
 
     protected AbstractEntity() {
 
     }
 
-    protected AbstractEntity(EI identifier) {
-        this.identifier = identifier;
+    protected AbstractEntity(EI anIdentifier, V anEntityInfo) {
+
+        this.identifier = anIdentifier;
+        entityInfo = anEntityInfo;
     }
 
     @Override
     public EI getIdentifier() {
         return identifier;
+    }
+
+    protected V getEntityInfo() {
+        return entityInfo;
     }
 
     @Override
@@ -56,4 +63,16 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends
 
     }
 
+    @Override
+    public boolean sameValueAs(E other) {
+        return sameIdentifierAs(other)
+                && entityInfo.sameValueAs(other.getEntityInfo());
+
+    }
+
+    public boolean isEmpty() {
+        return identifier.isEmpty()
+                && entityInfo.isEmpty();
+
+    }
 }

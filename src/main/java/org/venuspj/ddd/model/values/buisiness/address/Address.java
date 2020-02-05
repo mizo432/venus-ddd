@@ -2,22 +2,18 @@ package org.venuspj.ddd.model.values.buisiness.address;
 
 import org.venuspj.ddd.model.entity.AbstractEntity;
 
-import static org.venuspj.util.objects2.Objects2.equal;
-import static org.venuspj.util.objects2.Objects2.isNull;
-
 /**
  * 住所.
  */
-public class Address extends AbstractEntity<Address, AddressIdentifier> {
-    private AddressInformation addressInformation;
+public class Address extends AbstractEntity<Address, AddressIdentifier, AddressInformation> {
 
     Address(AddressIdentifier anAddressIdentifier, AddressInformation anAddressInformation) {
-        super(anAddressIdentifier);
-        addressInformation = anAddressInformation;
+        super(anAddressIdentifier, anAddressInformation);
     }
 
     public Address() {
-        addressInformation = AddressInformation.empty();
+        super(AddressIdentifier.empty(), AddressInformation.empty());
+
     }
 
     public static Address of(AddressIdentifier anAddressIdentifier, AddressInformation anAddressInformation) {
@@ -29,16 +25,14 @@ public class Address extends AbstractEntity<Address, AddressIdentifier> {
         return new Address();
     }
 
-    @Override
-    public boolean sameValueAs(Address other) {
-        if (isNull(other))
-            return false;
-
-        return sameIdentifierAs(other) &&
-                equal(addressInformation, other.addressInformation);
-    }
-
     public boolean isEmpty() {
-        return addressInformation.isEmpty();
+        return getEntityInfo().isEmpty()
+                && getAddressInformation().isEmpty();
     }
+
+    protected AddressInformation getAddressInformation() {
+        return getEntityInfo();
+
+    }
+
 }

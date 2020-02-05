@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteInfo;
 import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,7 +30,7 @@ public class AbstractEntityTest {
         boolean actual = target.sameValueAs(target);
 
         assertThat(actual)
-                .isFalse();
+                .isTrue();
 
     }
 
@@ -42,16 +43,16 @@ public class AbstractEntityTest {
         boolean actual = target.sameValueAs(arg);
 
         assertThat(actual)
-                .isFalse();
+                .isTrue();
 
     }
 
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs3() {
-        ConcreteEntity arg = ConcreteEntity.of(ConcreteEntityIdentifier.of(10L));
+        ConcreteEntity arg = ConcreteEntity.of(ConcreteEntityIdentifier.of(10L), ConcreteInfo.empty());
 
-        ConcreteEntity target = ConcreteEntity.of(ConcreteEntityIdentifier.of(10L));
+        ConcreteEntity target = ConcreteEntity.of(ConcreteEntityIdentifier.of(10L), ConcreteInfo.empty());
         boolean actual = target.sameValueAs(arg);
 
         assertThat(actual)
@@ -62,9 +63,9 @@ public class AbstractEntityTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs4() {
-        ConcreteEntity arg = ConcreteEntity.of(ConcreteEntityIdentifier.of(11L));
+        ConcreteEntity arg = ConcreteEntity.of(ConcreteEntityIdentifier.of(11L), ConcreteInfo.empty());
 
-        ConcreteEntity target = ConcreteEntity.of(ConcreteEntityIdentifier.of(10L));
+        ConcreteEntity target = ConcreteEntity.of(ConcreteEntityIdentifier.of(10L), ConcreteInfo.empty());
         boolean actual = target.sameValueAs(arg);
 
         assertThat(actual)

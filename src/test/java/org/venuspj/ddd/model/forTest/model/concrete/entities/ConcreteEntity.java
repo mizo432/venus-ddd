@@ -2,18 +2,17 @@ package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
 import org.venuspj.ddd.model.entity.AbstractEntity;
 
-import static org.venuspj.util.objects2.Objects2.isNull;
 import static org.venuspj.util.objects2.Objects2.toStringHelper;
 
-public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntityIdentifier> {
+public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntityIdentifier, ConcreteInfo> {
 
     public ConcreteEntity() {
-        super(new ConcreteEntityIdentifier());
+        super(ConcreteEntityIdentifier.empty(), ConcreteInfo.empty());
 
     }
 
-    public ConcreteEntity(ConcreteEntityIdentifier concreteEntityIdentifier) {
-        super(concreteEntityIdentifier);
+    public ConcreteEntity(ConcreteEntityIdentifier aConcreteEntityIdentifier, ConcreteInfo aConcreteInfo) {
+        super(aConcreteEntityIdentifier, aConcreteInfo);
 
     }
 
@@ -21,17 +20,8 @@ public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntit
         return new ConcreteEntity();
     }
 
-    public static ConcreteEntity of(ConcreteEntityIdentifier aConcreteEntityIdentifier) {
-        return new ConcreteEntity(aConcreteEntityIdentifier);
-    }
-
-    @Override
-    public boolean sameValueAs(ConcreteEntity other) {
-        if (isNull(other))
-            return false;
-        if (getIdentifier().isEmpty() || other.getIdentifier().isEmpty())
-            return false;
-        return sameIdentifierAs(other);
+    public static ConcreteEntity of(ConcreteEntityIdentifier aConcreteEntityIdentifier, ConcreteInfo aConcreteInfo) {
+        return new ConcreteEntity(aConcreteEntityIdentifier, aConcreteInfo);
     }
 
     @Override

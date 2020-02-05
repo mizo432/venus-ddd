@@ -50,5 +50,11 @@ public class Contact implements Value<Contact> {
         return new Contact();
     }
 
-
+    @Override
+    public boolean isEmpty() {
+        return address.isEmpty()
+                && emailAddress.isEmpty()
+                && telephoneNumber.isEmpty()
+                && faxNumber.isEmpty();
+    }
 }

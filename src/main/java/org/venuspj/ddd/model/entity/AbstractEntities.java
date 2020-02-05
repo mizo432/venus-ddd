@@ -11,7 +11,7 @@ import java.util.Collection;
  * @param <EI> エンティティID
  * @param <AE> エンティティリスト
  */
-public abstract class AbstractEntities<E extends AbstractEntity<E, EI>, EI extends EntityIdentifier<E, EI>, AE extends AbstractEntities<E, EI, AE>> extends AbstractListValue<E, AE> {
+public abstract class AbstractEntities<E extends AbstractEntity<E, EI, ?>, EI extends EntityIdentifier<E, EI>, AE extends AbstractEntities<E, EI, AE>> extends AbstractListValue<E, AE> {
 
     protected AbstractEntities() {
         super();

@@ -22,4 +22,6 @@ public interface Value<V extends Value<V>> {
      */
     boolean sameValueAs(V other);
 
+    boolean isEmpty();
+
 }
