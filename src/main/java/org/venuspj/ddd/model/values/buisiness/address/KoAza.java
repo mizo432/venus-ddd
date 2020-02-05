@@ -21,4 +21,8 @@ public class KoAza extends AbstractEntity<KoAza, KoAzaIdentifier, KoAzaInformati
         return new KoAza(aKoAzaIdentifier, aKoAzaInformation);
 
     }
+
+    public KoAzaInformation getKoAzaInformation() {
+        return getEntityInfo();
+    }
 }

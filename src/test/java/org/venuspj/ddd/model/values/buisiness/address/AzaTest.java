@@ -6,12 +6,12 @@ import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class KoAzaTest {
+public class AzaTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void empty() {
-        KoAza target = KoAza.empty();
+    public void of() {
+        Aza target = Aza.empty();
         assertThat(target)
                 .isNotNull();
 
@@ -20,11 +20,12 @@ public class KoAzaTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void getCityInformation() {
-        KoAza target = KoAza.of(KoAzaIdentifier.empty(), KoAzaInformation.empty());
-        assertThat(target.getKoAzaInformation())
+    public void getAzaInformation() {
+        Aza target = Aza.of(AzaIdentifier.empty(), AzaInformation.empty());
+        assertThat(target.getAzaInformation())
                 .isNotNull();
 
         System.out.println(true);
     }
+
 }

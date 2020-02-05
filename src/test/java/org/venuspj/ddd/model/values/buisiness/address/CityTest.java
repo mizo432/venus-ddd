@@ -10,11 +10,22 @@ public class CityTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void of() {
-        City target = City.of(CityIdentifier.empty(), CityInformation.empty());
+    public void empty() {
+        City target = City.empty();
         assertThat(target)
                 .isNotNull();
 
         System.out.println(true);
     }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void getCityInformation() {
+        City target = City.of(CityIdentifier.empty(), CityInformation.empty());
+        assertThat(target.getCityInformation())
+                .isNotNull();
+
+        System.out.println(true);
+    }
+
 }
