@@ -60,7 +60,7 @@ pipeline {
                     },
                     'task-scan': {
                         recordIssues(tools: [taskScanner(highTags: 'FIXME', ignoreCase: true, includePattern: '**/src/main/java/**/*.java', lowTags: 'XXX', normalTags: 'TODO')])
-                    }
+                    },
                     'step count': {
                         // レポート作成
                         stepcounter outputFile: "./build/stepCount.xls", outputFormat: 'excel', settings: [
