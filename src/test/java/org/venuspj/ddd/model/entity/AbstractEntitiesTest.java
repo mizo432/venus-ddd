@@ -18,6 +18,16 @@ public class AbstractEntitiesTest {
 
     @Test
     @Tag(TestSize.SMALL)
+    public void empty() {
+        ConcreteEntities actual = ConcreteEntities.empty();
+        assertThat(actual.asList())
+                .isEmpty();
+
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
     public void of1() {
         ConcreteEntities actual = ConcreteEntities.of(ConcreteEntitiesMock.empty());
         assertThat(actual.asList())

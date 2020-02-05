@@ -12,9 +12,17 @@ public class ConcreteEntities extends AbstractEntities<ConcreteEntity, ConcreteE
 
     }
 
+    public ConcreteEntities() {
+
+    }
+
     public static ConcreteEntities of(Collection<ConcreteEntity> concreteEntities) {
         return new ConcreteEntities(concreteEntities);
 
+    }
+
+    public static ConcreteEntities empty() {
+        return new ConcreteEntities();
     }
 
 
