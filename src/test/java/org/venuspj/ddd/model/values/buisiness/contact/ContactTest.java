@@ -74,6 +74,20 @@ public class ContactTest {
 
     @Test
     @Tag(TestSize.SMALL)
+    public void builder3() {
+        Contact target = Contact
+                .builder()
+                .apply(Contact.empty());
+
+        boolean actual = target.isEmpty();
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
     public void sameValueAs1() {
         Contact target = Contact.empty();
 
