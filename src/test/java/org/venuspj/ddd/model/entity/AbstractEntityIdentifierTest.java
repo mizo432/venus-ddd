@@ -2,6 +2,7 @@ package org.venuspj.ddd.model.entity;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
 import org.venuspj.tests.constants.TestSize;
 
@@ -28,12 +29,79 @@ public class AbstractEntityIdentifierTest {
     @Tag(TestSize.SMALL)
     public void sameValueOf01() {
         ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
-        System.out.println(toStringHelper(target).defaultConfig().toString());
 
         boolean actual = target.sameValueAs(target);
 
         assertThat(actual)
                 .isTrue();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void hashCode01() {
+        ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
+
+        int actual = target.hashCode();
+
+        assertThat(actual)
+                .isEqualTo(-38784083);
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void getKind1() {
+        ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
+        String actual = target.getKind();
+
+
+        assertThat(actual)
+                .isEqualTo(ConcreteEntity.class.getCanonicalName());
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals1() {
+        ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
+        boolean actual = target.equals(target);
+
+
+        assertThat(actual)
+                .isTrue();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals2() {
+        ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
+        boolean actual = target.equals(null);
+
+
+        assertThat(actual)
+                .isFalse();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals3() {
+        ConcreteEntityIdentifier arg = ConcreteEntityIdentifier.empty();
+        ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
+        boolean actual = target.equals(arg);
+
+
+        assertThat(actual)
+                .isTrue();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals4() {
+        ConcreteEntityIdentifier arg = ConcreteEntityIdentifier.of(1L);
+        ConcreteEntityIdentifier target = ConcreteEntityIdentifier.of(2L);
+        boolean actual = target.equals(arg);
+
+
+        assertThat(actual)
+                .isFalse();
     }
 
 }

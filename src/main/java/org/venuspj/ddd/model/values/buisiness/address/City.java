@@ -17,4 +17,11 @@ public class City extends AbstractEntity<City, CityIdentifier, CityInformation> 
         return new City();
     }
 
+    public static City of(CityIdentifier aCityIdentifier, CityInformation aCityInformation) {
+        return new City(aCityIdentifier, aCityInformation);
+    }
+
+    public CityInformation getCityInformation() {
+        return getEntityInfo();
+    }
 }

@@ -1,4 +1,4 @@
-package org.venuspj.ddd.model.values.buisiness.contact.telephone;
+package org.venuspj.ddd.model.values.buisiness.contact;
 
 import org.venuspj.ddd.model.values.primitives.AbstractStringValue;
 
