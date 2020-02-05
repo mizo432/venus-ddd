@@ -5,18 +5,18 @@ import org.venuspj.ddd.model.entity.AbstractEntity;
 /**
  * 住所.
  */
-public class Address extends AbstractEntity<Address, AddressIdentifier, AddressInformation> {
+public class Address extends AbstractEntity<Address, AddressIdentifier, SimpleAddressInformation> {
 
-    Address(AddressIdentifier anAddressIdentifier, AddressInformation anAddressInformation) {
+    Address(AddressIdentifier anAddressIdentifier, SimpleAddressInformation anAddressInformation) {
         super(anAddressIdentifier, anAddressInformation);
     }
 
     public Address() {
-        super(AddressIdentifier.empty(), AddressInformation.empty());
+        super(AddressIdentifier.empty(), SimpleAddressInformation.empty());
 
     }
 
-    public static Address of(AddressIdentifier anAddressIdentifier, AddressInformation anAddressInformation) {
+    public static Address of(AddressIdentifier anAddressIdentifier, SimpleAddressInformation anAddressInformation) {
         return new Address(anAddressIdentifier, anAddressInformation);
 
     }
@@ -30,7 +30,7 @@ public class Address extends AbstractEntity<Address, AddressIdentifier, AddressI
                 && getAddressInformation().isEmpty();
     }
 
-    protected AddressInformation getAddressInformation() {
+    protected SimpleAddressInformation getAddressInformation() {
         return getEntityInfo();
 
     }

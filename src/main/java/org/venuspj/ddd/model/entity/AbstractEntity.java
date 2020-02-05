@@ -2,8 +2,7 @@ package org.venuspj.ddd.model.entity;
 
 import org.venuspj.ddd.model.values.Value;
 
-import static org.venuspj.util.objects2.Objects2.equal;
-import static org.venuspj.util.objects2.Objects2.isNull;
+import static org.venuspj.util.objects2.Objects2.*;
 
 /**
  * @param <T> エンティティクラス
@@ -74,5 +73,12 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI, V>, EI exte
         return identifier.isEmpty()
                 && entityInfo.isEmpty();
 
+    }
+
+    @Override
+    public String toString() {
+        return toStringHelper(this)
+                .defaultConfig()
+                .toString();
     }
 }

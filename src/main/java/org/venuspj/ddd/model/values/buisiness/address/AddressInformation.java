@@ -2,61 +2,51 @@ package org.venuspj.ddd.model.values.buisiness.address;
 
 
 import org.venuspj.ddd.model.values.Value;
+import org.venuspj.util.builder.ObjectBuilder;
+import org.venuspj.util.objects2.Objects2;
 
-import static org.venuspj.util.objects2.Objects2.*;
+import static org.venuspj.util.objects2.Objects2.isNull;
+import static org.venuspj.util.objects2.Objects2.toStringHelper;
 
 public class AddressInformation implements Value<AddressInformation> {
-    private AddressCode addressCode;
-    private Prefecture prefecture;
-    private City city;
-    private KoAza koAza;
-    private Aza aza;
-    private AddressPostfix addressPostfix;
+    private SimpleAddressInformation simpleAddressInformation = SimpleAddressInformation.empty();
+    private AddressPostfix addressPostfix = AddressPostfix.empty();
 
-    AddressInformation(AddressCode anAddressCode, Prefecture aPrefecture, City aCity, Aza anAza, KoAza aKoAza, AddressPostfix anAddressPostfix) {
-        addressCode = anAddressCode;
-        prefecture = aPrefecture;
-        city = aCity;
-        koAza = aKoAza;
-        aza = anAza;
+    AddressInformation(SimpleAddressInformation aSimpleAddressInformation, AddressPostfix anAddressPostfix) {
+        simpleAddressInformation = aSimpleAddressInformation;
         addressPostfix = anAddressPostfix;
     }
 
     public AddressInformation() {
-        addressCode = AddressCode.empty();
-        prefecture = Prefecture.EMPTY;
-        city = City.empty();
-        koAza = KoAza.empty();
-        aza = Aza.empty();
-        addressPostfix = AddressPostfix.empty();
 
     }
 
-    public static AddressInformation of(AddressCode anAddressCode, Prefecture aPrefecture, City aCity, Aza anAza, KoAza aKoAza, AddressPostfix anAddressPostfix) {
-        return new AddressInformation(anAddressCode, aPrefecture, aCity, anAza, aKoAza, anAddressPostfix);
+    public static AddressInformation of(PostalCode aPostalCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, Aza anAza, KoAza aKoAza, AddressPostfix anAddressPostfix) {
+        return of(
+                SimpleAddressInformation
+                        .builder()
+                        .withPostalCode(aPostalCode)
+                        .withAddressCode(anAddressCode)
+                        .withPrefecture(aPrefecture)
+                        .withCity(aCity)
+                        .withAza(anAza)
+                        .withKoAza(aKoAza)
+                        .build(), anAddressPostfix);
 
     }
 
-    public static AddressInformation of(AddressCode anAddressCode, Prefecture aPrefecture, City aCity, Aza anAza, KoAza aKoAza) {
-        return new AddressInformation(anAddressCode, aPrefecture, aCity, anAza, aKoAza, AddressPostfix.empty());
+    public static AddressInformation of(SimpleAddressInformation aSimpleAddressInformation, AddressPostfix anAddressPostfix) {
+        return new AddressInformation(aSimpleAddressInformation, anAddressPostfix);
 
     }
 
     public static AddressInformation empty() {
         return new AddressInformation();
+
     }
 
-    @Override
     public boolean sameValueAs(AddressInformation other) {
-        if (isNull(other))
-            return false;
-
-        return equal(addressCode, other.addressCode) &&
-                equal(prefecture, other.prefecture) &&
-                equal(city, other.city) &&
-                equal(aza, other.aza) &&
-                equal(koAza, other.koAza) &&
-                equal(addressPostfix, other.addressPostfix);
+        return equals(other);
 
     }
 
@@ -65,23 +55,72 @@ public class AddressInformation implements Value<AddressInformation> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AddressInformation that = (AddressInformation) o;
-        return sameValueAs(that);
-
+        return Objects2.equal(simpleAddressInformation, that.simpleAddressInformation) &&
+                Objects2.equal(addressPostfix, that.addressPostfix);
     }
 
     @Override
     public int hashCode() {
-        return hash(addressCode, prefecture, city, koAza, aza, addressPostfix);
-
+        return Objects2.hash(simpleAddressInformation, addressPostfix);
     }
 
     public boolean isEmpty() {
-        return addressCode.isEmpty()
-                && prefecture.isEmpty()
-                && city.isEmpty()
-                && koAza.isEmpty()
-                && aza.isEmpty()
+        return simpleAddressInformation.isEmpty()
                 && addressPostfix.isEmpty();
 
+    }
+
+    @Override
+    public String toString() {
+        return toStringHelper(this)
+                .defaultConfig()
+                .toString();
+
+    }
+
+    public static AddressInformationBuilder builder() {
+        return new AddressInformationBuilder();
+    }
+
+    public static class AddressInformationBuilder extends ObjectBuilder<AddressInformation, AddressInformationBuilder> {
+
+        private SimpleAddressInformation simpleAddressInformation = SimpleAddressInformation.empty();
+        private AddressPostfix addressPostfix = AddressPostfix.empty();
+
+
+        @Override
+        protected void apply(AddressInformation vo, AddressInformationBuilder builder) {
+            builder.withSimpleAddressInformation(vo.simpleAddressInformation);
+            builder.withAddressPostfix(vo.addressPostfix);
+
+
+        }
+
+        public AddressInformationBuilder withAddressPostfix(AddressPostfix anAddressPostfix) {
+            if (isNull(anAddressPostfix)) return getThis();
+            addConfigurator(builder -> builder.addressPostfix = anAddressPostfix);
+            return getThis();
+        }
+
+        public AddressInformationBuilder withSimpleAddressInformation(SimpleAddressInformation aSimpleAddressInformation) {
+            if (isNull(aSimpleAddressInformation)) return getThis();
+            addConfigurator(builder -> builder.simpleAddressInformation = aSimpleAddressInformation);
+            return getThis();
+        }
+
+        @Override
+        protected AddressInformation createValueObject() {
+            return new AddressInformation(simpleAddressInformation, addressPostfix);
+        }
+
+        @Override
+        protected AddressInformationBuilder getThis() {
+            return this;
+        }
+
+        @Override
+        protected AddressInformationBuilder newInstance() {
+            return new AddressInformationBuilder();
+        }
     }
 }
