@@ -64,4 +64,28 @@ public class AddressInformationTest {
 
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void sameValueAs1() {
+        AddressInformation target = AddressInformation.empty();
+
+        boolean actual = target.sameValueAs(target);
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void sameValueAs2() {
+        AddressInformation target = AddressInformation.empty();
+
+        boolean actual = target.sameValueAs(null);
+
+        assertThat(actual)
+                .isFalse();
+
+    }
+
 }
