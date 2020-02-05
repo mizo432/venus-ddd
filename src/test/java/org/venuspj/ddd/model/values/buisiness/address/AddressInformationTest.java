@@ -101,4 +101,27 @@ public class AddressInformationTest {
 
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toString1() {
+        AddressInformation target = AddressInformation.empty();
+
+        System.out.println(target.toString());
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals1() {
+        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        AddressInformation target = AddressInformation.empty();
+        boolean actual = target.equals(arg);
+        assertThat(actual)
+                .isFalse();
+
+        System.out.println(target.toString());
+
+    }
+
+
 }
