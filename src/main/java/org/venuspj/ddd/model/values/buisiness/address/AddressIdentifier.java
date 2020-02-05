@@ -23,6 +23,7 @@ public class AddressIdentifier extends AbstractEntityLongIdentifier<Address, Add
     @Override
     public boolean sameValueAs(AddressIdentifier other) {
         return equals(other);
+
     }
 
 }
