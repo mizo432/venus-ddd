@@ -9,9 +9,21 @@ import static org.venuspj.util.objects2.Objects2.toStringHelper;
 public class CityInformation implements Value<CityInformation> {
     private Name name = Name.empty();
 
+    public CityInformation(Name aName) {
+        name = aName;
+    }
+
+    public CityInformation() {
+
+    }
+
     public static CityInformation empty() {
         return new CityInformation();
 
+    }
+
+    public static CityInformation of(Name aName) {
+        return new CityInformation(aName);
     }
 
     @Override
