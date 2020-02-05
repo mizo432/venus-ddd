@@ -2,8 +2,6 @@ package org.venuspj.ddd.model.values.buisiness.contact;
 
 import org.venuspj.ddd.model.values.Value;
 import org.venuspj.ddd.model.values.buisiness.address.AddressInformation;
-import org.venuspj.ddd.model.values.buisiness.contact.email.EmailAddress;
-import org.venuspj.ddd.model.values.buisiness.contact.telephone.TelephoneNumber;
 import org.venuspj.util.builder.ObjectBuilder;
 import org.venuspj.util.objects2.Objects2;
 

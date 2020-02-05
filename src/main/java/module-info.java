@@ -9,8 +9,6 @@ module venus.ddd.main {
     exports org.venuspj.ddd.model.values.buisiness;
     exports org.venuspj.ddd.model.values.buisiness.address;
     exports org.venuspj.ddd.model.values.buisiness.contact;
-    exports org.venuspj.ddd.model.values.buisiness.contact.telephone;
-    exports org.venuspj.ddd.model.values.buisiness.contact.email;
     exports org.venuspj.ddd.model.values.buisiness.datetime;
     exports org.venuspj.ddd.model.values.buisiness.money;
     exports org.venuspj.ddd.model.values.buisiness.rate;
