@@ -67,4 +67,20 @@ public class SimpleAddressInformationTest {
 
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void builder1() {
+        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        SimpleAddressInformation target = SimpleAddressInformation
+                .builder()
+                .apply(arg);
+
+        boolean actual = target.isEmpty();
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+
 }

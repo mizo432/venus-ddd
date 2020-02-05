@@ -66,6 +66,23 @@ public class AddressInformationTest {
 
     @Test
     @Tag(TestSize.SMALL)
+    public void builder3() {
+        AddressInformation arg = AddressInformation.empty();
+        AddressInformation target = AddressInformation
+                .builder()
+                .withSimpleAddressInformation(null)
+                .withAddressPostfix(null)
+                .apply(arg);
+
+        boolean actual = target.isEmpty();
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
     public void sameValueAs1() {
         AddressInformation target = AddressInformation.empty();
 
