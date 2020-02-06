@@ -2,15 +2,27 @@ package org.venuspj.ddd.model.values.buisiness.amount;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.values.buisiness.quantity.Quantity;
-import org.venuspj.ddd.model.values.buisiness.rate.Rate;
+import org.venuspj.ddd.model.values.buisiness.Percentage;
+import org.venuspj.ddd.model.values.buisiness.money.Amount;
+import org.venuspj.ddd.model.values.buisiness.quantity.QuantityDecimal;
 import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.venuspj.util.collect.Lists2.newArrayList;
 
 public class AmountTest {
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void empty() {
+        Amount target = Amount.empty();
+        System.out.println(target.asText());
+        assertThat(target.asText())
+                .isNull();
+    }
 
     @Test
     @Tag(TestSize.SMALL)
@@ -32,7 +44,7 @@ public class AmountTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void sum() {
+    public void sum1() {
         Amount target = Amount.sum(Amount.yen(1000L), Amount.yen(3000L));
         System.out.println(target.asText());
         assertThat(target.asText())
@@ -41,15 +53,26 @@ public class AmountTest {
 
     @Test
     @Tag(TestSize.SMALL)
+    public void sum2() {
+        ArrayList<Amount> amounts = newArrayList(Amount.yen(10L), Amount.yen(20L));
+        Amount target = Amount.sum(amounts);
+        System.out.println(target.asText());
+        assertThat(target.asText())
+                .isEqualTo("￥30");
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
     public void multiply1() {
         //given
-        Quantity quantity = Quantity.of(BigDecimal.valueOf(3));
+        QuantityDecimal quantityDecimal = QuantityDecimal.of(BigDecimal.valueOf(3));
 
         //when
         Amount target = Amount.yen(4000L);
 
         //then
-        assertThat(target.multiply(quantity))
+        assertThat(target.multiply(quantityDecimal))
                 .isEqualTo(Amount.yen(12000L));
     }
 
@@ -57,15 +80,22 @@ public class AmountTest {
     @Tag(TestSize.SMALL)
     public void multiply2() {
         //given
-        Rate rate = Rate.valueOf(BigDecimal.valueOf(0.08));
+        Percentage percentage = Percentage.valueOf(BigDecimal.valueOf(8));
         Amount target = Amount.yen(1000L);
 
         //when
-        Amount actual = target.multiply(rate);
+        Amount actual = target.multiply(percentage);
 
         //then
         assertThat(actual)
                 .isEqualTo(Amount.yen(80L));
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void compareTo() {
+        assertThat(Amount.yen(500L).compareTo(Amount.zeroYen()))
+                .isEqualTo(1);
+
+    }
 }

@@ -11,6 +11,7 @@ buildscript {
         spotbugsAnnotationsVersion = "4.0.0-RC1"
         jcipAnnotationsVersion = '1.0'
         venusTestsVersion = '0.0.4'
+        jacsonCoreVersion = '2.10.2'
 
         defaultEncoding = 'UTF-8'
     }
@@ -87,10 +88,12 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}")
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "${jacsonCoreVersion}"
+
 }
 
 //spotbugs {
-    // 失敗しても後続の処理を継続させる
+// 失敗しても後続の処理を継続させる
 //    ignoreFailures = true
 //    sourceSets = [sourceSets.main]
 //    toolVersion = "3.1.12"
@@ -146,7 +149,7 @@ test {
 task testSlow(type: Test) {
     ignoreFailures = true
     useJUnitPlatform {
-        includeTags('SMALL','MEDIUM','LARGE')
+        includeTags('SMALL', 'MEDIUM', 'LARGE')
         excludeTags()
     }
     reports {
@@ -164,7 +167,11 @@ jacocoTestReport {
     reports {
         xml.enabled = true
     }
-
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/forTest/**')
+        }))
+    }
 }
 
 gitRelease {

@@ -3,10 +3,7 @@ package org.venuspj.ddd.model.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntities;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntitiesMock;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntity;
-import org.venuspj.ddd.model.forTest.model.concrete.ConcreteEntityIdentifier;
+import org.venuspj.ddd.model.forTest.model.concrete.entities.*;
 import org.venuspj.tests.constants.TestSize;
 
 import java.util.List;
@@ -28,7 +25,7 @@ public class OnMemoryCrudRepositoryTest {
     @Tag(TestSize.SMALL)
     public void store() throws EntityNotFoundRuntimeException {
         ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(1L);
-        onMemoryCrudRepository.store(new ConcreteEntity(id));
+        onMemoryCrudRepository.store(new ConcreteEntity(id, ConcreteInfo.empty()));
         ConcreteEntity actual = onMemoryCrudRepository.resolve(id);
 
 
@@ -48,7 +45,7 @@ public class OnMemoryCrudRepositoryTest {
     public void resolveAll() {
         onMemoryCrudRepository = new OnMemoryCrudRepository(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.ONE_ELEMENT).asList());
         ConcreteEntityIdentifier id = ConcreteEntityIdentifier.of(2L);
-        onMemoryCrudRepository.store(new ConcreteEntity(id));
+        onMemoryCrudRepository.store(new ConcreteEntity(id, ConcreteInfo.empty()));
         List<ConcreteEntity> actual = onMemoryCrudRepository.resolveAll();
 
         ConcreteEntities concreteEntities = ConcreteEntities.of(actual);

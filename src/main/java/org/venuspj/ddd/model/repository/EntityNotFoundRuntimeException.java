@@ -12,12 +12,32 @@ public class EntityNotFoundRuntimeException extends Exception {
     EntityIdentifier<?, ?> identifier;
 
     public <T extends Entity<T, ?>> EntityNotFoundRuntimeException(EntityIdentifier<?, ?> identifier) {
-        super("Entity not found. getIdentifier: " + toStringHelper(identifier).defaultConfig().toString());
+        super(createMessage(identifier));
         this.identifier = identifier;
 
     }
 
+    public EntityNotFoundRuntimeException(Throwable t) {
+        super("Entity not found.", t);
+    }
+
+    private static String createMessage(EntityIdentifier<?, ?> identifier) {
+        return "Entity not found. getIdentifier: " + toStringHelper(identifier).defaultConfig().toString();
+    }
+
     public <T extends Entity<T, ?>> EntityNotFoundRuntimeException(EntityCriteria<T> criteria) {
+
+    }
+
+    public EntityNotFoundRuntimeException() {
+        super("Entity not found.");
+
+    }
+
+    public <T extends Entity<T, ?>> EntityNotFoundRuntimeException(EntityIdentifier<?, ?> identifier, Throwable t) {
+        super(createMessage(identifier), t);
+        this.identifier = identifier;
+
     }
 
     EntityIdentifier<?, ?> identifier() {

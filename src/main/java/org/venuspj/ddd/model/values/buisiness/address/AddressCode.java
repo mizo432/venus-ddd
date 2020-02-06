@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
-import org.venuspj.ddd.model.values.buisiness.code.AbstractStringCodeValue;
+import org.venuspj.ddd.model.values.primitives.code.AbstractStringCodeValue;
 
 public class AddressCode extends AbstractStringCodeValue<AddressCode> {
 
@@ -9,10 +9,17 @@ public class AddressCode extends AbstractStringCodeValue<AddressCode> {
 
     }
 
+    public AddressCode() {
+        super();
+    }
+
     public static AddressCode of(String aValue) {
         return new AddressCode(aValue);
 
     }
 
 
+    public static AddressCode empty() {
+        return new AddressCode();
+    }
 }

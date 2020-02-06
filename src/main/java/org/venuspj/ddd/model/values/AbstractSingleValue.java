@@ -1,10 +1,16 @@
 package org.venuspj.ddd.model.values;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.primitives.SingleValue;
 
-import static org.venuspj.util.objects2.Objects2.isNull;
-import static org.venuspj.util.objects2.Objects2.toStringHelper;
+import static org.venuspj.util.objects2.Objects2.*;
 
+/**
+ * 単値オブジェクト.
+ *
+ * @param <T>   保持データ型
+ * @param <ASV> 単値オブジェクト
+ */
 public abstract class AbstractSingleValue<T, ASV extends AbstractSingleValue<T, ASV>> implements SingleValue<T, ASV>, Comparable<ASV> {
 
     protected T value;
@@ -61,4 +67,15 @@ public abstract class AbstractSingleValue<T, ASV extends AbstractSingleValue<T, 
                 .toString();
 
     }
+
+    @JsonIgnore
+    public boolean isEmpty() {
+        return isNull(value);
+    }
+
+    @JsonIgnore
+    public boolean isPresent() {
+        return nonNull(value);
+    }
+
 }

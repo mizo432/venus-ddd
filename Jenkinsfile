@@ -57,37 +57,34 @@ pipeline {
                 parallel(
                     'static analysis' : {
                         gradlew 'check -x test'
-                        // dirメソッドでカレントディレクトリを指定できる
-                        recordIssues enabledForFailure: true, tools: [pmdParser(pattern: '**/build/reports/pmd/main.xml')]
-                        recordIssues enabledForFailure: true, tools: [cpd(pattern: '**/build/reports/cpd/cpd.xml', reportEncoding: 'UTF-8', skipSymbolicLinks: true)]
-                        archiveArtifacts "**/pmd/*.xml"
-                        archiveArtifacts "**/cpd/*.xml"
                     },
                     'task-scan': {
                         recordIssues(tools: [taskScanner(highTags: 'FIXME', ignoreCase: true, includePattern: '**/src/main/java/**/*.java', lowTags: 'XXX', normalTags: 'TODO')])
+                    },
+                    'step count': {
+                        // レポート作成
+                        stepcounter outputFile: "./build/stepCount.xls", outputFormat: 'excel', settings: [
+                            [key: 'Java', filePattern: "**/${javaDir}/**/*.java"],
+                            [key: 'SQL', filePattern: "**/${resourcesDir}/**/*.sql"],
+                            [key: 'Propety', filePattern: "**/${resourcesDir}/**/*.properties"],
+                            [key: 'HTML', filePattern: "**/${resourcesDir}/**/*.html"],
+                            [key: 'JS', filePattern: "**/${resourcesDir}/**/*.js"],
+                            [key: 'CSS', filePattern: "**/${resourcesDir}/**/*.css"]
+                        ]
                     }
                 )
             }
-        }
-        stage('step count') {
-            when {
-                not {
-                    branch 'master'
+            post {
+                always {
+                    recordIssues enabledForFailure: true, tools: [pmdParser(pattern: '**/build/reports/pmd/main.xml')]
+                    recordIssues enabledForFailure: true, tools: [cpd(pattern: '**/build/reports/cpd/cpd.xml', reportEncoding: 'UTF-8', skipSymbolicLinks: true)]
+                    archiveArtifacts "**/pmd/*.xml"
+                    archiveArtifacts "**/cpd/*.xml"
+                    // 一応エクセルファイルも成果物として保存する
+                    archiveArtifacts allowEmptyArchive: true, artifacts: "**/build/stepCount.xls"
                 }
             }
-            steps {
-                // レポート作成
-                stepcounter outputFile: "./build/stepCount.xls", outputFormat: 'excel', settings: [
-                        [key: 'Java', filePattern: "**/${javaDir}/**/*.java"],
-                        [key: 'SQL', filePattern: "**/${resourcesDir}/**/*.sql"],
-                        [key: 'Propety', filePattern: "**/${resourcesDir}/**/*.properties"],
-                        [key: 'HTML', filePattern: "**/${resourcesDir}/**/*.html"],
-                        [key: 'JS', filePattern: "**/${resourcesDir}/**/*.js"],
-                        [key: 'CSS', filePattern: "**/${resourcesDir}/**/*.css"]
-                ]
-                // 一応エクセルファイルも成果物として保存する
-                archiveArtifacts allowEmptyArchive: true, artifacts: "**/build/stepCount.xls"
-            }
+
         }
         stage('small test') {
             when {

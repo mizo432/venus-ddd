@@ -1,0 +1,70 @@
+package org.venuspj.ddd.model.values.buisiness.address;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.venuspj.ddd.model.values.Value;
+import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.util.objects2.Objects2;
+
+import static org.venuspj.util.objects2.Objects2.toStringHelper;
+
+public class CityInformation implements Value<CityInformation> {
+    private Name name = Name.empty();
+
+    public CityInformation(Name aName) {
+        name = aName;
+    }
+
+    public CityInformation() {
+
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public static CityInformation empty() {
+        return new CityInformation();
+
+    }
+
+    public static CityInformation of(Name aName) {
+        return new CityInformation(aName);
+    }
+
+    @Override
+    public boolean sameValueAs(CityInformation other) {
+        return equals(other);
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CityInformation that = (CityInformation) o;
+        return Objects2.equal(name, that.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects2.hash(name);
+
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isEmpty() {
+        return name.isEmpty();
+
+    }
+
+    @Override
+    public String toString() {
+        return toStringHelper(this)
+                .defaultConfig()
+                .toString();
+
+    }
+
+}
