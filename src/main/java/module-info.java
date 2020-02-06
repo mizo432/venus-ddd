@@ -12,7 +12,6 @@ module venus.ddd.main {
     exports org.venuspj.ddd.model.values.buisiness.contact;
     exports org.venuspj.ddd.model.values.buisiness.datetime;
     exports org.venuspj.ddd.model.values.buisiness.money;
-    exports org.venuspj.ddd.model.values.buisiness.rate;
     exports org.venuspj.ddd.model.values.buisiness.quantity;
 
 }
