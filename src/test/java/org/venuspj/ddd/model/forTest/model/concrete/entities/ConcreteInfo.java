@@ -40,7 +40,8 @@ public class ConcreteInfo implements Value<ConcreteInfo> {
     @Override
     @JsonIgnore
     public boolean isEmpty() {
-        return false;
+        return name.isEmpty();
+
     }
 
     @Override

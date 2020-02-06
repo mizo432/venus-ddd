@@ -21,10 +21,6 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI, V>, EI exte
     private EI identifier;
     private V entityInfo;
 
-    protected AbstractEntity() {
-
-    }
-
     protected AbstractEntity(EI anIdentifier, V anEntityInfo) {
 
         this.identifier = anIdentifier;

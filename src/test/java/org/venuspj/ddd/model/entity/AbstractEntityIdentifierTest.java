@@ -25,6 +25,8 @@ public class AbstractEntityIdentifierTest {
     public void empty01() {
         ConcreteEntityIdentifier target = ConcreteEntityIdentifier.empty();
         System.out.println(toStringHelper(target).defaultConfig().toString());
+        assertThat(target.isEmpty())
+                .isTrue();
     }
 
     @Test
