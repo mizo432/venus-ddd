@@ -121,4 +121,18 @@ public class SimpleAddressInformationTest {
 
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void of1() {
+        SimpleAddressInformation target = SimpleAddressInformation
+                .of(PostalCode.empty(), AddressCode.empty(), Prefecture.EMPTY, City.empty(), Aza.empty(), KoAza.empty());
+
+        boolean actual = target.isEmpty();
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+
 }
