@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AddressInformationTest {
 
+
     @Test
     @Tag(TestSize.SMALL)
     public void empty() {
@@ -135,6 +136,16 @@ public class AddressInformationTest {
 
         System.out.println(target.toString());
 
+    }
+
+    public static class AddressInformationMock {
+
+        public static AddressInformation one() {
+            return AddressInformation
+                    .builder()
+                    .withAddressPostfix(AddressPostfix.of("1-2-3"))
+                    .build();
+        }
     }
 
 
