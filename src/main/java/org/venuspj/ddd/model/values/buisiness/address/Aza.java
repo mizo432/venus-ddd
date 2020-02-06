@@ -17,4 +17,14 @@ public class Aza extends AbstractEntity<Aza, AzaIdentifier, AzaInformation> {
 
     }
 
+    public static Aza of(AzaIdentifier anAzaIdentifier, AzaInformation anAzaInformation) {
+        return new Aza(anAzaIdentifier, anAzaInformation);
+
+
+    }
+
+    protected AzaInformation getAzaInformation() {
+        return getEntityInfo();
+    }
+
 }

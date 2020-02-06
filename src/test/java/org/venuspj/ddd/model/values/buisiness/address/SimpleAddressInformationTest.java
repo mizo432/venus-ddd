@@ -70,10 +70,15 @@ public class SimpleAddressInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void builder1() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
         SimpleAddressInformation target = SimpleAddressInformation
                 .builder()
-                .apply(arg);
+                .withPrefecture(Prefecture.EMPTY)
+                .withAddressCode(AddressCode.empty())
+                .withCity(City.empty())
+                .withAza(Aza.empty())
+                .withKoAza(KoAza.empty())
+                .withPostalCode(PostalCode.empty())
+                .build();
 
         boolean actual = target.isEmpty();
 
@@ -82,5 +87,38 @@ public class SimpleAddressInformationTest {
 
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void builder2() {
+        SimpleAddressInformation target = SimpleAddressInformation
+                .builder()
+                .withPrefecture(null)
+                .withAddressCode(null)
+                .withCity(null)
+                .withAza(null)
+                .withKoAza(null)
+                .withPostalCode(null)
+                .build();
+
+        boolean actual = target.isEmpty();
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void builder3() {
+        SimpleAddressInformation target = SimpleAddressInformation
+                .builder()
+                .apply(SimpleAddressInformation.empty());
+
+        boolean actual = target.isEmpty();
+
+        assertThat(actual)
+                .isTrue();
+
+    }
 
 }

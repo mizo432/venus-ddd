@@ -10,7 +10,7 @@ public class AddressTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void of() {
+    public void empty() {
         Address target = Address.empty();
 
         boolean actual = target.isEmpty();

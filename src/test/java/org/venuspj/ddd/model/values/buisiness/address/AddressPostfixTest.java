@@ -21,4 +21,18 @@ public class AddressPostfixTest {
                 .isEqualTo("ABC");
 
     }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void empty() {
+        String aValue = "ABC";
+
+        AddressPostfix target = AddressPostfix.empty();
+
+        boolean actual = target.isEmpty();
+
+        assertThat(actual)
+                .isTrue();
+
+    }
 }

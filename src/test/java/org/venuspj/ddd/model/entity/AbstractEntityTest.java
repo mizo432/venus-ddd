@@ -73,4 +73,23 @@ public class AbstractEntityTest {
 
     }
 
+    public static class ConcreteEntityMock {
+        public static ConcreteEntity empty() {
+            return ConcreteEntity.empty();
+
+        }
+
+        public static ConcreteEntity one() {
+            return ConcreteEntity.of(ConcreteEntityIdentifier.of(1L), ConcreteInfo.empty());
+        }
+
+        public static ConcreteEntity two() {
+            return ConcreteEntity.of(ConcreteEntityIdentifier.of(2L), ConcreteInfo.empty());
+        }
+
+        public static ConcreteEntity three() {
+            return ConcreteEntity.of(ConcreteEntityIdentifier.of(3L), ConcreteInfo.empty());
+        }
+    }
+
 }

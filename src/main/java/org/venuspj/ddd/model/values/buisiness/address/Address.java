@@ -23,11 +23,7 @@ public class Address extends AbstractEntity<Address, AddressIdentifier, SimpleAd
 
     public static Address empty() {
         return new Address();
-    }
 
-    public boolean isEmpty() {
-        return getEntityInfo().isEmpty()
-                && getAddressInformation().isEmpty();
     }
 
     protected SimpleAddressInformation getAddressInformation() {
