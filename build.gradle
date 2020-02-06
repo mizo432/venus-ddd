@@ -90,7 +90,7 @@ dependencies {
 }
 
 //spotbugs {
-    // 失敗しても後続の処理を継続させる
+// 失敗しても後続の処理を継続させる
 //    ignoreFailures = true
 //    sourceSets = [sourceSets.main]
 //    toolVersion = "3.1.12"
@@ -146,7 +146,7 @@ test {
 task testSlow(type: Test) {
     ignoreFailures = true
     useJUnitPlatform {
-        includeTags('SMALL','MEDIUM','LARGE')
+        includeTags('SMALL', 'MEDIUM', 'LARGE')
         excludeTags()
     }
     reports {
@@ -164,7 +164,12 @@ jacocoTestReport {
     reports {
         xml.enabled = true
     }
-
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['**/forTest/**'])
+        })
+    }
 }
 
 gitRelease {
