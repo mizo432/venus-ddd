@@ -4,6 +4,11 @@ import org.venuspj.ddd.model.entity.AbstractEntityBuilder;
 
 public class ConcreteEntityBuilder extends AbstractEntityBuilder<ConcreteEntity, ConcreteEntityIdentifier, ConcreteInfo
         , ConcreteEntityBuilder> {
+    ConcreteEntityBuilder() {
+        identifier = ConcreteEntityIdentifier.empty();
+        entityInfo = ConcreteInfo.empty();
+
+    }
 
     @Override
     protected void apply(ConcreteEntity vo, ConcreteEntityBuilder builder) {
