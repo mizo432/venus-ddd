@@ -23,4 +23,7 @@ public class Azas extends AbstractEntities<Aza, AzaIdentifier, Azas> {
 
     }
 
+    public static Azas empty() {
+        return new Azas();
+    }
 }

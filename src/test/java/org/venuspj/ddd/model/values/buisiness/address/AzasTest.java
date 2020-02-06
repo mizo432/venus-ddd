@@ -14,6 +14,15 @@ public class AzasTest {
 
     @Test
     @Tag(TestSize.SMALL)
+    public void empty1() {
+        Azas actual = Azas.empty();
+        assertThat(actual.asList())
+                .isEmpty();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
     public void of1() {
         Collection<Aza> list = AzasMock.empty();
         Azas actual = Azas.of(list);

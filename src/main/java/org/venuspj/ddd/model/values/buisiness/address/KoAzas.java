@@ -20,4 +20,7 @@ public class KoAzas extends AbstractEntities<KoAza, KoAzaIdentifier, KoAzas> {
 
     }
 
+    public static KoAzas empty() {
+        return new KoAzas();
+    }
 }

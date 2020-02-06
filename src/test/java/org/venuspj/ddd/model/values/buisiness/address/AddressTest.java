@@ -19,4 +19,16 @@ public class AddressTest {
                 .isTrue();
 
     }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void of() {
+        Address target = Address.of(AddressIdentifier.empty(), SimpleAddressInformation.empty());
+
+        boolean actual = target.isEmpty();
+
+        assertThat(actual)
+                .isTrue();
+
+    }
 }
