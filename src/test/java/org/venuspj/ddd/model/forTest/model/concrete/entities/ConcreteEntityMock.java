@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
+import org.venuspj.ddd.model.values.buisiness.Name;
+
 public class ConcreteEntityMock {
     public static ConcreteEntity createMock(ConcreteEntityMockType concreteEntityMockType) {
         return concreteEntityMockType.create();
@@ -9,7 +11,7 @@ public class ConcreteEntityMock {
         SIMPLE {
             @Override
             public ConcreteEntity create() {
-                return new ConcreteEntity(ConcreteEntityIdentifier.of(1L), ConcreteInfo.empty());
+                return new ConcreteEntity(ConcreteEntityIdentifier.of(1L), ConcreteInfo.of(Name.of("1L")));
             }
         };
 

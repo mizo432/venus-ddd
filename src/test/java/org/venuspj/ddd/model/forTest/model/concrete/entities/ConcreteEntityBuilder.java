@@ -8,6 +8,7 @@ public class ConcreteEntityBuilder extends AbstractEntityBuilder<ConcreteEntity,
     @Override
     protected void apply(ConcreteEntity vo, ConcreteEntityBuilder builder) {
         builder.withIdentifier(vo.getIdentifier());
+        builder.withConcreteInfo(vo.getConcreteInfo());
 
     }
 
@@ -18,16 +19,19 @@ public class ConcreteEntityBuilder extends AbstractEntityBuilder<ConcreteEntity,
 
     @Override
     protected ConcreteEntity createValueObject() {
-        return new ConcreteEntity(identifier, entityInfo);
+        return new ConcreteEntity(super.identifier, super.entityInfo);
+
     }
 
     @Override
     protected ConcreteEntityBuilder getThis() {
         return this;
+
     }
 
     @Override
     protected ConcreteEntityBuilder newInstance() {
         return new ConcreteEntityBuilder();
+
     }
 }
