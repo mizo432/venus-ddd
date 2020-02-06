@@ -1,16 +1,16 @@
 package org.venuspj.ddd.model.values.buisiness.money;
 
 import org.venuspj.ddd.model.values.Value;
-import org.venuspj.ddd.model.values.buisiness.quantity.QuantityAndUnit;
+import org.venuspj.ddd.model.values.buisiness.quantity.QuantityDecimalAndUnit;
 import org.venuspj.util.objects2.Objects2;
 
 public class PriceOfQuantityAndUnit implements Value<PriceOfQuantityAndUnit> {
     private Amount amount = Amount.empty();
-    private QuantityAndUnit quantityAndUnit = QuantityAndUnit.empty();
+    private QuantityDecimalAndUnit quantityDecimalAndUnit = QuantityDecimalAndUnit.empty();
 
-    PriceOfQuantityAndUnit(Amount anAmount, QuantityAndUnit aQuantityAndUnit) {
+    PriceOfQuantityAndUnit(Amount anAmount, QuantityDecimalAndUnit aQuantityDecimalAndUnit) {
         amount = anAmount;
-        quantityAndUnit = aQuantityAndUnit;
+        quantityDecimalAndUnit = aQuantityDecimalAndUnit;
 
     }
 
@@ -30,18 +30,18 @@ public class PriceOfQuantityAndUnit implements Value<PriceOfQuantityAndUnit> {
         if (o == null || getClass() != o.getClass()) return false;
         PriceOfQuantityAndUnit that = (PriceOfQuantityAndUnit) o;
         return Objects2.equal(amount, that.amount) &&
-                Objects2.equal(quantityAndUnit, that.quantityAndUnit);
+                Objects2.equal(quantityDecimalAndUnit, that.quantityDecimalAndUnit);
     }
 
     @Override
     public int hashCode() {
-        return Objects2.hash(amount, quantityAndUnit);
+        return Objects2.hash(amount, quantityDecimalAndUnit);
 
     }
 
     public boolean isEmpty() {
         return amount.isEmpty()
-                && quantityAndUnit.isEmpty();
+                && quantityDecimalAndUnit.isEmpty();
 
     }
 
@@ -49,8 +49,8 @@ public class PriceOfQuantityAndUnit implements Value<PriceOfQuantityAndUnit> {
         return new PriceOfQuantityAndUnit();
     }
 
-    public static PriceOfQuantityAndUnit of(Amount anAmount, QuantityAndUnit aQuantityAndUnit) {
-        return new PriceOfQuantityAndUnit(anAmount, aQuantityAndUnit);
+    public static PriceOfQuantityAndUnit of(Amount anAmount, QuantityDecimalAndUnit aQuantityDecimalAndUnit) {
+        return new PriceOfQuantityAndUnit(anAmount, aQuantityDecimalAndUnit);
 
     }
 

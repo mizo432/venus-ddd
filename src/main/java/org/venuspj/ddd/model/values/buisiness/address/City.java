@@ -1,5 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.entity.AbstractEntity;
 
 public class City extends AbstractEntity<City, CityIdentifier, CityInformation> {
@@ -21,6 +22,7 @@ public class City extends AbstractEntity<City, CityIdentifier, CityInformation> 
         return new City(aCityIdentifier, aCityInformation);
     }
 
+    @JsonIgnore
     public CityInformation getCityInformation() {
         return getEntityInfo();
     }

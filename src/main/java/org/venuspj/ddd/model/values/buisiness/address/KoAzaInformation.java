@@ -1,5 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.Value;
 import org.venuspj.ddd.model.values.buisiness.Name;
 import org.venuspj.util.objects2.Objects2;
@@ -49,9 +50,14 @@ public class KoAzaInformation implements Value<KoAzaInformation> {
     }
 
     @Override
+    @JsonIgnore
     public boolean isEmpty() {
         return name.isEmpty();
 
+    }
+
+    public Name getName() {
+        return name;
     }
 
     @Override

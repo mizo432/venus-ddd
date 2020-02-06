@@ -1,5 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.Value;
 import org.venuspj.ddd.model.values.buisiness.Name;
 import org.venuspj.util.objects2.Objects2;
@@ -15,6 +16,10 @@ public class CityInformation implements Value<CityInformation> {
 
     public CityInformation() {
 
+    }
+
+    public Name getName() {
+        return name;
     }
 
     public static CityInformation empty() {
@@ -48,6 +53,7 @@ public class CityInformation implements Value<CityInformation> {
     }
 
     @Override
+    @JsonIgnore
     public boolean isEmpty() {
         return name.isEmpty();
 

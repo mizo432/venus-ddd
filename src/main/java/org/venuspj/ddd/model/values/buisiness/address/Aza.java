@@ -1,5 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.entity.AbstractEntity;
 
 public class Aza extends AbstractEntity<Aza, AzaIdentifier, AzaInformation> {
@@ -23,6 +24,7 @@ public class Aza extends AbstractEntity<Aza, AzaIdentifier, AzaInformation> {
 
     }
 
+    @JsonIgnore
     protected AzaInformation getAzaInformation() {
         return getEntityInfo();
     }

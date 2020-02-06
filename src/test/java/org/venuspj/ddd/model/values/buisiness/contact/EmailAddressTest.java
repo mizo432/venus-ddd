@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.values.buisiness.contact;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.tests.constants.TestSize;
@@ -28,5 +30,34 @@ public class EmailAddressTest {
         assertThat(target.isEmpty())
                 .isTrue();
     }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson1() throws JsonProcessingException {
+        EmailAddress target = EmailAddress.of("dummy@gmail.com");
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        EmailAddress actual = objectMapper.readValue(json, EmailAddress.class);
+
+        assertThat(target.sameValueAs(actual))
+                .isTrue();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson2() throws JsonProcessingException {
+        EmailAddress target = EmailAddress.empty();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        EmailAddress actual = objectMapper.readValue(json, EmailAddress.class);
+
+        assertThat(target.sameValueAs(actual))
+                .isTrue();
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.Value;
 import org.venuspj.util.builder.ObjectBuilder;
 import org.venuspj.util.objects2.Objects2;
@@ -26,6 +27,30 @@ public class SimpleAddressInformation implements Value<SimpleAddressInformation>
 
     public SimpleAddressInformation() {
 
+    }
+
+    public PostalCode getPostalCode() {
+        return postalCode;
+    }
+
+    public AddressCode getAddressCode() {
+        return addressCode;
+    }
+
+    public Prefecture getPrefecture() {
+        return prefecture;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public Aza getAza() {
+        return aza;
+    }
+
+    public KoAza getKoAza() {
+        return koAza;
     }
 
     public static SimpleAddressInformation of(PostalCode aPostalCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, Aza anAza, KoAza aKoAza) {
@@ -76,6 +101,7 @@ public class SimpleAddressInformation implements Value<SimpleAddressInformation>
 
     }
 
+    @JsonIgnore
     public boolean isEmpty() {
         return postalCode.isEmpty()
                 && addressCode.isEmpty()

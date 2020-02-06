@@ -2,20 +2,19 @@ package org.venuspj.ddd.model.values.buisiness.amount;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.values.buisiness.Percentage;
-import org.venuspj.ddd.model.values.buisiness.money.TaxRate;
+import org.venuspj.ddd.model.values.buisiness.money.TaxPercentage;
 import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TaxRateTest {
+public class TaxPercentageTest {
 
     @Test
     @Tag(TestSize.SMALL)
     public void zero() {
-        TaxRate target = TaxRate.zero();
+        TaxPercentage target = TaxPercentage.zero();
 
         assertThat(target)
                 .isNotNull();
@@ -28,20 +27,20 @@ public class TaxRateTest {
     @Test
     @Tag(TestSize.SMALL)
     public void full() {
-        TaxRate target = TaxRate.all();
+        TaxPercentage target = TaxPercentage.all();
 
         assertThat(target)
                 .isNotNull();
 
         assertThat(target.getValue())
-                .isEqualTo(BigDecimal.valueOf(1));
+                .isEqualTo(BigDecimal.valueOf(100));
 
     }
 
     @Test
     @Tag(TestSize.SMALL)
     public void valueOf() {
-        TaxRate target = TaxRate.valueOf(BigDecimal.valueOf(0.1));
+        TaxPercentage target = TaxPercentage.valueOf(BigDecimal.valueOf(0.1));
 
         assertThat(target)
                 .isNotNull();
@@ -53,31 +52,16 @@ public class TaxRateTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void toPercentage() {
-        TaxRate target = TaxRate.valueOf(BigDecimal.valueOf(0.1));
-
-        Percentage actual = target.toPercentage();
-
-        assertThat(actual)
-                .isNotNull();
-
-        assertThat(actual.getValue())
-                .isEqualTo(BigDecimal.valueOf(10.0));
-
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
     public void sum() {
-        TaxRate currentTaxRate = TaxRate.valueOf(BigDecimal.valueOf(0.1));
+        TaxPercentage currentTaxPercentage = TaxPercentage.valueOf(BigDecimal.valueOf(10));
 
-        TaxRate actual = TaxRate.sum(TaxRate.all(), currentTaxRate);
+        TaxPercentage actual = TaxPercentage.sum(TaxPercentage.all(), currentTaxPercentage);
 
         assertThat(actual)
                 .isNotNull();
 
         assertThat(actual.getValue())
-                .isEqualTo(BigDecimal.valueOf(1.1));
+                .isEqualTo(BigDecimal.valueOf(110));
 
     }
 

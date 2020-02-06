@@ -1,7 +1,7 @@
 package org.venuspj.ddd.model.values.buisiness.money;
 
-import org.venuspj.ddd.model.values.buisiness.quantity.Quantity;
-import org.venuspj.ddd.model.values.buisiness.rate.Rate;
+import org.venuspj.ddd.model.values.buisiness.Percentage;
+import org.venuspj.ddd.model.values.buisiness.quantity.QuantityDecimal;
 import org.venuspj.ddd.model.values.primitives.AbstractLongValue;
 
 import java.math.BigDecimal;
@@ -54,8 +54,13 @@ public class Amount extends AbstractLongValue<Amount> {
 
     }
 
-    public Amount multiply(Quantity aQuantity) {
-        return Amount.yen(aQuantity.getValue().multiply(BigDecimal.valueOf(value)).longValue());
+    public Amount multiply(QuantityDecimal aQuantityDecimal) {
+        return Amount
+                .yen(aQuantityDecimal
+                        .getValue()
+                        .multiply(BigDecimal
+                                .valueOf(value))
+                        .longValue());
 
     }
 
@@ -67,13 +72,15 @@ public class Amount extends AbstractLongValue<Amount> {
 
     }
 
-    public Amount multiply(Rate aRate) {
+    public Amount multiply(Percentage aPercentage) {
         return Amount
                 .yen(
-                        aRate
+                        aPercentage
                                 .getValue()
                                 .multiply(
-                                        BigDecimal.valueOf(value)
+                                        BigDecimal
+                                                .valueOf(value)
+                                                .divide(BigDecimal.valueOf(100))
                                 )
                                 .longValue()
                 );

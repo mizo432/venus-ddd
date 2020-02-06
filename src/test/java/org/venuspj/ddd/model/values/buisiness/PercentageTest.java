@@ -12,7 +12,7 @@ public class PercentageTest {
     @Test
     @Tag(TestSize.SMALL)
     public void all() {
-        Percentage target = Percentage.all();
+        Percentage target = Percentage.full();
         System.out.println(target.asText());
     }
 
@@ -33,7 +33,7 @@ public class PercentageTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sum() {
-        Percentage target = Percentage.sum(Percentage.all(), Percentage.all());
+        Percentage target = Percentage.sum(Percentage.full(), Percentage.full());
         System.out.println(target.asText());
         assertThat(target)
                 .isEqualTo(Percentage.valueOf(BigDecimal.valueOf(200)));

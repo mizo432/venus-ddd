@@ -1,28 +1,27 @@
 package org.venuspj.ddd.model.values.buisiness.quantity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.Value;
 import org.venuspj.ddd.model.values.buisiness.Unit;
 import org.venuspj.util.objects2.Objects2;
 
-import java.math.BigDecimal;
+public class QuantityLongAndUnit implements Value<QuantityLongAndUnit> {
+    private QuantityLong quantity;
+    private Unit unit = Unit.empty();
 
-public class QuantityAndUnit implements Value<QuantityAndUnit> {
-    private Quantity quantity;
-    private Unit unit;
-
-    public QuantityAndUnit(Quantity aQuantity, Unit aUnit) {
+    public QuantityLongAndUnit(QuantityLong aQuantity, Unit aUnit) {
         quantity = aQuantity;
         unit = aUnit;
 
     }
 
-    public static QuantityAndUnit of(BigDecimal aValue, String aUnit) {
-        return new QuantityAndUnit(Quantity.of(aValue), Unit.of(aUnit));
+    public static QuantityLongAndUnit of(Long aValue, String aUnit) {
+        return new QuantityLongAndUnit(QuantityLong.of(aValue), Unit.of(aUnit));
 
     }
 
-    public static QuantityAndUnit empty() {
-        return new QuantityAndUnit(Quantity.empty(), Unit.empty());
+    public static QuantityLongAndUnit empty() {
+        return new QuantityLongAndUnit(QuantityLong.empty(), Unit.empty());
 
     }
 
@@ -30,7 +29,7 @@ public class QuantityAndUnit implements Value<QuantityAndUnit> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        QuantityAndUnit that = (QuantityAndUnit) o;
+        QuantityLongAndUnit that = (QuantityLongAndUnit) o;
         return Objects2.equal(quantity, that.quantity) &&
                 Objects2.equal(unit, that.unit);
     }
@@ -42,11 +41,12 @@ public class QuantityAndUnit implements Value<QuantityAndUnit> {
     }
 
     @Override
-    public boolean sameValueAs(QuantityAndUnit other) {
+    public boolean sameValueAs(QuantityLongAndUnit other) {
         return equals(other);
 
     }
 
+    @JsonIgnore
     public boolean isEmpty() {
         return quantity.isEmpty()
                 && unit.isEmpty();

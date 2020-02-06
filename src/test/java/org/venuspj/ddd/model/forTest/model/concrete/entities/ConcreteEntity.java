@@ -24,6 +24,11 @@ public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntit
         return new ConcreteEntity(aConcreteEntityIdentifier, aConcreteInfo);
     }
 
+    public static ConcreteEntityBuilder builder() {
+        return new ConcreteEntityBuilder();
+
+    }
+
     @Override
     public String toString() {
         return toStringHelper(this)

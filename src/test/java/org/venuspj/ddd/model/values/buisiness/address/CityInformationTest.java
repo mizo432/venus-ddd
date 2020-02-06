@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.Name;
@@ -89,6 +91,34 @@ public class CityInformationTest {
 
         System.out.println(target.toString());
 
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson1() throws JsonProcessingException {
+        CityInformation target = CityInformation.of(Name.of("前橋市"));
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        CityInformation actual = objectMapper.readValue(json, CityInformation.class);
+
+        assertThat(target.sameValueAs(actual))
+                .isTrue();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson2() throws JsonProcessingException {
+        CityInformation target = CityInformation.empty();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        CityInformation actual = objectMapper.readValue(json, CityInformation.class);
+
+        assertThat(target.sameValueAs(actual))
+                .isTrue();
     }
 
 }

@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
@@ -90,6 +92,34 @@ public class AbstractEntityTest {
         public static ConcreteEntity three() {
             return ConcreteEntity.of(ConcreteEntityIdentifier.of(3L), ConcreteInfo.empty());
         }
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson1() throws JsonProcessingException {
+        ConcreteEntity target = ConcreteEntityMock.one();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        ConcreteEntity actual = objectMapper.readValue(json, ConcreteEntity.class);
+
+        assertThat(target.sameValueAs(actual))
+                .isTrue();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson2() throws JsonProcessingException {
+        ConcreteEntity target = ConcreteEntity.empty();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        ConcreteEntity actual = objectMapper.readValue(json, ConcreteEntity.class);
+
+        assertThat(target.sameValueAs(actual))
+                .isTrue();
     }
 
 }

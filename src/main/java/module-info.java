@@ -1,5 +1,6 @@
 module venus.ddd.main {
     requires venus.utils;
+    requires com.fasterxml.jackson.annotation;
     exports org.venuspj.ddd.model.entity;
     exports org.venuspj.ddd.model.repository;
     exports org.venuspj.ddd.model.repository.criteria;

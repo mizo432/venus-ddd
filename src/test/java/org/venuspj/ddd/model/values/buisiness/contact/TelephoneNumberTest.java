@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.values.buisiness.contact;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.tests.constants.TestSize;
@@ -26,6 +28,34 @@ public class TelephoneNumberTest {
         assertThat(target)
                 .isNotNull();
         assertThat(target.isEmpty())
+                .isTrue();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson1() throws JsonProcessingException {
+        TelephoneNumber target = TelephoneNumber.of("01-2345-6789");
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        TelephoneNumber actual = objectMapper.readValue(json, TelephoneNumber.class);
+
+        assertThat(target.sameValueAs(actual))
+                .isTrue();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson2() throws JsonProcessingException {
+        TelephoneNumber target = TelephoneNumber.empty();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        TelephoneNumber actual = objectMapper.readValue(json, TelephoneNumber.class);
+
+        assertThat(target.sameValueAs(actual))
                 .isTrue();
     }
 

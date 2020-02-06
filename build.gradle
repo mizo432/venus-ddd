@@ -11,6 +11,7 @@ buildscript {
         spotbugsAnnotationsVersion = "4.0.0-RC1"
         jcipAnnotationsVersion = '1.0'
         venusTestsVersion = '0.0.4'
+        jacsonCoreVersion = '2.10.2'
 
         defaultEncoding = 'UTF-8'
     }
@@ -87,6 +88,8 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}")
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "${jacsonCoreVersion}"
+
 }
 
 //spotbugs {

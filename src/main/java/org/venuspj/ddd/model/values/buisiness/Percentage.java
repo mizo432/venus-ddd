@@ -30,7 +30,7 @@ public class Percentage extends AbstractBigDecimalValue<Percentage> {
 
     }
 
-    public static Percentage all() {
+    public static Percentage full() {
         return new Percentage(BigDecimal.valueOf(100));
 
     }

@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.values.buisiness.contact;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.address.AddressInformation;
@@ -214,6 +216,34 @@ public class ContactTest {
 
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson1() throws JsonProcessingException {
+        Contact target = ContactMock.full();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        Contact actual = objectMapper.readValue(json, Contact.class);
+
+        assertThat(target.sameValueAs(actual))
+                .isTrue();
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void toJson2() throws JsonProcessingException {
+        Contact target = Contact.empty();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(target);
+
+        Contact actual = objectMapper.readValue(json, Contact.class);
+
+        assertThat(target.sameValueAs(actual))
+                .isTrue();
+    }
+
     private static class ContactMock {
         public static Contact empty() {
             return Contact.builder().build();
@@ -239,6 +269,15 @@ public class ContactTest {
 
         public static Contact existEmailAddress() {
             return Contact.builder()
+                    .withEmailAddress(EmailAddress.of("dummy.@gmail.com"))
+                    .build();
+        }
+
+        public static Contact full() {
+            return Contact.builder()
+                    .withAddressInformation(AddressInformationTest.AddressInformationMock.one())
+                    .withTelephoneNumber(TelephoneNumber.of("012-3456-7890"))
+                    .withFaxNumber(TelephoneNumber.of("012-3456-7890"))
                     .withEmailAddress(EmailAddress.of("dummy.@gmail.com"))
                     .build();
         }

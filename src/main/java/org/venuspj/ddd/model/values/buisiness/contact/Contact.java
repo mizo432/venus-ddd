@@ -1,5 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.contact;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.Value;
 import org.venuspj.ddd.model.values.buisiness.address.AddressInformation;
 import org.venuspj.util.builder.ObjectBuilder;
@@ -53,6 +54,22 @@ public class Contact implements Value<Contact> {
 
     }
 
+    public AddressInformation getAddressInformation() {
+        return addressInformation;
+    }
+
+    public EmailAddress getEmailAddress() {
+        return emailAddress;
+    }
+
+    public TelephoneNumber getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public TelephoneNumber getFaxNumber() {
+        return faxNumber;
+    }
+
     @Override
     public int hashCode() {
         return Objects2.hash(addressInformation, emailAddress, telephoneNumber, faxNumber);
@@ -64,6 +81,7 @@ public class Contact implements Value<Contact> {
     }
 
     @Override
+    @JsonIgnore
     public boolean isEmpty() {
         return addressInformation.isEmpty()
                 && emailAddress.isEmpty()

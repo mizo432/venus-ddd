@@ -1,5 +1,6 @@
 package org.venuspj.ddd.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.util.objects2.Objects2;
 
 /**
@@ -52,6 +53,7 @@ public abstract class AbstractEntityIdentifier<E extends Entity<E, EI>, EI exten
     }
 
     @Override
+    @JsonIgnore
     public String getKind() {
         return kind;
 
