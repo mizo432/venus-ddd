@@ -72,7 +72,7 @@ public class KoAzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void toString1() {
-        AzaInformation target = AzaInformation.empty();
+        KoAzaInformation target = KoAzaInformation.empty();
 
         System.out.println(target.toString());
 
@@ -82,12 +82,23 @@ public class KoAzaInformationTest {
     @Tag(TestSize.SMALL)
     public void equals1() {
         SimpleAddressInformation arg = SimpleAddressInformation.empty();
-        AzaInformation target = AzaInformation.empty();
+        KoAzaInformation target = KoAzaInformation.empty();
         boolean actual = target.equals(arg);
         assertThat(actual)
                 .isFalse();
 
-        System.out.println(target.toString());
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals2() {
+        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        KoAzaInformation target = KoAzaInformation.empty();
+        boolean actual = target.equals(null);
+        assertThat(actual)
+                .isFalse();
+
 
     }
 
