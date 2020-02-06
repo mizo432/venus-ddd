@@ -31,4 +31,17 @@ public class AddressTest {
                 .isTrue();
 
     }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void getAddressInformation() {
+        Address target = Address.of(AddressIdentifier.empty(), SimpleAddressInformation.empty());
+
+        SimpleAddressInformation actual = target.getAddressInformation();
+
+        assertThat(actual)
+                .isNotNull();
+
+    }
+
 }
