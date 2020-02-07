@@ -27,8 +27,11 @@ buildscript {
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.13"
         classpath("com.github.kamatama41:gradle-git-release-plugin:0.2.0")
-//        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.5"
+        classpath group: 'com.google.guava', name: 'guava', version: '28.1-jre'
     }
+}
+plugins {
+    id "com.github.spotbugs" version "3.0.0"
 }
 
 apply plugin: 'base'
@@ -38,7 +41,6 @@ apply plugin: 'java'
 apply plugin: 'jacoco'
 // apply plugin: "com.github.spotbugs"
 apply plugin: "maven-publish"
-apply plugin: 'pmd'
 
 repositories {
     jcenter()
@@ -78,8 +80,6 @@ repositories {
 
 dependencies {
     implementation group: 'org.venuspj', name: 'venus-utils', version: "${venusUtilsVersion}"
-//    compileOnly "net.jcip:jcip-annotations:${jcipAnnotationsVersion}"
-//    compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugsAnnotationsVersion}"
     testImplementation group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
     testImplementation group: 'org.assertj', name: 'assertj-core', version: "${assertJVersion}"
     testImplementation group: 'org.venuspj', name: 'venus-tests', version: "${venusTestsVersion}"
@@ -89,49 +89,14 @@ dependencies {
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "${jacsonCoreVersion}"
-
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
 }
 
-//spotbugs {
-// 失敗しても後続の処理を継続させる
-//    ignoreFailures = true
-//    sourceSets = [sourceSets.main]
-//    toolVersion = "3.1.12"
-//}
-
-pmd {
-    // 失敗しても後続の処理を継続させる
+spotbugs {
+    //失敗しても後続の処理を継続させる
     ignoreFailures = true
     sourceSets = [sourceSets.main]
-}
-
-tasks.withType(Pmd) {
-    reports {
-        xml.enabled = true
-    }
-}
-
-// CPD（重複コードチェック処理）をCheckタスクに追加
-check.doLast {
-    File outputDir = new File("$reportsDir/cpd/")
-    outputDir.mkdirs()
-
-    ant.taskdef(
-            name: 'cpd',
-            classname: 'net.sourceforge.pmd.cpd.CPDTask',
-            classpath: configurations.pmd.asPath)
-
-    ant.cpd(
-            minimumTokenCount: '100',
-            format: 'xml',
-            encoding: defaultEncoding,
-            outputFile: new File(outputDir, 'cpd.xml')
-    ) {
-        fileset(dir: "src/main/java") {
-            include(name: '**/*.java')
-            exclude(name: '**/*Mock.java')
-        }
-    }
+    toolVersion = "4.0.0-RC1"
 }
 
 test {
