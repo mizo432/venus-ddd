@@ -6,7 +6,7 @@ package org.venuspj.ddd.model.repository;
 public class RepositoryCouldNotAccessRuntimeException extends RuntimeException {
 
     public RepositoryCouldNotAccessRuntimeException() {
-        
+
     }
 
     public RepositoryCouldNotAccessRuntimeException(String message) {
@@ -23,5 +23,6 @@ public class RepositoryCouldNotAccessRuntimeException extends RuntimeException {
 
     public RepositoryCouldNotAccessRuntimeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
+
     }
 }

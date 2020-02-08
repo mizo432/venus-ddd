@@ -1,5 +1,6 @@
 package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.entity.AbstractEntity;
 
 import static org.venuspj.util.objects2.Objects2.toStringHelper;
@@ -26,6 +27,12 @@ public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntit
 
     public static ConcreteEntityBuilder builder() {
         return new ConcreteEntityBuilder();
+
+    }
+
+    @JsonIgnore
+    public ConcreteInfo getConcreteInfo() {
+        return getEntityInfo();
 
     }
 
