@@ -2,9 +2,12 @@ package org.venuspj.ddd.model.values.buisiness.address;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.ddd.model.values.jsonfillter.JsonFilter;
 import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,7 +40,9 @@ public class CityTest {
         City target = CityTest.CityMock.full();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        String json = objectMapper.writeValueAsString(target);
+        FilterProvider filters = new SimpleFilterProvider().addFilter("value", new JsonFilter());
+        String json = objectMapper.writer(filters).writeValueAsString(target);
+        System.out.println(json);
 
         City actual = objectMapper.readValue(json, City.class);
 
@@ -51,7 +56,9 @@ public class CityTest {
         City target = City.empty();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        String json = objectMapper.writeValueAsString(target);
+        FilterProvider filters = new SimpleFilterProvider().addFilter("value", new JsonFilter());
+        String json = objectMapper.writer(filters).writeValueAsString(target);
+        System.out.println(json);
 
         City actual = objectMapper.readValue(json, City.class);
 
