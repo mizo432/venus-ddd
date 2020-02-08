@@ -61,7 +61,15 @@ public class CityTest {
 
     private static class CityMock {
         public static City full() {
-            return City.of(CityIdentifier.of(1L), CityInformation.of(Name.of("前橋市")));
+            return City.of(CityIdentifier.of(1L), CityInformation.of(CityCode.of("001"), Name.of("前橋市")));
+        }
+
+        public static City one() {
+            return City.of(CityIdentifier.of(1L), CityInformation.of(CityCode.of("001"), Name.of("前橋市")));
+        }
+
+        public static City two() {
+            return City.of(CityIdentifier.of(2L), CityInformation.of(CityCode.of("002"), Name.of("高崎市")));
         }
     }
 }

@@ -25,7 +25,7 @@ public class CityInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void of() {
-        CityInformation target = CityInformation.of(Name.empty());
+        CityInformation target = CityInformation.of(CityCode.empty(), Name.empty());
 
         boolean actual = target.isEmpty();
 
@@ -89,6 +89,44 @@ public class CityInformationTest {
         assertThat(actual)
                 .isFalse();
 
+//        System.out.println(target.toString());
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals2() {
+        CityInformation target = CityInformation.empty();
+        boolean actual = target.equals(target);
+        assertThat(actual)
+                .isTrue();
+
+        System.out.println(target.toString());
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals3() {
+        CityInformation arg = CityInformation.empty();
+        CityInformation target = CityInformation.empty();
+        boolean actual = target.equals(arg);
+        assertThat(actual)
+                .isTrue();
+
+        System.out.println(target.toString());
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals4() {
+        CityInformation arg = CityInformationMock.two();
+        CityInformation target = CityInformationMock.one();
+        boolean actual = target.equals(arg);
+        assertThat(actual)
+                .isFalse();
+
         System.out.println(target.toString());
 
     }
@@ -96,7 +134,10 @@ public class CityInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void toJson1() throws JsonProcessingException {
-        CityInformation target = CityInformation.of(Name.of("前橋市"));
+        CityInformation target = CityInformation.builder()
+                .withCityCode(CityCode.of("001"))
+                .withName(Name.of("前橋市"))
+                .build();
         ObjectMapper objectMapper = new ObjectMapper();
 
         String json = objectMapper.writeValueAsString(target);
@@ -120,5 +161,32 @@ public class CityInformationTest {
         assertThat(target.sameValueAs(actual))
                 .isTrue();
     }
+
+    private static class CityInformationMock {
+        public static CityInformation empty() {
+            return CityInformation.empty();
+        }
+
+        public static CityInformation existCityCode() {
+            return CityInformation.of(CityCode.of("001"), Name.empty());
+        }
+
+        public static CityInformation existName() {
+            return CityInformation.of(CityCode.empty(), Name.empty());
+        }
+
+        public static CityInformation full() {
+            return one();
+        }
+
+        public static CityInformation one() {
+            return CityInformation.of(CityCode.of("001"), Name.of("前橋市"));
+        }
+
+        public static CityInformation two() {
+            return CityInformation.of(CityCode.of("002"), Name.of("高崎市"));
+        }
+    }
+
 
 }
