@@ -3,8 +3,7 @@ package org.venuspj.ddd.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import static java.util.Objects.hash;
-import static org.venuspj.util.objects2.Objects2.equal;
-import static org.venuspj.util.objects2.Objects2.isNull;
+import static org.venuspj.util.objects2.Objects2.*;
 
 /**
  * {@link EntityIdentifier}のデフォルト基底クラス.
@@ -99,4 +98,10 @@ public abstract class AbstractEntityLongIdentifier<E extends Entity<E, EI>, EI e
 
     }
 
+    @Override
+    public String toString() {
+        return toStringHelper(this)
+                .defaultConfig()
+                .toString();
+    }
 }

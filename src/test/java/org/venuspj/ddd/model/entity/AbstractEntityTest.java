@@ -1,9 +1,9 @@
 package org.venuspj.ddd.model.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteInfo;
@@ -154,7 +154,7 @@ public class AbstractEntityTest {
     @Tag(TestSize.SMALL)
     public void toJson1() throws JsonProcessingException {
         ConcreteEntity target = ConcreteEntityMock.one();
-        ObjectMapper objectMapper = new ObjectMapper();
+        JsonMapperEx objectMapper = new JsonMapperEx();
 
         String json = objectMapper.writeValueAsString(target);
 
@@ -168,7 +168,7 @@ public class AbstractEntityTest {
     @Tag(TestSize.SMALL)
     public void toJson2() throws JsonProcessingException {
         ConcreteEntity target = ConcreteEntity.empty();
-        ObjectMapper objectMapper = new ObjectMapper();
+        JsonMapperEx objectMapper = new JsonMapperEx();
 
         String json = objectMapper.writeValueAsString(target);
 

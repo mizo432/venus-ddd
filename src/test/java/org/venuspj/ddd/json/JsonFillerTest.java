@@ -1,4 +1,4 @@
-package org.venuspj.ddd.model.values.jsonfillter;
+package org.venuspj.ddd.json;
 
 import com.fasterxml.jackson.databind.ser.PropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;

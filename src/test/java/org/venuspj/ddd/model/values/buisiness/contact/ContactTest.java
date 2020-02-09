@@ -1,9 +1,9 @@
 package org.venuspj.ddd.model.values.buisiness.contact;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.ddd.model.values.buisiness.address.AddressInformation;
 import org.venuspj.ddd.model.values.buisiness.address.AddressInformationTest;
 import org.venuspj.ddd.model.values.buisiness.address.SimpleAddressInformation;
@@ -220,7 +220,7 @@ public class ContactTest {
     @Tag(TestSize.SMALL)
     public void toJson1() throws JsonProcessingException {
         Contact target = ContactMock.full();
-        ObjectMapper objectMapper = new ObjectMapper();
+        JsonMapperEx objectMapper = new JsonMapperEx();
 
         String json = objectMapper.writeValueAsString(target);
 
@@ -234,7 +234,7 @@ public class ContactTest {
     @Tag(TestSize.SMALL)
     public void toJson2() throws JsonProcessingException {
         Contact target = Contact.empty();
-        ObjectMapper objectMapper = new ObjectMapper();
+        JsonMapperEx objectMapper = new JsonMapperEx();
 
         String json = objectMapper.writeValueAsString(target);
 

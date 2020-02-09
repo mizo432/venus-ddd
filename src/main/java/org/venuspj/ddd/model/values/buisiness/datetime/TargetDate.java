@@ -1,14 +1,14 @@
 package org.venuspj.ddd.model.values.buisiness.datetime;
 
 import org.venuspj.ddd.model.values.primitives.AbstractDateValue;
-import org.venuspj.ddd.model.values.primitives.momentinterval.Moment;
 
 import java.time.LocalDate;
 
-public class TargetDate extends AbstractDateValue<TargetDate> implements Moment<TargetDate> {
+public class TargetDate extends AbstractDateValue<TargetDate> {
 
     TargetDate(LocalDate aValue) {
         super(aValue);
+
     }
 
     public TargetDate() {
@@ -17,10 +17,12 @@ public class TargetDate extends AbstractDateValue<TargetDate> implements Moment<
 
     public static TargetDate of(LocalDate aValue) {
         return new TargetDate(aValue);
+
     }
 
     public static TargetDate empty() {
         return new TargetDate();
 
     }
+
 }

@@ -1,9 +1,9 @@
 package org.venuspj.ddd.model.values.buisiness.contact;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,7 +35,7 @@ public class EmailAddressTest {
     @Tag(TestSize.SMALL)
     public void toJson1() throws JsonProcessingException {
         EmailAddress target = EmailAddress.of("dummy@gmail.com");
-        ObjectMapper objectMapper = new ObjectMapper();
+        JsonMapperEx objectMapper = new JsonMapperEx();
 
         String json = objectMapper.writeValueAsString(target);
 
@@ -49,7 +49,7 @@ public class EmailAddressTest {
     @Tag(TestSize.SMALL)
     public void toJson2() throws JsonProcessingException {
         EmailAddress target = EmailAddress.empty();
-        ObjectMapper objectMapper = new ObjectMapper();
+        JsonMapperEx objectMapper = new JsonMapperEx();
 
         String json = objectMapper.writeValueAsString(target);
 

@@ -1,9 +1,6 @@
 package org.venuspj.ddd.model.values;
 
-import org.venuspj.ddd.model.values.primitives.SingleValue;
 import org.venuspj.util.collect.ComparisonChain;
-
-import java.time.YearMonth;
 
 public class AbstractComparableSingleValue<T extends Comparable<T>, ACSV extends AbstractComparableSingleValue<T, ACSV>> extends AbstractSingleValue<T, ACSV> {
 
@@ -25,15 +22,4 @@ public class AbstractComparableSingleValue<T extends Comparable<T>, ACSV extends
     }
 
 
-    /**
-     * Created by mizoguchi on 2017/02/14.
-     */
-    public static interface YearMonthValue<T extends YearMonthValue<T>> extends SingleValue<YearMonth, T> {
-
-        YearMonth asYearMonth();
-
-        String asText();
-
-        YearMonth getValue();
-    }
 }

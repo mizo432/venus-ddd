@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.model.values.jsonfillter.JsonFilter;
+import org.venuspj.ddd.json.JsonFilter;
 import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
