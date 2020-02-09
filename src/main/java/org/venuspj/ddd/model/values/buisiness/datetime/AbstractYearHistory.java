@@ -62,17 +62,28 @@ public abstract class AbstractYearHistory<
                         // ヒストリーのアイテムが前と一致していた場合
                         if (lastHistoryItem.isContinuous(thisHistoryItem)) {
                             // ヒストリーのインターバルが前と連続していた場合
-                            result.set(result.size() - 1, lastHistoryItem.maege(thisHistoryItem));
+                            result.set(result.size() - 1, lastHistoryItem.merge(thisHistoryItem));
 
                         } else {
-                            result.add(thisHistoryItem);
+                            if (lastHistoryItem.isOverlap(thisHistoryItem)) {
+                                result.set(result.size() - 1, lastHistoryItem.merge(thisHistoryItem));
+
+                            } else {
+                                result.add(thisHistoryItem);
+
+                            }
 
                         }
 
                     } else {
                         // ヒストリーアイテムが違っていた場合
                         if (lastHistoryItem.isContinuous(thisHistoryItem)) {
-                            result.set(result.size() - 1, lastHistoryItem.renewEndDate(thisHistoryItem.decrementStartMoment()));
+
+                        } else {
+                            if (lastHistoryItem.isOverlap(thisHistoryItem)) {
+                                result.set(result.size() - 1, lastHistoryItem.adjustEndDate(thisHistoryItem));
+
+                            }
 
                         }
                         result.add(thisHistoryItem);

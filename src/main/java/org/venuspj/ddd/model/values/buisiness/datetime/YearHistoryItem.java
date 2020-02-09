@@ -75,28 +75,25 @@ public class YearHistoryItem<I extends Value<I>> extends AbstractValue<YearHisto
         return item;
     }
 
-    public YearInterval.DefaultYearValue decrementStartMoment() {
-        return interval.decrementStartMoment();
-    }
-
-    public YearHistoryItem<I> renewEndDate(YearInterval.DefaultYearValue aEndDate) {
-        YearHistoryItem<I> result = YearHistoryItem.createFrom(interval.renewEndDate(aEndDate), item);
-        return result;
-
-    }
-
-    public boolean isOverlap(YearHistoryItem<I> other) {
-        return interval.isOverlap(other.interval);
-    }
-
     public boolean isContinuous(YearHistoryItem<I> aNextHistoryItem) {
         return interval.isContinuous(aNextHistoryItem.interval);
     }
 
-    public YearHistoryItem<I> maege(YearHistoryItem<I> aNextHistoryItem) {
+    public YearHistoryItem<I> merge(YearHistoryItem<I> aNextHistoryItem) {
         YearInterval newInterval = interval.marge(aNextHistoryItem.interval);
 
         return YearHistoryItem.createFrom(newInterval, item);
+
+    }
+
+    public YearHistoryItem<I> adjustEndDate(YearHistoryItem<I> aNextHistoryItem) {
+        YearInterval newInterval = interval.adjustEndDate(aNextHistoryItem.interval);
+        return YearHistoryItem.createFrom(newInterval, item);
+
+    }
+
+    public boolean isOverlap(YearHistoryItem<I> aNextHistoryItem) {
+        return interval.isOverlap(aNextHistoryItem.interval);
 
     }
 }

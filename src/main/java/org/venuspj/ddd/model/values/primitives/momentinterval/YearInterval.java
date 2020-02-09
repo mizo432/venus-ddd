@@ -1,16 +1,17 @@
 package org.venuspj.ddd.model.values.primitives.momentinterval;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.venuspj.ddd.model.values.Value;
+import org.venuspj.ddd.model.values.AbstractValue;
 import org.venuspj.ddd.model.values.buisiness.datetime.TargetYear;
 import org.venuspj.ddd.model.values.primitives.AbstractYearValue;
 import org.venuspj.ddd.model.values.primitives.YearValue;
 
 import java.time.Year;
 
-import static org.venuspj.util.objects2.Objects2.*;
+import static org.venuspj.util.objects2.Objects2.equal;
+import static org.venuspj.util.objects2.Objects2.hash;
 
-public class YearInterval implements Value<YearInterval> {
+public class YearInterval extends AbstractValue<YearInterval> {
 
     private DefaultYearValue startMoment = DefaultYearValue.empty();
     private DefaultYearValue endMoment = DefaultYearValue.empty();
@@ -67,13 +68,6 @@ public class YearInterval implements Value<YearInterval> {
                 endMoment.isEmpty();
     }
 
-    @Override
-    public String toString() {
-        return toStringHelper(this)
-                .defaultConfig()
-                .toString();
-    }
-
     public boolean contains(TargetYear targetYear) {
 
         return (startMoment.isBefore(targetYear)
@@ -92,13 +86,6 @@ public class YearInterval implements Value<YearInterval> {
 
     }
 
-    public boolean isOverlap(YearInterval anInterval) {
-        return (startMoment.sameMoment(anInterval.startMoment)) ||
-                startMoment.isAfter(anInterval.startMoment) &&
-                        (endMoment.isBefore(anInterval.startMoment));
-
-    }
-
     public boolean isContinuous(YearInterval aNextInterval) {
         DefaultYearValue decrementStartNextMoment = aNextInterval.decrementStartMoment();
         return endMoment.sameMoment(decrementStartNextMoment);
@@ -110,7 +97,17 @@ public class YearInterval implements Value<YearInterval> {
 
     }
 
-    public static class DefaultYearValue extends AbstractYearValue<DefaultYearValue> {
+    public YearInterval adjustEndDate(YearInterval aNextInterval) {
+        return YearInterval.createFrom(startMoment, aNextInterval.decrementStartMoment());
+
+    }
+
+    public boolean isOverlap(YearInterval aNextInterval) {
+        return endMoment.isAfter(aNextInterval.startMoment);
+
+    }
+
+    static class DefaultYearValue extends AbstractYearValue<DefaultYearValue> {
 
         public static final YearValue<?> MAX = new DefaultYearValue(Year.of(9999));
 
