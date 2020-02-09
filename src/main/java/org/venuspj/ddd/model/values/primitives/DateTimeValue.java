@@ -1,5 +1,7 @@
 package org.venuspj.ddd.model.values.primitives;
 
+import org.venuspj.ddd.model.values.SingleValue;
+
 import java.time.LocalDateTime;
 
 /**

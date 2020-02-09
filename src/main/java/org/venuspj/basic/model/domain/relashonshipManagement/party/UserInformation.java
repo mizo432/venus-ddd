@@ -8,7 +8,7 @@ import org.venuspj.ddd.model.values.Value;
  */
 public class UserInformation implements Value<UserInformation> {
 
-    protected UserStaticsHistory userStaticsHistory;
+    protected UserStaticsHistoryYear userStaticsHistory;
 
     public static UserInformation empty() {
         return new UserInformation();

@@ -24,6 +24,35 @@ public class TargetYearTest {
 
     @Test
     @Tag(TestSize.SMALL)
+    public void toString1() {
+        Year arg = Year.now();
+
+        TargetYear target = TargetYear.of(arg);
+
+        String actual = target.toString();
+
+        System.out.println(actual);
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void asTest() {
+        Year arg = Year.now();
+
+        TargetYear target = TargetYear.of(arg);
+
+        String actual = target.asText();
+
+//        System.out.println(actual);
+
+        assertThat(actual)
+                .isEqualTo(arg.toString());
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
     public void empty() {
 
         TargetYear target = TargetYear.empty();

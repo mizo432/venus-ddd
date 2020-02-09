@@ -34,6 +34,16 @@ public abstract class AbstractListValue<E, ALV extends AbstractListValue<E, ALV>
 
     }
 
+    @Override
+    public boolean isEmpty() {
+        return value.isEmpty();
+    }
+
+    @Override
+    public boolean isPresent() {
+        return !isEmpty();
+    }
+
     public Iterator<E> iterator() {
         return value.iterator();
     }

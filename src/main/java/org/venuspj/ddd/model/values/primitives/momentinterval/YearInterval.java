@@ -21,9 +21,22 @@ public class YearInterval implements Value<YearInterval> {
 
     }
 
+    public YearInterval() {
+
+    }
+
     public static YearInterval createFrom(YearValue<?> aStartMoment, YearValue<?> anEndMoment) {
         return new YearInterval(DefaultYearValue.of(aStartMoment),
                 DefaultYearValue.of(anEndMoment));
+    }
+
+    public static YearInterval createFrom(YearValue<?> aStartMoment) {
+        return new YearInterval(DefaultYearValue.of(aStartMoment),
+                DefaultYearValue.of(DefaultYearValue.MAX));
+    }
+
+    public static YearInterval empty() {
+        return new YearInterval();
     }
 
     @Override
@@ -69,9 +82,28 @@ public class YearInterval implements Value<YearInterval> {
                 || endMoment.sameMoment(targetYear));
     }
 
-    private static class DefaultYearValue extends AbstractYearValue<DefaultYearValue> {
+    public DefaultYearValue decrementStartMoment() {
+        return startMoment.decrementMoment();
 
-        public DefaultYearValue(Year aValue) {
+    }
+
+    public YearInterval renewEndDate(DefaultYearValue aEndMoment) {
+        return YearInterval.createFrom(startMoment, aEndMoment);
+
+    }
+
+    public boolean isOverlap(YearInterval anInterval) {
+        return (startMoment.sameMoment(anInterval.startMoment)) ||
+                startMoment.isAfter(anInterval.startMoment) &&
+                        (endMoment.isBefore(anInterval.startMoment));
+
+    }
+
+    public static class DefaultYearValue extends AbstractYearValue<DefaultYearValue> {
+
+        public static final YearValue<?> MAX = new DefaultYearValue(Year.of(9999));
+
+        DefaultYearValue(Year aValue) {
             super(aValue);
 
         }
@@ -86,22 +118,31 @@ public class YearInterval implements Value<YearInterval> {
         }
 
         public static DefaultYearValue of(YearValue<?> aValue) {
-            return new DefaultYearValue(aValue.getValue());
+            return of(aValue.getValue());
 
         }
 
-        public boolean isAfter(TargetYear targetYear) {
+        public static DefaultYearValue of(Year aValue) {
+            return new DefaultYearValue(aValue);
+
+        }
+
+        public boolean isAfter(YearValue<?> targetYear) {
             return value.isAfter(targetYear.getValue());
 
         }
 
-        public boolean sameMoment(TargetYear targetYear) {
+        public boolean sameMoment(YearValue<?> targetYear) {
             return value.equals(targetYear.getValue());
         }
 
-        public boolean isBefore(TargetYear targetYear) {
+        public boolean isBefore(YearValue<?> targetYear) {
             return value.isBefore(targetYear.getValue());
 
+        }
+
+        public DefaultYearValue decrementMoment() {
+            return DefaultYearValue.of(value.minusYears(1L));
         }
     }
 }

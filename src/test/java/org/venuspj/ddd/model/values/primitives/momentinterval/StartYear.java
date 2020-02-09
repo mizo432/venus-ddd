@@ -4,9 +4,10 @@ import org.venuspj.ddd.model.values.primitives.AbstractYearValue;
 
 import java.time.Year;
 
-public class StartYear extends AbstractYearValue<StartYear> implements Moment<Year> {
+public class StartYear extends AbstractYearValue<StartYear> {
     public StartYear(Year aValue) {
         super(aValue);
+
     }
 
     public static StartYear of(Year aValue) {
@@ -14,9 +15,4 @@ public class StartYear extends AbstractYearValue<StartYear> implements Moment<Ye
 
     }
 
-    @Override
-    public Comparable<Year> comparable() {
-        return value;
-
-    }
 }

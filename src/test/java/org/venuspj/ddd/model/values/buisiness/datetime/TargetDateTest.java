@@ -36,4 +36,20 @@ public class TargetDateTest {
 
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void asTest() {
+        LocalDate arg = LocalDate.now();
+
+        TargetDate target = TargetDate.of(arg);
+
+        String actual = target.asText();
+
+//        System.out.println(actual);
+
+        assertThat(actual)
+                .isEqualTo(arg.toString());
+
+    }
+
 }

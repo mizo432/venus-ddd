@@ -1,7 +1,5 @@
-package org.venuspj.ddd.model.values.primitives;
+package org.venuspj.ddd.model.values;
 
-
-import org.venuspj.ddd.model.values.Value;
 
 public interface SingleValue<T, SV extends SingleValue<T, SV>> extends Value<SV> {
     /**

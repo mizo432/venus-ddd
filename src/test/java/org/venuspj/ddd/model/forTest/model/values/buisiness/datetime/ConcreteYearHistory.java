@@ -31,6 +31,14 @@ public class ConcreteYearHistory extends AbstractYearHistory<ConcreteValue, Conc
                 result = new ConcreteYearHistory(newArrayList(yearHistoryItem));
             else {
                 YearHistoryItem<ConcreteValue> lastItem = result.lastHistoryItem();
+                if (lastItem.sameItemAs(yearHistoryItem)) {
+                    if (lastItem.isOverlap(yearHistoryItem)) {
+
+                    }
+
+                }
+
+
                 if (!lastItem.sameItemAs(yearHistoryItem)) {
                     List<YearHistoryItem<ConcreteValue>> addList = newArrayList();
                     for (int i = 0; i < result.size() - 1; i++) {

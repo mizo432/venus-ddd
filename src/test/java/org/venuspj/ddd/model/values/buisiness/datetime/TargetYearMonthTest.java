@@ -35,4 +35,21 @@ public class TargetYearMonthTest {
                 .isTrue();
 
     }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void asTest() {
+        YearMonth arg = YearMonth.now();
+
+        TargetYearMonth target = TargetYearMonth.of(arg);
+
+        String actual = target.asText();
+
+//        System.out.println(actual);
+
+        assertThat(actual)
+                .isEqualTo(arg.toString());
+
+    }
+
 }

@@ -14,13 +14,27 @@ public class YearIntervalTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void createFrom() {
+    public void createFrom1() {
 
         YearInterval target
                 = YearInterval
                 .createFrom(
                         StartYear.of(Year.of(2019))
                         , EndYear.of(Year.of(2020)));
+
+        System.out.println(target.toString());
+
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void createFrom2() {
+
+        YearInterval target
+                = YearInterval
+                .createFrom(
+                        StartYear.of(Year.of(2019)));
 
         System.out.println(target.toString());
 

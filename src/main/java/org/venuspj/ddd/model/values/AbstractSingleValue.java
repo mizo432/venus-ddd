@@ -1,7 +1,6 @@
 package org.venuspj.ddd.model.values;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.venuspj.ddd.model.values.primitives.SingleValue;
 
 import static org.venuspj.util.objects2.Objects2.*;
 
