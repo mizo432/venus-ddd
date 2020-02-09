@@ -131,10 +131,55 @@ public class AddressInformationTest {
         SimpleAddressInformation arg = SimpleAddressInformation.empty();
         AddressInformation target = AddressInformation.empty();
         boolean actual = target.equals(arg);
+//        System.out.println(target.toString());
+
         assertThat(actual)
                 .isFalse();
 
-        System.out.println(target.toString());
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isEmpty1() {
+        AddressInformation target = AddressInformationMock.empty();
+        boolean actual = target.isEmpty();
+//        System.out.println(target.toString());
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isEmpty2() {
+        AddressInformation target = AddressInformationMock.full();
+        boolean actual = target.isEmpty();
+//        System.out.println(target.toString());
+        assertThat(actual)
+                .isFalse();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isEmpty3() {
+        AddressInformation target = AddressInformationMock.existsAddressPostfix();
+        boolean actual = target.isEmpty();
+//        System.out.println(target.toString());
+        assertThat(actual)
+                .isFalse();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isEmpty4() {
+        AddressInformation target = AddressInformationMock.existsSimpleAddressInformation();
+        boolean actual = target.isEmpty();
+//        System.out.println(target.toString());
+        assertThat(actual)
+                .isFalse();
 
     }
 
@@ -143,6 +188,36 @@ public class AddressInformationTest {
         public static AddressInformation one() {
             return AddressInformation
                     .builder()
+                    .withSimpleAddressInformation(SimpleAddressInformationTest.SimpleAddressInformationMock.empty())
+                    .withAddressPostfix(AddressPostfix.of("1-2-3"))
+                    .build();
+        }
+
+        public static AddressInformation empty() {
+            return AddressInformation.empty();
+
+        }
+
+        public static AddressInformation full() {
+            return AddressInformation
+                    .builder()
+                    .withSimpleAddressInformation(SimpleAddressInformationTest.SimpleAddressInformationMock.existsPostalCode())
+                    .withAddressPostfix(AddressPostfix.of("1-2-3"))
+                    .build();
+        }
+
+        public static AddressInformation existsSimpleAddressInformation() {
+            return AddressInformation
+                    .builder()
+                    .withSimpleAddressInformation(SimpleAddressInformationTest.SimpleAddressInformationMock.existsPostalCode())
+                    .withAddressPostfix(AddressPostfix.empty())
+                    .build();
+        }
+
+        public static AddressInformation existsAddressPostfix() {
+            return AddressInformation
+                    .builder()
+                    .withSimpleAddressInformation(SimpleAddressInformationTest.SimpleAddressInformationMock.existsPostalCode())
                     .withAddressPostfix(AddressPostfix.of("1-2-3"))
                     .build();
         }

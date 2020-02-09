@@ -134,5 +134,29 @@ public class SimpleAddressInformationTest {
 
     }
 
+    public static class SimpleAddressInformationMock {
+
+        public static SimpleAddressInformation empty() {
+            return SimpleAddressInformation.empty();
+
+        }
+
+        public static SimpleAddressInformation existsPostalCode() {
+            return SimpleAddressInformation
+                    .builder()
+                    .withPostalCode(PostalCode.of("1234567"))
+                    .build();
+        }
+
+        public static SimpleAddressInformation full() {
+            return SimpleAddressInformation
+                    .builder()
+                    .withAddressCode(AddressCode.of("12345678901"))
+                    .withPostalCode(PostalCode.of("1234567"))
+                    .withPrefecture(Prefecture.北海道)
+                    .withAza(AzaTest.AzaMock.full())
+                    .build();
+        }
+    }
 
 }

@@ -35,11 +35,19 @@ public class AzaTest {
         }
 
         public static Aza one() {
-            return new Aza(AzaIdentifier.of(1L), AzaInformation.of(Name.of("本町")));
+            return new Aza(AzaIdentifier.of(1L),
+                    AzaInformation.of(Name.of("本町")));
         }
 
         public static Aza two() {
-            return new Aza(AzaIdentifier.of(2L), AzaInformation.of(Name.of("要町")));
+            return new Aza(AzaIdentifier.of(2L),
+                    AzaInformation.of(Name.of("要町")));
+        }
+
+        public static Aza full() {
+            return new Aza(AzaIdentifier.of(1L),
+                    AzaInformation.of(Name.of("本町")));
+
         }
     }
 
