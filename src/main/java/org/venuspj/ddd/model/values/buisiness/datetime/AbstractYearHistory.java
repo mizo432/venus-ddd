@@ -3,8 +3,12 @@ package org.venuspj.ddd.model.values.buisiness.datetime;
 import org.venuspj.ddd.model.values.Value;
 import org.venuspj.ddd.model.values.primitives.AbstractListValue;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+
+import static org.venuspj.util.collect.Lists2.newArrayList;
 
 /**
  * 履歴データ基底データ
@@ -37,5 +41,53 @@ public abstract class AbstractYearHistory<
         return value.get(value.size() - 1);
 
     }
+
+    public static class NormalizationHistory<T extends Value<T>> {
+        private ArrayList<YearHistoryItem<T>> list = newArrayList();
+
+        public NormalizationHistory(List<YearHistoryItem<T>> aList) {
+            list.addAll(aList);
+        }
+
+        public ArrayList<YearHistoryItem<T>> normalize() {
+            ArrayList<YearHistoryItem<T>> result = newArrayList();
+            for (int sourceIndex = 0; sourceIndex < list.size(); sourceIndex++) {
+                YearHistoryItem<T> thisHistoryItem = list.get(sourceIndex);
+                if (result.isEmpty())
+                    result.add(thisHistoryItem);
+
+                else {
+                    YearHistoryItem<T> lastHistoryItem = result.get(result.size() - 1);
+                    if (lastHistoryItem.sameItemAs(thisHistoryItem)) {
+                        // ヒストリーのアイテムが前と一致していた場合
+                        if (lastHistoryItem.isContinuous(thisHistoryItem)) {
+                            // ヒストリーのインターバルが前と連続していた場合
+                            result.set(result.size() - 1, lastHistoryItem.maege(thisHistoryItem));
+
+                        } else {
+                            result.add(thisHistoryItem);
+
+                        }
+
+                    } else {
+                        // ヒストリーアイテムが違っていた場合
+                        if (lastHistoryItem.isContinuous(thisHistoryItem)) {
+                            result.set(result.size() - 1, lastHistoryItem.renewEndDate(thisHistoryItem.decrementStartMoment()));
+
+                        }
+                        result.add(thisHistoryItem);
+
+                    }
+                }
+            }
+            return result;
+        }
+
+        public static <T extends Value<T>> NormalizationHistory<T> of(List<YearHistoryItem<T>> anyArgs) {
+            return new NormalizationHistory(anyArgs);
+        }
+
+    }
+
 
 }

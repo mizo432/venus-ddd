@@ -99,6 +99,17 @@ public class YearInterval implements Value<YearInterval> {
 
     }
 
+    public boolean isContinuous(YearInterval aNextInterval) {
+        DefaultYearValue decrementStartNextMoment = aNextInterval.decrementStartMoment();
+        return endMoment.sameMoment(decrementStartNextMoment);
+
+    }
+
+    public YearInterval marge(YearInterval nextInterval) {
+        return YearInterval.createFrom(startMoment, nextInterval.endMoment);
+
+    }
+
     public static class DefaultYearValue extends AbstractYearValue<DefaultYearValue> {
 
         public static final YearValue<?> MAX = new DefaultYearValue(Year.of(9999));

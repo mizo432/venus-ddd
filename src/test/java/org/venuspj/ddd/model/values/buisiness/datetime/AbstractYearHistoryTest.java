@@ -28,8 +28,24 @@ public class AbstractYearHistoryTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void createFrom() {
-        List<YearHistoryItem<ConcreteValue>> arg = ConcreteYearHistoryMock.fullYearHistoryItemList();
+    public void createFrom1() {
+        List<YearHistoryItem<ConcreteValue>> arg = ConcreteYearHistoryMock.fullYearHistoryItemListCreateFromStartDate();
+        ConcreteYearHistory target = ConcreteYearHistory.createFrom(arg);
+
+        boolean actual = target.isEmpty();
+
+        System.out.println(target.toString());
+        assertThat(actual)
+                .isFalse();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void createFrom2() {
+        List<YearHistoryItem<ConcreteValue>> arg =
+                ConcreteYearHistoryMock.fullYearHistoryItemListCreateFromMoment();
+
         ConcreteYearHistory target = ConcreteYearHistory.createFrom(arg);
 
         boolean actual = target.isEmpty();
@@ -42,12 +58,22 @@ public class AbstractYearHistoryTest {
 
     public static class ConcreteYearHistoryMock {
 
-        public static List<YearHistoryItem<ConcreteValue>> fullYearHistoryItemList() {
+        public static List<YearHistoryItem<ConcreteValue>> fullYearHistoryItemListCreateFromStartDate() {
             return newArrayList(YearHistoryItemTest.YearHistoryItemMock.one(),
                     YearHistoryItemTest.YearHistoryItemMock.two(),
                     YearHistoryItemTest.YearHistoryItemMock.three(),
                     YearHistoryItemTest.YearHistoryItemMock.four(),
                     YearHistoryItemTest.YearHistoryItemMock.five());
+        }
+
+        public static List<YearHistoryItem<ConcreteValue>> fullYearHistoryItemListCreateFromMoment() {
+            return newArrayList(YearHistoryItemTest.YearHistoryItemMock.six(),
+                    YearHistoryItemTest.YearHistoryItemMock.seven(),
+                    YearHistoryItemTest.YearHistoryItemMock.eight(),
+                    YearHistoryItemTest.YearHistoryItemMock.nine(),
+                    YearHistoryItemTest.YearHistoryItemMock.ten(),
+                    YearHistoryItemTest.YearHistoryItemMock.eleven()
+            );
         }
     }
 }

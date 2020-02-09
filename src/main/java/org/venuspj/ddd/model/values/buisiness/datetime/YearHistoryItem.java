@@ -88,4 +88,15 @@ public class YearHistoryItem<I extends Value<I>> extends AbstractValue<YearHisto
     public boolean isOverlap(YearHistoryItem<I> other) {
         return interval.isOverlap(other.interval);
     }
+
+    public boolean isContinuous(YearHistoryItem<I> aNextHistoryItem) {
+        return interval.isContinuous(aNextHistoryItem.interval);
+    }
+
+    public YearHistoryItem<I> maege(YearHistoryItem<I> aNextHistoryItem) {
+        YearInterval newInterval = interval.marge(aNextHistoryItem.interval);
+
+        return YearHistoryItem.createFrom(newInterval, item);
+
+    }
 }

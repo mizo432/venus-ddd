@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.forTest.model.values.buisiness.datetime.ConcreteValue;
 import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.ddd.model.values.primitives.momentinterval.EndYear;
 import org.venuspj.ddd.model.values.primitives.momentinterval.StartYear;
 import org.venuspj.ddd.model.values.primitives.momentinterval.YearInterval;
 import org.venuspj.tests.constants.TestSize;
@@ -77,6 +78,42 @@ public class YearHistoryItemTest {
         public static YearHistoryItem<ConcreteValue> five() {
             YearInterval anYearInterval = YearInterval.createFrom(StartYear.of(Year.of(2027)));
             return YearHistoryItem.createFrom(anYearInterval, ConcreteValue.createFrom(Name.of("漢字"), Name.of("かな")));
+
+        }
+
+        public static YearHistoryItem<ConcreteValue> six() {
+            YearInterval anYearInterval = YearInterval.createFrom(StartYear.of(Year.of(2020)), EndYear.of(Year.of(2022)));
+            return YearHistoryItem.createFrom(anYearInterval, ConcreteValue.createFrom(Name.of("漢字"), Name.of("かな")));
+
+        }
+
+        public static YearHistoryItem<ConcreteValue> seven() {
+            YearInterval anYearInterval = YearInterval.createFrom(StartYear.of(Year.of(2023)), EndYear.of(Year.of(2023)));
+            return YearHistoryItem.createFrom(anYearInterval, ConcreteValue.createFrom(Name.of("漢字"), Name.of("かな")));
+
+        }
+
+        public static YearHistoryItem<ConcreteValue> eight() {
+            YearInterval anYearInterval = YearInterval.createFrom(StartYear.of(Year.of(2025)), EndYear.of(Year.of(2026)));
+            return YearHistoryItem.createFrom(anYearInterval, ConcreteValue.createFrom(Name.of("漢字"), Name.of("かな")));
+
+        }
+
+        public static YearHistoryItem<ConcreteValue> nine() {
+            YearInterval anYearInterval = YearInterval.createFrom(StartYear.of(Year.of(2027)), EndYear.of(Year.of(2029)));
+            return YearHistoryItem.createFrom(anYearInterval, ConcreteValue.createFrom(Name.of("漢字1"), Name.of("かな1")));
+
+        }
+
+        public static YearHistoryItem<ConcreteValue> ten() {
+            YearInterval anYearInterval = YearInterval.createFrom(StartYear.of(Year.of(2031)), EndYear.of(Year.of(2031)));
+            return YearHistoryItem.createFrom(anYearInterval, ConcreteValue.createFrom(Name.of("漢字"), Name.of("かな")));
+
+        }
+
+        public static YearHistoryItem<ConcreteValue> eleven() {
+            YearInterval anYearInterval = YearInterval.createFrom(StartYear.of(Year.of(2033)), EndYear.of(Year.of(2034)));
+            return YearHistoryItem.createFrom(anYearInterval, ConcreteValue.createFrom(Name.of("漢字1"), Name.of("かな1")));
 
         }
     }

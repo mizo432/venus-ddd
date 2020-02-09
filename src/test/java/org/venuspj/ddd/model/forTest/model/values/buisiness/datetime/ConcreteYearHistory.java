@@ -6,8 +6,6 @@ import org.venuspj.ddd.model.values.buisiness.datetime.YearHistoryItem;
 import java.util.Collection;
 import java.util.List;
 
-import static org.venuspj.util.collect.Lists2.newArrayList;
-
 public class ConcreteYearHistory extends AbstractYearHistory<ConcreteValue, ConcreteYearHistory> {
 
     public ConcreteYearHistory(Collection<YearHistoryItem<ConcreteValue>> aCollection) {
@@ -25,34 +23,9 @@ public class ConcreteYearHistory extends AbstractYearHistory<ConcreteValue, Conc
     }
 
     public static ConcreteYearHistory createFrom(List<YearHistoryItem<ConcreteValue>> anyArg) {
-        ConcreteYearHistory result = ConcreteYearHistory.empty();
-        for (YearHistoryItem<ConcreteValue> yearHistoryItem : anyArg) {
-            if (result.isEmpty())
-                result = new ConcreteYearHistory(newArrayList(yearHistoryItem));
-            else {
-                YearHistoryItem<ConcreteValue> lastItem = result.lastHistoryItem();
-                if (lastItem.sameItemAs(yearHistoryItem)) {
-                    if (lastItem.isOverlap(yearHistoryItem)) {
+        return new ConcreteYearHistory(NormalizationHistory
+                .of(anyArg)
+                .normalize());
 
-                    }
-
-                }
-
-
-                if (!lastItem.sameItemAs(yearHistoryItem)) {
-                    List<YearHistoryItem<ConcreteValue>> addList = newArrayList();
-                    for (int i = 0; i < result.size() - 1; i++) {
-                        addList.add(result.getValue().get(i));
-
-                    }
-                    YearHistoryItem<ConcreteValue> renew = lastItem.renewEndDate(yearHistoryItem.decrementStartMoment());
-                    addList.add(renew);
-                    addList.add(yearHistoryItem);
-                    result = new ConcreteYearHistory(addList);
-
-                }
-            }
-        }
-        return result;
     }
 }
