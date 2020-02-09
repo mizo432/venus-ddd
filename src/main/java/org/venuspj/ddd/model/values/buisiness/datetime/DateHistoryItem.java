@@ -47,4 +47,28 @@ public class DateHistoryItem<I extends Value<I>> implements Value<DateHistoryIte
     }
 
 
+    public boolean sameItemAs(DateHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return false;
+    }
+
+    public boolean isContinuous(DateHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return false;
+    }
+
+    public DateHistoryItem<I> merge(DateHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return null;
+    }
+
+    public boolean isOverlap(DateHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return false;
+    }
+
+    public DateHistoryItem<I> adjustEndDate(DateHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return null;
+    }
 }

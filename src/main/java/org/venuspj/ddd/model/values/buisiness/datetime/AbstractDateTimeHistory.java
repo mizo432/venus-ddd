@@ -13,21 +13,21 @@ import static org.venuspj.util.collect.Lists2.newArrayList;
 /**
  * 履歴データ基底データ
  */
-public abstract class AbstractYearHistory<
+public abstract class AbstractDateTimeHistory<
         E extends Value<E>,
-        H extends AbstractYearHistory<E, H>>
-        extends AbstractListValue<YearHistoryItem<E>, H> {
+        H extends AbstractDateTimeHistory<E, H>>
+        extends AbstractListValue<DateTimeHistoryItem<E>, H> {
 
-    protected AbstractYearHistory(Collection<YearHistoryItem<E>> aCollection) {
+    protected AbstractDateTimeHistory(Collection<DateTimeHistoryItem<E>> aCollection) {
         super(aCollection);
     }
 
-    public AbstractYearHistory() {
+    public AbstractDateTimeHistory() {
         super();
     }
 
-    protected E findBy(TargetYear aTargetMoment) {
-        Optional<YearHistoryItem<E>> resultOptional = value.stream()
+    protected E findBy(TargetDateTime aTargetMoment) {
+        Optional<DateTimeHistoryItem<E>> resultOptional = value.stream()
                 .filter(historyItem -> historyItem.getInterval().contains(aTargetMoment))
                 .findFirst();
 
@@ -38,21 +38,21 @@ public abstract class AbstractYearHistory<
     }
 
     protected static class NormalizationHistory<T extends Value<T>> {
-        private ArrayList<YearHistoryItem<T>> list = newArrayList();
+        private ArrayList<DateTimeHistoryItem<T>> list = newArrayList();
 
-        public NormalizationHistory(List<YearHistoryItem<T>> aList) {
+        NormalizationHistory(List<DateTimeHistoryItem<T>> aList) {
             list.addAll(aList);
         }
 
-        public ArrayList<YearHistoryItem<T>> normalize() {
-            ArrayList<YearHistoryItem<T>> result = newArrayList();
+        public ArrayList<DateTimeHistoryItem<T>> normalize() {
+            ArrayList<DateTimeHistoryItem<T>> result = newArrayList();
             for (int sourceIndex = 0; sourceIndex < list.size(); sourceIndex++) {
-                YearHistoryItem<T> thisHistoryItem = list.get(sourceIndex);
+                DateTimeHistoryItem<T> thisHistoryItem = list.get(sourceIndex);
                 if (result.isEmpty())
                     result.add(thisHistoryItem);
 
                 else {
-                    YearHistoryItem<T> lastHistoryItem = result.get(result.size() - 1);
+                    DateTimeHistoryItem<T> lastHistoryItem = result.get(result.size() - 1);
                     if (lastHistoryItem.sameItemAs(thisHistoryItem)) {
                         // ヒストリーのアイテムが前と一致していた場合
                         if (lastHistoryItem.isContinuous(thisHistoryItem)) {
@@ -89,7 +89,7 @@ public abstract class AbstractYearHistory<
             return result;
         }
 
-        public static <T extends Value<T>> NormalizationHistory<T> of(List<YearHistoryItem<T>> anyArgs) {
+        public static <T extends Value<T>> NormalizationHistory<T> of(List<DateTimeHistoryItem<T>> anyArgs) {
             return new NormalizationHistory(anyArgs);
         }
 

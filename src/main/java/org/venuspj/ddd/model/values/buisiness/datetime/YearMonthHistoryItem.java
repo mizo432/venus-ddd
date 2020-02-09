@@ -49,4 +49,28 @@ public class YearMonthHistoryItem<I extends Value<I>> implements Value<YearMonth
     }
 
 
+    public boolean sameItemAs(YearMonthHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return false;
+    }
+
+    public boolean isContinuous(YearMonthHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return false;
+    }
+
+    public YearMonthHistoryItem<I> merge(YearMonthHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return null;
+    }
+
+    public boolean isOverlap(YearMonthHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return false;
+    }
+
+    public YearMonthHistoryItem<I> adjustEndDate(YearMonthHistoryItem<I> thisHistoryItem) {
+        // TODO atdk
+        return null;
+    }
 }
