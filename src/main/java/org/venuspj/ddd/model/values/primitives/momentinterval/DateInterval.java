@@ -1,16 +1,17 @@
 package org.venuspj.ddd.model.values.primitives.momentinterval;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.venuspj.ddd.model.values.Value;
+import org.venuspj.ddd.model.values.AbstractValue;
 import org.venuspj.ddd.model.values.buisiness.datetime.TargetDate;
 import org.venuspj.ddd.model.values.primitives.AbstractDateValue;
 import org.venuspj.ddd.model.values.primitives.DateValue;
 
 import java.time.LocalDate;
 
-import static org.venuspj.util.objects2.Objects2.*;
+import static org.venuspj.util.objects2.Objects2.equal;
+import static org.venuspj.util.objects2.Objects2.hash;
 
-public class DateInterval implements Value<DateInterval> {
+public class DateInterval extends AbstractValue<DateInterval> {
     private DefaultDateValue startMoment = DefaultDateValue.empty();
     private DefaultDateValue endMoment = DefaultDateValue.empty();
 
@@ -54,19 +55,38 @@ public class DateInterval implements Value<DateInterval> {
                 endMoment.isEmpty();
     }
 
-    @Override
-    public String toString() {
-        return toStringHelper(this)
-                .defaultConfig()
-                .toString();
-    }
-
     public boolean contains(TargetDate targetMoment) {
-
         return (startMoment.isBefore(targetMoment)
                 || startMoment.sameMoment(targetMoment))
                 && (endMoment.isAfter(targetMoment)
                 || endMoment.sameMoment(targetMoment));
+
+    }
+
+    public DefaultDateValue decrementStartMoment() {
+        return startMoment.decrementMoment();
+
+    }
+
+    public boolean isContinuous(DateInterval aNextInterval) {
+        DefaultDateValue decrementStartNextMoment = aNextInterval.decrementStartMoment();
+        return endMoment.sameMoment(decrementStartNextMoment);
+
+    }
+
+    public DateInterval marge(DateInterval aNextInterval) {
+        return DateInterval.createFrom(startMoment, aNextInterval.endMoment);
+
+    }
+
+    public boolean isOverlap(DateInterval aNextInterval) {
+        return endMoment.isAfter(aNextInterval.startMoment);
+
+    }
+
+    public DateInterval adjustEndMoment(DateInterval aNextInterval) {
+        return DateInterval.createFrom(startMoment, aNextInterval.decrementStartMoment());
+
     }
 
     private static class DefaultDateValue extends AbstractDateValue<DefaultDateValue> {
@@ -90,19 +110,25 @@ public class DateInterval implements Value<DateInterval> {
 
         }
 
-        public boolean isAfter(TargetDate aTargetMoment) {
+        public boolean isAfter(DateValue<?> aTargetMoment) {
             return value.isAfter(aTargetMoment.getValue());
 
         }
 
-        public boolean sameMoment(TargetDate aTargetMoment) {
+        public boolean sameMoment(DateValue<?> aTargetMoment) {
             return value.equals(aTargetMoment.getValue());
+
         }
 
 
-        public boolean isBefore(TargetDate aTargetMoment) {
+        public boolean isBefore(DateValue<?> aTargetMoment) {
             return value.isBefore(aTargetMoment.getValue());
 
+        }
+
+        public DefaultDateValue decrementMoment() {
+            // TODO atdk
+            return null;
         }
     }
 }

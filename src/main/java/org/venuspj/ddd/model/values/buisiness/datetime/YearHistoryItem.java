@@ -86,7 +86,7 @@ public class YearHistoryItem<I extends Value<I>> extends AbstractValue<YearHisto
 
     }
 
-    public YearHistoryItem<I> adjustEndDate(YearHistoryItem<I> aNextHistoryItem) {
+    public YearHistoryItem<I> adjustEndMoment(YearHistoryItem<I> aNextHistoryItem) {
         YearInterval newInterval = interval.adjustEndDate(aNextHistoryItem.interval);
         return YearHistoryItem.createFrom(newInterval, item);
 

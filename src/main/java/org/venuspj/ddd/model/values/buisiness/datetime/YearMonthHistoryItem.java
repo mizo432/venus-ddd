@@ -10,6 +10,11 @@ public class YearMonthHistoryItem<I extends Value<I>> implements Value<YearMonth
     private YearMonthInterval interval;
     private I item;
 
+    public YearMonthHistoryItem(YearMonthInterval anInterval, I anItem) {
+        interval = anInterval;
+        item = anItem;
+    }
+
 
     I getItem() {
         return item;
@@ -49,28 +54,34 @@ public class YearMonthHistoryItem<I extends Value<I>> implements Value<YearMonth
     }
 
 
-    public boolean sameItemAs(YearMonthHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return false;
+    public boolean sameItemAs(YearMonthHistoryItem<I> anOtherHistoryItem) {
+        return item.sameValueAs(anOtherHistoryItem.item);
     }
 
-    public boolean isContinuous(YearMonthHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return false;
+    public boolean isContinuous(YearMonthHistoryItem<I> aNextHistoryItem) {
+        return interval.isContinuous(aNextHistoryItem.interval);
     }
 
-    public YearMonthHistoryItem<I> merge(YearMonthHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return null;
+    public YearMonthHistoryItem<I> merge(YearMonthHistoryItem<I> aNextHistoryItem) {
+        YearMonthInterval newInterval = interval.marge(aNextHistoryItem.interval);
+
+        return YearMonthHistoryItem.createFrom(newInterval, item);
+
+
     }
 
-    public boolean isOverlap(YearMonthHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return false;
+    public static <I extends Value<I>> YearMonthHistoryItem<I> createFrom(YearMonthInterval anInterval, I anItem) {
+        return new YearMonthHistoryItem<>(anInterval, anItem);
     }
 
-    public YearMonthHistoryItem<I> adjustEndDate(YearMonthHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return null;
+    public YearMonthHistoryItem<I> adjustEndMoment(YearMonthHistoryItem<I> aNextHistoryItem) {
+        YearMonthInterval newInterval = interval.adjustEndMoment(aNextHistoryItem.interval);
+        return YearMonthHistoryItem.createFrom(newInterval, item);
+
+    }
+
+    public boolean isOverlap(YearMonthHistoryItem<I> aNextHistoryItem) {
+        return interval.isOverlap(aNextHistoryItem.interval);
+
     }
 }

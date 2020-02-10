@@ -1,16 +1,17 @@
 package org.venuspj.ddd.model.values.primitives.momentinterval;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.venuspj.ddd.model.values.Value;
+import org.venuspj.ddd.model.values.AbstractValue;
 import org.venuspj.ddd.model.values.buisiness.datetime.TargetYearMonth;
 import org.venuspj.ddd.model.values.primitives.AbstractYearMonthValue;
 import org.venuspj.ddd.model.values.primitives.YearMonthValue;
 
 import java.time.YearMonth;
 
-import static org.venuspj.util.objects2.Objects2.*;
+import static org.venuspj.util.objects2.Objects2.equal;
+import static org.venuspj.util.objects2.Objects2.hash;
 
-public class YearMonthInterval implements Value<YearMonthInterval> {
+public class YearMonthInterval extends AbstractValue<YearMonthInterval> {
     private DefaultYearMonthValue startMoment = DefaultYearMonthValue.empty();
     private DefaultYearMonthValue endMoment = DefaultYearMonthValue.empty();
 
@@ -53,19 +54,38 @@ public class YearMonthInterval implements Value<YearMonthInterval> {
                 endMoment.isEmpty();
     }
 
-    @Override
-    public String toString() {
-        return toStringHelper(this)
-                .defaultConfig()
-                .toString();
-    }
-
     public boolean contains(TargetYearMonth targetMoment) {
 
         return (startMoment.isBefore(targetMoment)
                 || startMoment.sameMoment(targetMoment))
                 && (endMoment.isAfter(targetMoment)
                 || endMoment.sameMoment(targetMoment));
+    }
+
+    public DefaultYearMonthValue decrementStartMoment() {
+        return startMoment.decrementMoment();
+
+    }
+
+    public boolean isContinuous(YearMonthInterval aNextInterval) {
+        DefaultYearMonthValue decrementStartNextMoment = aNextInterval.decrementStartMoment();
+        return endMoment.sameMoment(decrementStartNextMoment);
+
+    }
+
+    public YearMonthInterval marge(YearMonthInterval aNextInterval) {
+        return YearMonthInterval.createFrom(startMoment, aNextInterval.endMoment);
+
+    }
+
+    public boolean isOverlap(YearMonthInterval aNextInterval) {
+        return endMoment.isAfter(aNextInterval.startMoment);
+
+    }
+
+    public YearMonthInterval adjustEndMoment(YearMonthInterval aNextInterval) {
+        return YearMonthInterval.createFrom(startMoment, aNextInterval.decrementStartMoment());
+
     }
 
     private static class DefaultYearMonthValue extends AbstractYearMonthValue<DefaultYearMonthValue> {
@@ -77,6 +97,7 @@ public class YearMonthInterval implements Value<YearMonthInterval> {
 
         public DefaultYearMonthValue() {
             super();
+
         }
 
         public static DefaultYearMonthValue empty() {
@@ -85,22 +106,34 @@ public class YearMonthInterval implements Value<YearMonthInterval> {
         }
 
         public static DefaultYearMonthValue of(YearMonthValue<?> aValue) {
-            return new DefaultYearMonthValue(aValue.getValue());
+            return of(aValue.getValue());
 
         }
 
-        public boolean isAfter(TargetYearMonth aTargetMoment) {
+        public static DefaultYearMonthValue of(YearMonth aValue) {
+            return new DefaultYearMonthValue(aValue);
+
+        }
+
+        public boolean isAfter(YearMonthValue<?> aTargetMoment) {
             return value.isAfter(aTargetMoment.getValue());
 
         }
 
-        public boolean sameMoment(TargetYearMonth aTargetMoment) {
+        public boolean sameMoment(YearMonthValue<?> aTargetMoment) {
             return value.equals(aTargetMoment.getValue());
+
         }
 
-        public boolean isBefore(TargetYearMonth aTargetMoment) {
+        public boolean isBefore(YearMonthValue<?> aTargetMoment) {
             return value.isBefore(aTargetMoment.getValue());
 
         }
+
+        public DefaultYearMonthValue decrementMoment() {
+            return DefaultYearMonthValue.of(value.minusMonths(1L));
+
+        }
+
     }
 }

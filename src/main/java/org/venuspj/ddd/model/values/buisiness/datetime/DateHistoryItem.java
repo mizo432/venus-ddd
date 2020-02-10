@@ -9,6 +9,11 @@ public class DateHistoryItem<I extends Value<I>> implements Value<DateHistoryIte
     private DateInterval interval;
     private I item;
 
+    public DateHistoryItem(DateInterval anInterval, I anItem) {
+        interval = anInterval;
+        item = anItem;
+    }
+
 
     I getItem() {
         return item;
@@ -47,28 +52,36 @@ public class DateHistoryItem<I extends Value<I>> implements Value<DateHistoryIte
     }
 
 
-    public boolean sameItemAs(DateHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return false;
+    public boolean isContinuous(DateHistoryItem<I> aNextHistoryItem) {
+        return interval.isContinuous(aNextHistoryItem.interval);
     }
 
-    public boolean isContinuous(DateHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return false;
+    public DateHistoryItem<I> merge(DateHistoryItem<I> aNextHistoryItem) {
+        DateInterval newInterval = interval.marge(aNextHistoryItem.interval);
+
+        return DateHistoryItem.createFrom(newInterval, item);
+
     }
 
-    public DateHistoryItem<I> merge(DateHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return null;
+    private static <I extends Value<I>> DateHistoryItem<I> createFrom(DateInterval anInterval, I anItem) {
+        return new DateHistoryItem(anInterval, anItem);
+
     }
 
-    public boolean isOverlap(DateHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return false;
+    public DateHistoryItem<I> adjustEndMoment(DateHistoryItem<I> aNextHistoryItem) {
+        DateInterval newInterval = interval.adjustEndMoment(aNextHistoryItem.interval);
+        return DateHistoryItem.createFrom(newInterval, item);
+
     }
 
-    public DateHistoryItem<I> adjustEndDate(DateHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return null;
+    public boolean isOverlap(DateHistoryItem<I> aNextHistoryItem) {
+        return interval.isOverlap(aNextHistoryItem.interval);
+
     }
+
+    public boolean sameItemAs(DateHistoryItem<I> anOtherHistoryItem) {
+        return item.sameValueAs(anOtherHistoryItem.item);
+
+    }
+
 }

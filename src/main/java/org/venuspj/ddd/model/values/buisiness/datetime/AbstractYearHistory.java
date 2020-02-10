@@ -76,7 +76,7 @@ public abstract class AbstractYearHistory<
 
                         } else {
                             if (lastHistoryItem.isOverlap(thisHistoryItem)) {
-                                result.set(result.size() - 1, lastHistoryItem.adjustEndDate(thisHistoryItem));
+                                result.set(result.size() - 1, lastHistoryItem.adjustEndMoment(thisHistoryItem));
 
                             }
 
