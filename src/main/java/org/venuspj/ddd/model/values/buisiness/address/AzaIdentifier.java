@@ -10,14 +10,17 @@ public class AzaIdentifier extends AbstractEntityLongIdentifier<Aza, AzaIdentifi
 
     public AzaIdentifier() {
         super(Aza.class);
+
     }
 
     public static AzaIdentifier empty() {
         return new AzaIdentifier();
+
     }
 
-    public static AzaIdentifier of(Long aValue) {
+    public static AzaIdentifier of(long aValue) {
         return new AzaIdentifier(aValue);
+
     }
 
     @Override
@@ -25,6 +28,5 @@ public class AzaIdentifier extends AbstractEntityLongIdentifier<Aza, AzaIdentifi
         return equals(other);
 
     }
-
 
 }

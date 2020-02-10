@@ -6,12 +6,12 @@ import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PostalCodeTest {
+public class ZipCodeTest {
 
     @Test
     @Tag(TestSize.SMALL)
     public void empty() {
-        PostalCode actual = PostalCode.empty();
+        ZipCode actual = ZipCode.empty();
         assertThat(actual)
                 .isNotNull();
 
@@ -24,7 +24,7 @@ public class PostalCodeTest {
     @Test
     @Tag(TestSize.SMALL)
     public void of() {
-        PostalCode actual = PostalCode.of("1231234");
+        ZipCode actual = ZipCode.of("1231234");
         assertThat(actual)
                 .isNotNull();
 

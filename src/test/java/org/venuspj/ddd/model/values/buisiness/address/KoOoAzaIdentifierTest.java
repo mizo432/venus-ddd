@@ -6,11 +6,11 @@ import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class KoAzaIdentifierTest {
+public class KoOoAzaIdentifierTest {
     @Test
     @Tag(TestSize.SMALL)
     public void empty() {
-        KoAzaIdentifier target = KoAzaIdentifier.empty();
+        AzaIdentifier target = AzaIdentifier.empty();
 
         assertThat(target.sameValueAs(target))
                 .isTrue();
@@ -20,7 +20,7 @@ public class KoAzaIdentifierTest {
     @Test
     @Tag(TestSize.SMALL)
     public void of() {
-        KoAzaIdentifier target = KoAzaIdentifier.of(10L);
+        AzaIdentifier target = AzaIdentifier.of(10L);
 
         assertThat(target.sameValueAs(target))
                 .isTrue();

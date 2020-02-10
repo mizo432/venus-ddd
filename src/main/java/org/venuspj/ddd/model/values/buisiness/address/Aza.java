@@ -5,8 +5,8 @@ import org.venuspj.ddd.model.entity.AbstractEntity;
 
 public class Aza extends AbstractEntity<Aza, AzaIdentifier, AzaInformation> {
 
-    Aza(AzaIdentifier aAzaIdentifier, AzaInformation anAzaInformation) {
-        super(aAzaIdentifier, anAzaInformation);
+    Aza(AzaIdentifier anAzaIdentifier, AzaInformation anAzaInformation) {
+        super(anAzaIdentifier, anAzaInformation);
     }
 
     public Aza() {
@@ -21,12 +21,10 @@ public class Aza extends AbstractEntity<Aza, AzaIdentifier, AzaInformation> {
     public static Aza of(AzaIdentifier anAzaIdentifier, AzaInformation anAzaInformation) {
         return new Aza(anAzaIdentifier, anAzaInformation);
 
-
     }
 
     @JsonIgnore
-    protected AzaInformation getAzaInformation() {
+    public AzaInformation getKoAzaInformation() {
         return getEntityInfo();
     }
-
 }

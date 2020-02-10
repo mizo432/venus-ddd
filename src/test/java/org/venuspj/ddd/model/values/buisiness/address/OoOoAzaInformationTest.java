@@ -7,11 +7,11 @@ import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class KoAzaInformationTest {
+public class OoOoAzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void empty() {
-        KoAzaInformation target = KoAzaInformation.empty();
+        OoAzaInformation target = OoAzaInformation.empty();
 
         boolean actual = target.isEmpty();
 
@@ -23,7 +23,7 @@ public class KoAzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void of() {
-        KoAzaInformation target = KoAzaInformation.of(Name.empty());
+        OoAzaInformation target = OoAzaInformation.of(Name.empty());
 
         boolean actual = target.isEmpty();
 
@@ -35,7 +35,7 @@ public class KoAzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs1() {
-        KoAzaInformation target = KoAzaInformation.empty();
+        OoAzaInformation target = OoAzaInformation.empty();
 
         boolean actual = target.sameValueAs(target);
 
@@ -47,7 +47,7 @@ public class KoAzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs2() {
-        KoAzaInformation target = KoAzaInformation.empty();
+        OoAzaInformation target = OoAzaInformation.empty();
 
         boolean actual = target.sameValueAs(null);
 
@@ -59,8 +59,8 @@ public class KoAzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs3() {
-        KoAzaInformation arg = KoAzaInformation.empty();
-        KoAzaInformation target = KoAzaInformation.empty();
+        OoAzaInformation arg = OoAzaInformation.empty();
+        OoAzaInformation target = OoAzaInformation.empty();
 
         boolean actual = target.sameValueAs(arg);
 
@@ -72,7 +72,7 @@ public class KoAzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void toString1() {
-        KoAzaInformation target = KoAzaInformation.empty();
+        OoAzaInformation target = OoAzaInformation.empty();
 
         System.out.println(target.toString());
 
@@ -82,23 +82,12 @@ public class KoAzaInformationTest {
     @Tag(TestSize.SMALL)
     public void equals1() {
         SimpleAddressInformation arg = SimpleAddressInformation.empty();
-        KoAzaInformation target = KoAzaInformation.empty();
+        OoAzaInformation target = OoAzaInformation.empty();
         boolean actual = target.equals(arg);
         assertThat(actual)
                 .isFalse();
 
-
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void equals2() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
-        KoAzaInformation target = KoAzaInformation.empty();
-        boolean actual = target.equals(null);
-        assertThat(actual)
-                .isFalse();
-
+        System.out.println(target.toString());
 
     }
 

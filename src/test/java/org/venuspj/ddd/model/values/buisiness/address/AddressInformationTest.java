@@ -24,7 +24,7 @@ public class AddressInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void of() {
-        AddressInformation target = AddressInformation.of(PostalCode.empty(), AddressCode.empty(), Prefecture.EMPTY, City.empty(), Aza.empty(), KoAza.empty(), AddressPostfix.empty());
+        AddressInformation target = AddressInformation.of(ZipCode.empty(), AddressCode.empty(), Prefecture.EMPTY, City.empty(), OoAza.empty(), Aza.empty(), AddressPostfix.empty());
 
         boolean actual = target.isEmpty();
 

@@ -75,9 +75,9 @@ public class SimpleAddressInformationTest {
                 .withPrefecture(Prefecture.EMPTY)
                 .withAddressCode(AddressCode.empty())
                 .withCity(City.empty())
-                .withAza(Aza.empty())
-                .withKoAza(KoAza.empty())
-                .withPostalCode(PostalCode.empty())
+                .withAza(OoAza.empty())
+                .withKoAza(Aza.empty())
+                .withPostalCode(ZipCode.empty())
                 .build();
 
         boolean actual = target.isEmpty();
@@ -125,7 +125,7 @@ public class SimpleAddressInformationTest {
     @Tag(TestSize.SMALL)
     public void of1() {
         SimpleAddressInformation target = SimpleAddressInformation
-                .of(PostalCode.empty(), AddressCode.empty(), Prefecture.EMPTY, City.empty(), Aza.empty(), KoAza.empty());
+                .of(ZipCode.empty(), AddressCode.empty(), Prefecture.EMPTY, City.empty(), OoAza.empty(), Aza.empty());
 
         boolean actual = target.isEmpty();
 
@@ -144,7 +144,7 @@ public class SimpleAddressInformationTest {
         public static SimpleAddressInformation existsPostalCode() {
             return SimpleAddressInformation
                     .builder()
-                    .withPostalCode(PostalCode.of("1234567"))
+                    .withPostalCode(ZipCode.of("1234567"))
                     .build();
         }
 
@@ -152,9 +152,9 @@ public class SimpleAddressInformationTest {
             return SimpleAddressInformation
                     .builder()
                     .withAddressCode(AddressCode.of("12345678901"))
-                    .withPostalCode(PostalCode.of("1234567"))
+                    .withPostalCode(ZipCode.of("1234567"))
                     .withPrefecture(Prefecture.北海道)
-                    .withAza(AzaTest.AzaMock.full())
+                    .withAza(OoAzaTest.AzaMock.full())
                     .build();
         }
     }

@@ -7,29 +7,30 @@ import org.venuspj.util.objects2.Objects2;
 
 import static org.venuspj.util.objects2.Objects2.toStringHelper;
 
-public class KoAzaInformation implements Value<KoAzaInformation> {
+public class OoAzaInformation implements Value<OoAzaInformation> {
     private Name name = Name.empty();
 
-    public KoAzaInformation(Name aName) {
+    OoAzaInformation(Name aName) {
         name = aName;
-    }
-
-    public KoAzaInformation() {
 
     }
 
-    public static KoAzaInformation empty() {
-        return new KoAzaInformation();
+    public OoAzaInformation() {
 
     }
 
-    public static KoAzaInformation of(Name aName) {
-        return new KoAzaInformation(aName);
+    public static OoAzaInformation empty() {
+        return new OoAzaInformation();
 
     }
+
+    public static OoAzaInformation of(Name aName) {
+        return new OoAzaInformation(aName);
+    }
+
 
     @Override
-    public boolean sameValueAs(KoAzaInformation other) {
+    public boolean sameValueAs(OoAzaInformation other) {
         return equals(other);
 
     }
@@ -38,15 +39,13 @@ public class KoAzaInformation implements Value<KoAzaInformation> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        KoAzaInformation that = (KoAzaInformation) o;
+        OoAzaInformation that = (OoAzaInformation) o;
         return Objects2.equal(name, that.name);
-
     }
 
     @Override
     public int hashCode() {
         return Objects2.hash(name);
-
     }
 
     @Override
@@ -67,5 +66,4 @@ public class KoAzaInformation implements Value<KoAzaInformation> {
                 .toString();
 
     }
-
 }

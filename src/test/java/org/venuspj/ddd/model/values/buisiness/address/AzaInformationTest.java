@@ -87,7 +87,18 @@ public class AzaInformationTest {
         assertThat(actual)
                 .isFalse();
 
-        System.out.println(target.toString());
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void equals2() {
+        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        AzaInformation target = AzaInformation.empty();
+        boolean actual = target.equals(null);
+        assertThat(actual)
+                .isFalse();
+
 
     }
 

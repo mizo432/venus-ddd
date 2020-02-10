@@ -1,18 +1,15 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.venuspj.ddd.model.values.Value;
+import org.venuspj.ddd.model.values.AbstractValue;
 import org.venuspj.ddd.model.values.buisiness.Name;
 import org.venuspj.util.objects2.Objects2;
 
-import static org.venuspj.util.objects2.Objects2.toStringHelper;
-
-public class AzaInformation implements Value<AzaInformation> {
+public class AzaInformation extends AbstractValue<AzaInformation> {
     private Name name = Name.empty();
 
-    AzaInformation(Name aName) {
+    public AzaInformation(Name aName) {
         name = aName;
-
     }
 
     public AzaInformation() {
@@ -26,8 +23,8 @@ public class AzaInformation implements Value<AzaInformation> {
 
     public static AzaInformation of(Name aName) {
         return new AzaInformation(aName);
-    }
 
+    }
 
     @Override
     public boolean sameValueAs(AzaInformation other) {
@@ -41,11 +38,13 @@ public class AzaInformation implements Value<AzaInformation> {
         if (o == null || getClass() != o.getClass()) return false;
         AzaInformation that = (AzaInformation) o;
         return Objects2.equal(name, that.name);
+
     }
 
     @Override
     public int hashCode() {
         return Objects2.hash(name);
+
     }
 
     @Override
@@ -59,11 +58,4 @@ public class AzaInformation implements Value<AzaInformation> {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return toStringHelper(this)
-                .defaultConfig()
-                .toString();
-
-    }
 }

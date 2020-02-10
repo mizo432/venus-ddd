@@ -2,14 +2,13 @@ package org.venuspj.ddd.model.values.buisiness.address;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.venuspj.ddd.model.values.Value;
+import org.venuspj.ddd.model.values.AbstractValue;
 import org.venuspj.util.builder.ObjectBuilder;
 import org.venuspj.util.objects2.Objects2;
 
 import static org.venuspj.util.objects2.Objects2.isNull;
-import static org.venuspj.util.objects2.Objects2.toStringHelper;
 
-public class AddressInformation implements Value<AddressInformation> {
+public class AddressInformation extends AbstractValue<AddressInformation> {
     private SimpleAddressInformation simpleAddressInformation = SimpleAddressInformation.empty();
     private AddressPostfix addressPostfix = AddressPostfix.empty();
 
@@ -30,16 +29,16 @@ public class AddressInformation implements Value<AddressInformation> {
         return addressPostfix;
     }
 
-    public static AddressInformation of(PostalCode aPostalCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, Aza anAza, KoAza aKoAza, AddressPostfix anAddressPostfix) {
+    public static AddressInformation of(ZipCode aZipCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, OoAza anOoAza, Aza aAza, AddressPostfix anAddressPostfix) {
         return of(
                 SimpleAddressInformation
                         .builder()
-                        .withPostalCode(aPostalCode)
+                        .withPostalCode(aZipCode)
                         .withAddressCode(anAddressCode)
                         .withPrefecture(aPrefecture)
                         .withCity(aCity)
-                        .withAza(anAza)
-                        .withKoAza(aKoAza)
+                        .withAza(anOoAza)
+                        .withKoAza(aAza)
                         .build(), anAddressPostfix);
 
     }
@@ -77,14 +76,6 @@ public class AddressInformation implements Value<AddressInformation> {
     public boolean isEmpty() {
         return simpleAddressInformation.isEmpty()
                 && addressPostfix.isEmpty();
-
-    }
-
-    @Override
-    public String toString() {
-        return toStringHelper(this)
-                .defaultConfig()
-                .toString();
 
     }
 

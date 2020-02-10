@@ -6,12 +6,12 @@ import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AzaIdentifierTest {
+public class OoOoAzaIdentifierTest {
 
     @Test
     @Tag(TestSize.SMALL)
     public void empty() {
-        AzaIdentifier target = AzaIdentifier.empty();
+        OoAzaIdentifier target = OoAzaIdentifier.empty();
 
         assertThat(target.sameValueAs(target))
                 .isTrue();
@@ -21,7 +21,7 @@ public class AzaIdentifierTest {
     @Test
     @Tag(TestSize.SMALL)
     public void of() {
-        AzaIdentifier target = AzaIdentifier.of(10L);
+        OoAzaIdentifier target = OoAzaIdentifier.of(10L);
 
         assertThat(target.sameValueAs(target))
                 .isTrue();
