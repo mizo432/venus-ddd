@@ -92,8 +92,8 @@ public class YearInterval extends AbstractValue<YearInterval> {
 
     }
 
-    public YearInterval marge(YearInterval nextInterval) {
-        return YearInterval.createFrom(startMoment, nextInterval.endMoment);
+    public YearInterval marge(YearInterval aNextInterval) {
+        return YearInterval.createFrom(startMoment, aNextInterval.endMoment);
 
     }
 

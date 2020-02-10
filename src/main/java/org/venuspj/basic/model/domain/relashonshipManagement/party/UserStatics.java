@@ -1,8 +1,12 @@
 package org.venuspj.basic.model.domain.relashonshipManagement.party;
 
-import org.venuspj.ddd.model.values.Value;
+import org.venuspj.ddd.model.values.AbstractValue;
 
-public class UserStatics implements Value<UserStatics> {
+/**
+ * 利用者の状態
+ */
+public class UserStatics extends AbstractValue<UserStatics> {
+
     @Override
     public boolean sameValueAs(UserStatics other) {
         return true;
@@ -11,5 +15,6 @@ public class UserStatics implements Value<UserStatics> {
     @Override
     public boolean isEmpty() {
         return true;
+
     }
 }

@@ -9,9 +9,16 @@ public class DateTimeHistoryItem<I extends Value<I>> implements Value<DateTimeHi
     private DateTimeInterval interval;
     private I item;
 
+    DateTimeHistoryItem(DateTimeInterval aDateTimeInterval, I anItem) {
+        interval = aDateTimeInterval;
+        item = anItem;
+
+    }
+
 
     I getItem() {
         return item;
+
     }
 
     DateTimeInterval getInterval() {
@@ -46,28 +53,34 @@ public class DateTimeHistoryItem<I extends Value<I>> implements Value<DateTimeHi
 
     }
 
-    public boolean sameItemAs(DateTimeHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return false;
+    public boolean sameItemAs(DateTimeHistoryItem<I> anOtherHistoryItem) {
+        return item.sameValueAs(anOtherHistoryItem.item);
     }
 
-    public boolean isContinuous(DateTimeHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return false;
+    public boolean isContinuous(DateTimeHistoryItem<I> aNextHistoryItem) {
+        return interval.isContinuous(aNextHistoryItem.interval);
     }
 
-    public DateTimeHistoryItem<I> merge(DateTimeHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return null;
+    public DateTimeHistoryItem<I> merge(DateTimeHistoryItem<I> aNextHistoryItem) {
+        DateTimeInterval newInterval = interval.marge(aNextHistoryItem.interval);
+
+        return DateTimeHistoryItem.createFrom(newInterval, item);
+
     }
 
-    public boolean isOverlap(DateTimeHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return false;
+    private static <I extends Value<I>> DateTimeHistoryItem<I> createFrom(DateTimeInterval aDateTimeInterval, I anItem) {
+        return new DateTimeHistoryItem(aDateTimeInterval, anItem);
+
     }
 
-    public DateTimeHistoryItem<I> adjustEndDate(DateTimeHistoryItem<I> thisHistoryItem) {
-        // TODO atdk
-        return null;
+    public DateTimeHistoryItem<I> adjustEndDate(DateTimeHistoryItem<I> aNextHistoryItem) {
+        DateTimeInterval newInterval = interval.adjustEndDate(aNextHistoryItem.interval);
+        return DateTimeHistoryItem.createFrom(newInterval, item);
+
+    }
+
+    public boolean isOverlap(DateTimeHistoryItem<I> aNextHistoryItem) {
+        return interval.isOverlap(aNextHistoryItem.interval);
+
     }
 }

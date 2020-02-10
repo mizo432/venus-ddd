@@ -67,12 +67,12 @@ public class YearHistoryItem<I extends Value<I>> extends AbstractValue<YearHisto
 
     }
 
-    public boolean sameItemAs(YearHistoryItem<I> aYearHistoryItem) {
-        return item.sameValueAs(aYearHistoryItem.item);
-    }
-
     public I item() {
         return item;
+    }
+
+    public boolean sameItemAs(YearHistoryItem<I> anOtherHistoryItem) {
+        return item.sameValueAs(anOtherHistoryItem.item);
     }
 
     public boolean isContinuous(YearHistoryItem<I> aNextHistoryItem) {
