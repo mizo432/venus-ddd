@@ -106,7 +106,7 @@ public class DateInterval extends AbstractValue<DateInterval> {
         }
 
         public static DefaultDateValue of(DateValue<?> aValue) {
-            return new DefaultDateValue(aValue.getValue());
+            return of(aValue.getValue());
 
         }
 
@@ -127,8 +127,11 @@ public class DateInterval extends AbstractValue<DateInterval> {
         }
 
         public DefaultDateValue decrementMoment() {
-            // TODO atdk
-            return null;
+            return DefaultDateValue.of(value.minusDays(1L));
+        }
+
+        private static DefaultDateValue of(LocalDate aValue) {
+            return new DefaultDateValue(aValue);
         }
     }
 }
