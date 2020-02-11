@@ -10,7 +10,7 @@ import static org.venuspj.util.objects2.Objects2.*;
 public class SimpleAddressInformation extends AbstractValue<SimpleAddressInformation> {
     protected ZipCode zipCode = ZipCode.empty();
     protected AddressCode addressCode = AddressCode.empty();
-    protected Prefecture prefecture = Prefecture.EMPTY;
+    protected Prefecture prefecture = Prefecture.empty();
     protected City city = City.empty();
     protected OoAza ooAza = OoAza.empty();
     protected Aza koAza = Aza.empty();
@@ -94,7 +94,7 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
         SimpleAddressInformation that = (SimpleAddressInformation) o;
         return equal(zipCode, that.zipCode) &&
                 equal(addressCode, that.addressCode) &&
-                prefecture == that.prefecture &&
+                equal(prefecture, that.prefecture) &&
                 equal(city, that.city) &&
                 equal(ooAza, that.ooAza) &&
                 equal(koAza, that.koAza) &&
@@ -121,7 +121,7 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
     public static class SimpleAddressInformationBuilder extends ObjectBuilder<SimpleAddressInformation, SimpleAddressInformationBuilder> {
         protected ZipCode zipCode = ZipCode.empty();
         protected AddressCode addressCode = AddressCode.empty();
-        protected Prefecture prefecture = Prefecture.EMPTY;
+        protected Prefecture prefecture = Prefecture.empty();
         protected City city = City.empty();
         protected OoAza ooAza = OoAza.empty();
         protected Aza koAza = Aza.empty();

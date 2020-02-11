@@ -13,6 +13,15 @@ public class Prefecture extends AbstractEntity<Prefecture, PrefectureIdentifier,
         super(anIdentifier, anEntityInfo);
     }
 
+    public static Prefecture empty() {
+        return new Prefecture();
+    }
+
+    public static Prefecture of(PrefectureIdentifier anIdentifier, PrefectureInformation anInformation) {
+        return new Prefecture(anIdentifier, anInformation);
+
+    }
+
     @JsonIgnore
     public boolean isEmpty() {
         return getIdentifier().isEmpty() &&

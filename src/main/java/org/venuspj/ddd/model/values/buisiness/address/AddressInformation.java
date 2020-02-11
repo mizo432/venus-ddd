@@ -4,9 +4,8 @@ package org.venuspj.ddd.model.values.buisiness.address;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.AbstractValue;
 import org.venuspj.util.builder.ObjectBuilder;
-import org.venuspj.util.objects2.Objects2;
 
-import static org.venuspj.util.objects2.Objects2.isNull;
+import static org.venuspj.util.objects2.Objects2.*;
 
 public class AddressInformation extends AbstractValue<AddressInformation> {
     private SimpleAddressInformation simpleAddressInformation = SimpleAddressInformation.empty();
@@ -63,13 +62,13 @@ public class AddressInformation extends AbstractValue<AddressInformation> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AddressInformation that = (AddressInformation) o;
-        return Objects2.equal(simpleAddressInformation, that.simpleAddressInformation) &&
-                Objects2.equal(addressPostfix, that.addressPostfix);
+        return equal(simpleAddressInformation, that.simpleAddressInformation) &&
+                equal(addressPostfix, that.addressPostfix);
     }
 
     @Override
     public int hashCode() {
-        return Objects2.hash(simpleAddressInformation, addressPostfix);
+        return hash(simpleAddressInformation, addressPostfix);
     }
 
     @JsonIgnore

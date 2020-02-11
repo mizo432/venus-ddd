@@ -16,6 +16,12 @@ public class PrefectureIdentifier extends AbstractEntityLongIdentifier<Prefectur
 
     public static PrefectureIdentifier empty() {
         return new PrefectureIdentifier();
+
+    }
+
+    public static PrefectureIdentifier of(Long aValue) {
+        return new PrefectureIdentifier(aValue);
+
     }
 
     @Override

@@ -11,7 +11,7 @@ public class PrefectureTest {
     @Test
     @Tag(TestSize.SMALL)
     public void isEmpty1() {
-        assertThat(Prefecture.EMPTY.isEmpty())
+        assertThat(Prefecture.empty().isEmpty())
                 .isTrue();
 
 
@@ -20,7 +20,8 @@ public class PrefectureTest {
     @Test
     @Tag(TestSize.SMALL)
     public void isEmpty2() {
-        assertThat(Prefecture.北海道.isEmpty())
+        assertThat(Prefecture.of(PrefectureIdentifier.of(1L),
+                PrefectureInformation.empty()).isEmpty())
                 .isFalse();
 
 

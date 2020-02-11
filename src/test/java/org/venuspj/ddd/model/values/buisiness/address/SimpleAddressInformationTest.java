@@ -46,6 +46,9 @@ public class SimpleAddressInformationTest {
     public void sameValueAs3() {
         SimpleAddressInformation arg = SimpleAddressInformation.empty();
         SimpleAddressInformation target = SimpleAddressInformation.empty();
+        System.out.println(arg);
+        System.out.println(target);
+
         boolean actual = target.sameValueAs(arg);
         assertThat(actual)
                 .isTrue();
@@ -72,7 +75,7 @@ public class SimpleAddressInformationTest {
     public void builder1() {
         SimpleAddressInformation target = SimpleAddressInformation
                 .builder()
-                .withPrefecture(Prefecture.EMPTY)
+                .withPrefecture(Prefecture.empty())
                 .withAddressCode(AddressCode.empty())
                 .withCity(City.empty())
                 .withAza(OoAza.empty())
@@ -125,7 +128,7 @@ public class SimpleAddressInformationTest {
     @Tag(TestSize.SMALL)
     public void of1() {
         SimpleAddressInformation target = SimpleAddressInformation
-                .of(ZipCode.empty(), AddressCode.empty(), Prefecture.EMPTY, City.empty(), OoAza.empty(), Aza.empty());
+                .of(ZipCode.empty(), AddressCode.empty(), Prefecture.empty(), City.empty(), OoAza.empty(), Aza.empty(), AddressBarCode.empty());
 
         boolean actual = target.isEmpty();
 
@@ -153,7 +156,7 @@ public class SimpleAddressInformationTest {
                     .builder()
                     .withAddressCode(AddressCode.of("12345678901"))
                     .withPostalCode(ZipCode.of("1234567"))
-                    .withPrefecture(Prefecture.北海道)
+                    .withPrefecture(Prefecture.of(PrefectureIdentifier.of(1L), PrefectureInformation.empty()))
                     .withAza(OoAzaTest.AzaMock.full())
                     .build();
         }
