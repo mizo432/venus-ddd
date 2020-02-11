@@ -1,12 +1,22 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.venuspj.ddd.model.entity.AbstractEntity;
 
-public enum Prefecture {
-    EMPTY, 北海道;
+public class Prefecture extends AbstractEntity<Prefecture, PrefectureIdentifier, PrefectureInformation> {
+
+    public Prefecture() {
+        super(PrefectureIdentifier.empty(), PrefectureInformation.empty());
+    }
+
+    Prefecture(PrefectureIdentifier anIdentifier, PrefectureInformation anEntityInfo) {
+        super(anIdentifier, anEntityInfo);
+    }
 
     @JsonIgnore
     public boolean isEmpty() {
-        return this == EMPTY;
+        return getIdentifier().isEmpty() &&
+                getEntityInfo().isEmpty();
+
     }
 }

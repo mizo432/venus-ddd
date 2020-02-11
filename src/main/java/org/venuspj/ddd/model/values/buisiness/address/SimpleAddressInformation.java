@@ -2,67 +2,72 @@ package org.venuspj.ddd.model.values.buisiness.address;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.venuspj.ddd.model.values.Value;
+import org.venuspj.ddd.model.values.AbstractValue;
 import org.venuspj.util.builder.ObjectBuilder;
-import org.venuspj.util.objects2.Objects2;
 
 import static org.venuspj.util.objects2.Objects2.*;
 
-public class SimpleAddressInformation implements Value<SimpleAddressInformation> {
+public class SimpleAddressInformation extends AbstractValue<SimpleAddressInformation> {
     protected ZipCode zipCode = ZipCode.empty();
     protected AddressCode addressCode = AddressCode.empty();
     protected Prefecture prefecture = Prefecture.EMPTY;
     protected City city = City.empty();
     protected OoAza ooAza = OoAza.empty();
     protected Aza koAza = Aza.empty();
+    protected AddressBarCode addressBarCode = AddressBarCode.empty();
 
-    SimpleAddressInformation(ZipCode aZipCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, OoAza anOoAza, Aza aAza) {
+    SimpleAddressInformation(ZipCode aZipCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, OoAza anOoAza, Aza anAza, AddressBarCode anAddressBarCode) {
         zipCode = aZipCode;
         addressCode = anAddressCode;
         prefecture = aPrefecture;
         city = aCity;
-        koAza = aAza;
+        koAza = anAza;
         ooAza = anOoAza;
+        addressBarCode = anAddressBarCode;
+
     }
 
     public SimpleAddressInformation() {
 
     }
 
-    public ZipCode getZipCode() {
+    public ZipCode zipCode() {
         return zipCode;
+
     }
 
-    public AddressCode getAddressCode() {
+    public AddressCode addressCode() {
         return addressCode;
+
     }
 
-    public Prefecture getPrefecture() {
+    public Prefecture prefecture() {
         return prefecture;
+
     }
 
-    public City getCity() {
+    public City city() {
         return city;
+
     }
 
-    public OoAza getOoAza() {
+    public OoAza ooAza() {
         return ooAza;
+
     }
 
-    public Aza getKoAza() {
+    public Aza koAza() {
         return koAza;
-    }
-
-    public static SimpleAddressInformation of(ZipCode aZipCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, OoAza anOoAza, Aza aAza) {
-        return new SimpleAddressInformation(aZipCode, anAddressCode, aPrefecture, aCity, anOoAza, aAza);
 
     }
 
-    @Override
-    public String toString() {
-        return toStringHelper(this)
-                .defaultConfig()
-                .toString();
+    private AddressBarCode addressBarCode() {
+        return addressBarCode;
+
+    }
+
+    public static SimpleAddressInformation of(ZipCode aZipCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, OoAza anOoAza, Aza anAza, AddressBarCode anAddressBarCode) {
+        return new SimpleAddressInformation(aZipCode, anAddressCode, aPrefecture, aCity, anOoAza, anAza, anAddressBarCode);
 
     }
 
@@ -87,12 +92,13 @@ public class SimpleAddressInformation implements Value<SimpleAddressInformation>
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SimpleAddressInformation that = (SimpleAddressInformation) o;
-        return Objects2.equal(zipCode, that.zipCode) &&
-                Objects2.equal(addressCode, that.addressCode) &&
+        return equal(zipCode, that.zipCode) &&
+                equal(addressCode, that.addressCode) &&
                 prefecture == that.prefecture &&
-                Objects2.equal(city, that.city) &&
-                Objects2.equal(ooAza, that.ooAza) &&
-                Objects2.equal(koAza, that.koAza);
+                equal(city, that.city) &&
+                equal(ooAza, that.ooAza) &&
+                equal(koAza, that.koAza) &&
+                equal(addressBarCode, addressBarCode);
     }
 
     @Override
@@ -119,16 +125,25 @@ public class SimpleAddressInformation implements Value<SimpleAddressInformation>
         protected City city = City.empty();
         protected OoAza ooAza = OoAza.empty();
         protected Aza koAza = Aza.empty();
+        protected AddressBarCode addressBarCode = AddressBarCode.empty();
 
 
         @Override
         protected void apply(SimpleAddressInformation vo, SimpleAddressInformationBuilder builder) {
-            builder.withPostalCode(vo.zipCode);
-            builder.withAddressCode(vo.addressCode);
-            builder.withPrefecture(vo.prefecture);
-            builder.withCity(vo.city);
-            builder.withAza(vo.ooAza);
-            builder.withKoAza(vo.koAza);
+            builder.withPostalCode(vo.zipCode());
+            builder.withAddressCode(vo.addressCode());
+            builder.withPrefecture(vo.prefecture());
+            builder.withCity(vo.city());
+            builder.withAza(vo.ooAza());
+            builder.withKoAza(vo.koAza());
+            builder.withAddressBarCode(vo.addressBarCode());
+
+        }
+
+        private SimpleAddressInformationBuilder withAddressBarCode(AddressBarCode anAddressBarCode) {
+            if (isNull(anAddressBarCode)) return getThis();
+            addConfigurator(builder -> builder.addressBarCode = anAddressBarCode);
+            return getThis();
 
         }
 
@@ -136,6 +151,7 @@ public class SimpleAddressInformation implements Value<SimpleAddressInformation>
             if (isNull(anAza)) return getThis();
             addConfigurator(builder -> builder.koAza = anAza);
             return getThis();
+
         }
 
         public SimpleAddressInformationBuilder withAza(OoAza ooAza) {
@@ -170,18 +186,21 @@ public class SimpleAddressInformation implements Value<SimpleAddressInformation>
 
         @Override
         protected SimpleAddressInformation createValueObject() {
-            return new SimpleAddressInformation(zipCode, addressCode, prefecture, city, ooAza, koAza);
+            return new SimpleAddressInformation(zipCode, addressCode, prefecture, city, ooAza, koAza, addressBarCode);
 
         }
 
         @Override
         protected SimpleAddressInformationBuilder getThis() {
             return this;
+
         }
 
         @Override
         protected SimpleAddressInformationBuilder newInstance() {
             return new SimpleAddressInformationBuilder();
+
         }
     }
+
 }
