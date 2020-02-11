@@ -26,6 +26,10 @@ public class Prefecture extends AbstractPrefecture<Prefecture> {
 
     }
 
+    public static PrefectureBuilder builder() {
+        return new PrefectureBuilder();
+    }
+
     public static class PrefectureBuilder
 
             extends AbstractPrefectureBuilder<Prefecture, PrefectureBuilder> {
