@@ -1,14 +1,13 @@
 package org.venuspj.ddd.model.entity;
 
-import org.venuspj.ddd.model.values.primitives.LongSingleValue;
+import org.venuspj.ddd.model.values.Value;
 
 /**
  * エンティティ識別
  *
- * @param <E>  エンティティ
  * @param <EI> エンティティ識別子
  */
-public interface EntityIdentifier<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> extends LongSingleValue<EI> {
+public interface EntityIdentifier<EI extends EntityIdentifier<EI>> extends Value<EI> {
 
     String getKind();
 

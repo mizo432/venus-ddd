@@ -5,13 +5,13 @@ import org.venuspj.ddd.model.entity.AbstractEntity;
 /**
  * 人または組織の利用者
  */
-public class User extends AbstractEntity<User, UserIdentifier, UserInformation> {
+public class User extends AbstractEntity<User, UserIdentifier> {
 
-    protected User(UserIdentifier anIdentifier, UserInformation anUserInformation) {
-        super(anIdentifier, anUserInformation);
+    protected User(UserIdentifier anIdentifier) {
+        super(anIdentifier);
     }
 
     protected User() {
-        super(UserIdentifier.empty(), UserInformation.empty());
+        super(UserIdentifier.empty());
     }
 }

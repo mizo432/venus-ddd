@@ -9,9 +9,11 @@ public class ZipCode extends AbstractStringCodeValue<ZipCode> {
 
     public ZipCode(String aValue) {
         super(aValue);
+
     }
 
     public ZipCode() {
+
     }
 
     public static ZipCode empty() {

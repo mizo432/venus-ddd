@@ -1,16 +1,16 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.entity.AbstractEntity;
 
-public class OoAza extends AbstractEntity<OoAza, OoAzaIdentifier, OoAzaInformation> {
+public class OoAza extends AbstractEntity<OoAza, OoAzaIdentifier> {
 
-    OoAza(OoAzaIdentifier aOoAzaIdentifier, OoAzaInformation anOoAzaInformation) {
-        super(aOoAzaIdentifier, anOoAzaInformation);
+    OoAza(OoAzaIdentifier aOoAzaIdentifier) {
+        super(aOoAzaIdentifier);
     }
 
     public OoAza() {
-        super(OoAzaIdentifier.empty(), OoAzaInformation.empty());
+        super(OoAzaIdentifier.empty());
+
     }
 
     public static OoAza empty() {
@@ -18,15 +18,9 @@ public class OoAza extends AbstractEntity<OoAza, OoAzaIdentifier, OoAzaInformati
 
     }
 
-    public static OoAza of(OoAzaIdentifier anOoAzaIdentifier, OoAzaInformation anOoAzaInformation) {
-        return new OoAza(anOoAzaIdentifier, anOoAzaInformation);
+    public static OoAza of(OoAzaIdentifier anOoAzaIdentifier) {
+        return new OoAza(anOoAzaIdentifier);
 
-
-    }
-
-    @JsonIgnore
-    protected OoAzaInformation getAzaInformation() {
-        return getEntityInfo();
     }
 
 }

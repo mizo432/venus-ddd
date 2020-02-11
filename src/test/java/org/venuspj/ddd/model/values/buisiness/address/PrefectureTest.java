@@ -17,13 +17,4 @@ public class PrefectureTest {
 
     }
 
-    @Test
-    @Tag(TestSize.SMALL)
-    public void isEmpty2() {
-        assertThat(Prefecture.of(PrefectureIdentifier.of(1L),
-                PrefectureInformation.empty()).isEmpty())
-                .isFalse();
-
-
-    }
 }

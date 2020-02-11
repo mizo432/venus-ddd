@@ -2,29 +2,34 @@ package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
 import org.venuspj.ddd.model.entity.AbstractEntityBuilder;
 
-public class ConcreteEntityBuilder extends AbstractEntityBuilder<ConcreteEntity, ConcreteEntityIdentifier, ConcreteInfo
+import static org.venuspj.util.objects2.Objects2.isNull;
+
+public class ConcreteEntityBuilder extends AbstractEntityBuilder<ConcreteEntity, ConcreteEntityIdentifier
         , ConcreteEntityBuilder> {
+    ConcreteInfo concreteInfo;
+
     ConcreteEntityBuilder() {
         identifier = ConcreteEntityIdentifier.empty();
-        entityInfo = ConcreteInfo.empty();
 
     }
 
     @Override
     protected void apply(ConcreteEntity vo, ConcreteEntityBuilder builder) {
         builder.withIdentifier(vo.getIdentifier());
-        builder.withConcreteInfo(vo.getConcreteInfo());
+        builder.withConcreteInfo(vo.concreteInfo());
 
     }
 
     public ConcreteEntityBuilder withConcreteInfo(ConcreteInfo aConcreteInfo) {
-        return withEntityInfo(aConcreteInfo);
+        if (isNull(aConcreteInfo)) return getThis();
+        addConfigurator(builder -> builder.concreteInfo = aConcreteInfo);
+        return getThis();
 
     }
 
     @Override
     protected ConcreteEntity createValueObject() {
-        return new ConcreteEntity(super.identifier, super.entityInfo);
+        return new ConcreteEntity(super.identifier, concreteInfo);
 
     }
 

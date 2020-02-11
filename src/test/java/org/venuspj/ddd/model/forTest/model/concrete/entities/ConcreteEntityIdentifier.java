@@ -2,7 +2,7 @@ package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
 import org.venuspj.ddd.model.entity.AbstractEntityLongIdentifier;
 
-public class ConcreteEntityIdentifier extends AbstractEntityLongIdentifier<ConcreteEntity, ConcreteEntityIdentifier> {
+public class ConcreteEntityIdentifier extends AbstractEntityLongIdentifier<ConcreteEntityIdentifier> {
 
     public ConcreteEntityIdentifier() {
         super(ConcreteEntity.class);

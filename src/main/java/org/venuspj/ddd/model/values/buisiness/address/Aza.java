@@ -1,16 +1,20 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.entity.AbstractEntity;
+import org.venuspj.ddd.model.values.buisiness.Name;
 
-public class Aza extends AbstractEntity<Aza, AzaIdentifier, AzaInformation> {
+import static org.venuspj.util.objects2.Objects2.hash;
 
-    Aza(AzaIdentifier anAzaIdentifier, AzaInformation anAzaInformation) {
-        super(anAzaIdentifier, anAzaInformation);
+public class Aza extends AbstractEntity<Aza, AzaIdentifier> {
+    private Name name = Name.empty();
+
+    Aza(AzaIdentifier anAzaIdentifier, Name aName) {
+        super(anAzaIdentifier);
+        name = aName;
     }
 
     public Aza() {
-        super(AzaIdentifier.empty(), AzaInformation.empty());
+        super(AzaIdentifier.empty());
     }
 
     public static Aza empty() {
@@ -18,13 +22,23 @@ public class Aza extends AbstractEntity<Aza, AzaIdentifier, AzaInformation> {
 
     }
 
-    public static Aza of(AzaIdentifier anAzaIdentifier, AzaInformation anAzaInformation) {
-        return new Aza(anAzaIdentifier, anAzaInformation);
+    public static Aza of(AzaIdentifier anAzaIdentifier, Name aName) {
+        return new Aza(anAzaIdentifier, aName);
 
     }
 
-    @JsonIgnore
-    public AzaInformation getKoAzaInformation() {
-        return getEntityInfo();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Aza aza = (Aza) o;
+        return name.equals(aza.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return hash(super.hashCode(), name);
+
     }
 }

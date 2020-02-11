@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.ddd.model.values.buisiness.address.AddressInformation;
-import org.venuspj.ddd.model.values.buisiness.address.AddressInformationTest;
 import org.venuspj.ddd.model.values.buisiness.address.SimpleAddressInformation;
 import org.venuspj.tests.constants.TestSize;
 
@@ -174,17 +173,6 @@ public class ContactTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void isEmpty3() {
-        Contact target = ContactMock.existAddressInformation();
-        boolean actual = target.isEmpty();
-        assertThat(actual)
-                .isFalse();
-
-
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
     public void isEmpty4() {
         Contact target = ContactMock.existTelephoneNumber();
         boolean actual = target.isEmpty();
@@ -249,12 +237,6 @@ public class ContactTest {
             return Contact.builder().build();
         }
 
-        public static Contact existAddressInformation() {
-            return Contact.builder()
-                    .withAddressInformation(AddressInformationTest.AddressInformationMock.one())
-                    .build();
-        }
-
         public static Contact existTelephoneNumber() {
             return Contact.builder()
                     .withTelephoneNumber(TelephoneNumber.of("012-3456-7890"))
@@ -275,7 +257,7 @@ public class ContactTest {
 
         public static Contact full() {
             return Contact.builder()
-                    .withAddressInformation(AddressInformationTest.AddressInformationMock.one())
+//                    .withAddressInformation(AddressInformationTest.AddressInformationMock.one())
                     .withTelephoneNumber(TelephoneNumber.of("012-3456-7890"))
                     .withFaxNumber(TelephoneNumber.of("012-3456-7890"))
                     .withEmailAddress(EmailAddress.of("dummy.@gmail.com"))

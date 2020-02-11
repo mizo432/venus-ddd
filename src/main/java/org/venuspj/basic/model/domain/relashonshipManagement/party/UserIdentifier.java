@@ -2,7 +2,7 @@ package org.venuspj.basic.model.domain.relashonshipManagement.party;
 
 import org.venuspj.ddd.model.entity.AbstractEntityLongIdentifier;
 
-public class UserIdentifier extends AbstractEntityLongIdentifier<User, UserIdentifier> {
+public class UserIdentifier extends AbstractEntityLongIdentifier<UserIdentifier> {
 
     public UserIdentifier() {
         super(User.class);

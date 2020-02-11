@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.entity;
 
-public interface Entity<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> {
+public interface Entity<E extends Entity<E, EI>, EI extends EntityIdentifier<EI>> {
 
     /**
      * エンティティの識別子を取得する。

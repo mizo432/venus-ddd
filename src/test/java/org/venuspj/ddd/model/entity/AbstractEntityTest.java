@@ -38,17 +38,6 @@ public class AbstractEntityTest {
 
     @Test
     @Tag(TestSize.SMALL)
-    public void isEmpty2() {
-        ConcreteEntity target = ConcreteEntity.of(ConcreteEntityIdentifier.empty(), ConcreteInfo.of(Name.of("ABC")));
-        boolean actual = target.isEmpty();
-
-        assertThat(actual)
-                .isFalse();
-
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
     public void isEmpty3() {
         ConcreteEntity target = ConcreteEntity.of(ConcreteEntityIdentifier.of(1L), ConcreteInfo.of(Name.of("ABC")));
         boolean actual = target.isEmpty();

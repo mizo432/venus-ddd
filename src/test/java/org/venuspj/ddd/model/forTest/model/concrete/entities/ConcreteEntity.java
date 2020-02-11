@@ -3,25 +3,27 @@ package org.venuspj.ddd.model.forTest.model.concrete.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.entity.AbstractEntity;
 
-import static org.venuspj.util.objects2.Objects2.toStringHelper;
-
-public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntityIdentifier, ConcreteInfo> {
+public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntityIdentifier> {
+    ConcreteInfo concreteInfo = ConcreteInfo.empty();
 
     public ConcreteEntity() {
-        super(ConcreteEntityIdentifier.empty(), ConcreteInfo.empty());
+        super(ConcreteEntityIdentifier.empty());
 
     }
 
     public ConcreteEntity(ConcreteEntityIdentifier aConcreteEntityIdentifier, ConcreteInfo aConcreteInfo) {
-        super(aConcreteEntityIdentifier, aConcreteInfo);
+        super(aConcreteEntityIdentifier);
+        concreteInfo = aConcreteInfo;
 
     }
 
     public static ConcreteEntity empty() {
         return new ConcreteEntity();
+
     }
 
     public static ConcreteEntity of(ConcreteEntityIdentifier aConcreteEntityIdentifier, ConcreteInfo aConcreteInfo) {
+
         return new ConcreteEntity(aConcreteEntityIdentifier, aConcreteInfo);
     }
 
@@ -31,16 +33,9 @@ public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntit
     }
 
     @JsonIgnore
-    public ConcreteInfo getConcreteInfo() {
-        return getEntityInfo();
+    public ConcreteInfo concreteInfo() {
+        return concreteInfo;
 
     }
 
-    @Override
-    public String toString() {
-        return toStringHelper(this)
-                .defaultConfig()
-                .toString();
-
-    }
 }
