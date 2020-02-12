@@ -29,15 +29,15 @@ public abstract class AbstractPrefecture<P extends AbstractPrefecture<P>> extend
 
     }
 
-    protected Name kanaName() {
+    public Name kanaName() {
         return kanaName;
     }
 
-    protected Name name() {
+    public Name name() {
         return name;
     }
 
-    protected PrefectureCode prefectureCode() {
+    public PrefectureCode prefectureCode() {
         return prefectureCode;
 
     }
@@ -63,6 +63,15 @@ public abstract class AbstractPrefecture<P extends AbstractPrefecture<P>> extend
         protected Name name = Name.empty();
         protected Name kanaName = Name.empty();
 
+        @Override
+        protected void apply(O vo, B builder) {
+            builder.withIdentifier(vo.getIdentifier());
+            builder.withPrefectureCode(vo.prefectureCode());
+            builder.withName(vo.name());
+            builder.withKanaName(vo.kanaName());
+
+        }
+
         public B withKanaName(Name aKanaName) {
             if (isNull(aKanaName)) return getThis();
             addConfigurator(builder -> builder.kanaName = aKanaName);
@@ -77,7 +86,7 @@ public abstract class AbstractPrefecture<P extends AbstractPrefecture<P>> extend
 
         }
 
-        public B withCityCode(PrefectureCode aPrefectureCode) {
+        public B withPrefectureCode(PrefectureCode aPrefectureCode) {
             if (isNull(aPrefectureCode)) return getThis();
             addConfigurator(builder -> builder.prefectureCode = aPrefectureCode);
             return getThis();

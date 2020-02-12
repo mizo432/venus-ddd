@@ -36,16 +36,6 @@ public class Prefecture extends AbstractPrefecture<Prefecture> {
 
 
         @Override
-        protected void apply(Prefecture vo, PrefectureBuilder builder) {
-            builder.withIdentifier(vo.getIdentifier());
-            builder.withCityCode(vo.prefectureCode());
-            builder.withName(vo.name());
-            builder.withKanaName(vo.kanaName());
-
-
-        }
-
-        @Override
         protected Prefecture createValueObject() {
             return new Prefecture(identifier,
                     prefectureCode,

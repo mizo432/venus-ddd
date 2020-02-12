@@ -56,6 +56,7 @@ public class AzaInformation extends AbstractValue<AzaInformation> {
 
     public Name getName() {
         return name;
+
     }
 
 }

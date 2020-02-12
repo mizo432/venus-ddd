@@ -23,7 +23,7 @@ public class PrefectureTest {
     public void builder1() {
         Prefecture actual = Prefecture.builder()
                 .withIdentifier(PrefectureIdentifier.of(1L))
-                .withCityCode(PrefectureCode.of("10"))
+                .withPrefectureCode(PrefectureCode.of("10"))
                 .withKanaName(Name.of("ほっかいどう"))
                 .withName(Name.of("北海道"))
                 .build();

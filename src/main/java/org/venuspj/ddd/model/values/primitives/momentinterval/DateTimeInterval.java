@@ -106,7 +106,7 @@ public class DateTimeInterval extends AbstractValue<DateTimeInterval> {
         }
 
         public static DefaultDateTimeValue of(DateTimeValue<?> aValue) {
-            return new DefaultDateTimeValue(aValue.getValue());
+            return of(aValue.getValue());
 
         }
 
@@ -127,8 +127,12 @@ public class DateTimeInterval extends AbstractValue<DateTimeInterval> {
         }
 
         public DefaultDateTimeValue decrementMoment() {
-            // TODO atdk
-            return null;
+            return DefaultDateTimeValue.of(value.minusNanos(1L));
+
+        }
+
+        private static DefaultDateTimeValue of(LocalDateTime aValue) {
+            return new DefaultDateTimeValue(aValue);
 
         }
     }
