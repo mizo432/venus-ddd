@@ -77,7 +77,7 @@ public abstract class AbstractPrefecture<P extends AbstractPrefecture<P>> extend
 
         }
 
-        public B withPrefectureCode(PrefectureCode aPrefectureCode) {
+        public B withCityCode(PrefectureCode aPrefectureCode) {
             if (isNull(aPrefectureCode)) return getThis();
             addConfigurator(builder -> builder.prefectureCode = aPrefectureCode);
             return getThis();

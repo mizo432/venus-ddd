@@ -6,36 +6,24 @@ import org.venuspj.ddd.model.values.buisiness.Name;
 
 import static org.venuspj.util.objects2.Objects2.isNull;
 
-public class AbstractCity<C extends AbstractCity<C>> extends AbstractEntity<C, CityIdentifier> {
+public class AbstractOoAza<C extends AbstractOoAza<C>> extends AbstractEntity<C, OoAzaIdentifier> {
 
-    public CityCode cityCode() {
-        return cityCode;
-    }
-
-    public Name name() {
-        return name;
-    }
-
-    public Name kanaName() {
-        return kanaName;
-    }
-
-    private CityCode cityCode = CityCode.empty();
+    private OoAzaCode ooAzaCode = OoAzaCode.empty();
     private Name name = Name.empty();
     private Name kanaName = Name.empty();
 
 
-    public AbstractCity() {
-        super(CityIdentifier.empty());
+    public AbstractOoAza() {
+        super(OoAzaIdentifier.empty());
 
     }
 
-    protected AbstractCity(CityIdentifier aCityIdentifier, CityCode aCityCode,
-                           Name aName,
-                           Name aKanaName) {
-        super(aCityIdentifier);
-        cityCode = aCityCode;
-        name = aKanaName;
+    protected AbstractOoAza(OoAzaIdentifier aOoAzaIdentifier, OoAzaCode aOoAzaCode,
+                            Name aName,
+                            Name aKanaName) {
+        super(aOoAzaIdentifier);
+        ooAzaCode = aOoAzaCode;
+        name = aName;
         kanaName = aKanaName;
 
     }
@@ -44,21 +32,20 @@ public class AbstractCity<C extends AbstractCity<C>> extends AbstractEntity<C, C
      * @param <O>
      * @param <B>
      */
-    public static abstract class AbstractCityBuilder
-            <O extends AbstractCity<O>,
-                    B extends AbstractCityBuilder<O, B>>
-            extends AbstractEntityBuilder<O, CityIdentifier, B> {
-        protected CityCode cityCode = CityCode.empty();
+    public static abstract class AbstractOoAzaBuilder
+            <O extends AbstractOoAza<O>,
+                    B extends AbstractOoAzaBuilder<O, B>>
+            extends AbstractEntityBuilder<O, OoAzaIdentifier, B> {
+        protected OoAzaCode ooAzaCode = OoAzaCode.empty();
         protected Name name = Name.empty();
         protected Name kanaName = Name.empty();
 
         @Override
         protected void apply(O vo, B builder) {
             builder.withIdentifier(vo.getIdentifier());
-            builder.withCityCode(vo.cityCode());
+            builder.withCityCode(vo.ooAzaCode());
             builder.withName(vo.name());
             builder.withKanaName(vo.kanaName());
-
 
         }
 
@@ -76,13 +63,27 @@ public class AbstractCity<C extends AbstractCity<C>> extends AbstractEntity<C, C
 
         }
 
-        public B withCityCode(CityCode aCityCode) {
-            if (isNull(aCityCode)) return getThis();
-            addConfigurator(builder -> builder.cityCode = aCityCode);
+        public B withCityCode(OoAzaCode anOoAzaCode) {
+            if (isNull(anOoAzaCode)) return getThis();
+            addConfigurator(builder -> builder.ooAzaCode = anOoAzaCode);
             return getThis();
 
         }
 
+    }
+
+    public Name kanaName() {
+        return kanaName;
+
+    }
+
+    public Name name() {
+        return name;
+
+    }
+
+    public OoAzaCode ooAzaCode() {
+        return ooAzaCode;
     }
 
 }

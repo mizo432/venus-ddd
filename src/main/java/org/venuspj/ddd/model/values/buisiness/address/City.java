@@ -29,4 +29,34 @@ public class City extends AbstractCity<City> {
 
     }
 
+    public static class CityBuilder
+
+            extends AbstractCityBuilder<City, CityBuilder> {
+
+
+        @Override
+        protected void apply(City vo, CityBuilder builder) {
+            super.apply(vo, builder);
+
+        }
+
+        @Override
+        protected City createValueObject() {
+            return new City(identifier,
+                    cityCode,
+                    name,
+                    kanaName);
+        }
+
+        @Override
+        protected CityBuilder getThis() {
+            return this;
+        }
+
+        @Override
+        protected CityBuilder newInstance() {
+            return new CityBuilder();
+        }
+    }
+
 }
