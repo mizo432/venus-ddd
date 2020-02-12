@@ -22,5 +22,6 @@ public class Cities extends AbstractEntities<City, CityIdentifier, Cities> {
 
     public static Cities empty() {
         return new Cities();
+
     }
 }

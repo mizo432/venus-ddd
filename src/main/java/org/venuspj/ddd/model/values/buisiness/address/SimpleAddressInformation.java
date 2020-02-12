@@ -154,15 +154,15 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
 
         }
 
-        public SimpleAddressInformationBuilder withAza(OoAza ooAza) {
-            if (isNull(ooAza)) return getThis();
-            addConfigurator(builder -> builder.ooAza = ooAza);
+        public SimpleAddressInformationBuilder withAza(OoAza anOoAza) {
+            if (isNull(anOoAza)) return getThis();
+            addConfigurator(builder -> builder.ooAza = anOoAza);
             return getThis();
         }
 
-        public SimpleAddressInformationBuilder withCity(City city) {
-            if (isNull(city)) return getThis();
-            addConfigurator(builder -> builder.city = city);
+        public SimpleAddressInformationBuilder withCity(City aCity) {
+            if (isNull(aCity)) return getThis();
+            addConfigurator(builder -> builder.city = aCity);
             return getThis();
         }
 
@@ -172,9 +172,9 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
             return getThis();
         }
 
-        protected SimpleAddressInformationBuilder withAddressCode(AddressCode aAddressCode) {
-            if (isNull(aAddressCode)) return getThis();
-            addConfigurator(builder -> builder.addressCode = aAddressCode);
+        protected SimpleAddressInformationBuilder withAddressCode(AddressCode anAddressCode) {
+            if (isNull(anAddressCode)) return getThis();
+            addConfigurator(builder -> builder.addressCode = anAddressCode);
             return getThis();
         }
 

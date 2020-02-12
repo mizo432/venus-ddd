@@ -4,12 +4,12 @@ import org.venuspj.ddd.model.entity.AbstractEntityLongIdentifier;
 
 public class CityIdentifier extends AbstractEntityLongIdentifier<CityIdentifier> {
     public CityIdentifier(Long aValue) {
-        super(City.class, aValue);
+        super(AbstractCity.class, aValue);
 
     }
 
     public CityIdentifier() {
-        super(City.class);
+        super(AbstractCity.class);
 
     }
 

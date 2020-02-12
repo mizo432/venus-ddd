@@ -1,16 +1,19 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
-import org.venuspj.ddd.model.entity.AbstractEntity;
 
-public class City extends AbstractEntity<City, CityIdentifier> {
+import org.venuspj.ddd.model.values.buisiness.Name;
 
-    City(CityIdentifier aCityIdentifier) {
-        super(aCityIdentifier);
+public class City extends AbstractCity<City> {
+
+    City(CityIdentifier aCityIdentifier, CityCode aCityCode,
+         Name aName,
+         Name aKanaName) {
+        super(aCityIdentifier, aCityCode, aName, aKanaName);
 
     }
 
     public City() {
-        super(CityIdentifier.empty());
+        super();
 
     }
 
@@ -19,8 +22,10 @@ public class City extends AbstractEntity<City, CityIdentifier> {
 
     }
 
-    public static City of(CityIdentifier aCityIdentifier) {
-        return new City(aCityIdentifier);
+    public static City of(CityIdentifier aCityIdentifier, CityCode aCityCode,
+                          Name aName,
+                          Name aKanaName) {
+        return new City(aCityIdentifier, aCityCode, aName, aKanaName);
 
     }
 

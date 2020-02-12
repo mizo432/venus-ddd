@@ -16,6 +16,23 @@ public enum Sex {
     適用不能(9, SexCode.of("9"), Name.of("not applicable"), Name.of("適用不能"));
 
     private final int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public SexCode getSexCode() {
+        return sexCode;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Name getJapaneseName() {
+        return japaneseName;
+    }
+
     private final SexCode sexCode;
     private final Name name;
     private final Name japaneseName;
