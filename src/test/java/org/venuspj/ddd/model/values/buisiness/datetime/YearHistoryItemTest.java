@@ -3,7 +3,7 @@ package org.venuspj.ddd.model.values.buisiness.datetime;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.forTest.model.values.buisiness.datetime.ConcreteValue;
-import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.ddd.model.values.buisiness.name.Name;
 import org.venuspj.ddd.model.values.primitives.momentinterval.EndYear;
 import org.venuspj.ddd.model.values.primitives.momentinterval.StartYear;
 import org.venuspj.ddd.model.values.primitives.momentinterval.YearInterval;

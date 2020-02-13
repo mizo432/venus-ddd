@@ -1,7 +1,7 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
 import org.venuspj.ddd.model.entity.AbstractEntity;
-import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.ddd.model.values.buisiness.name.Name;
 
 import static org.venuspj.util.objects2.Objects2.hash;
 

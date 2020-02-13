@@ -21,9 +21,17 @@ public class YearMonthInterval extends AbstractValue<YearMonthInterval> {
 
     }
 
+    public YearMonthInterval() {
+
+    }
+
     public static YearMonthInterval createFrom(YearMonthValue<?> aStartMoment, YearMonthValue<?> anEndMoment) {
         return new YearMonthInterval(DefaultYearMonthValue.of(aStartMoment),
                 DefaultYearMonthValue.of(anEndMoment));
+    }
+
+    public static YearMonthInterval empty() {
+        return new YearMonthInterval();
     }
 
     @Override

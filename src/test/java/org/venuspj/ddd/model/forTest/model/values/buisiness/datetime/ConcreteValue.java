@@ -1,7 +1,7 @@
 package org.venuspj.ddd.model.forTest.model.values.buisiness.datetime;
 
 import org.venuspj.ddd.model.values.Value;
-import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.ddd.model.values.buisiness.name.Name;
 
 import static org.venuspj.util.objects2.Objects2.*;
 

@@ -7,7 +7,7 @@ import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteInfo;
-import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.ddd.model.values.buisiness.name.Name;
 import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,4 +1,4 @@
-package org.venuspj.ddd.model.values.buisiness;
+package org.venuspj.ddd.model.values.buisiness.name;
 
 import org.venuspj.ddd.model.values.primitives.AbstractStringValue;
 

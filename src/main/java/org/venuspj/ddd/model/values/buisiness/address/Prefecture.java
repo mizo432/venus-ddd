@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
-import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.ddd.model.values.buisiness.name.Name;
 
 
 public class Prefecture extends AbstractPrefecture<Prefecture> {

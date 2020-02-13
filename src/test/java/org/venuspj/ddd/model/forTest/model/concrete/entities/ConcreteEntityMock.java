@@ -1,6 +1,6 @@
 package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
-import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.ddd.model.values.buisiness.name.Name;
 
 public class ConcreteEntityMock {
     public static ConcreteEntity createMock(ConcreteEntityMockType concreteEntityMockType) {

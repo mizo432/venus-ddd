@@ -5,11 +5,16 @@ import org.venuspj.util.builder.ObjectBuilder;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
 public abstract class AbstractEntityBuilder<
-        T extends AbstractEntity<T, EI>,
+        E extends AbstractEntity<E, EI>,
         EI extends EntityIdentifier<EI>,
-        B extends AbstractEntityBuilder<T, EI, B>> extends ObjectBuilder<T, B> {
+        B extends AbstractEntityBuilder<E, EI, B>> extends ObjectBuilder<E, B> {
 
     protected EI identifier;
+
+    protected void apply(E vo, B builder) {
+        builder.withIdentifier(vo.getIdentifier());
+
+    }
 
 
     public B withIdentifier(EI anIdentifier) {

@@ -1,6 +1,6 @@
 package org.venuspj.basic.model.domain.relashonshipManagement.party.person;
 
-import org.venuspj.ddd.model.values.buisiness.Name;
+import org.venuspj.ddd.model.values.buisiness.name.Name;
 
 /**
  * 性別.
