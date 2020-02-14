@@ -26,6 +26,12 @@ public class DateInterval extends AbstractValue<DateInterval> {
                 DefaultDateValue.of(anEndMoment));
     }
 
+    public static DateInterval createFrom(DateValue<?> aStartMoment) {
+        return new DateInterval(DefaultDateValue.of(aStartMoment),
+                DefaultDateValue.MAX);
+
+    }
+
     @Override
     public boolean sameValueAs(DateInterval other) {
         return equals(other);
@@ -89,7 +95,19 @@ public class DateInterval extends AbstractValue<DateInterval> {
 
     }
 
+    public DateValue<?> startMoment() {
+        return startMoment;
+
+    }
+
+    public DateValue<?> endMoment() {
+        return endMoment;
+
+    }
+
     private static class DefaultDateValue extends AbstractDateValue<DefaultDateValue> {
+
+        public static final DefaultDateValue MAX = DefaultDateValue.of(LocalDate.of(9999, 12, 31));
 
         public DefaultDateValue(LocalDate aValue) {
             super(aValue);

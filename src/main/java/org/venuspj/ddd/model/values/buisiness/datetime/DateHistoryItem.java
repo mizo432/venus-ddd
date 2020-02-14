@@ -14,7 +14,6 @@ public class DateHistoryItem<I extends Value<I>> implements Value<DateHistoryIte
         item = anItem;
     }
 
-
     I getItem() {
         return item;
     }
@@ -63,7 +62,7 @@ public class DateHistoryItem<I extends Value<I>> implements Value<DateHistoryIte
 
     }
 
-    private static <I extends Value<I>> DateHistoryItem<I> createFrom(DateInterval anInterval, I anItem) {
+    public static <V extends Value<V>> DateHistoryItem<V> createFrom(DateInterval anInterval, V anItem) {
         return new DateHistoryItem(anInterval, anItem);
 
     }
