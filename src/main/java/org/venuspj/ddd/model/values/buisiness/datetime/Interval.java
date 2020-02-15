@@ -19,6 +19,10 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
 
     }
 
+    public static <T extends Temporal> Interval<T> createFrom(Moment<T> aStartMoment) {
+        return new Interval<>(aStartMoment, aStartMoment.maxMoment());
+    }
+
     @Override
     public boolean sameValueAs(Interval<T> other) {
         return equals(other);
@@ -82,6 +86,22 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
     public boolean isOverlap(Interval<T> interval) {
         // TODO atdk
         return false;
+
+    }
+
+    public boolean contains(Moment<T> aTargetMoment) {
+        // TODO atdk
+        return false;
+
+    }
+
+    public Moment<T> startMoment() {
+        return startMoment;
+
+    }
+
+    public Moment<T> endMoment() {
+        return endMoment;
 
     }
 }

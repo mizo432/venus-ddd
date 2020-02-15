@@ -1,5 +1,9 @@
 package org.venuspj.ddd.model.values.buisiness.datetime;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Year;
+import java.time.YearMonth;
 import java.time.temporal.Temporal;
 
 /**
@@ -12,6 +16,7 @@ public class Moment<T extends Temporal>
 
     public Moment(T aValue) {
         super(aValue);
+
     }
 
     public Moment() {
@@ -32,4 +37,20 @@ public class Moment<T extends Temporal>
 
     }
 
+    public Moment<T> maxMoment() {
+        if (value instanceof Year)
+            return (Moment<T>) of(Year.of(9999));
+
+        if (value instanceof YearMonth)
+            return (Moment<T>) of(YearMonth.of(9999, 12));
+
+        if (value instanceof LocalDate)
+            return (Moment<T>) of(LocalDate.of(9999, 12, 31));
+
+        if (value instanceof LocalDateTime)
+            return (Moment<T>) of(LocalDateTime.of(10000, 1, 1, 0, 0, 0, 0).minusNanos(1L));
+
+        throw new TemporalTypeIsNonMatchException(value.getClass());
+
+    }
 }
