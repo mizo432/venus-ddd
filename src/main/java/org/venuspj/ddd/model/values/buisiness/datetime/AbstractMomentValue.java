@@ -17,4 +17,9 @@ public abstract class AbstractMomentValue<T extends Temporal, M extends Abstract
         super(aValue);
 
     }
+
+    public AbstractMomentValue() {
+        super();
+
+    }
 }

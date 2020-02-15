@@ -14,6 +14,14 @@ public class Moment<T extends Temporal>
         super(aValue);
     }
 
+    public Moment() {
+        super();
+    }
+
+    public static <T extends Temporal> Moment<T> empty() {
+        return new Moment<>();
+    }
+
     @Override
     public int compareTo(Moment<T> o) {
         return 0;
