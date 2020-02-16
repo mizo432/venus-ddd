@@ -28,7 +28,7 @@ public class OoAzaTest {
         boolean actual = target.isEmpty();
 
         assertThat(actual)
-                .isTrue();
+                .isFalse();
 
     }
 
