@@ -89,7 +89,6 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
     }
 
     public boolean contains(Moment<T> aTargetMoment) {
-        // TODO atdk
         return (startMoment.isBefore(aTargetMoment) || startMoment.equals(aTargetMoment))
                 && (endMoment.isAfter(aTargetMoment) || endMoment.equals(aTargetMoment));
 
