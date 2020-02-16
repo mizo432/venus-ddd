@@ -69,7 +69,8 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends
      */
     @Override
     public boolean sameIdentifierAs(E other) {
-        return equal(identifier, other.getIdentifier());
+        return nonNull(other)
+                && equal(identifier, other.getIdentifier());
 
     }
 
