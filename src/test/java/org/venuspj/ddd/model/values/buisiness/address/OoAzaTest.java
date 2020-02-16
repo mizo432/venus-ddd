@@ -81,7 +81,7 @@ public class OoAzaTest {
     @Test
     @Tag(TestSize.SMALL)
     public void equals1() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        SimpleAddress arg = SimpleAddress.empty();
         OoAzaInformation target = OoAzaInformation.empty();
         boolean actual = target.equals(arg);
         assertThat(actual)
