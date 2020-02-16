@@ -47,4 +47,36 @@ public class MomentTest {
         System.out.println(actual);
 
     }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void maxOf1() {
+        Moment<Year> target = Moment.maxOf(TemporalType.YEAR);
+        System.out.println(target);
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void maxOf2() {
+        Moment<YearMonth> target = Moment.maxOf(TemporalType.YEAR_MONTH);
+        System.out.println(target);
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void maxOf3() {
+        Moment<YearMonth> target = Moment.maxOf(TemporalType.DATE);
+        System.out.println(target);
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void maxOf4() {
+        Moment<YearMonth> target = Moment.maxOf(TemporalType.DATE_TIME);
+        System.out.println(target);
+
+    }
 }

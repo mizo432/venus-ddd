@@ -27,6 +27,20 @@ public class Moment<T extends Temporal>
         return new Moment<>();
     }
 
+    public static <T extends Temporal> Moment<T> maxOf(TemporalType aTemporalType) {
+        switch (aTemporalType) {
+            case YEAR:
+                return (Moment<T>) Moment.of(Year.of(9999));
+            case YEAR_MONTH:
+                return (Moment<T>) Moment.of(YearMonth.of(9999, 12));
+            case DATE:
+                return (Moment<T>) Moment.of(LocalDate.of(9999, 12, 31));
+            default:
+                return (Moment<T>) Moment.of(LocalDateTime.of(10000, 1, 1, 0, 0, 0, 0).minusNanos(1L));
+        }
+
+    }
+
     @Override
     public int compareTo(Moment<T> o) {
         return 0;
@@ -39,16 +53,16 @@ public class Moment<T extends Temporal>
 
     public Moment<T> maxMoment() {
         if (value instanceof Year)
-            return (Moment<T>) of(Year.of(9999));
+            return (Moment<T>) maxOf(TemporalType.YEAR);
 
         if (value instanceof YearMonth)
-            return (Moment<T>) of(YearMonth.of(9999, 12));
+            return (Moment<T>) maxOf(TemporalType.YEAR_MONTH);
 
         if (value instanceof LocalDate)
-            return (Moment<T>) of(LocalDate.of(9999, 12, 31));
+            return (Moment<T>) maxOf(TemporalType.DATE);
 
         if (value instanceof LocalDateTime)
-            return (Moment<T>) of(LocalDateTime.of(10000, 1, 1, 0, 0, 0, 0).minusNanos(1L));
+            return (Moment<T>) maxOf(TemporalType.DATE_TIME);
 
         throw new TemporalTypeIsNonMatchException(value.getClass());
 
