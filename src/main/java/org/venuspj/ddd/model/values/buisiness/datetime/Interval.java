@@ -55,9 +55,8 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
      * @param anInterval 指定のインターバル
      * @return 連続している場合trueを返却します。
      */
-    public boolean isContinuousFrom(Interval<T> anInterval) {
-        // TODO atdk
-        return false;
+    public boolean isContinuousTo(Interval<T> anInterval) {
+        return this.endMoment.equals(anInterval.startMoment.decrementalMoment());
 
     }
 
@@ -91,7 +90,8 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
 
     public boolean contains(Moment<T> aTargetMoment) {
         // TODO atdk
-        return false;
+        return (startMoment.isBefore(aTargetMoment) || startMoment.equals(aTargetMoment))
+                && (endMoment.isAfter(aTargetMoment) || endMoment.equals(aTargetMoment));
 
     }
 
