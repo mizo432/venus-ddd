@@ -46,6 +46,7 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
     @Override
     public int hashCode() {
         return Objects2.hash(startMoment, endMoment);
+
     }
 
     /**
@@ -67,25 +68,24 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
      * @return マージされたインターバルを返却します。
      */
     public Interval<T> marge(Interval<T> interval) {
-        // TODO atdk
-        return null;
+        return Interval.createFrom(startMoment, interval.endMoment());
+
     }
 
     public Interval<T> adjustEndMoment(Interval<T> interval) {
-        // TODO atdk
-        return null;
+        return Interval.createFrom(startMoment, interval.startMoment().decrementalMoment());
 
     }
 
     /**
      * 指定のインターバルがオーバーラップしているかを判定します.
      *
-     * @param interval 指定のインターバル
+     * @param anInterval 指定のインターバル
      * @return オーバーラップしている場合trueを返却します。
      */
-    public boolean isOverlap(Interval<T> interval) {
-        // TODO atdk
-        return false;
+    public boolean isOverlap(Interval<T> anInterval) {
+        return (endMoment.isBefore(anInterval.startMoment())) &&
+                startMoment.isAfter(anInterval.endMoment());
 
     }
 

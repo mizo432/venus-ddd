@@ -20,6 +20,11 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends
 
     private EI identifier;
 
+    /**
+     * コンストラクター.
+     *
+     * @param anIdentifier ID
+     */
     protected AbstractEntity(EI anIdentifier) {
 
         this.identifier = anIdentifier;
@@ -31,23 +36,36 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends
         return identifier;
     }
 
+    /**
+     * IDを使用しhash値を作成する
+     *
+     * @return ハッシュ値
+     */
     @Override
     public int hashCode() {
         if (isNull(identifier)) return 0;
         return identifier.hashCode();
     }
 
+    /**
+     * エンティティの{@link #getIdentifier() 識別子}を用いて、このエンティティの同一性を比較する。
+     *
+     * @param that 比較対象オブジェクト
+     * @return 一致していたらtrueを返却する
+     */
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object that) {
-        return that instanceof AbstractEntity
+        return that instanceof AbstractEntity<?, ?>
                 && sameIdentifierAs((E) that);
 
     }
 
     /**
-     * @param other
-     * @return
+     * 同じIDかを判定する
+     *
+     * @param other エンティティ
+     * @return エンティティとIdentifierが一致していたらtrueを返却する
      */
     @Override
     public boolean sameIdentifierAs(E other) {
@@ -55,6 +73,12 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends
 
     }
 
+    /**
+     * すべてのフィールドが一致しているかを返却する。
+     *
+     * @param other エンティティ
+     * @return フィールドが一致していたらtrueを返却する
+     */
     @Override
     public boolean sameValueAs(E other) {
         return sameIdentifierAs(other);

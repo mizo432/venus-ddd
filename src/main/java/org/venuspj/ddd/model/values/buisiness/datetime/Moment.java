@@ -67,4 +67,54 @@ public class Moment<T extends Temporal>
         throw new TemporalTypeIsNonMatchException(value.getClass());
 
     }
+
+    public boolean isBefore(Moment<T> aMoment) {
+        if (value instanceof Year)
+            return ((Year) value).isBefore((Year) aMoment.getValue());
+
+        if (value instanceof YearMonth)
+            return ((YearMonth) value).isBefore((YearMonth) aMoment.getValue());
+
+        if (value instanceof LocalDate)
+            return ((LocalDate) value).isBefore((LocalDate) aMoment.getValue());
+
+        if (value instanceof LocalDateTime)
+            return ((LocalDateTime) value).isBefore((LocalDateTime) aMoment.getValue());
+
+        throw new TemporalTypeIsNonMatchException(value.getClass());
+
+    }
+
+    public boolean isAfter(Moment<T> aMoment) {
+        if (value instanceof Year)
+            return ((Year) value).isAfter((Year) aMoment.getValue());
+
+        if (value instanceof YearMonth)
+            return ((YearMonth) value).isAfter((YearMonth) aMoment.getValue());
+
+        if (value instanceof LocalDate)
+            return ((LocalDate) value).isAfter((LocalDate) aMoment.getValue());
+
+        if (value instanceof LocalDateTime)
+            return ((LocalDateTime) value).isAfter((LocalDateTime) aMoment.getValue());
+
+        throw new TemporalTypeIsNonMatchException(value.getClass());
+    }
+
+    public Moment<T> decrementalMoment() {
+        if (value instanceof Year)
+            return (Moment<T>) Moment.of(((Year) value).minusYears(1L));
+
+        if (value instanceof YearMonth)
+            return (Moment<T>) Moment.of(((YearMonth) value).minusMonths(1L));
+
+        if (value instanceof LocalDate)
+            return (Moment<T>) Moment.of(((LocalDate) value).minusDays(1L));
+
+        if (value instanceof LocalDateTime)
+            return (Moment<T>) Moment.of(((LocalDateTime) value).minusNanos(1L));
+
+        throw new TemporalTypeIsNonMatchException(value.getClass());
+
+    }
 }
