@@ -35,7 +35,7 @@ public class OoAzaTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs1() {
-        OoAzaInformation target = OoAzaInformation.empty();
+        OoAza target = OoAza.empty();
 
         boolean actual = target.sameValueAs(target);
 
@@ -47,7 +47,7 @@ public class OoAzaTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs2() {
-        OoAzaInformation target = OoAzaInformation.empty();
+        OoAza target = OoAza.empty();
 
         boolean actual = target.sameValueAs(null);
 
@@ -59,8 +59,8 @@ public class OoAzaTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs3() {
-        OoAzaInformation arg = OoAzaInformation.empty();
-        OoAzaInformation target = OoAzaInformation.empty();
+        OoAza arg = OoAza.empty();
+        OoAza target = OoAza.empty();
 
         boolean actual = target.sameValueAs(arg);
 
@@ -72,7 +72,7 @@ public class OoAzaTest {
     @Test
     @Tag(TestSize.SMALL)
     public void toString1() {
-        OoAzaInformation target = OoAzaInformation.empty();
+        OoAza target = OoAza.empty();
 
         System.out.println(target.toString());
 
@@ -82,7 +82,7 @@ public class OoAzaTest {
     @Tag(TestSize.SMALL)
     public void equals1() {
         SimpleAddress arg = SimpleAddress.empty();
-        OoAzaInformation target = OoAzaInformation.empty();
+        OoAza target = OoAza.empty();
         boolean actual = target.equals(arg);
         assertThat(actual)
                 .isFalse();
