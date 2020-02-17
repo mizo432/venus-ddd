@@ -7,11 +7,11 @@ import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AzaInformationTest {
+public class OoAzaTest {
     @Test
     @Tag(TestSize.SMALL)
     public void empty() {
-        AzaInformation target = AzaInformation.empty();
+        OoAza target = OoAza.empty();
 
         boolean actual = target.isEmpty();
 
@@ -23,19 +23,19 @@ public class AzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void of() {
-        AzaInformation target = AzaInformation.of(Name.empty());
+        OoAza target = OoAza.of(OoAzaIdentifier.of(1L), OoAzaCode.of("001"), Name.of("千代田"), Name.of("チヨダ"));
 
         boolean actual = target.isEmpty();
 
         assertThat(actual)
-                .isTrue();
+                .isFalse();
 
     }
 
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs1() {
-        AzaInformation target = AzaInformation.empty();
+        OoAza target = OoAza.empty();
 
         boolean actual = target.sameValueAs(target);
 
@@ -47,7 +47,7 @@ public class AzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs2() {
-        AzaInformation target = AzaInformation.empty();
+        OoAza target = OoAza.empty();
 
         boolean actual = target.sameValueAs(null);
 
@@ -59,8 +59,8 @@ public class AzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void sameValueAs3() {
-        AzaInformation arg = AzaInformation.empty();
-        AzaInformation target = AzaInformation.empty();
+        OoAza arg = OoAza.empty();
+        OoAza target = OoAza.empty();
 
         boolean actual = target.sameValueAs(arg);
 
@@ -72,7 +72,7 @@ public class AzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void toString1() {
-        AzaInformation target = AzaInformation.empty();
+        OoAza target = OoAza.empty();
 
         System.out.println(target.toString());
 
@@ -81,24 +81,13 @@ public class AzaInformationTest {
     @Test
     @Tag(TestSize.SMALL)
     public void equals1() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
-        AzaInformation target = AzaInformation.empty();
+        SimpleAddress arg = SimpleAddress.empty();
+        OoAza target = OoAza.empty();
         boolean actual = target.equals(arg);
         assertThat(actual)
                 .isFalse();
 
-
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void equals2() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
-        AzaInformation target = AzaInformation.empty();
-        boolean actual = target.equals(null);
-        assertThat(actual)
-                .isFalse();
-
+        System.out.println(target.toString());
 
     }
 

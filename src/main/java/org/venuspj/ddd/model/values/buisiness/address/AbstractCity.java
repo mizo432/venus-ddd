@@ -20,9 +20,9 @@ public class AbstractCity<C extends AbstractCity<C>> extends AbstractEntity<C, C
         return kanaName;
     }
 
-    private CityCode cityCode = CityCode.empty();
-    private Name name = Name.empty();
-    private Name kanaName = Name.empty();
+    protected CityCode cityCode = CityCode.empty();
+    protected Name name = Name.empty();
+    protected Name kanaName = Name.empty();
 
 
     public AbstractCity() {

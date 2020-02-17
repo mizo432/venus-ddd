@@ -6,7 +6,7 @@ import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class OoOoAzaIdentifierTest {
+public class OoAzaIdentifierTest {
 
     @Test
     @Tag(TestSize.SMALL)

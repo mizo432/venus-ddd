@@ -7,7 +7,7 @@ import org.venuspj.util.builder.ObjectBuilder;
 
 import static org.venuspj.util.objects2.Objects2.*;
 
-public class SimpleAddressInformation extends AbstractValue<SimpleAddressInformation> {
+public class SimpleAddress extends AbstractValue<SimpleAddress> {
     protected ZipCode zipCode = ZipCode.empty();
     protected AddressCode addressCode = AddressCode.empty();
     protected Prefecture prefecture = Prefecture.empty();
@@ -16,7 +16,7 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
     protected Aza koAza = Aza.empty();
     protected AddressBarCode addressBarCode = AddressBarCode.empty();
 
-    SimpleAddressInformation(ZipCode aZipCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, OoAza anOoAza, Aza anAza, AddressBarCode anAddressBarCode) {
+    SimpleAddress(ZipCode aZipCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, OoAza anOoAza, Aza anAza, AddressBarCode anAddressBarCode) {
         zipCode = aZipCode;
         addressCode = anAddressCode;
         prefecture = aPrefecture;
@@ -27,7 +27,7 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
 
     }
 
-    public SimpleAddressInformation() {
+    public SimpleAddress() {
 
     }
 
@@ -66,13 +66,13 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
 
     }
 
-    public static SimpleAddressInformation of(ZipCode aZipCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, OoAza anOoAza, Aza anAza, AddressBarCode anAddressBarCode) {
-        return new SimpleAddressInformation(aZipCode, anAddressCode, aPrefecture, aCity, anOoAza, anAza, anAddressBarCode);
+    public static SimpleAddress of(ZipCode aZipCode, AddressCode anAddressCode, Prefecture aPrefecture, City aCity, OoAza anOoAza, Aza anAza, AddressBarCode anAddressBarCode) {
+        return new SimpleAddress(aZipCode, anAddressCode, aPrefecture, aCity, anOoAza, anAza, anAddressBarCode);
 
     }
 
-    public static SimpleAddressInformation empty() {
-        return new SimpleAddressInformation();
+    public static SimpleAddress empty() {
+        return new SimpleAddress();
 
     }
 
@@ -82,7 +82,7 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
     }
 
     @Override
-    public boolean sameValueAs(SimpleAddressInformation other) {
+    public boolean sameValueAs(SimpleAddress other) {
         return equals(other);
 
     }
@@ -91,7 +91,7 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SimpleAddressInformation that = (SimpleAddressInformation) o;
+        SimpleAddress that = (SimpleAddress) o;
         return equal(zipCode, that.zipCode) &&
                 equal(addressCode, that.addressCode) &&
                 equal(prefecture, that.prefecture) &&
@@ -118,7 +118,7 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
 
     }
 
-    public static class SimpleAddressInformationBuilder extends ObjectBuilder<SimpleAddressInformation, SimpleAddressInformationBuilder> {
+    public static class SimpleAddressInformationBuilder extends ObjectBuilder<SimpleAddress, SimpleAddressInformationBuilder> {
         protected ZipCode zipCode = ZipCode.empty();
         protected AddressCode addressCode = AddressCode.empty();
         protected Prefecture prefecture = Prefecture.empty();
@@ -129,7 +129,7 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
 
 
         @Override
-        protected void apply(SimpleAddressInformation vo, SimpleAddressInformationBuilder builder) {
+        protected void apply(SimpleAddress vo, SimpleAddressInformationBuilder builder) {
             builder.withPostalCode(vo.zipCode());
             builder.withAddressCode(vo.addressCode());
             builder.withPrefecture(vo.prefecture());
@@ -185,8 +185,8 @@ public class SimpleAddressInformation extends AbstractValue<SimpleAddressInforma
         }
 
         @Override
-        protected SimpleAddressInformation createValueObject() {
-            return new SimpleAddressInformation(zipCode, addressCode, prefecture, city, ooAza, koAza, addressBarCode);
+        protected SimpleAddress createValueObject() {
+            return new SimpleAddress(zipCode, addressCode, prefecture, city, ooAza, koAza, addressBarCode);
 
         }
 

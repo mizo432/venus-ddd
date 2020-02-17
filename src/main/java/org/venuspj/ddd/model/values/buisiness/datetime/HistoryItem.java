@@ -53,7 +53,7 @@ public class HistoryItem<T extends Temporal, I extends Value<I>> implements Valu
 
 
     public boolean isContinuous(HistoryItem<T, I> aNextHistoryItem) {
-        return interval.isContinuousFrom(aNextHistoryItem.interval);
+        return interval.isContinuousTo(aNextHistoryItem.interval);
     }
 
     public HistoryItem<T, I> merge(HistoryItem<T, I> aNextHistoryItem) {

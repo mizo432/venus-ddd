@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.ddd.model.values.buisiness.Unit;
-import org.venuspj.ddd.model.values.buisiness.address.SimpleAddressInformation;
+import org.venuspj.ddd.model.values.buisiness.address.SimpleAddress;
 import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
@@ -86,7 +86,7 @@ public class QuantityDecimalAndUnitTest {
     @Test
     @Tag(TestSize.SMALL)
     public void equals1() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        SimpleAddress arg = SimpleAddress.empty();
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
         boolean actual = target.equals(arg);
         assertThat(actual)
