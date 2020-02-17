@@ -47,7 +47,7 @@ public class AbstractAza<C extends AbstractAza<C>> extends AbstractEntity<C, Aza
     @Override
     public boolean sameValueAs(C other) {
         if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
+        if (isNull(other)) return false;
         if (!super.sameValueAs(other)) return false;
         AbstractAza<?> that = other;
         return equal(azaCode, that.azaCode) &&
