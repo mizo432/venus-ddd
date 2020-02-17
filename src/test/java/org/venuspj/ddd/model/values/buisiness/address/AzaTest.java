@@ -184,6 +184,21 @@ public class AzaTest {
 
     }
 
+
+    public void apply1() {
+        Aza arg = AzaMock.one();
+
+        Aza actual = Aza.builder()
+                .withKanaName(null)
+                .withName(null)
+                .withAzaCode(null)
+                .withIdentifier(null)
+                .apply(arg);
+
+        assertThat(actual)
+                .isEqualTo(arg);
+    }
+
     public static class AzaMock {
         static Aza empty() {
             return Aza.empty();
