@@ -83,8 +83,10 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
      * @return オーバーラップしている場合trueを返却します。
      */
     public boolean isOverlap(Interval<T> anInterval) {
-        return (endMoment.isBefore(anInterval.startMoment())) &&
-                startMoment.isAfter(anInterval.endMoment());
+        return (startMoment.isBefore(anInterval.endMoment())
+                || startMoment.sameValueAs(anInterval.endMoment()))
+                && (endMoment.isBefore(anInterval.startMoment())
+                || endMoment.sameValueAs(anInterval.startMoment()));
 
     }
 
