@@ -5,6 +5,10 @@ import org.venuspj.util.objects2.Objects2;
 
 import java.time.temporal.Temporal;
 
+/**
+ * 時間的な間隔を指すオブジェクト
+ * @param <T> Temporal型を指定する
+ */
 public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
     Moment<T> startMoment = Moment.empty();
     Moment<T> endMoment = Moment.empty();
