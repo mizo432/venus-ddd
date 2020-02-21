@@ -90,5 +90,9 @@ public class HistoryItem<T extends Temporal, I extends Value<I>> implements Valu
 
     }
 
+    public boolean contains(Moment<T> aTargetMoment) {
+        return interval.contains(aTargetMoment);
+
+    }
 }
 
