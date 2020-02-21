@@ -1,14 +1,19 @@
 package org.venuspj.basic.model.domain.relashonshipManagement.party;
 
 import org.venuspj.ddd.model.entity.AbstractEntity;
-import org.venuspj.ddd.model.values.primitives.momentinterval.YearMonthInterval;
+import org.venuspj.ddd.model.values.buisiness.datetime.Interval;
+import org.venuspj.util.base.Preconditions;
+
+import java.time.YearMonth;
 
 public class AddressUse extends AbstractEntity<AddressUse, AddressUseIdentifier> {
-    private YearMonthInterval interval = YearMonthInterval.empty();
+    private Interval<YearMonth> interval;
 
-    protected AddressUse(AddressUseIdentifier anIdentifier, YearMonthInterval anInterval) {
+    protected AddressUse(AddressUseIdentifier anIdentifier, Interval<YearMonth> anInterval) {
         super(anIdentifier);
+        Preconditions.checkNotNull(anInterval);
         interval = anInterval;
+
     }
 
 }

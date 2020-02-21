@@ -4,6 +4,7 @@ import org.venuspj.ddd.model.entity.AbstractEntity;
 import org.venuspj.ddd.model.entity.AbstractEntityBuilder;
 import org.venuspj.ddd.model.values.buisiness.name.Name;
 
+import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
 public class AbstractAza<C extends AbstractAza<C>> extends AbstractEntity<C, AzaIdentifier> {
@@ -26,6 +27,32 @@ public class AbstractAza<C extends AbstractAza<C>> extends AbstractEntity<C, Aza
         name = aName;
         kanaName = aKanaName;
 
+    }
+
+    public Name kanaName() {
+        return kanaName;
+
+    }
+
+    public Name name() {
+        return name;
+
+    }
+
+    public AzaCode azaCode() {
+        return azaCode;
+
+    }
+
+    @Override
+    public boolean sameValueAs(C other) {
+        if (this == other) return true;
+        if (isNull(other)) return false;
+        if (!super.sameValueAs(other)) return false;
+        AbstractAza<?> that = other;
+        return equal(azaCode, that.azaCode) &&
+                equal(name, that.name) &&
+                equal(kanaName, that.kanaName);
     }
 
     /**
@@ -72,19 +99,5 @@ public class AbstractAza<C extends AbstractAza<C>> extends AbstractEntity<C, Aza
 
     }
 
-    public Name kanaName() {
-        return kanaName;
-
-    }
-
-    public Name name() {
-        return name;
-
-    }
-
-    public AzaCode azaCode() {
-        return azaCode;
-
-    }
 
 }

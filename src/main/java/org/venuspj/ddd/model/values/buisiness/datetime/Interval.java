@@ -5,6 +5,10 @@ import org.venuspj.util.objects2.Objects2;
 
 import java.time.temporal.Temporal;
 
+/**
+ * 時間的な間隔を指すオブジェクト
+ * @param <T> Temporal型を指定する
+ */
 public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
     Moment<T> startMoment = Moment.empty();
     Moment<T> endMoment = Moment.empty();
@@ -46,6 +50,7 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
     @Override
     public int hashCode() {
         return Objects2.hash(startMoment, endMoment);
+
     }
 
     /**
@@ -54,9 +59,8 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
      * @param anInterval 指定のインターバル
      * @return 連続している場合trueを返却します。
      */
-    public boolean isContinuousFrom(Interval<T> anInterval) {
-        // TODO atdk
-        return false;
+    public boolean isContinuousTo(Interval<T> anInterval) {
+        return this.endMoment.equals(anInterval.startMoment.decrementalMoment());
 
     }
 
@@ -67,31 +71,32 @@ public class Interval<T extends Temporal> extends AbstractValue<Interval<T>> {
      * @return マージされたインターバルを返却します。
      */
     public Interval<T> marge(Interval<T> interval) {
-        // TODO atdk
-        return null;
+        return Interval.createFrom(startMoment, interval.endMoment());
+
     }
 
     public Interval<T> adjustEndMoment(Interval<T> interval) {
-        // TODO atdk
-        return null;
+        return Interval.createFrom(startMoment, interval.startMoment().decrementalMoment());
 
     }
 
     /**
      * 指定のインターバルがオーバーラップしているかを判定します.
      *
-     * @param interval 指定のインターバル
+     * @param anInterval 指定のインターバル
      * @return オーバーラップしている場合trueを返却します。
      */
-    public boolean isOverlap(Interval<T> interval) {
-        // TODO atdk
-        return false;
+    public boolean isOverlap(Interval<T> anInterval) {
+        return (startMoment.isBefore(anInterval.endMoment())
+                || startMoment.sameValueAs(anInterval.endMoment()))
+                && (endMoment.isAfter(anInterval.startMoment())
+                || endMoment.sameValueAs(anInterval.startMoment()));
 
     }
 
     public boolean contains(Moment<T> aTargetMoment) {
-        // TODO atdk
-        return false;
+        return (startMoment.isBefore(aTargetMoment) || startMoment.equals(aTargetMoment))
+                && (endMoment.isAfter(aTargetMoment) || endMoment.equals(aTargetMoment));
 
     }
 

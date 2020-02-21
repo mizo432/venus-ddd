@@ -6,6 +6,8 @@ import org.venuspj.tests.constants.TestSize;
 
 import java.time.*;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class IntervalTest {
 
     @Test
@@ -58,6 +60,104 @@ public class IntervalTest {
                         Moment
                                 .of(Year.of(Year.MAX_VALUE)));
         System.out.println(target.toString());
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isOverlap1() {
+        Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
+
+        Interval<Year> target = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
+
+        boolean actual = target.isOverlap(arg);
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isOverlap2() {
+        Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2021)));
+
+        Interval<Year> target = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
+
+        boolean actual = target.isOverlap(arg);
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isOverlap3() {
+        Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2021)), Moment.of(Year.of(2022)));
+
+        Interval<Year> target = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
+
+        boolean actual = target.isOverlap(arg);
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isOverlap4() {
+        Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2019)), Moment.of(Year.of(2020)));
+
+        Interval<Year> target = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
+
+        boolean actual = target.isOverlap(arg);
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isOverlap5() {
+        Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2022)), Moment.of(Year.of(2024)));
+
+        Interval<Year> target = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
+
+        boolean actual = target.isOverlap(arg);
+
+        assertThat(actual)
+                .isTrue();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isOverlap6() {
+        Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2017)), Moment.of(Year.of(2019)));
+
+        Interval<Year> target = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
+
+        boolean actual = target.isOverlap(arg);
+
+        assertThat(actual)
+                .isFalse();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void isOverlap7() {
+        Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2023)), Moment.of(Year.of(2015)));
+
+        Interval<Year> target = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
+
+        boolean actual = target.isOverlap(arg);
+
+        assertThat(actual)
+                .isFalse();
 
     }
 

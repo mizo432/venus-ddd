@@ -11,6 +11,13 @@ import java.util.Optional;
 
 import static org.venuspj.util.collect.Lists2.newArrayList;
 
+/**
+ * 履歴情報の基底クラス
+ *
+ * @param <V> 履歴情報の情報クラス
+ * @param <H> 履歴情報の汎化クラス
+ * @param <T> 履歴の瞬間を表すクラス(Year,YearMonth,LocalDate,LocalDateTimeのいずれか)
+ */
 public class AbstractHistory<
         V extends Value<V>,
         H extends AbstractHistory<V, H, T>,
@@ -26,6 +33,12 @@ public class AbstractHistory<
         super();
     }
 
+    /**
+     * ターゲット瞬間を渡し該当するアイテムを返却する
+     *
+     * @param aTargetMoment ターゲット瞬間
+     * @return 履歴管理されているアイテム
+     */
     protected V findBy(Moment<T> aTargetMoment) {
         Optional<HistoryItem<T, V>> resultOptional = value.stream()
                 .filter(historyItem -> historyItem.getInterval().contains(aTargetMoment))
@@ -38,6 +51,15 @@ public class AbstractHistory<
 
     }
 
+    /**
+     * 履歴を正規化する
+     * <pre>
+     * 重複、オーバーラップを統合する
+     * </pre>
+     *
+     * @param <T> 履歴の瞬間を表すクラス(Year,YearMonth,LocalDate,LocalDateTimeのいずれか)
+     * @param <V> 履歴情報の情報クラス
+     */
     protected static class NormalizationHistory<T extends Temporal, V extends Value<V>> {
         private ArrayList<HistoryItem<T, V>> list = newArrayList();
 

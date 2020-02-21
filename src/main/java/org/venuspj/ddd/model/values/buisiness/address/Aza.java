@@ -1,20 +1,16 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
-import org.venuspj.ddd.model.entity.AbstractEntity;
 import org.venuspj.ddd.model.values.buisiness.name.Name;
 
-import static org.venuspj.util.objects2.Objects2.hash;
+public class Aza extends AbstractAza<Aza> {
 
-public class Aza extends AbstractEntity<Aza, AzaIdentifier> {
-    private Name name = Name.empty();
+    Aza(AzaIdentifier anAzaIdentifier, AzaCode anAzaCode, Name aName, Name aKanaName) {
+        super(anAzaIdentifier, anAzaCode, aName, aKanaName);
 
-    Aza(AzaIdentifier anAzaIdentifier, Name aName) {
-        super(anAzaIdentifier);
-        name = aName;
     }
 
     public Aza() {
-        super(AzaIdentifier.empty());
+        super();
     }
 
     public static Aza empty() {
@@ -22,23 +18,31 @@ public class Aza extends AbstractEntity<Aza, AzaIdentifier> {
 
     }
 
-    public static Aza of(AzaIdentifier anAzaIdentifier, Name aName) {
-        return new Aza(anAzaIdentifier, aName);
+    public static Aza of(AzaIdentifier anAzaIdentifier, AzaCode anAzaCode, Name aName, Name aKanaName) {
+        return new Aza(anAzaIdentifier, anAzaCode, aName, aKanaName);
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Aza aza = (Aza) o;
-        return name.equals(aza.name);
+    public static AzaBuilder builder() {
+        return new AzaBuilder();
     }
 
-    @Override
-    public int hashCode() {
-        return hash(super.hashCode(), name);
+    public static class AzaBuilder extends AbstractAzaBuilder<Aza, AzaBuilder> {
 
+        @Override
+        protected Aza createValueObject() {
+            return new Aza(super.identifier, super.azaCode, super.name, super.kanaName);
+        }
+
+        @Override
+        protected AzaBuilder getThis() {
+            return this;
+        }
+
+        @Override
+        protected AzaBuilder newInstance() {
+            return new AzaBuilder();
+        }
     }
+
 }

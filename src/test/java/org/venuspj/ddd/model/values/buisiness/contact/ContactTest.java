@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.json.JsonMapperEx;
-import org.venuspj.ddd.model.values.buisiness.address.AddressInformation;
-import org.venuspj.ddd.model.values.buisiness.address.SimpleAddressInformation;
+import org.venuspj.ddd.model.values.buisiness.address.Address;
+import org.venuspj.ddd.model.values.buisiness.address.SimpleAddress;
 import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +26,7 @@ public class ContactTest {
     @Test
     @Tag(TestSize.SMALL)
     public void of() {
-        Contact target = Contact.of(AddressInformation.empty(),
+        Contact target = Contact.of(Address.empty(),
                 EmailAddress.empty(), TelephoneNumber.empty(), TelephoneNumber.empty());
 
         boolean actual = target.isEmpty();
@@ -41,7 +41,7 @@ public class ContactTest {
     public void builder1() {
         Contact target = Contact
                 .builder()
-                .withAddressInformation(AddressInformation.empty())
+                .withAddress(Address.empty())
                 .withEmailAddress(EmailAddress.empty())
                 .withTelephoneNumber(TelephoneNumber.empty())
                 .withFaxNumber(TelephoneNumber.empty())
@@ -59,7 +59,7 @@ public class ContactTest {
     public void builder2() {
         Contact target = Contact
                 .builder()
-                .withAddressInformation(null)
+                .withAddress(null)
                 .withEmailAddress(null)
                 .withTelephoneNumber(null)
                 .withFaxNumber(null)
@@ -135,7 +135,7 @@ public class ContactTest {
     @Test
     @Tag(TestSize.SMALL)
     public void equals1() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        SimpleAddress arg = SimpleAddress.empty();
         Contact target = Contact.empty();
         boolean actual = target.equals(arg);
         assertThat(actual)
@@ -148,7 +148,7 @@ public class ContactTest {
     @Test
     @Tag(TestSize.SMALL)
     public void isEmpty1() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        SimpleAddress arg = SimpleAddress.empty();
         Contact target = Contact.empty();
         boolean actual = target.isEmpty();
         assertThat(actual)
@@ -161,7 +161,7 @@ public class ContactTest {
     @Test
     @Tag(TestSize.SMALL)
     public void isEmpty2() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        SimpleAddress arg = SimpleAddress.empty();
         Contact target = ContactMock.empty();
         boolean actual = target.isEmpty();
         assertThat(actual)

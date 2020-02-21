@@ -7,23 +7,24 @@ import org.venuspj.util.builder.ObjectBuilder;
 import java.time.temporal.Temporal;
 import java.util.Objects;
 
+import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
 /**
  * インターバルをキーにした交差エンティティ
  *
- * @param <T>
+ * @param <T>  履歴の瞬間を表すクラス(Year,YearMonth,LocalDate,LocalDateTimeのいずれか)
  * @param <I1> 交差エンティティの最初の値の型
  * @param <I2> 交差エンティティの二番目値の型
  */
-public class Intersection<T extends Temporal, I1 extends Value<I1>, I2 extends Value<I2>>
-        extends AbstractValue<Intersection<T, I1, I2>> {
+public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 extends Value<I2>>
+        extends AbstractValue<IntersectionItem<T, I1, I2>> {
     private Interval<T> interval;
     private I1 firstValue;
     private I2 secondValue;
 
 
-    public Intersection() {
+    public IntersectionItem() {
 
     }
 
@@ -42,7 +43,7 @@ public class Intersection<T extends Temporal, I1 extends Value<I1>, I2 extends V
 
     }
 
-    private Intersection(Interval<T> anInterval
+    private IntersectionItem(Interval<T> anInterval
             , I1 aFirstValue
             , I2 aSecondValue) {
         interval = anInterval;
@@ -53,26 +54,26 @@ public class Intersection<T extends Temporal, I1 extends Value<I1>, I2 extends V
     }
 
     public static <T extends Temporal, V1 extends Value<V1>, V2 extends Value<V2>>
-    Intersection<T, V1, V2> createFrom(
+    IntersectionItem<T, V1, V2> createFrom(
             Moment<T> aStartMoment,
             Moment<T> anEndMoment,
             V1 aFirstValue,
             V2 aSecondValue) {
-        return new Intersection<>(Interval.createFrom(aStartMoment, anEndMoment), aFirstValue, aSecondValue);
+        return new IntersectionItem<>(Interval.createFrom(aStartMoment, anEndMoment), aFirstValue, aSecondValue);
 
 
     }
 
-    public static <T extends Temporal, V1 extends Value<V1>, V2 extends Value<V2>> Intersection<T, V1, V2> createFrom(
+    public static <T extends Temporal, V1 extends Value<V1>, V2 extends Value<V2>> IntersectionItem<T, V1, V2> createFrom(
             Moment<T> aStartMoment,
             V1 aFirstValue,
             V2 aSecondValue) {
-        return new Intersection<>(Interval.createFrom(aStartMoment), aFirstValue, aSecondValue);
+        return new IntersectionItem<>(Interval.createFrom(aStartMoment), aFirstValue, aSecondValue);
 
     }
 
     @Override
-    public boolean sameValueAs(Intersection<T, I1, I2> other) {
+    public boolean sameValueAs(IntersectionItem<T, I1, I2> other) {
         return equals(other);
 
     }
@@ -88,7 +89,7 @@ public class Intersection<T extends Temporal, I1 extends Value<I1>, I2 extends V
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Intersection<?, ?, ?> that = (Intersection<?, ?, ?>) o;
+        IntersectionItem<?, ?, ?> that = (IntersectionItem<?, ?, ?>) o;
         return Objects.equals(interval, that.interval) &&
                 Objects.equals(firstValue, that.firstValue) &&
                 Objects.equals(secondValue, that.secondValue);
@@ -100,15 +101,45 @@ public class Intersection<T extends Temporal, I1 extends Value<I1>, I2 extends V
 
     }
 
+    public boolean sameItemAs(IntersectionItem<T, I1, I2> other) {
+        return equal(this.firstValue, other.firstValue) &&
+                equal(this.secondValue, other.secondValue);
+
+    }
+
+    public boolean isContinuous(IntersectionItem<T, I1, I2> other) {
+        return interval.isContinuousTo(other.getInterval());
+
+    }
+
+    public IntersectionItem<T, I1, I2> merge(IntersectionItem<T, I1, I2> other) {
+        Interval<T> resultInterval = Interval.createFrom(interval.startMoment, other.interval.endMoment);
+        return IntersectionItem
+                .createFrom(resultInterval
+                        , firstValue
+                        , secondValue);
+
+    }
+
+    private static <I1 extends Value<I1>, T extends Temporal, I2 extends Value<I2>> IntersectionItem<T, I1, I2> createFrom(Interval<T> anInterval, I1 aFirstValue, I2 aSecondValue) {
+        return new IntersectionItem<>(anInterval, aFirstValue, aSecondValue);
+
+    }
+
+    public boolean isOverlap(IntersectionItem<T, I1, I2> other) {
+        return interval.isOverlap(other.interval);
+
+    }
+
     public static class IntersectionBuilder<T extends Temporal, V1 extends Value<V1>, V2 extends Value<V2>>
-            extends ObjectBuilder<Intersection<T, V1, V2>, IntersectionBuilder<T, V1, V2>> {
+            extends ObjectBuilder<IntersectionItem<T, V1, V2>, IntersectionBuilder<T, V1, V2>> {
         private Moment<T> startMoment;
         private Moment<T> endMoment;
         private V1 firstValue;
         private V2 secondValue;
 
         @Override
-        protected void apply(Intersection<T, V1, V2> vo, IntersectionBuilder<T, V1, V2> builder) {
+        protected void apply(IntersectionItem<T, V1, V2> vo, IntersectionBuilder<T, V1, V2> builder) {
             builder.withStartMoment(vo.interval.startMoment());
             builder.withEndMoment(vo.interval.endMoment());
             builder.withFirstValue(vo.firstValue());
@@ -146,11 +177,11 @@ public class Intersection<T extends Temporal, I1 extends Value<I1>, I2 extends V
         }
 
         @Override
-        protected Intersection<T, V1, V2> createValueObject() {
+        protected IntersectionItem<T, V1, V2> createValueObject() {
             if (isNull(endMoment))
-                return Intersection.createFrom(startMoment, firstValue, secondValue);
+                return IntersectionItem.createFrom(startMoment, this.firstValue, this.secondValue);
 
-            return Intersection.createFrom(startMoment, endMoment, firstValue, secondValue);
+            return IntersectionItem.createFrom(startMoment, endMoment, this.firstValue, this.secondValue);
         }
 
         @Override

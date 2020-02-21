@@ -13,7 +13,8 @@ import static org.venuspj.util.objects2.Objects2.*;
  */
 public abstract class AbstractEntityIdentifier<EI extends AbstractEntityIdentifier<EI, V>, V>
         extends AbstractValue<EI>
-        implements EntityIdentifier<EI> {
+        implements EntityIdentifier<EI>,
+        Comparable<EI> {
 
     protected String kind;
     private V value;
@@ -91,5 +92,15 @@ public abstract class AbstractEntityIdentifier<EI extends AbstractEntityIdentifi
     @Override
     public boolean sameValueAs(EI other) {
         return equals(other);
+
+    }
+
+    @Override
+    public int compareTo(EI identifier) {
+        if (isNull(kind))
+            return -1;
+        if (isNull(value))
+            return -1;
+        return compareTo((EI) value);
     }
 }
