@@ -12,4 +12,7 @@ public interface EntityIdentifier<EI extends EntityIdentifier<EI>> extends Value
     String getKind();
 
     boolean isEmpty();
+
+    int compareTo(EI identifier);
+
 }
