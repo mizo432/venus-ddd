@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.venuspj.util.collect.Collections3.newHashSet;
 import static org.venuspj.util.collect.Lists2.newArrayList;
 
 /**
@@ -95,7 +96,7 @@ public class AbstractIntersections
 
         private NormalizationHistory<T, V1, V2> deleteDuplicateItem() {
             return NormalizationHistory.of(
-                    list.stream().collect(Collectors.toSet()));
+                    newHashSet(list));
 
         }
 

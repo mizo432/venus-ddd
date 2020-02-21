@@ -16,7 +16,11 @@ import static org.venuspj.util.objects2.Objects2.*;
  * @param <E>  エンティティの型
  * @param <EI> エンティティIDの型
  */
-public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends EntityIdentifier<EI>> implements Entity<E, EI>, Value<E> {
+public abstract class AbstractEntity
+        <E extends AbstractEntity<E, EI>,
+                EI extends EntityIdentifier<EI>>
+        implements
+        Entity<E, EI>, Value<E>, Comparable<E> {
 
     private EI identifier;
 
@@ -97,5 +101,11 @@ public abstract class AbstractEntity<E extends AbstractEntity<E, EI>, EI extends
         return toStringHelper(this)
                 .defaultConfig()
                 .toString();
+    }
+
+    @Override
+    public int compareTo(E o) {
+        if (isNull(o)) return -1;
+        return identifier.compareTo(o.getIdentifier());
     }
 }
