@@ -14,7 +14,7 @@ import java.time.temporal.Temporal;
 public class Moment<T extends Temporal>
         extends AbstractMomentValue<T, Moment<T>> {
 
-    public Moment(T aValue) {
+    protected Moment(T aValue) {
         super(aValue);
 
     }
@@ -44,6 +44,7 @@ public class Moment<T extends Temporal>
     @Override
     public int compareTo(Moment<T> o) {
         return 0;
+
     }
 
     public static <T extends Temporal> Moment<T> of(T aValue) {

@@ -1,10 +1,8 @@
 package org.venuspj.ddd.model.values.buisiness.datetime;
 
-import org.venuspj.ddd.model.values.primitives.AbstractYearMonthValue;
-
 import java.time.YearMonth;
 
-public class TargetYearMonth extends AbstractYearMonthValue<TargetYearMonth> {
+public class TargetYearMonth extends Moment<YearMonth> {
     public TargetYearMonth(YearMonth aValue) {
         super(aValue);
 

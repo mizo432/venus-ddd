@@ -1,10 +1,9 @@
 package org.venuspj.ddd.model.values.buisiness.datetime;
 
-import org.venuspj.ddd.model.values.primitives.AbstractYearValue;
-
 import java.time.Year;
 
-public class TargetYear extends AbstractYearValue<TargetYear> {
+public class TargetYear extends Moment<Year> {
+
     public TargetYear(Year aValue) {
         super(aValue);
 
@@ -23,5 +22,6 @@ public class TargetYear extends AbstractYearValue<TargetYear> {
         return new TargetYear(aValue);
 
     }
+
 
 }

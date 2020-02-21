@@ -1,10 +1,8 @@
 package org.venuspj.ddd.model.values.buisiness.datetime;
 
-import org.venuspj.ddd.model.values.primitives.AbstractDateValue;
-
 import java.time.LocalDate;
 
-public class TargetDate extends AbstractDateValue<TargetDate> {
+public class TargetDate extends Moment<LocalDate> {
 
     TargetDate(LocalDate aValue) {
         super(aValue);
