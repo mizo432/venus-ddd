@@ -55,6 +55,9 @@ public class MomentTest {
     public void maxOf1() {
         Moment<Year> target = Moment.maxOf(TemporalType.YEAR);
         System.out.println(target);
+        Year actual = target.getValue();
+        assertThat(actual)
+                .isEqualTo(Year.of(9999));
 
     }
 
@@ -171,5 +174,6 @@ public class MomentTest {
         System.out.println(target);
 
     }
+
 
 }
