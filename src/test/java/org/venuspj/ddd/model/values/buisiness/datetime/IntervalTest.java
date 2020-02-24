@@ -161,4 +161,14 @@ public class IntervalTest {
 
     }
 
+    public static class IntervalMock {
+
+        public static Interval<Year> y2020To2023() {
+            return Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
+
+        }
+
+    }
+
+
 }

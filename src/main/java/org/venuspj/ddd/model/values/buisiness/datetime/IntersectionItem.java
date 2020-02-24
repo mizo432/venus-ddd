@@ -28,7 +28,7 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
     }
 
-    public Interval getInterval() {
+    public Interval<T> getInterval() {
         return interval;
 
     }
@@ -121,7 +121,8 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
     }
 
-    private static <I1 extends Value<I1>, T extends Temporal, I2 extends Value<I2>> IntersectionItem<T, I1, I2> createFrom(Interval<T> anInterval, I1 aFirstValue, I2 aSecondValue) {
+    public static <I1 extends Value<I1>, T extends Temporal, I2 extends Value<I2>>
+    IntersectionItem<T, I1, I2> createFrom(Interval<T> anInterval, I1 aFirstValue, I2 aSecondValue) {
         return new IntersectionItem<>(anInterval, aFirstValue, aSecondValue);
 
     }
@@ -142,8 +143,8 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
         protected void apply(IntersectionItem<T, V1, V2> vo, IntersectionBuilder<T, V1, V2> builder) {
             builder.withStartMoment(vo.interval.startMoment());
             builder.withEndMoment(vo.interval.endMoment());
-            builder.withFirstValue(vo.firstValue());
-            builder.withSecondValue(vo.secondValue());
+            builder.withFirstValue(vo.getFirstValue());
+            builder.withSecondValue(vo.getSecondValue());
 
 
         }
@@ -196,16 +197,5 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
         }
     }
-
-    public I1 firstValue() {
-        return firstValue;
-
-    }
-
-    private I2 secondValue() {
-        return secondValue;
-
-    }
-
 
 }
