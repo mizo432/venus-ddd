@@ -7,6 +7,7 @@ import org.venuspj.util.collect.ComparisonChain;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -133,8 +134,7 @@ public class AbstractIntersections
 
         private NormalizationHistory<T, V1, V2> normalizeOnSortedValue(List<IntersectionItem<T, V1, V2>> sortedList) {
             List<IntersectionItem<T, V1, V2>> result = newArrayList();
-            for (int sourceIndex = 0; sourceIndex < sortedList.size(); sourceIndex++) {
-                IntersectionItem<T, V1, V2> thisHistoryItem = sortedList.get(sourceIndex);
+            for (IntersectionItem<T, V1, V2> thisHistoryItem : sortedList) {
                 if (result.isEmpty())
                     result.add(thisHistoryItem);
 
@@ -167,11 +167,12 @@ public class AbstractIntersections
             //return result;
 
             return NormalizationHistory.of(
-                    list.stream().collect(Collectors.toSet()));
+                    new HashSet<>(list));
         }
 
         public static <T extends Temporal, V1 extends Value<V1>, V2 extends Value<V2>> NormalizationHistory<T, V1, V2> of(Collection<IntersectionItem<T, V1, V2>> anyArgs) {
-            return new NormalizationHistory(anyArgs);
+            return new NormalizationHistory<>(anyArgs);
+
         }
 
         public ArrayList<IntersectionItem<T, V1, V2>> normalize() {
@@ -184,10 +185,12 @@ public class AbstractIntersections
 
         public ArrayList<IntersectionItem<T, V1, V2>> getList() {
             return list;
+
         }
 
         public void setList(ArrayList<IntersectionItem<T, V1, V2>> list) {
             this.list = list;
+
         }
     }
 }
