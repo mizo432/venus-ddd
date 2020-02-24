@@ -143,8 +143,8 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
         protected void apply(IntersectionItem<T, V1, V2> vo, IntersectionBuilder<T, V1, V2> builder) {
             builder.withStartMoment(vo.interval.startMoment());
             builder.withEndMoment(vo.interval.endMoment());
-            builder.withFirstValue(vo.firstValue());
-            builder.withSecondValue(vo.secondValue());
+            builder.withFirstValue(vo.getFirstValue());
+            builder.withSecondValue(vo.getSecondValue());
 
 
         }
@@ -197,16 +197,5 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
         }
     }
-
-    public I1 firstValue() {
-        return firstValue;
-
-    }
-
-    private I2 secondValue() {
-        return secondValue;
-
-    }
-
 
 }

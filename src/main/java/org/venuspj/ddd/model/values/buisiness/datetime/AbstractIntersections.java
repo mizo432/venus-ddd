@@ -106,7 +106,7 @@ public class AbstractIntersections
                     list
                             .stream()
                             .sorted((o1, o2) -> ComparisonChain.start()
-                                    .compare((Comparable<?>) o1.firstValue(), (Comparable<?>) o2.firstValue())
+                                    .compare((Comparable<?>) o1.getFirstValue(), (Comparable<?>) o2.getFirstValue())
                                     .compare((Comparable<?>) o1.getSecondValue(), (Comparable<?>) o2.getSecondValue())
                                     .compare(o1.getInterval().startMoment(), o2.getInterval().startMoment())
                                     .compare(o1.getInterval().endMoment(), o2.getInterval().endMoment())
@@ -123,7 +123,7 @@ public class AbstractIntersections
                             .stream()
                             .sorted((o1, o2) -> ComparisonChain.start()
                                     .compare((Comparable<?>) o1.getSecondValue(), (Comparable<?>) o2.getSecondValue())
-                                    .compare((Comparable<?>) o1.firstValue(), (Comparable<?>) o2.firstValue())
+                                    .compare((Comparable<?>) o1.getFirstValue(), (Comparable<?>) o2.getFirstValue())
                                     .compare(o1.getInterval().startMoment(), o2.getInterval().startMoment())
                                     .compare(o1.getInterval().endMoment(), o2.getInterval().endMoment())
                                     .result()).collect(Collectors.toList());
