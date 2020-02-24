@@ -5,7 +5,6 @@ import org.venuspj.ddd.model.values.Value;
 import org.venuspj.util.objects2.Objects2;
 
 import java.time.temporal.Temporal;
-import java.util.function.Supplier;
 
 public class HistoryItem<T extends Temporal, I extends Value<I>> extends AbstractValue<HistoryItem<T, I>> {
 
@@ -70,11 +69,6 @@ public class HistoryItem<T extends Temporal, I extends Value<I>> extends Abstrac
 
     public static <T extends Temporal, V extends Value<V>> HistoryItem<T, V> createFrom(Interval<T> anInterval, V anItem) {
         return new HistoryItem<>(anInterval, anItem);
-
-    }
-
-    public static <T extends Temporal, V extends Value<V>> HistoryItem<T, V> createFrom(Supplier<Interval<T>> anIntervalSupplier, Supplier<V> anItemSupplier) {
-        return new HistoryItem<>(anIntervalSupplier.get(), anItemSupplier.get());
 
     }
 
