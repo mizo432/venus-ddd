@@ -60,6 +60,12 @@ public class HistoryItem<T extends Temporal, I extends Value<I>> extends Abstrac
 
     }
 
+    /**
+     * 次履歴アイテムをマージします。
+     *
+     * @param aNextHistoryItem 次履歴アイテム
+     * @return マージ後の履歴アイテム
+     */
     public HistoryItem<T, I> merge(HistoryItem<T, I> aNextHistoryItem) {
         Interval<T> newInterval = interval.marge(aNextHistoryItem.interval);
 
@@ -72,22 +78,46 @@ public class HistoryItem<T extends Temporal, I extends Value<I>> extends Abstrac
 
     }
 
+    /**
+     * 終了モーメントを調整します。
+     *
+     * @param aNextHistoryItem 次履歴アイテム
+     * @return 調整後の履歴アイテム
+     */
     public HistoryItem<T, I> adjustEndMoment(HistoryItem<T, I> aNextHistoryItem) {
         Interval<T> newInterval = interval.adjustEndMoment(aNextHistoryItem.interval);
         return HistoryItem.createFrom(newInterval, item);
 
     }
 
-    public boolean isOverlap(HistoryItem<T, I> aNextHistoryItem) {
-        return interval.isOverlap(aNextHistoryItem.interval);
+    /**
+     * インターバルと検査インターバルが重なっているかを判定する.
+     *
+     * @param otherNextHistoryItem 検査インターバル
+     * @return インターバルが重なっている場合はtrueを返却する
+     */
+    public boolean isOverlap(HistoryItem<T, I> otherNextHistoryItem) {
+        return interval.isOverlap(otherNextHistoryItem.interval);
 
     }
 
+    /**
+     * 履歴アイテムで保持しているアイテムが検査履歴アイテムのアイテムと一致しているか判定する.
+     *
+     * @param anOtherHistoryItem 検査履歴アイテム
+     * @return アイテムが一致している場合trueを返却する
+     */
     public boolean sameItemAs(HistoryItem<T, I> anOtherHistoryItem) {
         return item.sameValueAs(anOtherHistoryItem.item);
 
     }
 
+    /**
+     * ターゲットモーメントがインターバルに含まれているかを判定する
+     *
+     * @param aTargetMoment ターゲットモーメント
+     * @return 含まれている場合trueを返却する
+     */
     public boolean contains(Moment<T> aTargetMoment) {
         return interval.contains(aTargetMoment);
 
