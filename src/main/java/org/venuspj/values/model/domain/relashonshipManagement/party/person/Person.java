@@ -1,7 +1,7 @@
-package org.venuspj.basic.model.domain.relashonshipManagement.party.person;
+package org.venuspj.values.model.domain.relashonshipManagement.party.person;
 
-import org.venuspj.basic.model.domain.relashonshipManagement.party.Party;
-import org.venuspj.basic.model.domain.relashonshipManagement.party.PartyIdentifier;
+import org.venuspj.values.model.domain.relashonshipManagement.party.Party;
+import org.venuspj.values.model.domain.relashonshipManagement.party.PartyIdentifier;
 
 public abstract class Person<
         P extends Person<P, I, PI>,

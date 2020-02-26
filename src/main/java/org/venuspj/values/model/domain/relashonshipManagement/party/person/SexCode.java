@@ -1,4 +1,4 @@
-package org.venuspj.basic.model.domain.relashonshipManagement.party.person;
+package org.venuspj.values.model.domain.relashonshipManagement.party.person;
 
 import org.venuspj.ddd.model.values.primitives.code.AbstractStringCodeValue;
 

@@ -1,4 +1,4 @@
-package org.venuspj.basic.model.domain.relashonshipManagement.party;
+package org.venuspj.values.model.domain.relashonshipManagement.party;
 
 import org.venuspj.ddd.model.values.buisiness.datetime.AbstractHistory;
 
