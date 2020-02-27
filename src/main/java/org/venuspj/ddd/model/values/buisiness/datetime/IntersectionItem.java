@@ -28,7 +28,7 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
     }
 
-    public Interval getInterval() {
+    public Interval<T> getInterval() {
         return interval;
 
     }
@@ -139,7 +139,8 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
     }
 
-    private static <I1 extends Value<I1>, T extends Temporal, I2 extends Value<I2>> IntersectionItem<T, I1, I2> createFrom(Interval<T> anInterval, I1 aFirstValue, I2 aSecondValue) {
+    public static <I1 extends Value<I1>, T extends Temporal, I2 extends Value<I2>>
+    IntersectionItem<T, I1, I2> createFrom(Interval<T> anInterval, I1 aFirstValue, I2 aSecondValue) {
         return new IntersectionItem<>(anInterval, aFirstValue, aSecondValue);
 
     }
