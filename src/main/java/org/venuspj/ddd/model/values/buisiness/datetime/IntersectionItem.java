@@ -5,10 +5,8 @@ import org.venuspj.ddd.model.values.Value;
 import org.venuspj.util.builder.ObjectBuilder;
 
 import java.time.temporal.Temporal;
-import java.util.Objects;
 
-import static org.venuspj.util.objects2.Objects2.equal;
-import static org.venuspj.util.objects2.Objects2.isNull;
+import static org.venuspj.util.objects2.Objects2.*;
 
 /**
  * インターバルをキーにした交差エンティティ
@@ -23,10 +21,6 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
     private I1 firstValue;
     private I2 secondValue;
 
-
-    public IntersectionItem() {
-
-    }
 
     public Interval<T> getInterval() {
         return interval;
@@ -90,14 +84,14 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IntersectionItem<?, ?, ?> that = (IntersectionItem<?, ?, ?>) o;
-        return Objects.equals(interval, that.interval) &&
-                Objects.equals(firstValue, that.firstValue) &&
-                Objects.equals(secondValue, that.secondValue);
+        return equal(interval, that.interval) &&
+                equal(firstValue, that.firstValue) &&
+                equal(secondValue, that.secondValue);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(interval, firstValue, secondValue);
+        return hash(interval, firstValue, secondValue);
 
     }
 
@@ -156,7 +150,16 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
     }
 
-    public static class IntersectionBuilder<T extends Temporal, V1 extends Value<V1>, V2 extends Value<V2>>
+    public static <T extends Temporal, V1 extends Value<V1>, V2 extends Value<V2>> IntersectionBuilder<T, V1, V2> builder() {
+        return new IntersectionBuilder<>();
+
+    }
+
+
+    public static class IntersectionBuilder<
+            T extends Temporal,
+            V1 extends Value<V1>,
+            V2 extends Value<V2>>
             extends ObjectBuilder<IntersectionItem<T, V1, V2>, IntersectionBuilder<T, V1, V2>> {
         private Moment<T> startMoment;
         private Moment<T> endMoment;
@@ -165,31 +168,31 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
         @Override
         protected void apply(IntersectionItem<T, V1, V2> vo, IntersectionBuilder<T, V1, V2> builder) {
-            builder.withStartMoment(vo.interval.startMoment());
-            builder.withEndMoment(vo.interval.endMoment());
+            builder.withStartMoment(vo.getInterval().startMoment());
+            builder.withEndMoment(vo.getInterval().endMoment());
             builder.withFirstValue(vo.getFirstValue());
             builder.withSecondValue(vo.getSecondValue());
 
 
         }
 
-        private IntersectionBuilder<T, V1, V2> withSecondValue(V2 secondValue) {
-            if (isNull(startMoment)) return getThis();
-            addConfigurator(builder -> builder.startMoment = startMoment);
+        public IntersectionBuilder<T, V1, V2> withSecondValue(V2 aSecondValue) {
+            if (isNull(aSecondValue)) return getThis();
+            addConfigurator(builder -> builder.secondValue = aSecondValue);
             return getThis();
 
         }
 
-        private IntersectionBuilder<T, V1, V2> withFirstValue(V1 firstValue) {
-            if (isNull(startMoment)) return getThis();
-            addConfigurator(builder -> builder.startMoment = startMoment);
+        public IntersectionBuilder<T, V1, V2> withFirstValue(V1 aFirstValue) {
+            if (isNull(aFirstValue)) return getThis();
+            addConfigurator(builder -> builder.firstValue = aFirstValue);
             return getThis();
 
         }
 
         public IntersectionBuilder<T, V1, V2> withStartMoment(Moment<T> aStartMoment) {
-            if (isNull(startMoment)) return getThis();
-            addConfigurator(builder -> builder.startMoment = startMoment);
+            if (isNull(aStartMoment)) return getThis();
+            addConfigurator(builder -> builder.startMoment = aStartMoment);
             return getThis();
 
         }

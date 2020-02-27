@@ -58,6 +58,71 @@ public class IntersectionItemTest {
 
     }
 
+    @Test
+    @Tag(TestSize.SMALL)
+    public void intersectionBuilderBuild1() {
+        IntersectionItem.IntersectionBuilder<Year, StartYear, EndYear> builder = IntersectionItem.builder();
+        IntersectionItem<Year, StartYear, EndYear> target =
+                builder
+                        .withStartMoment(Moment.of(Year.of(2020)))
+                        .withEndMoment(Moment.of(Year.of(2021)))
+                        .withFirstValue(StartYear.of(Year.of(2030)))
+                        .withSecondValue(EndYear.of(Year.of(2030)))
+                        .build();
+
+        assertThat(target)
+                .isNotNull();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void intersectionBuilderBuild2() {
+        IntersectionItem.IntersectionBuilder<Year, StartYear, EndYear> builder = IntersectionItem.builder();
+        IntersectionItem<Year, StartYear, EndYear> target =
+                builder
+                        .withStartMoment(Moment.of(Year.of(2020)))
+                        .withStartMoment(null)
+                        .withEndMoment(Moment.of(Year.of(2021)))
+                        .withEndMoment(null)
+                        .withFirstValue(StartYear.of(Year.of(2030)))
+                        .withFirstValue(null)
+                        .withSecondValue(EndYear.of(Year.of(2030)))
+                        .withSecondValue(null)
+                        .build();
+
+        assertThat(target)
+                .isNotNull();
+
+    }
+
+    @Test
+    @Tag(TestSize.SMALL)
+    public void intersectionBuilderApply() {
+        IntersectionItem.IntersectionBuilder<Year, StartYear, EndYear> builder = IntersectionItem.builder();
+        IntersectionItem<Year, StartYear, EndYear> arg =
+                builder
+                        .withStartMoment(Moment.of(Year.of(2020)))
+                        .withEndMoment(Moment.of(Year.of(2021)))
+                        .withFirstValue(StartYear.of(Year.of(2030)))
+                        .withSecondValue(EndYear.of(Year.of(2030)))
+                        .build();
+
+        IntersectionItem.IntersectionBuilder<Year, StartYear, EndYear> builder1 = IntersectionItem.builder();
+        IntersectionItem<Year, StartYear, EndYear> actual =
+                builder1
+                        .withStartMoment(Moment.of(Year.of(2020)))
+                        .withEndMoment(Moment.of(Year.of(2021)))
+                        .withFirstValue(StartYear.of(Year.of(2030)))
+                        .withSecondValue(EndYear.of(Year.of(2030)))
+                        .apply(arg);
+
+
+        assertThat(actual)
+                .isNotNull();
+
+    }
+
     public static class IntersectionItemMock {
 
         static IntersectionItem<Year, StartYear, EndYear> one() {
