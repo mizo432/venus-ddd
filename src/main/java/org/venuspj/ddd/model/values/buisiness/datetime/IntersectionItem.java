@@ -206,10 +206,8 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
         @Override
         protected IntersectionItem<T, V1, V2> createValueObject() {
-            if (isNull(endMoment))
-                return IntersectionItem.createFrom(startMoment, this.firstValue, this.secondValue);
-
             return IntersectionItem.createFrom(startMoment, endMoment, this.firstValue, this.secondValue);
+
         }
 
         @Override
