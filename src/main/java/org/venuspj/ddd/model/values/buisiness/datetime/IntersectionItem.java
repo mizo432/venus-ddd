@@ -101,17 +101,35 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
     }
 
+    /**
+     * 他交差エンティティとアイテム（第一アイテムと第二アイテム）が一致しているかを判定する
+     *
+     * @param other 他交差エンティティ
+     * @return 一致している場合<code>true</code>を返却する。
+     */
     public boolean sameItemAs(IntersectionItem<T, I1, I2> other) {
         return equal(this.firstValue, other.firstValue) &&
                 equal(this.secondValue, other.secondValue);
 
     }
 
+    /**
+     * 他交差エンティティのインターバルが連続しているかを判定する。
+     *
+     * @param other 他交差エンティティ
+     * @return 連続している場合<code>true</code>を返却する。
+     */
     public boolean isContinuous(IntersectionItem<T, I1, I2> other) {
         return interval.isContinuousTo(other.getInterval());
 
     }
 
+    /**
+     * 他交差エンティティとマージします。
+     *
+     * @param other 他交差エンティティ
+     * @return マージした交差エンティティ
+     */
     public IntersectionItem<T, I1, I2> merge(IntersectionItem<T, I1, I2> other) {
         Interval<T> resultInterval = Interval.createFrom(interval.startMoment, other.interval.endMoment);
         return IntersectionItem
@@ -126,6 +144,12 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
     }
 
+    /**
+     * 他交差エンティティのインターバルがオーバーラップしているかを判定する。
+     *
+     * @param other 他交差エンティティ
+     * @return オーバーラップしている場合<code>true</code>を返却する。
+     */
     public boolean isOverlap(IntersectionItem<T, I1, I2> other) {
         return interval.isOverlap(other.interval);
 
@@ -142,8 +166,8 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
         protected void apply(IntersectionItem<T, V1, V2> vo, IntersectionBuilder<T, V1, V2> builder) {
             builder.withStartMoment(vo.interval.startMoment());
             builder.withEndMoment(vo.interval.endMoment());
-            builder.withFirstValue(vo.firstValue());
-            builder.withSecondValue(vo.secondValue());
+            builder.withFirstValue(vo.getFirstValue());
+            builder.withSecondValue(vo.getSecondValue());
 
 
         }
@@ -196,16 +220,5 @@ public class IntersectionItem<T extends Temporal, I1 extends Value<I1>, I2 exten
 
         }
     }
-
-    public I1 firstValue() {
-        return firstValue;
-
-    }
-
-    private I2 secondValue() {
-        return secondValue;
-
-    }
-
 
 }
