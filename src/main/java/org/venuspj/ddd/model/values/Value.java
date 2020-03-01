@@ -5,6 +5,10 @@ package org.venuspj.ddd.model.values;
  *
  * @param <V>
  */
+
+import com.fasterxml.jackson.annotation.JsonFilter;
+
+@JsonFilter("value")
 public interface Value<V extends Value<V>> {
     /**
      * 全てのプロパティの等価性を用いて、このバリューオブジェクトの等価性を比較する。

@@ -1,11 +1,11 @@
 package org.venuspj.ddd.model.values.buisiness.quantity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.ddd.model.values.buisiness.Unit;
-import org.venuspj.ddd.model.values.buisiness.address.SimpleAddressInformation;
+import org.venuspj.ddd.model.values.buisiness.address.SimpleAddress;
 import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
@@ -86,7 +86,7 @@ public class QuantityDecimalAndUnitTest {
     @Test
     @Tag(TestSize.SMALL)
     public void equals1() {
-        SimpleAddressInformation arg = SimpleAddressInformation.empty();
+        SimpleAddress arg = SimpleAddress.empty();
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
         boolean actual = target.equals(arg);
         assertThat(actual)
@@ -157,7 +157,7 @@ public class QuantityDecimalAndUnitTest {
     @Tag(TestSize.SMALL)
     public void toJson1() throws JsonProcessingException {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnitMock.full();
-        ObjectMapper objectMapper = new ObjectMapper();
+        JsonMapperEx objectMapper = new JsonMapperEx();
 
         String json = objectMapper.writeValueAsString(target);
 
@@ -171,7 +171,7 @@ public class QuantityDecimalAndUnitTest {
     @Tag(TestSize.SMALL)
     public void toJson2() throws JsonProcessingException {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
-        ObjectMapper objectMapper = new ObjectMapper();
+        JsonMapperEx objectMapper = new JsonMapperEx();
 
         String json = objectMapper.writeValueAsString(target);
 

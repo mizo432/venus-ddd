@@ -6,6 +6,8 @@ public class BetweenCriteria<T extends Comparable<T>> extends AbstractExpression
 
     @Override
     public boolean test(T value) {
-        return false;
+        return greaterOrEqualCriteria.test(value) && smallerCriteria.test(value);
+
     }
+
 }

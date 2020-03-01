@@ -4,9 +4,6 @@ import org.venuspj.ddd.model.entity.AbstractEntities;
 
 import java.util.Collection;
 
-/**
- * 住所の字（字）
- */
 public class Azas extends AbstractEntities<Aza, AzaIdentifier, Azas> {
 
     public Azas() {

@@ -36,6 +36,7 @@ public class AbstractYearValue<AYSV extends AbstractYearValue<AYSV>>
     @Override
     public Year asYear() {
         return value;
+
     }
 
 }

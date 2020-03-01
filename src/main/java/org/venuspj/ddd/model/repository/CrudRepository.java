@@ -6,7 +6,7 @@ import org.venuspj.ddd.model.values.primitives.ListValue;
 
 import java.util.List;
 
-public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<E, EI>> {
+public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdentifier<EI>> {
 
     /**
      * 識別子に該当するエンティティをリポジトリから取得する。
@@ -63,7 +63,7 @@ public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdenti
      * @param entities 保存する対象のエンティティ
      * @throws RepositoryCouldNotAccessRuntimeException リポジトリにアクセスできない場合
      */
-    void store(ListValue<E,?> entities);
+    void store(ListValue<E, ?> entities);
 
     /**
      * エンティティを保存する。
@@ -100,6 +100,6 @@ public interface CrudRepository<E extends Entity<E, EI>, EI extends EntityIdenti
      * @throws EntityNotFoundRuntimeException           指定された識別子を持つエンティティが見つからなかった場合
      * @throws RepositoryCouldNotAccessRuntimeException リポジトリにアクセスできない場合
      */
-    void delete(EI identifier)  throws EntityNotFoundRuntimeException;
+    void delete(EI identifier) throws EntityNotFoundRuntimeException;
 
 }

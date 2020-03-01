@@ -6,7 +6,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 public class AbstractYearMonthValue<AYMV extends AbstractYearMonthValue<AYMV>>
-        extends AbstractComparableSingleValue<YearMonth, AYMV> implements AbstractComparableSingleValue.YearMonthValue<AYMV> {
+        extends AbstractComparableSingleValue<YearMonth, AYMV> implements YearMonthValue<AYMV> {
 
     protected AbstractYearMonthValue() {
     }

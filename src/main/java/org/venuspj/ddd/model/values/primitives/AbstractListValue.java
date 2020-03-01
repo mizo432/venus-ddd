@@ -16,6 +16,10 @@ import static org.venuspj.util.collect.Lists2.unmodifiableList;
 import static org.venuspj.util.objects2.Objects2.equal;
 import static org.venuspj.util.objects2.Objects2.isNull;
 
+/**
+ * @param <E>
+ * @param <ALV>
+ */
 public abstract class AbstractListValue<E, ALV extends AbstractListValue<E, ALV>> extends AbstractSingleValue<List<E>, ALV> implements ListValue<E, ALV> {
 
     protected AbstractListValue() {
@@ -32,6 +36,16 @@ public abstract class AbstractListValue<E, ALV extends AbstractListValue<E, ALV>
     public List<E> asList() {
         return unmodifiableList(value);
 
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return value.isEmpty();
+    }
+
+    @Override
+    public boolean isPresent() {
+        return !isEmpty();
     }
 
     public Iterator<E> iterator() {

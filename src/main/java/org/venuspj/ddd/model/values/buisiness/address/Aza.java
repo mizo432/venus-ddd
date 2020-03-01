@@ -1,16 +1,16 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.venuspj.ddd.model.entity.AbstractEntity;
+import org.venuspj.ddd.model.values.buisiness.name.Name;
 
-public class Aza extends AbstractEntity<Aza, AzaIdentifier, AzaInformation> {
+public class Aza extends AbstractAza<Aza> {
 
-    Aza(AzaIdentifier aAzaIdentifier, AzaInformation anAzaInformation) {
-        super(aAzaIdentifier, anAzaInformation);
+    Aza(AzaIdentifier anAzaIdentifier, AzaCode anAzaCode, Name aName, Name aKanaName) {
+        super(anAzaIdentifier, anAzaCode, aName, aKanaName);
+
     }
 
     public Aza() {
-        super(AzaIdentifier.empty(), AzaInformation.empty());
+        super();
     }
 
     public static Aza empty() {
@@ -18,15 +18,31 @@ public class Aza extends AbstractEntity<Aza, AzaIdentifier, AzaInformation> {
 
     }
 
-    public static Aza of(AzaIdentifier anAzaIdentifier, AzaInformation anAzaInformation) {
-        return new Aza(anAzaIdentifier, anAzaInformation);
-
+    public static Aza of(AzaIdentifier anAzaIdentifier, AzaCode anAzaCode, Name aName, Name aKanaName) {
+        return new Aza(anAzaIdentifier, anAzaCode, aName, aKanaName);
 
     }
 
-    @JsonIgnore
-    protected AzaInformation getAzaInformation() {
-        return getEntityInfo();
+    public static AzaBuilder builder() {
+        return new AzaBuilder();
+    }
+
+    public static class AzaBuilder extends AbstractAzaBuilder<Aza, AzaBuilder> {
+
+        @Override
+        protected Aza createValueObject() {
+            return new Aza(super.identifier, super.azaCode, super.name, super.kanaName);
+        }
+
+        @Override
+        protected AzaBuilder getThis() {
+            return this;
+        }
+
+        @Override
+        protected AzaBuilder newInstance() {
+            return new AzaBuilder();
+        }
     }
 
 }

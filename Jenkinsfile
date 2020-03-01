@@ -76,10 +76,8 @@ pipeline {
             }
             post {
                 always {
-                    recordIssues enabledForFailure: true, tools: [pmdParser(pattern: '**/build/reports/pmd/main.xml')]
-                    recordIssues enabledForFailure: true, tools: [cpd(pattern: '**/build/reports/cpd/cpd.xml', reportEncoding: 'UTF-8', skipSymbolicLinks: true)]
-                    archiveArtifacts "**/pmd/*.xml"
-                    archiveArtifacts "**/cpd/*.xml"
+                    recordIssues enabledForFailure: true, tools: [spotBugs(pattern: '**/build/reports/spotbugs/main.xml')]
+                    archiveArtifacts "**/spotbugs/*.xml"
                     // 一応エクセルファイルも成果物として保存する
                     archiveArtifacts allowEmptyArchive: true, artifacts: "**/build/stepCount.xls"
                 }
@@ -98,7 +96,7 @@ pipeline {
                 archiveArtifacts allowEmptyArchive: true, artifacts: "**/${testReportDir}/*.xml"
                 // カバレッジレポートを生成（テストクラスを除外）
                 echo 'JacocoReportアーカイブ 開始'
-                jacoco exclusionPattern: '**/*Test*.class,**/*Mock*.class'
+                jacoco exclusionPattern: '**/*Test*.class,**/*Mock*.class,**/forTest/**/*.class'
                 echo 'JacocoReportアーカイブ 終了'
             }
         }
@@ -112,7 +110,7 @@ pipeline {
                 archiveArtifacts allowEmptyArchive: true, artifacts: "**/${testReportDir}/*.xml"
                 // カバレッジレポートを生成（テストクラスを除外）
                 echo 'JacocoReportアーカイブ 開始'
-                jacoco exclusionPattern: '**/*Test*.class,**/*Mock*.class'
+                jacoco exclusionPattern: '**/*Test*.class,**/*Mock*.class,**/forTest/**/*.class'
                 echo 'JacocoReportアーカイブ 終了'
             }
         }

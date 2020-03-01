@@ -2,14 +2,14 @@ package org.venuspj.ddd.model.values.buisiness.address;
 
 import org.venuspj.ddd.model.entity.AbstractEntityLongIdentifier;
 
-public class CityIdentifier extends AbstractEntityLongIdentifier<City, CityIdentifier> {
+public class CityIdentifier extends AbstractEntityLongIdentifier<CityIdentifier> {
     public CityIdentifier(Long aValue) {
-        super(City.class, aValue);
+        super(AbstractCity.class, aValue);
 
     }
 
     public CityIdentifier() {
-        super(City.class);
+        super(AbstractCity.class);
 
     }
 
@@ -22,12 +22,5 @@ public class CityIdentifier extends AbstractEntityLongIdentifier<City, CityIdent
         return new CityIdentifier(aValue);
 
     }
-
-    @Override
-    public boolean sameValueAs(CityIdentifier other) {
-        return equals(other);
-
-    }
-
 
 }
