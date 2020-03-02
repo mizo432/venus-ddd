@@ -33,6 +33,15 @@ public class AbstractIntersections
 
     }
 
+    /**
+     * 第二アイテムを元に第一アイテムのヒストリーアイテムを取得する。
+     * <pre>
+     *     HistoryItems
+     * </pre>
+     *
+     * @param aSecondItem 第二アイテム
+     * @return 第二アイテムのヒストリーアイテム(HistoryItems)
+     */
     public HistoryItems<T, V1> selectFirstItemsBy(V2 aSecondItem) {
 
         List<HistoryItem<T, V1>> resultList = selectFirstItemListBy(aSecondItem);
@@ -56,12 +65,27 @@ public class AbstractIntersections
 
     }
 
+    /**
+     * 第一アイテムを元に第二アイテムのヒストリーを取得する。
+     * <pre>
+     *     HistoryItems
+     * </pre>
+     *
+     * @param aFirstItem 第一アイテム
+     * @return 第二アイテムのヒストリーアイテム(HistoryItems)
+     */
     public HistoryItems<T, V2> selectSecondItemsBy(V1 aFirstItem) {
         List<HistoryItem<T, V2>> resultList = selectSecondItemListBy(aFirstItem);
         return HistoryItems.of(resultList);
 
     }
 
+    /**
+     * 第一アイテムを元に第二アイテムのヒストリーを取得する。
+     *
+     * @param aFirstItem 第一アイテム
+     * @return 第二アイテムのヒストリーアイテムのリスト
+     */
     @SuppressWarnings("unchecked")
     private List<HistoryItem<T, V2>> selectSecondItemListBy(V1 aFirstItem) {
         List<IntersectionItem<T, V1, V2>> wkList = value.stream()
