@@ -2,14 +2,13 @@ package org.venuspj.ddd.model.values.buisiness.datetime;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DaysTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
         Days target = Days.of(10);
 
@@ -22,7 +21,7 @@ public class DaysTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         Days target = Days.empty();
 

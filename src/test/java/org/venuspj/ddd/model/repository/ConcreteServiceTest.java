@@ -10,7 +10,6 @@ import org.venuspj.ddd.model.forTest.infrastructure.db.ConcreteEntityDataSource;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntitiesMock;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityRepository;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,7 +24,7 @@ public class ConcreteServiceTest {
         concreteEntityRepository = new ConcreteEntityDataSource(ConcreteEntitiesMock.createMock(ConcreteEntitiesMock.ConcreteEntitiesMockType.EMPTY).asList());
     }
 
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     @Test
     public void execute() throws EntityNotFoundRuntimeException {
         ConcreteService targetService = new ConcreteService(concreteEntityRepository);

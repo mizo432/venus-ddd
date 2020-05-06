@@ -2,14 +2,13 @@ package org.venuspj.ddd.model.values.buisiness.note;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
         Line target = Line.of("testData");
         assertThat(target)
@@ -20,7 +19,7 @@ public class LineTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         Line target = Line.empty();
         assertThat(target.isEmpty())

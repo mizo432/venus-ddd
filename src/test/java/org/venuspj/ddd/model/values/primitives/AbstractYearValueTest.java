@@ -2,7 +2,6 @@ package org.venuspj.ddd.model.values.primitives;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.tests.constants.TestSize;
 
 import java.time.Year;
 
@@ -11,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AbstractYearValueTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void constructor() {
         ConcreteYearValue target = ConcreteYearValue.of(Year.of(2020));
         String actual = target.toString();
@@ -21,7 +20,7 @@ public class AbstractYearValueTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void asYear() {
         ConcreteYearValue target = ConcreteYearValue.of(Year.of(2020));
         Year actual = target.asYear();

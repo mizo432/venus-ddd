@@ -4,7 +4,7 @@ buildscript {
         assertJVersion = '3.15.0'
         logbackVersion = '1.1.11'
         slf4jVersion = '1.7.25'
-        venusUtilsVersion = '1.0.15'
+        venusUtilsVersion = '1.0.19'
         guavaVersion = '25.0-jre'
         junitJupiterApiVersion = '5.6.0'
         junitPlatformLauncherVersion = '1.6.0'
@@ -12,6 +12,7 @@ buildscript {
         jcipAnnotationsVersion = '1.0'
         venusTestsVersion = '0.0.4'
         jacsonCoreVersion = '2.10.2'
+        springContextVersion = '5.2.5-RELEASE'
 
         defaultEncoding = 'UTF-8'
     }
@@ -88,7 +89,6 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}")
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
     testRuntimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "${jacsonCoreVersion}"
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
 }
 

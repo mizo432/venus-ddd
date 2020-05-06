@@ -1,6 +1,5 @@
 package org.venuspj.ddd.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.AbstractValue;
 
 import static org.venuspj.util.objects2.Objects2.*;
@@ -52,7 +51,6 @@ public abstract class AbstractEntityIdentifier<EI extends AbstractEntityIdentifi
 
 
     @Override
-    @JsonIgnore
     public String getKind() {
         return kind;
 
@@ -69,7 +67,6 @@ public abstract class AbstractEntityIdentifier<EI extends AbstractEntityIdentifi
     }
 
     @Override
-    @JsonIgnore
     public boolean isEmpty() {
         return isNull(value);
     }

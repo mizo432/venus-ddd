@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.primitives.momentinterval.EndYear;
 import org.venuspj.ddd.model.values.primitives.momentinterval.StartYear;
-import org.venuspj.tests.constants.TestSize;
 
 import java.time.Year;
 
@@ -12,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class IntersectionItemTest {
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void createFrom1() {
         IntersectionItem<Year, StartYear, EndYear> target = IntersectionItemMock.one();
         System.out.println(target.toString());
@@ -20,7 +19,7 @@ public class IntersectionItemTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void getFirstValue() {
         IntersectionItem<Year, StartYear, EndYear> target = IntersectionItemMock.one();
         StartYear actual = target.getFirstValue();
@@ -33,7 +32,7 @@ public class IntersectionItemTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void getSecondValue() {
         IntersectionItem<Year, StartYear, EndYear> target = IntersectionItemMock.one();
         EndYear actual = target.getSecondValue();
@@ -46,7 +45,7 @@ public class IntersectionItemTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void getInterval() {
         IntersectionItem<Year, StartYear, EndYear> target = IntersectionItemMock.one();
         Interval<Year> actual = target.getInterval();
@@ -59,7 +58,7 @@ public class IntersectionItemTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void intersectionBuilderBuild1() {
         IntersectionItem.IntersectionBuilder<Year, StartYear, EndYear> builder = IntersectionItem.builder();
         IntersectionItem<Year, StartYear, EndYear> target =
@@ -76,7 +75,7 @@ public class IntersectionItemTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void intersectionBuilderBuild2() {
         IntersectionItem.IntersectionBuilder<Year, StartYear, EndYear> builder = IntersectionItem.builder();
         IntersectionItem<Year, StartYear, EndYear> target =
@@ -97,7 +96,7 @@ public class IntersectionItemTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void intersectionBuilderApply() {
         IntersectionItem.IntersectionBuilder<Year, StartYear, EndYear> builder = IntersectionItem.builder();
         IntersectionItem<Year, StartYear, EndYear> arg =

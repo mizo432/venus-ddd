@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.venuspj.tests.TagAssert;
 import org.venuspj.tests.TestPackage;
-import org.venuspj.tests.constants.TestSize;
 import org.venuspj.util.beans.BeanDesc;
 import org.venuspj.util.beans.MethodDesc;
 import org.venuspj.util.beans.factory.BeanDescFactory;
@@ -29,7 +28,7 @@ public class TagTest {
      * 学習テスト
      */
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     @DisplayName("Tagを付けていないテストメソッドをエラーとする")
     public void test1() {
         Set<Class<?>> result = ClassPath.listRecursiveClasses(this.getClass());
@@ -61,7 +60,7 @@ public class TagTest {
      * 学習テスト
      */
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     @DisplayName("Tagを付けていないテストメソッドをエラーとする")
     public void test2() {
         TagAssert.assertThat(TestPackage.of("org.venuspj.ddd"))

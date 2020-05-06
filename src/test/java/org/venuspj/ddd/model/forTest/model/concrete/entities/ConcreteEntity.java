@@ -1,6 +1,5 @@
 package org.venuspj.ddd.model.forTest.model.concrete.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.entity.AbstractEntity;
 
 public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntityIdentifier> {
@@ -32,7 +31,6 @@ public class ConcreteEntity extends AbstractEntity<ConcreteEntity, ConcreteEntit
 
     }
 
-    @JsonIgnore
     public ConcreteInfo concreteInfo() {
         return concreteInfo;
 

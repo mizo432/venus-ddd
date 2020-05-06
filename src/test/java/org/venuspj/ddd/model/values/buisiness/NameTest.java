@@ -3,14 +3,13 @@ package org.venuspj.ddd.model.values.buisiness;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.name.Name;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NameTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
         Name target = Name.of("testData");
         assertThat(target)
@@ -21,7 +20,7 @@ public class NameTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         Name target = Name.empty();
         assertThat(target)

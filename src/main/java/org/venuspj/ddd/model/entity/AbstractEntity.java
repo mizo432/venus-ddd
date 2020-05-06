@@ -1,7 +1,5 @@
 package org.venuspj.ddd.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.venuspj.ddd.model.values.Value;
 
 import static org.venuspj.util.objects2.Objects2.*;
@@ -35,7 +33,6 @@ public abstract class AbstractEntity
     }
 
     @Override
-    @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
     public EI getIdentifier() {
         return identifier;
     }
@@ -90,7 +87,6 @@ public abstract class AbstractEntity
 
     }
 
-    @JsonIgnore
     public boolean isEmpty() {
         return identifier.isEmpty();
 

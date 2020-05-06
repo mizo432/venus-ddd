@@ -1,6 +1,5 @@
 package org.venuspj.ddd.model.values.buisiness.contact;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.Value;
 import org.venuspj.ddd.model.values.buisiness.address.Address;
 import org.venuspj.util.builder.ObjectBuilder;
@@ -81,7 +80,6 @@ public class Contact implements Value<Contact> {
     }
 
     @Override
-    @JsonIgnore
     public boolean isEmpty() {
         return address.isEmpty()
                 && emailAddress.isEmpty()

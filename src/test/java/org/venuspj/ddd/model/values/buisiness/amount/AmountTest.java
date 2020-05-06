@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.Percentage;
 import org.venuspj.ddd.model.values.buisiness.money.Amount;
 import org.venuspj.ddd.model.values.buisiness.quantity.QuantityDecimal;
-import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import static org.venuspj.util.collect.Lists2.newArrayList;
 public class AmountTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         Amount target = Amount.empty();
         System.out.println(target.asText());
@@ -25,7 +24,7 @@ public class AmountTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void zeroYen() {
         Amount target = Amount.zeroYen();
         System.out.println(target.asText());
@@ -34,7 +33,7 @@ public class AmountTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void valueOf() {
         Amount target = Amount.yen(1000L);
         System.out.println(target.asText());
@@ -43,7 +42,7 @@ public class AmountTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sum1() {
         Amount target = Amount.sum(Amount.yen(1000L), Amount.yen(3000L));
         System.out.println(target.asText());
@@ -52,7 +51,7 @@ public class AmountTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sum2() {
         ArrayList<Amount> amounts = newArrayList(Amount.yen(10L), Amount.yen(20L));
         Amount target = Amount.sum(amounts);
@@ -63,7 +62,7 @@ public class AmountTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void multiply1() {
         //given
         QuantityDecimal quantityDecimal = QuantityDecimal.of(BigDecimal.valueOf(3));
@@ -77,7 +76,7 @@ public class AmountTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void multiply2() {
         //given
         Percentage percentage = Percentage.valueOf(BigDecimal.valueOf(8));
@@ -92,7 +91,7 @@ public class AmountTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void compareTo() {
         assertThat(Amount.yen(500L).compareTo(Amount.zeroYen()))
                 .isEqualTo(1);

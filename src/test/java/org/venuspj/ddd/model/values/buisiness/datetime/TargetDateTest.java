@@ -2,7 +2,6 @@ package org.venuspj.ddd.model.values.buisiness.datetime;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.tests.constants.TestSize;
 
 import java.time.LocalDate;
 
@@ -11,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TargetDateTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
 
         TargetDate target = TargetDate.of(LocalDate.now());
@@ -24,7 +23,7 @@ public class TargetDateTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
 
         TargetDate target = TargetDate.empty();
@@ -37,7 +36,7 @@ public class TargetDateTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void asTest() {
         LocalDate arg = LocalDate.now();
 

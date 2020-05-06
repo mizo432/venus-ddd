@@ -1,7 +1,6 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.AbstractValue;
 import org.venuspj.util.builder.ObjectBuilder;
 
@@ -107,7 +106,6 @@ public class SimpleAddress extends AbstractValue<SimpleAddress> {
 
     }
 
-    @JsonIgnore
     public boolean isEmpty() {
         return zipCode.isEmpty()
                 && addressCode.isEmpty()

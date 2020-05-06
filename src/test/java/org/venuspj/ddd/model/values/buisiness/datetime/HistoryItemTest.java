@@ -3,7 +3,6 @@ package org.venuspj.ddd.model.values.buisiness.datetime;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.primitives.momentinterval.StartYear;
-import org.venuspj.tests.constants.TestSize;
 
 import java.time.Year;
 
@@ -12,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class HistoryItemTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void createFrom1() {
         HistoryItem<Year, StartYear> target = HistoryItemMock.one();
         System.out.println(target.toString());
@@ -20,7 +19,7 @@ public class HistoryItemTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void getItem() {
         HistoryItem<Year, StartYear> target = HistoryItemMock.one();
         StartYear actual = target.getItem();
@@ -33,7 +32,7 @@ public class HistoryItemTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void getInterval() {
         HistoryItem<Year, StartYear> target = HistoryItemMock.one();
         Interval<Year> actual = target.getInterval();

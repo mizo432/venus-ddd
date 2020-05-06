@@ -3,7 +3,6 @@ package org.venuspj.ddd.model.values.buisiness.amount;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.money.TaxPercentage;
-import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
 
@@ -12,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TaxPercentageTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void zero() {
         TaxPercentage target = TaxPercentage.zero();
 
@@ -25,7 +24,7 @@ public class TaxPercentageTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void full() {
         TaxPercentage target = TaxPercentage.all();
 
@@ -38,7 +37,7 @@ public class TaxPercentageTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void valueOf() {
         TaxPercentage target = TaxPercentage.valueOf(BigDecimal.valueOf(0.1));
 
@@ -51,7 +50,7 @@ public class TaxPercentageTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sum() {
         TaxPercentage currentTaxPercentage = TaxPercentage.valueOf(BigDecimal.valueOf(10));
 

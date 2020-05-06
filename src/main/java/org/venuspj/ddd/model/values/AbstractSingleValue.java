@@ -1,7 +1,5 @@
 package org.venuspj.ddd.model.values;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import static org.venuspj.util.objects2.Objects2.*;
 
 /**
@@ -67,12 +65,10 @@ public abstract class AbstractSingleValue<T, ASV extends AbstractSingleValue<T, 
 
     }
 
-    @JsonIgnore
     public boolean isEmpty() {
         return isNull(value);
     }
 
-    @JsonIgnore
     public boolean isPresent() {
         return nonNull(value);
     }

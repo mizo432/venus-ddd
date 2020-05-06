@@ -1,12 +1,9 @@
 package org.venuspj.ddd.model.values.buisiness.quantity;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.ddd.model.values.buisiness.Unit;
 import org.venuspj.ddd.model.values.buisiness.address.SimpleAddress;
-import org.venuspj.tests.constants.TestSize;
 
 import java.math.BigDecimal;
 
@@ -14,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class QuantityDecimalAndUnitTest {
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
 
@@ -26,7 +23,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.of(QuantityDecimal.empty(), Unit.empty());
 
@@ -38,7 +35,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs1() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
 
@@ -50,7 +47,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs2() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
 
@@ -62,7 +59,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs3() {
         QuantityDecimalAndUnit arg = QuantityDecimalAndUnit.empty();
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
@@ -75,7 +72,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void toString1() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
 
@@ -84,7 +81,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void equals1() {
         SimpleAddress arg = SimpleAddress.empty();
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
@@ -97,7 +94,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty1() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
         boolean actual = target.isEmpty();
@@ -109,7 +106,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty2() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnitMock.empty();
         boolean actual = target.isEmpty();
@@ -121,7 +118,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty3() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnitMock.existQuantityDecimal();
         boolean actual = target.isEmpty();
@@ -132,7 +129,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty4() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnitMock.existUnit();
         boolean actual = target.isEmpty();
@@ -143,7 +140,7 @@ public class QuantityDecimalAndUnitTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty5() {
         QuantityDecimalAndUnit target = QuantityDecimalAndUnitMock.full();
         boolean actual = target.isEmpty();
@@ -152,35 +149,6 @@ public class QuantityDecimalAndUnitTest {
 
 
     }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void toJson1() throws JsonProcessingException {
-        QuantityDecimalAndUnit target = QuantityDecimalAndUnitMock.full();
-        JsonMapperEx objectMapper = new JsonMapperEx();
-
-        String json = objectMapper.writeValueAsString(target);
-
-        QuantityDecimalAndUnit actual = objectMapper.readValue(json, QuantityDecimalAndUnit.class);
-
-        assertThat(target.sameValueAs(actual))
-                .isTrue();
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void toJson2() throws JsonProcessingException {
-        QuantityDecimalAndUnit target = QuantityDecimalAndUnit.empty();
-        JsonMapperEx objectMapper = new JsonMapperEx();
-
-        String json = objectMapper.writeValueAsString(target);
-
-        QuantityDecimalAndUnit actual = objectMapper.readValue(json, QuantityDecimalAndUnit.class);
-
-        assertThat(target.sameValueAs(actual))
-                .isTrue();
-    }
-
 
     private static class QuantityDecimalAndUnitMock {
         public static QuantityDecimalAndUnit empty() {

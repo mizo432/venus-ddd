@@ -2,7 +2,6 @@ package org.venuspj.ddd.model.values.buisiness.datetime;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.tests.constants.TestSize;
 
 import java.time.Year;
 
@@ -10,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TargetYearTest {
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
 
         TargetYear target = TargetYear.of(Year.now());
@@ -23,7 +22,7 @@ public class TargetYearTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void toString1() {
         Year arg = Year.now();
 
@@ -36,7 +35,7 @@ public class TargetYearTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void asTest() {
         Year arg = Year.now();
 
@@ -52,7 +51,7 @@ public class TargetYearTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
 
         TargetYear target = TargetYear.empty();

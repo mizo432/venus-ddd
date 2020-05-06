@@ -1,14 +1,11 @@
 package org.venuspj.ddd.model.entity;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntities;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntity;
 import org.venuspj.ddd.model.forTest.model.concrete.entities.ConcreteEntityIdentifier;
 import org.venuspj.ddd.model.repository.EntityNotFoundRuntimeException;
-import org.venuspj.tests.constants.TestSize;
 
 import java.util.Collection;
 
@@ -19,7 +16,7 @@ import static org.venuspj.util.collect.Lists2.newArrayList;
 public class AbstractEntitiesTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         ConcreteEntities actual = ConcreteEntities.empty();
         assertThat(actual.asList())
@@ -29,7 +26,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of1() {
         ConcreteEntities actual = ConcreteEntities.of(ConcreteEntitiesMock.empty());
         assertThat(actual.asList())
@@ -39,7 +36,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of2() {
         ConcreteEntities actual = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
         assertThat(actual.asList())
@@ -49,7 +46,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void getValue() {
         ConcreteEntities actual = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
         assertThat(actual.getValue())
@@ -59,7 +56,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs1() {
         ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
         final boolean actual = target.sameValueAs(target);
@@ -69,7 +66,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs2() {
         ConcreteEntities arg = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
         ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
@@ -80,7 +77,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs3() {
         ConcreteEntities arg = ConcreteEntities.of(ConcreteEntitiesMock.threeEntities());
         ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
@@ -91,7 +88,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs4() {
         ConcreteEntities arg = ConcreteEntities.of(ConcreteEntitiesMock.otherTwoEntities());
         ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
@@ -102,7 +99,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs5() {
         ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
         final boolean actual = target.sameValueAs(null);
@@ -112,7 +109,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void findEntityBy1() throws EntityNotFoundRuntimeException {
         ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
         ConcreteEntity actual = target.findEntityBy(ConcreteEntityIdentifier.of(1L));
@@ -122,7 +119,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void findEntityBy2() {
         ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
         try {
@@ -134,7 +131,7 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void selectEntityBy1() {
         ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
         ConcreteEntities actual = target.selectEntityBy(entity -> entity.getIdentifier().equals(ConcreteEntityIdentifier.of(2L)));
@@ -144,41 +141,13 @@ public class AbstractEntitiesTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void selectEntityBy2() {
         ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.twoEntities());
         ConcreteEntities actual = target.selectEntityBy(entity -> entity.getIdentifier().equals(ConcreteEntityIdentifier.of(3L)));
         assertThat(actual.asList())
                 .isEmpty();
 
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void toJson1() {
-        ConcreteEntities target = ConcreteEntities.of(ConcreteEntitiesMock.threeEntities());
-        JsonMapperEx objectMapper = new JsonMapperEx();
-
-        String json = objectMapper.writeValueAsString(target);
-
-        ConcreteEntities actual = objectMapper.readValue(json, ConcreteEntities.class);
-
-        assertThat(target.sameValueAs(actual))
-                .isTrue();
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void toJson2() throws JsonProcessingException {
-        ConcreteEntities target = ConcreteEntities.empty();
-        JsonMapperEx objectMapper = new JsonMapperEx();
-
-        String json = objectMapper.writeValueAsString(target);
-
-        ConcreteEntities actual = objectMapper.readValue(json, ConcreteEntities.class);
-
-        assertThat(target.sameValueAs(actual))
-                .isTrue();
     }
 
     private static class ConcreteEntitiesMock {

@@ -3,14 +3,13 @@ package org.venuspj.ddd.model.values.buisiness.address;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.name.Name;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AzaTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         Aza target = AzaMock.empty();
         assertThat(target.isEmpty())
@@ -20,7 +19,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
         Aza target = Aza.of(AzaIdentifier.of(1L),
                 AzaCode.of("001"),
@@ -33,7 +32,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs1() {
         Aza target = AzaMock.one();
         assertThat(target.sameValueAs(AzaMock.one()))
@@ -42,7 +41,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs2() {
         Aza target = AzaMock.one();
         assertThat(target.sameValueAs(target))
@@ -51,7 +50,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs3() {
         Aza target = AzaMock.one();
         assertThat(target.sameValueAs(null))
@@ -60,7 +59,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs4() {
         Aza target = AzaMock.one();
         assertThat(target.sameValueAs(AzaMock.two()))
@@ -69,7 +68,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameIdentifierAs1() {
         Aza target = AzaMock.one();
         assertThat(target.sameIdentifierAs(AzaMock.one()))
@@ -78,7 +77,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameIdentifierAs2() {
         Aza target = AzaMock.one();
         assertThat(target.sameIdentifierAs(target))
@@ -87,7 +86,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameIdentifierAs3() {
         Aza target = AzaMock.one();
         assertThat(target.sameIdentifierAs(null))
@@ -96,7 +95,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameIdentifierAs4() {
         Aza target = AzaMock.one();
         assertThat(target.sameIdentifierAs(AzaMock.two()))
@@ -105,7 +104,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameIdentifierAs5() {
         Aza target = AzaMock.one();
         assertThat(target.sameIdentifierAs(AzaMock.sameIdentifier()))
@@ -114,7 +113,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs6() {
         Aza target = AzaMock.one();
         assertThat(target.sameValueAs(AzaMock.three()))
@@ -123,7 +122,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs7() {
         Aza target = AzaMock.one();
         assertThat(target.sameValueAs(AzaMock.four()))
@@ -132,7 +131,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs8() {
         Aza target = AzaMock.one();
         assertThat(target.sameValueAs(AzaMock.five()))
@@ -141,7 +140,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void azaCode() {
         Aza target = AzaMock.one();
         AzaCode actual = target.azaCode();
@@ -151,7 +150,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void kanaName() {
         Aza target = AzaMock.one();
         Name actual = target.kanaName();
@@ -161,7 +160,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void name() {
         Aza target = AzaMock.one();
         Name actual = target.name();
@@ -171,7 +170,7 @@ public class AzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs9() {
         Aza arg = AzaMock.two();
 

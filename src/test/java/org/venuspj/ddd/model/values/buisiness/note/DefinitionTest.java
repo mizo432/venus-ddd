@@ -2,7 +2,6 @@ package org.venuspj.ddd.model.values.buisiness.note;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.tests.constants.TestSize;
 
 import java.util.ArrayList;
 
@@ -12,7 +11,7 @@ import static org.venuspj.util.collect.Lists2.newArrayList;
 public class DefinitionTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         Definition target = Definition.empty();
 
@@ -25,7 +24,7 @@ public class DefinitionTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of1() {
         Definition target = Definition.of(HeadLine.empty(), Description.empty());
 
@@ -38,7 +37,7 @@ public class DefinitionTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of2() {
         Definition target = Definition.of(HeadLine.of("DUMMY"), Description.empty());
 
@@ -51,7 +50,7 @@ public class DefinitionTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of3() {
         ArrayList<Line> description = newArrayList();
         description.add(Line.of("DUMMY1"));
@@ -68,7 +67,7 @@ public class DefinitionTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of4() {
         ArrayList<Line> description = newArrayList();
         description.add(Line.of("DUMMY1"));

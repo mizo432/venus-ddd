@@ -2,7 +2,6 @@ package org.venuspj.ddd.model.values.buisiness.datetime;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.tests.constants.TestSize;
 
 import java.time.*;
 
@@ -11,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class IntervalTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void createFrom1() {
         Interval<LocalDateTime> target = Interval
                 .createFrom(
@@ -24,7 +23,7 @@ public class IntervalTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void createFrom2() {
         Interval<LocalDate> target = Interval
                 .createFrom(
@@ -38,7 +37,7 @@ public class IntervalTest {
 
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void createFrom3() {
         Interval<YearMonth> target = Interval
                 .createFrom(
@@ -51,7 +50,7 @@ public class IntervalTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void createFrom4() {
         Interval<Year> target = Interval
                 .createFrom(
@@ -64,7 +63,7 @@ public class IntervalTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isOverlap1() {
         Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2022)));
 
@@ -78,7 +77,7 @@ public class IntervalTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isOverlap2() {
         Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2020)), Moment.of(Year.of(2021)));
 
@@ -92,7 +91,7 @@ public class IntervalTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isOverlap3() {
         Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2021)), Moment.of(Year.of(2022)));
 
@@ -106,7 +105,7 @@ public class IntervalTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isOverlap4() {
         Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2019)), Moment.of(Year.of(2020)));
 
@@ -120,7 +119,7 @@ public class IntervalTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isOverlap5() {
         Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2022)), Moment.of(Year.of(2024)));
 
@@ -134,7 +133,7 @@ public class IntervalTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isOverlap6() {
         Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2017)), Moment.of(Year.of(2019)));
 
@@ -148,7 +147,7 @@ public class IntervalTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isOverlap7() {
         Interval<Year> arg = Interval.createFrom(Moment.of(Year.of(2023)), Moment.of(Year.of(2015)));
 

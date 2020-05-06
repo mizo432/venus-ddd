@@ -1,6 +1,5 @@
 package org.venuspj.values.model.domain.relashonshipManagement.party;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.Value;
 
 /**
@@ -20,7 +19,6 @@ public class UserInformation implements Value<UserInformation> {
     }
 
     @Override
-    @JsonIgnore
     public boolean isEmpty() {
         return true;
     }

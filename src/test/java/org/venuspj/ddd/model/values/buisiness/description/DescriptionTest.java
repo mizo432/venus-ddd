@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.note.Description;
 import org.venuspj.ddd.model.values.buisiness.note.Line;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.venuspj.util.collect.Lists2.newArrayList;
@@ -12,7 +11,7 @@ import static org.venuspj.util.collect.Lists2.newArrayList;
 public class DescriptionTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
         Description target = Description.of(
                 newArrayList(

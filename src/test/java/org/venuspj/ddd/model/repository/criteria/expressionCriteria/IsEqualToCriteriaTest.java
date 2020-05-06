@@ -3,14 +3,13 @@ package org.venuspj.ddd.model.repository.criteria.expressionCriteria;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class IsEqualToCriteriaTest {
 
     @DisplayName("一致している場合の確認")
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     @Test
     public void test1() {
         Integer arg = 1;
@@ -27,7 +26,7 @@ public class IsEqualToCriteriaTest {
     }
 
     @DisplayName("少ない場合の確認")
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     @Test
     public void test2() {
         Integer arg = 1;
@@ -44,7 +43,7 @@ public class IsEqualToCriteriaTest {
     }
 
     @DisplayName("多い場合の確認")
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     @Test
     public void test3() {
         Integer arg = 1;

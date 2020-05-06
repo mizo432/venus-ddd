@@ -3,13 +3,12 @@ package org.venuspj.ddd.model.values.buisiness.address;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.venuspj.ddd.model.values.buisiness.name.Name;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OoAzaTest {
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         OoAza target = OoAza.empty();
 
@@ -21,7 +20,7 @@ public class OoAzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
         OoAza target = OoAza.of(OoAzaIdentifier.of(1L), OoAzaCode.of("001"), Name.of("千代田"), Name.of("チヨダ"));
 
@@ -33,7 +32,7 @@ public class OoAzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs1() {
         OoAza target = OoAza.empty();
 
@@ -45,7 +44,7 @@ public class OoAzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs2() {
         OoAza target = OoAza.empty();
 
@@ -57,7 +56,7 @@ public class OoAzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs3() {
         OoAza arg = OoAza.empty();
         OoAza target = OoAza.empty();
@@ -70,7 +69,7 @@ public class OoAzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void toString1() {
         OoAza target = OoAza.empty();
 
@@ -79,7 +78,7 @@ public class OoAzaTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void equals1() {
         SimpleAddress arg = SimpleAddress.empty();
         OoAza target = OoAza.empty();

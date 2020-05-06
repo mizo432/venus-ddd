@@ -1,18 +1,15 @@
 package org.venuspj.ddd.model.values.buisiness.contact;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.ddd.json.JsonMapperEx;
 import org.venuspj.ddd.model.values.buisiness.address.Address;
 import org.venuspj.ddd.model.values.buisiness.address.SimpleAddress;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ContactTest {
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         Contact target = Contact.empty();
 
@@ -24,7 +21,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
         Contact target = Contact.of(Address.empty(),
                 EmailAddress.empty(), TelephoneNumber.empty(), TelephoneNumber.empty());
@@ -37,7 +34,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void builder1() {
         Contact target = Contact
                 .builder()
@@ -55,7 +52,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void builder2() {
         Contact target = Contact
                 .builder()
@@ -73,7 +70,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void builder3() {
         Contact target = Contact
                 .builder()
@@ -87,7 +84,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs1() {
         Contact target = Contact.empty();
 
@@ -99,7 +96,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs2() {
         Contact target = Contact.empty();
 
@@ -111,7 +108,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void sameValueAs3() {
         Contact arg = Contact.empty();
         Contact target = Contact.empty();
@@ -124,7 +121,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void toString1() {
         Contact target = Contact.empty();
 
@@ -133,7 +130,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void equals1() {
         SimpleAddress arg = SimpleAddress.empty();
         Contact target = Contact.empty();
@@ -146,7 +143,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty1() {
         SimpleAddress arg = SimpleAddress.empty();
         Contact target = Contact.empty();
@@ -159,7 +156,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty2() {
         SimpleAddress arg = SimpleAddress.empty();
         Contact target = ContactMock.empty();
@@ -172,7 +169,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty4() {
         Contact target = ContactMock.existTelephoneNumber();
         boolean actual = target.isEmpty();
@@ -183,7 +180,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty5() {
         Contact target = ContactMock.existFaxNumber();
         boolean actual = target.isEmpty();
@@ -194,7 +191,7 @@ public class ContactTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void isEmpty6() {
         Contact target = ContactMock.existEmailAddress();
         boolean actual = target.isEmpty();
@@ -202,34 +199,6 @@ public class ContactTest {
                 .isFalse();
 
 
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void toJson1() throws JsonProcessingException {
-        Contact target = ContactMock.full();
-        JsonMapperEx objectMapper = new JsonMapperEx();
-
-        String json = objectMapper.writeValueAsString(target);
-
-        Contact actual = objectMapper.readValue(json, Contact.class);
-
-        assertThat(target.sameValueAs(actual))
-                .isTrue();
-    }
-
-    @Test
-    @Tag(TestSize.SMALL)
-    public void toJson2() throws JsonProcessingException {
-        Contact target = Contact.empty();
-        JsonMapperEx objectMapper = new JsonMapperEx();
-
-        String json = objectMapper.writeValueAsString(target);
-
-        Contact actual = objectMapper.readValue(json, Contact.class);
-
-        assertThat(target.sameValueAs(actual))
-                .isTrue();
     }
 
     private static class ContactMock {

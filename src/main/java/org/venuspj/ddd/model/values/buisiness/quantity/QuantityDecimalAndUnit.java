@@ -1,6 +1,5 @@
 package org.venuspj.ddd.model.values.buisiness.quantity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.values.Value;
 import org.venuspj.ddd.model.values.buisiness.Unit;
 import org.venuspj.util.objects2.Objects2;
@@ -67,7 +66,6 @@ public class QuantityDecimalAndUnit implements Value<QuantityDecimalAndUnit> {
 
     }
 
-    @JsonIgnore
     public boolean isEmpty() {
         return quantity.isEmpty()
                 && unit.isEmpty();

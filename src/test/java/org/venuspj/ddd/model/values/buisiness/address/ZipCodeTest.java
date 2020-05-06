@@ -2,14 +2,13 @@ package org.venuspj.ddd.model.values.buisiness.address;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.venuspj.tests.constants.TestSize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ZipCodeTest {
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void empty() {
         ZipCode actual = ZipCode.empty();
         assertThat(actual)
@@ -22,7 +21,7 @@ public class ZipCodeTest {
     }
 
     @Test
-    @Tag(TestSize.SMALL)
+    @Tag("small")
     public void of() {
         ZipCode actual = ZipCode.of("1231234");
         assertThat(actual)

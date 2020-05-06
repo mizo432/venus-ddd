@@ -1,6 +1,5 @@
 package org.venuspj.ddd.model.values.buisiness.address;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.venuspj.ddd.model.entity.AbstractEntity;
 import org.venuspj.ddd.model.entity.AbstractEntityBuilder;
 import org.venuspj.ddd.model.values.buisiness.name.Name;
@@ -42,7 +41,6 @@ public abstract class AbstractPrefecture<P extends AbstractPrefecture<P>> extend
 
     }
 
-    @JsonIgnore
     public boolean isEmpty() {
         return getIdentifier().isEmpty() &&
                 prefectureCode.isEmpty() &&
